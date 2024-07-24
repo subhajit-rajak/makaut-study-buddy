@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="semi_grey">#74888888</color>
+    <color name="semi_darker_grey">#745E5E5E</color>
+
+    <color name="purple_200">#4D455D</color>
+    <color name="purple_500">#E96479</color>
+    <color name="purple_700">#BA4F60</color>
+    <color name="teal_200">#7DB9B6</color>
+    <color name="teal_700">#7DB9B6</color>
+
+    <color name="book_handle">#5E222222</color>
+    <color name="gray">#DFDCDC</color>
+    <color name="text_gray">#B2222222</color>
+    <color name="shimmer_bg">#B2707070</color>
+
+</resources>
