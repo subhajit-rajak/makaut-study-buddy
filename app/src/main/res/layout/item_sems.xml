@@ -22,13 +22,13 @@
             android:layout_margin="20dp">
 
             <TextView
-                android:transitionName="NameTrans"
-                android:id="@+id/textView"
+                android:id="@+id/organizer_name"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="Subject name"
+                android:text="Organizer Name"
                 android:textColor="@color/black"
                 android:textSize="20sp"
+                android:transitionName="NameTrans"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -46,5 +46,4 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </com.google.android.material.card.MaterialCardView>
-
 </androidx.constraintlayout.widget.ConstraintLayout>

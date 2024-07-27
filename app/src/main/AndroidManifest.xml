@@ -13,10 +13,13 @@
         android:theme="@style/Theme.MakautStudyBuddy"
         tools:targetApi="31">
         <activity
-            android:name=".PdfActivity"
+            android:name=".SemActivity"
             android:exported="false" />
         <activity
-            android:name=".DetailsActivity"
+            android:name=".ErrorActivity"
+            android:exported="false" />
+        <activity
+            android:name=".PdfActivity"
             android:exported="false" />
         <activity
             android:name=".MainActivity"
