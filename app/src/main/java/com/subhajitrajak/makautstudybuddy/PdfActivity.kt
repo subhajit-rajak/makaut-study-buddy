@@ -3,14 +3,10 @@ package com.subhajitrajak.makautstudybuddy
 import android.net.Uri
 import android.os.Bundle
 import android.view.WindowManager
-import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import com.subhajitrajak.makautstudybuddy.databinding.ActivityPdfBinding
 
 class PdfActivity : AppCompatActivity() {
-    private val activity = this
     private val binding: ActivityPdfBinding by lazy {
         ActivityPdfBinding.inflate(layoutInflater)
     }

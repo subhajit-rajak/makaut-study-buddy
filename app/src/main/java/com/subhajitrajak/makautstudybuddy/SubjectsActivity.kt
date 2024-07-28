@@ -19,9 +19,9 @@ class SubjectsActivity : AppCompatActivity() {
 
         binding.apply {
             rvSubjects.adapter=adapter
-            val bookList = intent.getSerializableExtra("book_list") as ArrayList<*>
+            val bookList = intent.getSerializableExtra("book_list") as ArrayList<BooksModel>
             bookList.forEach {
-                list.add(it as BooksModel)
+                list.add(it)
             }
         }
     }

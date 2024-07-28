@@ -8,7 +8,6 @@ import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Build
 import android.os.Bundle
-import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import com.subhajitrajak.makautstudybuddy.databinding.ActivityDetailsBinding
@@ -31,7 +30,6 @@ class DetailsActivity : AppCompatActivity() {
         )[BookViewModel::class.java]
     }
 
-    private val TAG = "Details_Activity"
     @SuppressLint("SetTextI18n", "ObsoleteSdkInt")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -59,7 +57,6 @@ class DetailsActivity : AppCompatActivity() {
                 when (it) {
                     is MyResponses.Error -> {
                         dialog.dismiss()
-                        Log.e(TAG, "onCreate: ${it.errorMessage}")
                     }
 
                     is MyResponses.Loading -> {
@@ -70,13 +67,10 @@ class DetailsActivity : AppCompatActivity() {
                             dialogBinding.progressBar.progress = it.progress
                         }
                         dialog.show()
-                        Log.i(TAG, "onCreate: Progress ${it.progress}")
-
                     }
 
                     is MyResponses.Success -> {
                         dialog.dismiss()
-                        Log.i(TAG, "onCreate: Downloaded ${it.data}")
                         Intent().apply {
                             putExtra("book_pdf", it.data?.filePath)
                             setClass(activity, PdfActivity::class.java)
