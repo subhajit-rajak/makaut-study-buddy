@@ -5,7 +5,7 @@ import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.subhajitrajak.makautstudybuddy.SemActivity
+import com.subhajitrajak.makautstudybuddy.SubjectsActivity
 import com.subhajitrajak.makautstudybuddy.databinding.ItemBranchesBinding
 import com.subhajitrajak.makautstudybuddy.models.HomeModel
 
@@ -23,7 +23,7 @@ class HomeAdapter(val list: ArrayList<HomeModel>, val context: Context) :
                         // handle here
                         val intent = Intent()
                         intent.putExtra("book_list",booksList)
-                        intent.setClass(context,SemActivity::class.java)
+                        intent.setClass(context,SubjectsActivity::class.java)
                         context.startActivity(intent)
                     }
                 }

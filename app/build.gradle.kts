@@ -52,4 +52,10 @@ dependencies {
     androidTestImplementation(libs.androidx.espresso.core)
 
     implementation ("com.github.barteksc:android-pdf-viewer:3.2.0-beta.1")
+
+    val lifecycleVersion = "2.5.1"
+    implementation ("androidx.lifecycle:lifecycle-viewmodel:$lifecycleVersion")
+    implementation ("androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycleVersion")
+
+    implementation ("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.4")
 }

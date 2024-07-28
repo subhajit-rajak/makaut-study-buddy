@@ -5,7 +5,7 @@ import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.subhajitrajak.makautstudybuddy.PdfActivity
+import com.subhajitrajak.makautstudybuddy.DetailsActivity
 import com.subhajitrajak.makautstudybuddy.databinding.ItemSemsBinding
 import com.subhajitrajak.makautstudybuddy.models.BooksModel
 
@@ -20,8 +20,8 @@ class CategoryAdapter(val list: ArrayList<BooksModel>, val context: Context) :
                 organizerName.text = model.bookName
                 binding.root.setOnClickListener {
                     Intent().apply {
-                        putExtra("book_pdf", model.bookPDF)
-                        setClass(context, PdfActivity::class.java)
+                        putExtra("book_model", model)
+                        setClass(context, DetailsActivity::class.java)
                         context.startActivity(this)
                     }
                 }

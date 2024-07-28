@@ -1,5 +1,6 @@
 package com.subhajitrajak.makautstudybuddy
 
+import android.net.Uri
 import android.os.Bundle
 import android.view.WindowManager
 import androidx.activity.enableEdgeToEdge
@@ -21,7 +22,7 @@ class PdfActivity : AppCompatActivity() {
 
         binding.apply {
             val pdf = intent.getStringExtra("book_pdf").toString()
-            pdfView.fromAsset(pdf)
+            pdfView.fromUri(Uri.parse(pdf))
                 .swipeHorizontal(true)
                 .enableSwipe(true)
                 .pageSnap(true)

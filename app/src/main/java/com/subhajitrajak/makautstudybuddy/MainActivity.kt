@@ -23,11 +23,11 @@ class MainActivity : AppCompatActivity() {
 
         binding.apply {
             rv.adapter=adapter
-            booksList.add(BooksModel(branch = "CSE", bookName = "sem1Maths", bookPDF = "sample_book.pdf"))
-            booksList.add(BooksModel(branch = "CSE", bookName = "sem2DSA", bookPDF = "sample_book.pdf"))
-            booksList2.add(BooksModel(branch = "IT", bookName = "sem1Maths", bookPDF = "sample_book.pdf"))
-            booksList2.add(BooksModel(branch = "IT", bookName = "sem2DAA", bookPDF = "sample_book.pdf"))
-            booksList2.add(BooksModel(branch = "IT", bookName = "sem2Economics", bookPDF = "sample_book.pdf"))
+            booksList.add(BooksModel(branch = "CSE", bookName = "sem1Maths", bookPDF = "https://icseindia.org/document/sample.pdf"))
+            booksList.add(BooksModel(branch = "CSE", bookName = "sem2DSA", bookPDF = "https://icseindia.org/document/sample.pdf"))
+            booksList2.add(BooksModel(branch = "IT", bookName = "sem1Maths", bookPDF = "https://icseindia.org/document/sample.pdf"))
+            booksList2.add(BooksModel(branch = "IT", bookName = "sem2DAA", bookPDF = "https://icseindia.org/document/sample.pdf"))
+            booksList2.add(BooksModel(branch = "IT", bookName = "sem2Economics", bookPDF = "https://icseindia.org/document/sample.pdf"))
 
             list.add(HomeModel(branch = "CSE", booksList = booksList))
             list.add(HomeModel(branch = "IT", booksList = booksList2))

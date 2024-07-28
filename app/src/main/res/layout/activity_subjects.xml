@@ -5,10 +5,10 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".SemActivity">
+    tools:context=".SubjectsActivity">
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rvSemester"
+        android:id="@+id/rvSubjects"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
