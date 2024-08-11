@@ -18,6 +18,7 @@ class CategoryAdapter(val list: ArrayList<BooksModel>, val context: Context) :
         fun bind(model: BooksModel, context: Context) {
             binding.apply {
                 organizerName.text = model.bookName
+                semesterNumber.text = model.semester
                 binding.root.setOnClickListener {
                     Intent().apply {
                         putExtra("book_model", model)
