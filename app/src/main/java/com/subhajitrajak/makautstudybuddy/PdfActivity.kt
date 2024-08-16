@@ -4,6 +4,7 @@ import android.net.Uri
 import android.os.Bundle
 import android.view.WindowManager
 import androidx.appcompat.app.AppCompatActivity
+import com.github.barteksc.pdfviewer.scroll.DefaultScrollHandle
 import com.subhajitrajak.makautstudybuddy.databinding.ActivityPdfBinding
 
 class PdfActivity : AppCompatActivity() {
@@ -20,6 +21,7 @@ class PdfActivity : AppCompatActivity() {
             val pdf = intent.getStringExtra("book_pdf").toString()
             pdfView.fromUri(Uri.parse(pdf))
                 .swipeHorizontal(true)
+                .scrollHandle(DefaultScrollHandle(this@PdfActivity))
                 .enableSwipe(true)
                 .pageSnap(true)
                 .autoSpacing(true)
