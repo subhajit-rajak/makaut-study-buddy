@@ -10,6 +10,7 @@
         android:layout_margin="20dp"
         app:cardCornerRadius="10dp"
         app:cardElevation="5dp"
+        android:backgroundTint="@color/background_upfront"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -26,7 +27,7 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:text="Downloading..."
-                android:textColor="@color/black"
+                android:textColor="@color/text"
                 android:textSize="18sp"
                 android:textStyle="bold" />
 
@@ -35,13 +36,16 @@
                 style="?android:attr/progressBarStyleHorizontal"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:progress="35" />
+                android:progress="35"
+                android:progressBackgroundTint="@color/highlight"
+                android:progressTint="@color/highlight" />
 
             <TextView
                 android:id="@+id/mProgress"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="end"
+                android:textColor="@color/text"
                 android:text="35%" />
 
         </LinearLayout>

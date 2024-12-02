@@ -13,7 +13,7 @@
         android:layout_marginEnd="20dp"
         android:layout_marginBottom="10dp"
         app:strokeWidth="0dp"
-        android:backgroundTint="@color/light_grey"
+        android:backgroundTint="@color/highlight"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
@@ -31,8 +31,10 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:text="Branch name"
-                android:textColor="@color/black"
-                android:textSize="20sp"
+                android:textColor="@color/background"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:fontFamily="@font/belgan_aesthetic"
                 android:transitionName="NameTrans"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -46,7 +48,8 @@
                 android:src="@drawable/rv_right"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                app:tint="@color/background" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

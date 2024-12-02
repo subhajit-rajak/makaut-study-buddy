@@ -4,13 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
     android:layout_width="match_parent"
+    android:background="@color/background"
     android:layout_height="match_parent"
     tools:context=".SubjectsActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/blue"
+        android:background="@color/background"
         android:orientation="vertical"
         android:weightSum="10">
 
@@ -31,7 +32,8 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="10"
                 android:text="Ok, now what subject?"
-                android:textColor="@color/white"
+                android:fontFamily="@font/belgan_aesthetic"
+                android:textColor="@color/text"
                 android:textSize="24sp"
                 android:textStyle="bold" />
 

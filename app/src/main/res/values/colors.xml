@@ -19,4 +19,14 @@
     <color name="text_gray">#B2222222</color>
     <color name="shimmer_bg">#B2707070</color>
 
+    // for day night
+
+    <color name="background_upfront">#EBF2EA</color>
+    <color name="background_pdf">#FFFFFF</color>
+    <color name="background">#ffffff</color>
+    <color name="background_top_bar">#1a1a1a</color>
+    <color name="background_lighter">#e6e6e6</color>
+    <color name="highlight">#5ca653</color>
+    <color name="text">#1a1a1a</color>
+
 </resources>

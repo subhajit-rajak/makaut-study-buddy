@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="background_upfront">#10140e</color>
+    <color name="background_pdf">#000000</color>
+    <color name="background">#1A231A</color>
+    <color name="background_top_bar">#1A231A</color>
+    <color name="background_lighter">#373d45</color>
+    <color name="highlight">#83d65c</color>
+    <color name="text">#dedfdf</color>
+</resources>

@@ -4,13 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/background_upfront"
     tools:context=".DetailsActivity">
 
     <View
         android:id="@+id/view2"
         android:layout_width="wrap_content"
         android:layout_height="320dp"
-        android:background="@color/gray"
+        android:background="@color/background"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
@@ -22,6 +23,8 @@
         android:layout_height="0dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="32dp"
+        android:elevation="5dp"
+        app:cardCornerRadius="16dp"
         android:layout_marginBottom="50dp"
         android:transitionName="BookTrans"
         app:layout_constraintBottom_toBottomOf="@+id/view2"
@@ -68,7 +71,7 @@
         android:layout_marginTop="16dp"
         android:layout_marginEnd="8dp"
         android:text="The Ultimate\nExamination Guide"
-        android:textColor="@color/black"
+        android:textColor="@color/text"
         android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
@@ -82,7 +85,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="4dp"
         android:text="Popular Publications"
-        android:textColor="@color/text_gray"
+        android:textColor="@color/highlight"
         android:textSize="12sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="@+id/mBookTitle"
@@ -98,7 +101,7 @@
         android:ellipsize="end"
         android:maxLines="1"
         android:text="MAKAUT Organizer"
-        android:textColor="@color/blue"
+        android:textColor="@color/highlight"
         android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
@@ -128,33 +131,13 @@
             android:ellipsize="end"
             android:fontFamily="@font/roboto"
             android:text="@string/makaut_organizer_description"
-            android:textColor="@color/text_gray"
+            android:textColor="@color/text"
             android:textSize="14sp"
             app:layout_constraintBottom_toTopOf="@+id/mReadBookBtn"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/mBookTitle" />
     </LinearLayout>
-
-
-<!--    <com.google.android.material.button.MaterialButton-->
-<!--        android:id="@+id/mReadBookBtn"-->
-<!--        style="@style/Widget.Material3.Button.ElevatedButton"-->
-<!--        android:layout_width="0dp"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_marginStart="16dp"-->
-<!--        android:layout_marginTop="16dp"-->
-<!--        android:layout_marginEnd="16dp"-->
-<!--        android:fontFamily="@font/roboto_bold"-->
-<!--        android:text="Read Book"-->
-<!--        android:textColor="@color/black"-->
-<!--        android:textSize="18sp"-->
-<!--        app:icon="@drawable/ic_read"-->
-<!--        app:iconGravity="textStart"-->
-<!--        app:layout_constraintEnd_toEndOf="@+id/mBookTitle"-->
-<!--        app:layout_constraintStart_toStartOf="@+id/mBookTitle"-->
-<!--        app:layout_constraintTop_toBottomOf="@+id/mAuthorName"-->
-<!--        app:strokeColor="@color/black" />-->
 
     <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
         android:id="@+id/mReadBookBtn"
@@ -166,11 +149,14 @@
         android:layout_marginBottom="32dp"
         android:fontFamily="@font/roboto_bold"
         android:padding="16dp"
+        android:backgroundTint="@color/background"
         android:text="Read Book"
-        android:textColor="@color/black"
+        android:textColor="@color/text"
         android:textSize="18sp"
         app:icon="@drawable/ic_read"
+        app:iconTint="@color/text"
         app:iconGravity="textStart"
+        android:elevation="5dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"

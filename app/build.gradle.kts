@@ -10,7 +10,7 @@ android {
 
     defaultConfig {
         applicationId = "com.subhajitrajak.makautstudybuddy"
-        minSdk = 30
+        minSdk = 31
         targetSdk = 34
         versionCode = 1
         versionName = "1.0"
@@ -52,7 +52,7 @@ dependencies {
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
 
-    implementation ("com.github.barteksc:android-pdf-viewer:3.2.0-beta.1")
+    implementation ("com.github.mhiew:android-pdf-viewer:3.2.0-beta.1")
 
     val lifecycleVersion = "2.5.1"
     implementation ("androidx.lifecycle:lifecycle-viewmodel:$lifecycleVersion")
