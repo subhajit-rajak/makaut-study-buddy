@@ -10,7 +10,7 @@
 
 ## Download
 
-<a href="https://github.com/subhajit-rajak/makaut-study-buddy/releases/download/v1.0.0/MakautStudyBuddy.v1.0.0.apk">
+<a href="https://github.com/subhajit-rajak/makaut-study-buddy/releases/download/v2.0.0/MSB-v2.0.0.apk">
 <img src="https://user-images.githubusercontent.com/114044633/223920025-83687de0-e463-4c5d-8122-e06e4bb7d40c.png" width="400" /> 
 </a>
 
