@@ -1,7 +1,7 @@
 <div align="center">
 
-  <img heigh="200" width="200" src="https://github.com/user-attachments/assets/31d0525d-e74a-42cd-bf5d-21cb4564e6b2">
- 
+  <img heigh="200" width="200" src="https://github.com/user-attachments/assets/ae3a2441-b8b9-4b12-8216-45b6b5651d7e">
+
 # Makaut Study Buddy
 
 </div>
