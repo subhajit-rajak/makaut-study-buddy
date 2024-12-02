@@ -45,4 +45,18 @@ Download the app to enjoy a well-organized academic life, and join the community
   - Yes, you absoultely can. Check the section above on steps of how to contribute.
 </details>
 
+## 📱 Screenshots
 
+<p align="center">
+  <img alt="Light" src="https://github.com/user-attachments/assets/9d1b2a6a-8df7-4ece-9abe-dc9b618470d1" width="20%%">
+  <img alt="Light" src="https://github.com/user-attachments/assets/60096a95-fce1-46de-a0ee-af311d675f1d" width="20%%">
+  <img alt="Light" src="https://github.com/user-attachments/assets/f28462d9-8371-4c71-a3da-a21dafa64ea6" width="20%%">
+  <img alt="Light" src="https://github.com/user-attachments/assets/5db552c3-41d5-4aaf-97c8-b5a3b3b16457" width="20%%">
+</p>
+
+<p align="center">
+  <img alt="Light" src="https://github.com/user-attachments/assets/001481a4-39f7-494c-8634-b567b356f876" width="20%%">
+  <img alt="Light" src="https://github.com/user-attachments/assets/9f2557de-a736-418f-8201-e12888605150" width="20%%">
+  <img alt="Light" src="https://github.com/user-attachments/assets/f49fc6e2-ff60-4334-9924-4392d4a8205d" width="20%%">
+  <img alt="Light" src="https://github.com/user-attachments/assets/7fe8ec31-c9aa-4655-8d15-0dbfeb3ee59c" width="20%%">
+</p>
