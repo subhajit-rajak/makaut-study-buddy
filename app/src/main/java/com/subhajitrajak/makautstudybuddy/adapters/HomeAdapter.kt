@@ -9,11 +9,11 @@ import com.subhajitrajak.makautstudybuddy.SubjectsActivity
 import com.subhajitrajak.makautstudybuddy.databinding.ItemBranchesBinding
 import com.subhajitrajak.makautstudybuddy.models.HomeModel
 
-class HomeAdapter(val list: ArrayList<HomeModel>, val context: Context) :
+class HomeAdapter(private val list: ArrayList<HomeModel>, private val context: Context) :
     RecyclerView.Adapter<HomeAdapter.HomeItemViewHolder>() {
 
 
-    class HomeItemViewHolder(val binding: ItemBranchesBinding) : RecyclerView.ViewHolder(binding.root) {
+    class HomeItemViewHolder(private val binding: ItemBranchesBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(model: HomeModel, context: Context) {
             binding.apply {
                 model.apply {

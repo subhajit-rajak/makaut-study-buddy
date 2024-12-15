@@ -2,8 +2,10 @@ package com.subhajitrajak.makautstudybuddy
 
 import android.net.Uri
 import android.os.Bundle
-import android.view.WindowManager
+import android.view.WindowInsets
+import android.view.WindowInsetsController
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.WindowCompat
 import com.github.barteksc.pdfviewer.scroll.DefaultScrollHandle
 import com.subhajitrajak.makautstudybuddy.databinding.ActivityPdfBinding
 
@@ -13,7 +15,13 @@ class PdfActivity : AppCompatActivity() {
     }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        this.window.addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN)
+        WindowCompat.setDecorFitsSystemWindows(window, false)
+        window.decorView.post {
+            window.insetsController?.apply {
+                hide(WindowInsets.Type.statusBars())
+                systemBarsBehavior = WindowInsetsController.BEHAVIOR_SHOW_TRANSIENT_BARS_BY_SWIPE
+            }
+        }
         setContentView(binding.root)
         supportActionBar?.hide()
 

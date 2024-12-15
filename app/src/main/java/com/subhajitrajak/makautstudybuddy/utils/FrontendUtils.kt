@@ -1,7 +1,9 @@
 package com.subhajitrajak.makautstudybuddy.utils
 
+import android.content.Context
 import android.view.View
 import android.view.animation.AlphaAnimation
+import android.widget.Toast
 
 fun View.fadeView(
     duration: Long = 1000,
@@ -21,5 +23,7 @@ fun View.removeWithAnim(){
 fun View.showWithAnim(){
     fadeView(duration = 1000)
     visibility = View.VISIBLE
-
+}
+fun showToast(context: Context, message: String) {
+    Toast.makeText(context, message, Toast.LENGTH_SHORT).show()
 }

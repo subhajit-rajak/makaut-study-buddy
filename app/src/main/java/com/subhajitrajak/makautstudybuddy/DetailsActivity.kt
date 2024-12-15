@@ -30,6 +30,7 @@ class DetailsActivity : AppCompatActivity() {
         )[BookViewModel::class.java]
     }
 
+    @Suppress("DEPRECATION")
     @SuppressLint("SetTextI18n", "ObsoleteSdkInt")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

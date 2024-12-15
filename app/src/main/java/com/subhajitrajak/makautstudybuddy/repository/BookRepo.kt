@@ -38,7 +38,7 @@ class BookRepo(private val context: Context) {
         }
         val downloadId = downloadManager.enqueue(downloadRequest)
         var isDownloaded = false
-        var progress = 0
+        var progress: Int
         while (!isDownloaded) {
             val cursor = downloadManager.query(DownloadManager.Query().setFilterById(downloadId))
             if (cursor.moveToNext()) {

@@ -12,6 +12,7 @@
     <ImageView
         android:layout_width="100dp"
         android:layout_height="150dp"
+        android:contentDescription="@string/error_image"
         app:srcCompat="@drawable/error_image" />
 
     <TextView
@@ -19,7 +20,7 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:textColor="@color/text"
-        android:text="Failed to fetch query.\nPlease try again"
+        android:text="@string/failed_to_fetch_query_please_try_again"
         android:textSize="20sp" />
 
     <com.google.android.material.button.MaterialButton
@@ -27,7 +28,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:backgroundTint="@color/background"
-        android:text="Try again"
+        android:text="@string/try_again"
         android:textStyle="bold"
         android:textColor="@color/highlight"
         android:layout_marginTop="8dp"/>

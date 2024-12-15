@@ -1,5 +1,6 @@
 package com.subhajitrajak.makautstudybuddy
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
@@ -40,6 +41,10 @@ class MainActivity : AppCompatActivity() {
                 viewModel.getHomeData()
             }
 
+            settings.setOnClickListener {
+                startActivity(Intent(activity, SettingsActivity::class.java))
+            }
+
             github.setOnClickListener {
                 val url = "https://github.com/subhajit-rajak/makaut-study-buddy"
                 val intent = Intent(Intent.ACTION_VIEW)
@@ -49,8 +54,9 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     private fun handleHomeBackend() {
-        viewModel.homeLiveData.observe(activity) {
+        viewModel.homeLiveData.observe(activity) { it ->
             when (it) {
                 is MyResponses.Error -> {
                     binding.mErrorHolder.showWithAnim()

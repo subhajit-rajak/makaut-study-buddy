@@ -6,6 +6,7 @@ import com.subhajitrajak.makautstudybuddy.adapters.CategoryAdapter
 import com.subhajitrajak.makautstudybuddy.databinding.ActivitySubjectsBinding
 import com.subhajitrajak.makautstudybuddy.models.BooksModel
 
+@Suppress("DEPRECATION")
 class SubjectsActivity : AppCompatActivity() {
     private val activity = this
     private val binding: ActivitySubjectsBinding by lazy {
@@ -19,9 +20,9 @@ class SubjectsActivity : AppCompatActivity() {
 
         binding.apply {
             rvSubjects.adapter=adapter
-            val bookList = intent.getSerializableExtra("book_list") as ArrayList<BooksModel>
+            val bookList = intent.getSerializableExtra("book_list") as ArrayList<*>
             bookList.forEach {
-                list.add(it)
+                list.add(it as BooksModel)
             }
         }
     }

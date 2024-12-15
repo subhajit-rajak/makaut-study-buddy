@@ -26,7 +26,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:text="Downloading..."
+                android:text="@string/downloading"
                 android:textColor="@color/text"
                 android:textSize="18sp"
                 android:textStyle="bold" />
@@ -46,7 +46,7 @@
                 android:layout_height="wrap_content"
                 android:gravity="end"
                 android:textColor="@color/text"
-                android:text="35%" />
+                android:text="@string/_35" />
 
         </LinearLayout>
     </androidx.cardview.widget.CardView>
