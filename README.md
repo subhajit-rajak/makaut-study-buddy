@@ -30,7 +30,7 @@ Download the app to enjoy a well-organized academic life, and join the community
 - Fork the repository and commit to your branch in your forked repo.
 - Open a pull request with format "Fixed issue #{issue-number} - {relevant-title}" or "Added Feature #{issue-number} - {relevant-title}".
 - Wait patiently for 24 hours for me to review the pr.
-- If I don't reply within 24 hours then, [email me](subhajitrajak2001@gmail.com)
+- If I don't reply within 24 hours then, [email me](mailto:subhajitrajak.dev@gmail.com)
 
 ## 🖐️ FAQ
 
