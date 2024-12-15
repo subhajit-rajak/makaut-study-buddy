@@ -11,7 +11,6 @@ import androidx.core.view.WindowInsetsCompat
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
-import com.google.firebase.database.GenericTypeIndicator
 import com.google.firebase.database.ValueEventListener
 import com.subhajitrajak.makautstudybuddy.databinding.ActivitySettingsBinding
 import com.subhajitrajak.makautstudybuddy.models.SettingsModel
