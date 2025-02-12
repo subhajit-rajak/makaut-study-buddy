@@ -80,6 +80,10 @@ class DetailsActivity : AppCompatActivity() {
                     }
                 }
             }
+
+            backButton.setOnClickListener {
+                finish()
+            }
         }
     }
 }

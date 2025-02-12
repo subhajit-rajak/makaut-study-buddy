@@ -24,6 +24,10 @@ class SubjectsActivity : AppCompatActivity() {
             bookList.forEach {
                 list.add(it as BooksModel)
             }
+
+            backButton.setOnClickListener {
+                finish()
+            }
         }
     }
 }

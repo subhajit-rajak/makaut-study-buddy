@@ -7,30 +7,51 @@
     android:background="@color/background_upfront"
     tools:context=".DetailsActivity">
 
+    <ImageView
+        android:id="@+id/back_button"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:contentDescription="@string/back_button"
+        android:paddingHorizontal="22dp"
+        android:src="@drawable/arrow_back"
+        app:layout_constraintBottom_toBottomOf="@+id/back_button_text"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/back_button_text"
+        app:tint="@color/text"
+        tools:ignore="RedundantDescriptionCheck" />
+
+    <TextView
+        android:id="@+id/back_button_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingVertical="18dp"
+        android:text="@string/read_book"
+        android:textColor="@color/text"
+        android:textSize="22sp"
+        app:layout_constraintStart_toEndOf="@+id/back_button"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <View
         android:id="@+id/view2"
         android:layout_width="wrap_content"
-        android:layout_height="320dp"
-        android:background="@color/background"
+        android:layout_height="220dp"
+        android:background="@drawable/card_background"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/back_button_text" />
 
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/materialCardView"
         android:layout_width="175dp"
-        android:layout_height="0dp"
+        android:layout_height="235dp"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="32dp"
-        android:elevation="5dp"
-        app:cardCornerRadius="16dp"
-        android:layout_marginBottom="50dp"
+        android:elevation="8dp"
         android:transitionName="BookTrans"
+        app:cardCornerRadius="16dp"
         app:layout_constraintBottom_toBottomOf="@+id/view2"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.5">
+        app:layout_constraintTop_toBottomOf="@id/view2">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -46,10 +67,8 @@
 
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.5"
                 app:srcCompat="@drawable/organizer_sample" />
 
             <View
@@ -69,12 +88,12 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
         android:layout_marginEnd="8dp"
         android:text="@string/the_ultimate_examination_guide"
         android:textColor="@color/text"
         android:textSize="24sp"
         android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/materialCardView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/materialCardView"
         app:layout_constraintTop_toTopOf="@+id/materialCardView" />
@@ -97,16 +116,15 @@
         android:id="@+id/textView7"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="16dp"
         android:ellipsize="end"
         android:maxLines="1"
         android:text="@string/makaut_organizer"
         android:textColor="@color/highlight"
         android:textSize="24sp"
         android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/view2" />
+        app:layout_constraintStart_toStartOf="@+id/materialCardView"
+        app:layout_constraintTop_toBottomOf="@+id/materialCardView" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -128,7 +146,7 @@
             android:id="@+id/subjectName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="16dp"
             android:ellipsize="end"
             android:fontFamily="@font/roboto"
             android:text="@string/makaut_organizer_description"

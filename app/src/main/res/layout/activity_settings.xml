@@ -18,7 +18,8 @@
         app:layout_constraintBottom_toBottomOf="@+id/settings_back_button_text"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/settings_back_button_text"
-        app:tint="@color/text" />
+        app:tint="@color/text"
+        tools:ignore="RedundantDescriptionCheck" />
 
     <TextView
         android:id="@+id/settings_back_button_text"

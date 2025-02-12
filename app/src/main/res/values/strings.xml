@@ -44,4 +44,9 @@
     <string name="email_subject_contact">Need Assistance with the Makaut Study Buddy App</string>
     <string name="email_body_feedback">Hi Subhajit,\n\nI wanted to share my feedback about the app. Here\'s what I think:\n\n**What I like:**\n[Highlight the features you love or find helpful]\n\n**Suggestions for improvement:**\n[Suggest features or improvements]\n\n[Extra comments]\n\nBest regards,\n[Your Name]</string>
     <string name="email_subject_feedback">Feedback: Makaut Study Buddy App</string>
+    <string name="branch_name">Branch name</string>
+    <string name="semester">Semester:</string>
+    <string name="organizer_name">Organizer Name</string>
+    <string name="_5">5</string>
+    <string name="ok_now_what_subject">Ok, now what subject?</string>
 </resources>

@@ -19,19 +19,24 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="40dp"
-            android:orientation="horizontal"
-            android:paddingStart="24dp"
-            android:paddingEnd="16dp"
-            android:weightSum="10"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            android:paddingHorizontal="16dp"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/back_button"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:contentDescription="@string/back_button"
+                android:layout_weight="1"
+                android:src="@drawable/arrow_back"
+                app:tint="@color/text" />
 
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="10"
-                android:text="Ok, now what subject?"
+                android:layout_weight="20"
+                android:layout_marginStart="16dp"
+                android:text="@string/ok_now_what_subject"
                 android:fontFamily="@font/belgan_aesthetic"
                 android:textColor="@color/text"
                 android:textSize="24sp"
