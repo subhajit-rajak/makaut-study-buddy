@@ -1,6 +1,6 @@
-<div align="center">
+![Playstore graphic msb](https://github.com/user-attachments/assets/4e08d9d3-64b5-4ca7-8794-897cf71794ad)
 
-  <img heigh="200" width="200" src="https://github.com/user-attachments/assets/ae3a2441-b8b9-4b12-8216-45b6b5651d7e">
+<div align="center">
 
 # Makaut Study Buddy
 
@@ -48,15 +48,9 @@ Download the app to enjoy a well-organized academic life, and join the community
 ## 📱 Screenshots
 
 <p align="center">
-  <img alt="Light" src="https://github.com/user-attachments/assets/9d1b2a6a-8df7-4ece-9abe-dc9b618470d1" width="20%%">
-  <img alt="Light" src="https://github.com/user-attachments/assets/60096a95-fce1-46de-a0ee-af311d675f1d" width="20%%">
-  <img alt="Light" src="https://github.com/user-attachments/assets/f28462d9-8371-4c71-a3da-a21dafa64ea6" width="20%%">
-  <img alt="Light" src="https://github.com/user-attachments/assets/5db552c3-41d5-4aaf-97c8-b5a3b3b16457" width="20%%">
-</p>
-
-<p align="center">
-  <img alt="Light" src="https://github.com/user-attachments/assets/001481a4-39f7-494c-8634-b567b356f876" width="20%%">
-  <img alt="Light" src="https://github.com/user-attachments/assets/9f2557de-a736-418f-8201-e12888605150" width="20%%">
-  <img alt="Light" src="https://github.com/user-attachments/assets/f49fc6e2-ff60-4334-9924-4392d4a8205d" width="20%%">
-  <img alt="Light" src="https://github.com/user-attachments/assets/7fe8ec31-c9aa-4655-8d15-0dbfeb3ee59c" width="20%%">
+  <img src="https://github.com/user-attachments/assets/2dc01394-bef5-4005-91fc-130bc18259d8" width="19%%">
+  <img src="https://github.com/user-attachments/assets/5b753f31-d838-4412-86c9-7ea09a41d8ff" width="19%%">
+  <img src="https://github.com/user-attachments/assets/291be147-c5a9-4982-885c-69d4b33082a5" width="19%%">
+  <img src="https://github.com/user-attachments/assets/289ed6ee-a356-4288-b517-29a282b44b04" width="19%%">
+  <img src="https://github.com/user-attachments/assets/0e4a3308-ac1e-49ba-bf42-50434c4a27d5" width="19%%">
 </p>
