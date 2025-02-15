@@ -10,10 +10,10 @@ android {
 
     defaultConfig {
         applicationId = "com.subhajitrajak.makautstudybuddy"
-        minSdk = 31
+        minSdk = 24
         targetSdk = 34
-        versionCode = 1
-        versionName = "1.0"
+        versionCode = 2
+        versionName = "1.0.1"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -52,14 +52,17 @@ dependencies {
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
 
+    // pdf viewer
     implementation ("com.github.mhiew:android-pdf-viewer:3.2.0-beta.1")
 
-    val lifecycleVersion = "2.5.1"
-    implementation ("androidx.lifecycle:lifecycle-viewmodel:$lifecycleVersion")
-    implementation ("androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycleVersion")
+    // view models
+    implementation (libs.androidx.lifecycle.viewmodel)
+    implementation (libs.androidx.lifecycle.viewmodel.ktx)
 
-    implementation ("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.4")
+    // kotlin coroutines
+    implementation (libs.kotlinx.coroutines.android)
 
+    // firebase
     implementation (platform(libs.firebase.bom))
     implementation(libs.firebase.analytics.ktx)
     implementation(libs.firebase.database.ktx)

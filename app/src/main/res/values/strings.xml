@@ -10,7 +10,8 @@
     <string name="read_book">Read Book</string>
     <string name="hola_amigos">Hola Amigos!! 👋</string>
     <string name="click_here">Click Here</string>
-    <string name="which_branch">Which Branch?</string>
+    <string name="branch_screen_title">Your department, your fate</string>
+    <string name="subject_screen_title">Last-minute prep? Pick your subject!</string>
     <string name="failed_to_fetch_query_please_try_again">Failed to fetch query.\nPlease try again</string>
     <string name="error_image">error image</string>
     <string name="try_again">Try again</string>
@@ -48,5 +49,4 @@
     <string name="semester">Semester:</string>
     <string name="organizer_name">Organizer Name</string>
     <string name="_5">5</string>
-    <string name="ok_now_what_subject">Ok, now what subject?</string>
 </resources>

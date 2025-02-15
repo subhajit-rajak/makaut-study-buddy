@@ -21,10 +21,10 @@
 
     // for day night
 
-    <color name="background_upfront">#EBF2EA</color>
+    <color name="background_upfront">#ffffff</color>
     <color name="background_pdf">#FFFFFF</color>
-    <color name="background">#ffffff</color>
-    <color name="background_settings">#EBF2EA</color>
+    <color name="background">#EBF2EA</color>
+    <color name="background_settings">#ffffff</color>
     <color name="background_top_bar">#1a1a1a</color>
     <color name="background_lighter">#e6e6e6</color>
     <color name="highlight">#5ca653</color>

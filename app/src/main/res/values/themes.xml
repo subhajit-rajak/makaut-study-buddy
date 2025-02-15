@@ -2,8 +2,9 @@
     <!-- Base application theme. -->
     <style name="Base.Theme.MakautStudyBuddy" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Customize your light theme here. -->
-         <item name="colorPrimary">@color/background_top_bar</item>
+        <item name="colorPrimary">@color/background</item>
         <item name="android:statusBarColor">?attr/colorPrimary</item>
+        <item name="android:windowLightStatusBar">true</item>
     </style>
 
     <style name="Theme.MakautStudyBuddy" parent="Base.Theme.MakautStudyBuddy" />
