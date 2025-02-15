@@ -22,7 +22,7 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:paddingStart="24dp"
-            android:layout_marginTop="40dp"
+            android:layout_marginTop="24dp"
             android:paddingEnd="16dp"
             android:weightSum="10"
             app:layout_constraintEnd_toEndOf="parent"
