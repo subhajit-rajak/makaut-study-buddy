@@ -2,6 +2,7 @@ package com.subhajitrajak.makautstudybuddy
 
 import android.content.Intent
 import android.net.Uri
+import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import androidx.activity.enableEdgeToEdge
@@ -34,6 +35,17 @@ class SettingsActivity : AppCompatActivity() {
         binding.settingsBackButton.setOnClickListener {
             finish()
         }
+
+        val packageInfo = packageManager.getPackageInfo(packageName, 0)
+        val versionName = packageInfo.versionName
+        val versionCode = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
+            packageInfo.longVersionCode
+        } else {
+            packageInfo.versionCode
+        }
+
+        val text = "App version $versionName ($versionCode)"
+        binding.appVersion.text = text
 
         val firebaseDatabase = FirebaseDatabase.getInstance()
         val databaseRef = firebaseDatabase.getReference("SettingsData").child("Home")
