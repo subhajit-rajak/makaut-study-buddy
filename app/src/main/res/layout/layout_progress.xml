@@ -55,7 +55,7 @@
                 android:gravity="center"
                 android:textStyle="bold"
                 android:textColor="@color/highlight"
-                android:text="Cancel" />
+                android:text="@string/cancel" />
 
         </LinearLayout>
     </androidx.cardview.widget.CardView>
