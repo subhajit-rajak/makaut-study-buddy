@@ -14,6 +14,7 @@ class BookRepo(private val context: Context) {
 
     private val downloadLd = MutableLiveData<MyResponses<DownloadModel>>()
     val downloadLiveData get() = downloadLd
+    private var currentDownloadId: Long? = null
 
     @SuppressLint("Range")
     suspend fun downloadPdf(url: String, fileName: String) {
@@ -36,12 +37,14 @@ class BookRepo(private val context: Context) {
             setAllowedOverMetered(true)
             setDestinationInExternalFilesDir(context, Environment.DIRECTORY_DOWNLOADS, fileName)
         }
-        val downloadId = downloadManager.enqueue(downloadRequest)
+        currentDownloadId = downloadManager.enqueue(downloadRequest)
         var isDownloaded = false
         var progress: Int
         while (!isDownloaded) {
+            val downloadId = currentDownloadId ?: break
+
             val cursor = downloadManager.query(DownloadManager.Query().setFilterById(downloadId))
-            if (cursor.moveToNext()) {
+            if (cursor!=null && cursor.moveToNext()) {
                 val status = cursor.getInt(cursor.getColumnIndex(DownloadManager.COLUMN_STATUS))
                 when (status) {
                     DownloadManager.STATUS_RUNNING -> {
@@ -67,7 +70,7 @@ class BookRepo(private val context: Context) {
                         progress = 100
                         val filePath = cursor.getString(cursor.getColumnIndex(DownloadManager.COLUMN_LOCAL_URI))
 
-                        val model = DownloadModel(progress, isDownloaded, downloadId, filePath)
+                        val model = DownloadModel(progress, isDownloaded, currentDownloadId!!, filePath)
                         downloadLiveData.postValue(MyResponses.Success(model))
                     }
                     DownloadManager.STATUS_FAILED -> {
@@ -76,9 +79,22 @@ class BookRepo(private val context: Context) {
                         downloadLiveData.postValue(MyResponses.Error("Failed to download $fileName.\nReason: $reason"))
                     }
                 }
+            } else {
+                downloadLiveData.postValue(MyResponses.Error("Failed to download $fileName.Reason: Unknown"))
+                break
             }
         }
     }
+
+    fun cancelDownload() {
+        currentDownloadId?.let { id->
+            val downloadManager = context.getSystemService(DOWNLOAD_SERVICE) as DownloadManager
+            downloadManager.remove(id)
+            downloadLiveData.postValue(MyResponses.Error("Download cancelled"))
+            currentDownloadId = null
+        }
+    }
+
     data class DownloadModel(
         val progress: Int = 0,
         val isDownloaded: Boolean,

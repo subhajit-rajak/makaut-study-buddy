@@ -45,13 +45,17 @@ class DetailsActivity : AppCompatActivity() {
             }
             val dialogBinding = LayoutProgressBinding.inflate(layoutInflater)
             val dialog = Dialog(activity).apply {
-                setCancelable(false)
                 setContentView(dialogBinding.root)
                 this.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
                 this.window!!.setLayout(
                     ActionBar.LayoutParams.MATCH_PARENT,
                     ActionBar.LayoutParams.WRAP_CONTENT
                 )
+            }
+
+            dialogBinding.mCancel.setOnClickListener {
+                viewModel.cancelDownload()
+                dialog.dismiss()
             }
 
             viewModel.downloadLiveData.observe(activity) {

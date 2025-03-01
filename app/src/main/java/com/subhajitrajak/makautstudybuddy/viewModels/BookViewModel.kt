@@ -14,4 +14,7 @@ class BookViewModel(private val repo: BookRepo): ViewModel() {
         }
     }
 
+    fun cancelDownload() {
+        repo.cancelDownload()
+    }
 }
