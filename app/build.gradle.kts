@@ -33,11 +33,11 @@ android {
     }
 
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
+        sourceCompatibility = JavaVersion.VERSION_11
+        targetCompatibility = JavaVersion.VERSION_11
     }
     kotlinOptions {
-        jvmTarget = "1.8"
+        jvmTarget = "11"
     }
 }
 
@@ -57,7 +57,7 @@ dependencies {
     androidTestImplementation(libs.androidx.espresso.core)
 
     // pdf viewer
-    implementation ("com.github.mhiew:android-pdf-viewer:3.2.0-beta.1")
+    implementation (libs.android.pdf.viewer)
 
     // view models
     implementation (libs.androidx.lifecycle.viewmodel)
@@ -72,8 +72,8 @@ dependencies {
     implementation(libs.firebase.database.ktx)
 
     // in-app updates
-    implementation("com.google.android.play:app-update:2.1.0")
-    implementation("com.google.android.play:app-update-ktx:2.1.0")
+    implementation(libs.app.update)
+    implementation(libs.app.update.ktx)
 
-    implementation ("de.hdodenhof:circleimageview:3.1.0")
+    implementation (libs.circleimageview)
 }

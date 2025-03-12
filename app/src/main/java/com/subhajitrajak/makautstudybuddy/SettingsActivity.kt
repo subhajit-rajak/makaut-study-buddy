@@ -38,6 +38,7 @@ class SettingsActivity : AppCompatActivity() {
 
         val packageInfo = packageManager.getPackageInfo(packageName, 0)
         val versionName = packageInfo.versionName
+        @Suppress("DEPRECATION")
         val versionCode = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
             packageInfo.longVersionCode
         } else {
