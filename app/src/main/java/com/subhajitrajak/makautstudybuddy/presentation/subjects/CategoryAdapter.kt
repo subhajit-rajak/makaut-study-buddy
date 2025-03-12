@@ -1,11 +1,11 @@
-package com.subhajitrajak.makautstudybuddy.adapters
+package com.subhajitrajak.makautstudybuddy.presentation.subjects
 
 import android.content.Context
 import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.subhajitrajak.makautstudybuddy.DetailsActivity
+import com.subhajitrajak.makautstudybuddy.presentation.details.DetailsActivity
 import com.subhajitrajak.makautstudybuddy.databinding.ItemSemsBinding
 import com.subhajitrajak.makautstudybuddy.models.BooksModel
 

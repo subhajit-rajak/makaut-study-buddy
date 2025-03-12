@@ -1,17 +1,16 @@
-package com.subhajitrajak.makautstudybuddy.adapters
+package com.subhajitrajak.makautstudybuddy.presentation.organizers
 
 import android.content.Context
 import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.subhajitrajak.makautstudybuddy.SubjectsActivity
+import com.subhajitrajak.makautstudybuddy.presentation.subjects.SubjectsActivity
 import com.subhajitrajak.makautstudybuddy.databinding.ItemBranchesBinding
 import com.subhajitrajak.makautstudybuddy.models.HomeModel
 
 class HomeAdapter(private val list: ArrayList<HomeModel>, private val context: Context) :
     RecyclerView.Adapter<HomeAdapter.HomeItemViewHolder>() {
-
 
     class HomeItemViewHolder(private val binding: ItemBranchesBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(model: HomeModel, context: Context) {
@@ -23,7 +22,7 @@ class HomeAdapter(private val list: ArrayList<HomeModel>, private val context: C
                         // handle here
                         val intent = Intent()
                         intent.putExtra("book_list",booksList)
-                        intent.setClass(context,SubjectsActivity::class.java)
+                        intent.setClass(context, SubjectsActivity::class.java)
                         context.startActivity(intent)
                     }
                 }

@@ -1,4 +1,4 @@
-package com.subhajitrajak.makautstudybuddy
+package com.subhajitrajak.makautstudybuddy.presentation.settings
 
 import android.content.Intent
 import android.net.Uri
@@ -13,6 +13,7 @@ import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
+import com.subhajitrajak.makautstudybuddy.R
 import com.subhajitrajak.makautstudybuddy.databinding.ActivitySettingsBinding
 import com.subhajitrajak.makautstudybuddy.models.SettingsModel
 import com.subhajitrajak.makautstudybuddy.utils.showToast

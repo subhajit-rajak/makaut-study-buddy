@@ -17,7 +17,7 @@
         android:configChanges="uiMode"
         tools:targetApi="34">
         <activity
-            android:name=".OnBoardingActivity"
+            android:name=".presentation.onboarding.OnBoardingActivity"
             android:exported="true" >
         <intent-filter>
             <action android:name="android.intent.action.MAIN" />
@@ -26,22 +26,22 @@
         </intent-filter>
         </activity>
         <activity
-            android:name=".OrganizerActivity"
+            android:name=".presentation.organizers.OrganizerActivity"
             android:exported="false" />
         <activity
-            android:name=".SettingsActivity"
+            android:name=".presentation.settings.SettingsActivity"
             android:exported="false" />
         <activity
-            android:name=".DetailsActivity"
+            android:name=".presentation.details.DetailsActivity"
             android:exported="false" />
         <activity
-            android:name=".SubjectsActivity"
+            android:name=".presentation.subjects.SubjectsActivity"
             android:exported="false" />
         <activity
-            android:name=".PdfActivity"
+            android:name=".presentation.pdf.PdfActivity"
             android:exported="false" />
         <activity
-            android:name=".MainActivity"
+            android:name=".presentation.home.MainActivity"
             android:exported="true"/>
         <meta-data
             android:name="preloaded_fonts"

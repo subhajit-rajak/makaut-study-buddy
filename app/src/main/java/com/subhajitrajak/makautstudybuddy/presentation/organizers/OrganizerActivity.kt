@@ -1,4 +1,4 @@
-package com.subhajitrajak.makautstudybuddy
+package com.subhajitrajak.makautstudybuddy.presentation.organizers
 
 import android.annotation.SuppressLint
 import android.os.Bundle
@@ -7,15 +7,13 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.lifecycle.ViewModelProvider
-import com.subhajitrajak.makautstudybuddy.adapters.HomeAdapter
+import com.subhajitrajak.makautstudybuddy.R
 import com.subhajitrajak.makautstudybuddy.databinding.ActivityOrganizerBinding
 import com.subhajitrajak.makautstudybuddy.models.HomeModel
 import com.subhajitrajak.makautstudybuddy.repository.MainRepo
 import com.subhajitrajak.makautstudybuddy.utils.MyResponses
 import com.subhajitrajak.makautstudybuddy.utils.removeWithAnim
 import com.subhajitrajak.makautstudybuddy.utils.showWithAnim
-import com.subhajitrajak.makautstudybuddy.viewModels.MainViewModel
-import com.subhajitrajak.makautstudybuddy.viewModels.MainViewModelFactory
 
 class OrganizerActivity : AppCompatActivity() {
     private val activity = this

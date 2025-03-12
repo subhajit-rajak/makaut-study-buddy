@@ -1,4 +1,4 @@
-package com.subhajitrajak.makautstudybuddy.viewModels
+package com.subhajitrajak.makautstudybuddy.presentation.details
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider

@@ -1,4 +1,4 @@
-package com.subhajitrajak.makautstudybuddy
+package com.subhajitrajak.makautstudybuddy.presentation.pdf
 
 import android.net.Uri
 import android.os.Build

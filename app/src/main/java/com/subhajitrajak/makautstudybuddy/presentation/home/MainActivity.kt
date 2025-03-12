@@ -1,4 +1,4 @@
-package com.subhajitrajak.makautstudybuddy
+package com.subhajitrajak.makautstudybuddy.presentation.home
 
 import android.content.Intent
 import android.net.Uri
@@ -20,6 +20,9 @@ import com.google.android.play.core.install.InstallStateUpdatedListener
 import com.google.android.play.core.install.model.AppUpdateType
 import com.google.android.play.core.install.model.InstallStatus
 import com.google.android.play.core.install.model.UpdateAvailability
+import com.subhajitrajak.makautstudybuddy.presentation.organizers.OrganizerActivity
+import com.subhajitrajak.makautstudybuddy.R
+import com.subhajitrajak.makautstudybuddy.presentation.settings.SettingsActivity
 import com.subhajitrajak.makautstudybuddy.databinding.ActivityMainBinding
 import com.subhajitrajak.makautstudybuddy.utils.showToast
 

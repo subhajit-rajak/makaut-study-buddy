@@ -1,4 +1,4 @@
-package com.subhajitrajak.makautstudybuddy
+package com.subhajitrajak.makautstudybuddy.presentation.details
 
 import android.annotation.SuppressLint
 import android.app.ActionBar
@@ -13,13 +13,13 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.lifecycle.ViewModelProvider
+import com.subhajitrajak.makautstudybuddy.R
 import com.subhajitrajak.makautstudybuddy.databinding.ActivityDetailsBinding
 import com.subhajitrajak.makautstudybuddy.databinding.LayoutProgressBinding
 import com.subhajitrajak.makautstudybuddy.models.BooksModel
+import com.subhajitrajak.makautstudybuddy.presentation.pdf.PdfActivity
 import com.subhajitrajak.makautstudybuddy.repository.BookRepo
 import com.subhajitrajak.makautstudybuddy.utils.MyResponses
-import com.subhajitrajak.makautstudybuddy.viewModels.BookViewModel
-import com.subhajitrajak.makautstudybuddy.viewModels.BookViewModelFactory
 
 class DetailsActivity : AppCompatActivity() {
     private val activity = this

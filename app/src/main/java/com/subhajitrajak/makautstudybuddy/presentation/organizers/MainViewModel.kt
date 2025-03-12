@@ -1,4 +1,4 @@
-package com.subhajitrajak.makautstudybuddy.viewModels
+package com.subhajitrajak.makautstudybuddy.presentation.organizers
 
 import androidx.lifecycle.ViewModel
 import com.subhajitrajak.makautstudybuddy.repository.MainRepo
