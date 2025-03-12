@@ -6,7 +6,7 @@ plugins {
 
 android {
     namespace = "com.subhajitrajak.makautstudybuddy"
-    compileSdk = 34
+    compileSdk = 35
 
     defaultConfig {
         applicationId = "com.subhajitrajak.makautstudybuddy"

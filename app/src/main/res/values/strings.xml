@@ -63,4 +63,5 @@
     <string name="onboarding_heading">Let\'s Study</string>
     <string name="onboarding_subheading" tools:ignore="TypographyEllipsis">Search Less,\nExplore More...</string>
     <string name="onboarding_description">Get all your organizer, notes and videos all in\na single place. Find less, do more.</string>
+    <string name="get_started">Get Started</string>
 </resources>
