@@ -1,6 +1,5 @@
 package com.subhajitrajak.makautstudybuddy
 
-import android.annotation.SuppressLint
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
@@ -13,7 +12,6 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
-import androidx.lifecycle.ViewModelProvider
 import com.google.android.material.snackbar.Snackbar
 import com.google.android.play.core.appupdate.AppUpdateManager
 import com.google.android.play.core.appupdate.AppUpdateManagerFactory
@@ -22,28 +20,12 @@ import com.google.android.play.core.install.InstallStateUpdatedListener
 import com.google.android.play.core.install.model.AppUpdateType
 import com.google.android.play.core.install.model.InstallStatus
 import com.google.android.play.core.install.model.UpdateAvailability
-import com.subhajitrajak.makautstudybuddy.adapters.HomeAdapter
 import com.subhajitrajak.makautstudybuddy.databinding.ActivityMainBinding
-import com.subhajitrajak.makautstudybuddy.models.HomeModel
-import com.subhajitrajak.makautstudybuddy.repository.MainRepo
-import com.subhajitrajak.makautstudybuddy.utils.MyResponses
-import com.subhajitrajak.makautstudybuddy.utils.removeWithAnim
 import com.subhajitrajak.makautstudybuddy.utils.showToast
-import com.subhajitrajak.makautstudybuddy.utils.showWithAnim
-import com.subhajitrajak.makautstudybuddy.viewModels.MainViewModel
-import com.subhajitrajak.makautstudybuddy.viewModels.MainViewModelFactory
 
 class MainActivity : AppCompatActivity() {
-    private val activity = this
     private val binding: ActivityMainBinding by lazy {
         ActivityMainBinding.inflate(layoutInflater)
-    }
-    private val list = ArrayList<HomeModel>()
-    private val adapter = HomeAdapter(list, activity)
-
-    private val repo = MainRepo(activity)
-    private val viewModel by lazy {
-        ViewModelProvider(activity, MainViewModelFactory(repo))[MainViewModel::class.java]
     }
 
     // for in-app updates
@@ -61,18 +43,16 @@ class MainActivity : AppCompatActivity() {
         }
 
         binding.apply {
-            rv.adapter=adapter
-            viewModel.getHomeData()
-            handleHomeBackend()
-            mErrorLayout.mTryAgainBtn.setOnClickListener {
-                viewModel.getHomeData()
+            organizers.setOnClickListener {
+                val intent = Intent(this@MainActivity, OrganizerActivity::class.java)
+                startActivity(intent)
             }
 
             settings.setOnClickListener {
-                startActivity(Intent(activity, SettingsActivity::class.java))
+                startActivity(Intent(this@MainActivity, SettingsActivity::class.java))
             }
 
-            github.setOnClickListener {
+            githubContribute.setOnClickListener {
                 val url = "https://github.com/subhajit-rajak/makaut-study-buddy"
                 val intent = Intent(Intent.ACTION_VIEW)
                 intent.data = Uri.parse(url)
@@ -81,27 +61,6 @@ class MainActivity : AppCompatActivity() {
         }
 
         checkForInAppUpdates()
-    }
-
-    @SuppressLint("NotifyDataSetChanged")
-    private fun handleHomeBackend() {
-        viewModel.homeLiveData.observe(activity) { it ->
-            when (it) {
-                is MyResponses.Error -> {
-                    binding.mErrorHolder.showWithAnim()
-                }
-                is MyResponses.Loading -> {}
-                is MyResponses.Success -> {
-                    binding.mErrorHolder.removeWithAnim()
-                    val tempList = it.data
-                    list.clear()
-                    tempList?.forEach{
-                        list.add(it)
-                    }
-                    adapter.notifyDataSetChanged()
-                }
-            }
-        }
     }
 
     // checking for in-app updates

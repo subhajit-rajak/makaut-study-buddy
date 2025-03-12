@@ -8,7 +8,10 @@ import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Build
 import android.os.Bundle
+import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowInsetsCompat
 import androidx.lifecycle.ViewModelProvider
 import com.subhajitrajak.makautstudybuddy.databinding.ActivityDetailsBinding
 import com.subhajitrajak.makautstudybuddy.databinding.LayoutProgressBinding
@@ -20,7 +23,9 @@ import com.subhajitrajak.makautstudybuddy.viewModels.BookViewModelFactory
 
 class DetailsActivity : AppCompatActivity() {
     private val activity = this
-    private lateinit var binding: ActivityDetailsBinding
+    private val binding: ActivityDetailsBinding by lazy {
+        ActivityDetailsBinding.inflate(layoutInflater)
+    }
 
     private val repo = BookRepo(activity)
     private val viewModel by lazy {
@@ -34,8 +39,13 @@ class DetailsActivity : AppCompatActivity() {
     @SuppressLint("SetTextI18n", "ObsoleteSdkInt")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityDetailsBinding.inflate(layoutInflater)
+        enableEdgeToEdge()
         setContentView(binding.root)
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
+            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
+            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
+            insets
+        }
         val bookModel = intent.getSerializableExtra("book_model") as BooksModel
 
         binding.apply {

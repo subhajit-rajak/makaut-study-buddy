@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <string name="app_name">Makaut Study Buddy</string>
     <string name="sample_book_title">Rich Dad Poor Dad</string>
     <string name="makaut_organizer_description">MAKAUT ORGANIZER contains previous years Semester Exam questions with answers. Organizers doesn\'t contains all the Semester questions. It contains the question and answers of a particular semester. It is like a Holy Book for the students studying in colleges under MAKAUT. If you are thinking to start preparation for Semester Exam just 15 days before the exam then this thing will help you a lot.</string>
@@ -51,4 +51,16 @@
     <string name="_5">5</string>
     <string name="cancel">Cancel</string>
     <string name="app_version_x_x_x_x">App version x.x.x (x)</string>
+    <string name="organizers">Organizers</string>
+    <string name="books">Books</string>
+    <string name="notes">Notes</string>
+    <string name="contribute">Contribute</string>
+    <string name="upload">Upload</string>
+    <string name="videos">Videos</string>
+    <string name="welcome_back">Welcome Back</string>
+    <string name="greeting_message">Hey Subhajit,</string>
+    <string name="favourites">Favourites</string>
+    <string name="onboarding_heading">Let\'s Study</string>
+    <string name="onboarding_subheading" tools:ignore="TypographyEllipsis">Search Less,\nExplore More...</string>
+    <string name="onboarding_description">Get all your organizer, notes and videos all in\na single place. Find less, do more.</string>
 </resources>
