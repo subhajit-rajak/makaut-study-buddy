@@ -3,9 +3,10 @@
     <color name="background_upfront">#10140e</color>
     <color name="background_pdf">#000000</color>
     <color name="background">#1A231A</color>
-    <color name="background_settings">#363e36</color>
+    <color name="background_settings">#363E36</color>
     <color name="background_top_bar">#1A231A</color>
-    <color name="background_lighter">#373d45</color>
+    <color name="background_lighter">#363E36</color>
     <color name="highlight">#83d65c</color>
+    <color name="highlight_darker">#3A761D</color>
     <color name="text">#dedfdf</color>
 </resources>

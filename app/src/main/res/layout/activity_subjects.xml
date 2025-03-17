@@ -8,7 +8,7 @@
     android:background="@color/background"
     android:orientation="vertical"
     android:weightSum="10"
-    tools:context=".SubjectsActivity">
+    tools:context=".presentation.subjects.SubjectsActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
