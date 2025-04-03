@@ -12,6 +12,8 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import com.bumptech.glide.Glide
+import com.google.android.gms.auth.api.identity.Identity
 import com.google.android.material.snackbar.Snackbar
 import com.google.android.play.core.appupdate.AppUpdateManager
 import com.google.android.play.core.appupdate.AppUpdateManagerFactory
@@ -20,16 +22,21 @@ import com.google.android.play.core.install.InstallStateUpdatedListener
 import com.google.android.play.core.install.model.AppUpdateType
 import com.google.android.play.core.install.model.InstallStatus
 import com.google.android.play.core.install.model.UpdateAvailability
-import com.subhajitrajak.makautstudybuddy.presentation.organizers.OrganizerActivity
 import com.subhajitrajak.makautstudybuddy.R
-import com.subhajitrajak.makautstudybuddy.presentation.settings.SettingsActivity
 import com.subhajitrajak.makautstudybuddy.databinding.ActivityMainBinding
+import com.subhajitrajak.makautstudybuddy.presentation.organizers.OrganizerActivity
+import com.subhajitrajak.makautstudybuddy.presentation.settings.SettingsActivity
+import com.subhajitrajak.makautstudybuddy.data.repository.userLogin.GoogleAuthUiClient
+import com.subhajitrajak.makautstudybuddy.data.repository.userLogin.UserData
+import com.subhajitrajak.makautstudybuddy.presentation.upload.UploadActivity
 import com.subhajitrajak.makautstudybuddy.utils.showToast
 
 class MainActivity : AppCompatActivity() {
     private val binding: ActivityMainBinding by lazy {
         ActivityMainBinding.inflate(layoutInflater)
     }
+
+    private lateinit var googleAuthUiClient: GoogleAuthUiClient
 
     // for in-app updates
     private lateinit var appUpdateManager: AppUpdateManager
@@ -43,6 +50,26 @@ class MainActivity : AppCompatActivity() {
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
+        }
+
+        // Initialize GoogleAuthUiClient
+        googleAuthUiClient = GoogleAuthUiClient(this, Identity.getSignInClient(this))
+
+        // Fetch signed-in user data
+        val userData: UserData? = googleAuthUiClient.getSignedInUser()
+
+        if (userData != null) {
+            val username = userData.username ?: "Guest"
+            val name = username.substring(0, username.indexOf(' '))
+            binding.greeting.text = buildString {
+                append("Hey, ")
+                append(name)
+            }
+
+            Glide.with(this)
+                .load(userData.profilePictureUrl)
+                .placeholder(R.drawable.men_avatar)
+                .into(binding.profilePicture)
         }
 
         binding.apply {
@@ -61,6 +88,10 @@ class MainActivity : AppCompatActivity() {
                 intent.data = Uri.parse(url)
                 startActivity(intent)
             }
+
+            upload.setOnClickListener {
+                startActivity(Intent(this@MainActivity, UploadActivity::class.java))
+            }
         }
 
         checkForInAppUpdates()
@@ -69,19 +100,21 @@ class MainActivity : AppCompatActivity() {
     // checking for in-app updates
     private fun checkForInAppUpdates() {
         appUpdateManager = AppUpdateManagerFactory.create(this)
-        activityResultLauncher = registerForActivityResult(ActivityResultContracts.StartIntentSenderForResult()) { result: ActivityResult ->
-            if (result.resultCode != RESULT_OK) {
-                showToast(this, "Update failed: ${result.resultCode}")
-                Log.d("Update", "Update flow failed! Result code: ${result.resultCode}")
+        activityResultLauncher =
+            registerForActivityResult(ActivityResultContracts.StartIntentSenderForResult()) { result: ActivityResult ->
+                if (result.resultCode != RESULT_OK) {
+                    showToast(this, "Update failed: ${result.resultCode}")
+                    Log.d("Update", "Update flow failed! Result code: ${result.resultCode}")
+                }
             }
-        }
 
         appUpdateManager.registerListener(listener)
 
         val appUpdateInfoTask = appUpdateManager.appUpdateInfo
         appUpdateInfoTask.addOnSuccessListener { appUpdateInfo ->
-            if(appUpdateInfo.updateAvailability() == UpdateAvailability.UPDATE_AVAILABLE &&
-                appUpdateInfo.isUpdateTypeAllowed(AppUpdateType.FLEXIBLE)) {
+            if (appUpdateInfo.updateAvailability() == UpdateAvailability.UPDATE_AVAILABLE &&
+                appUpdateInfo.isUpdateTypeAllowed(AppUpdateType.FLEXIBLE)
+            ) {
 
                 // requesting for update
                 appUpdateManager.startUpdateFlowForResult(
@@ -94,7 +127,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     // in-app update download listener
-    private val listener = InstallStateUpdatedListener { state->
+    private val listener = InstallStateUpdatedListener { state ->
         if (state.installStatus() == InstallStatus.DOWNLOADED) {
             popupSnackbarForCompleteUpdate()
         }

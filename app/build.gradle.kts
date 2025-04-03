@@ -2,6 +2,8 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
     id("com.google.gms.google-services")
+    id("kotlin-kapt")
+    id("com.google.dagger.hilt.android")
 }
 
 android {
@@ -75,5 +77,16 @@ dependencies {
     implementation(libs.app.update)
     implementation(libs.app.update.ktx)
 
+    // circle-image view
     implementation (libs.circleimageview)
+
+    // hilt
+    implementation ("com.google.dagger:hilt-android:2.51.1")
+    kapt ("com.google.dagger:hilt-compiler:2.51.1")
+
+    implementation ("com.google.android.gms:play-services-auth:21.3.0")
+    implementation ("com.facebook.android:facebook-login:18.0.2")
+
+    // glide (image loading)
+    implementation ("com.github.bumptech.glide:glide:4.16.0")
 }

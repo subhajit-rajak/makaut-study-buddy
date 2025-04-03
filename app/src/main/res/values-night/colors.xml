@@ -9,4 +9,6 @@
     <color name="highlight">#83d65c</color>
     <color name="highlight_darker">#3A761D</color>
     <color name="text">#dedfdf</color>
+    <color name="logout_bg">#281D1D</color>
+    <color name="logout_stroke">#543A3A</color>
 </resources>

@@ -7,7 +7,7 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.subhajitrajak.makautstudybuddy.R
 import com.subhajitrajak.makautstudybuddy.databinding.ActivitySubjectsBinding
-import com.subhajitrajak.makautstudybuddy.models.BooksModel
+import com.subhajitrajak.makautstudybuddy.data.models.BooksModel
 
 @Suppress("DEPRECATION")
 class SubjectsActivity : AppCompatActivity() {

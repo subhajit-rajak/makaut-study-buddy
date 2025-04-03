@@ -9,19 +9,26 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.lifecycle.lifecycleScope
+import com.google.android.gms.auth.api.identity.Identity
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import com.subhajitrajak.makautstudybuddy.R
 import com.subhajitrajak.makautstudybuddy.databinding.ActivitySettingsBinding
-import com.subhajitrajak.makautstudybuddy.models.SettingsModel
+import com.subhajitrajak.makautstudybuddy.data.models.SettingsModel
+import com.subhajitrajak.makautstudybuddy.presentation.onboarding.OnBoardingActivity
+import com.subhajitrajak.makautstudybuddy.data.repository.userLogin.GoogleAuthUiClient
 import com.subhajitrajak.makautstudybuddy.utils.showToast
+import kotlinx.coroutines.launch
 
 class SettingsActivity : AppCompatActivity() {
     private val binding: ActivitySettingsBinding by lazy {
         ActivitySettingsBinding.inflate(layoutInflater)
     }
+
+    private lateinit var googleAuthUiClient: GoogleAuthUiClient
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -36,6 +43,11 @@ class SettingsActivity : AppCompatActivity() {
         binding.settingsBackButton.setOnClickListener {
             finish()
         }
+
+        googleAuthUiClient = GoogleAuthUiClient(
+            context = this,
+            oneTapClient = Identity.getSignInClient(this)
+        )
 
         val packageInfo = packageManager.getPackageInfo(packageName, 0)
         val versionName = packageInfo.versionName
@@ -138,6 +150,15 @@ class SettingsActivity : AppCompatActivity() {
                 startActivity(Intent.createChooser(intent, "Share your feedback"))
             } else {
                 showToast(this, "Contact information for feedback is unavailable.")
+            }
+        }
+
+        binding.logout.setOnClickListener {
+            lifecycleScope.launch {
+                googleAuthUiClient.signOut()
+                showToast(this@SettingsActivity, "Logged out successfully.")
+                startActivity(Intent(this@SettingsActivity, OnBoardingActivity::class.java))
+                finish()
             }
         }
     }

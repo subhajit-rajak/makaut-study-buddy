@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.subhajitrajak.makautstudybuddy.presentation.subjects.SubjectsActivity
 import com.subhajitrajak.makautstudybuddy.databinding.ItemBranchesBinding
-import com.subhajitrajak.makautstudybuddy.models.HomeModel
+import com.subhajitrajak.makautstudybuddy.data.models.HomeModel
 
 class HomeAdapter(private val list: ArrayList<HomeModel>, private val context: Context) :
     RecyclerView.Adapter<HomeAdapter.HomeItemViewHolder>() {

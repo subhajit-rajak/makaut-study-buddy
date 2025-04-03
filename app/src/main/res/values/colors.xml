@@ -30,5 +30,7 @@
     <color name="highlight">#5ca653</color>
     <color name="highlight_darker">#3A761D</color>
     <color name="text">#1a1a1a</color>
+    <color name="logout_bg">#FFDADA</color>
+    <color name="logout_stroke">#E8A6A6</color>
 
 </resources>

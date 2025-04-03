@@ -1,4 +1,4 @@
-package com.subhajitrajak.makautstudybuddy.repository
+package com.subhajitrajak.makautstudybuddy.data.repository
 
 import android.content.Context
 import androidx.lifecycle.MutableLiveData
@@ -6,7 +6,7 @@ import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
-import com.subhajitrajak.makautstudybuddy.models.HomeModel
+import com.subhajitrajak.makautstudybuddy.data.models.HomeModel
 import com.subhajitrajak.makautstudybuddy.utils.MyResponses
 
 class MainRepo(val context: Context) {

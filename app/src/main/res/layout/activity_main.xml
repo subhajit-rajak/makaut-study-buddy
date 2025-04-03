@@ -15,12 +15,12 @@
         android:layout_height="wrap_content">
 
         <de.hdodenhof.circleimageview.CircleImageView
-            android:id="@+id/circleImageView"
+            android:id="@+id/profile_picture"
             android:layout_width="54dp"
             android:layout_height="54dp"
             android:layout_marginStart="32dp"
             android:layout_marginTop="32dp"
-            android:src="@drawable/image"
+            android:src="@drawable/avatar"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -32,9 +32,9 @@
             android:background="@drawable/item_bg_settings"
             android:contentDescription="@string/settings"
             android:src="@drawable/ic_settings"
-            app:layout_constraintBottom_toBottomOf="@+id/circleImageView"
+            app:layout_constraintBottom_toBottomOf="@+id/profile_picture"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/circleImageView"
+            app:layout_constraintTop_toTopOf="@+id/profile_picture"
             app:tint="@color/text" />
 
         <ImageButton
@@ -44,14 +44,14 @@
             android:background="@drawable/item_bg_settings"
             android:contentDescription="@string/favourites"
             android:src="@drawable/ic_favorites"
-            app:layout_constraintBottom_toBottomOf="@+id/circleImageView"
+            app:layout_constraintBottom_toBottomOf="@+id/profile_picture"
             app:layout_constraintEnd_toStartOf="@+id/settings"
-            app:layout_constraintTop_toTopOf="@+id/circleImageView"
+            app:layout_constraintTop_toTopOf="@+id/profile_picture"
             app:layout_constraintVertical_bias="0.0"
             app:tint="@color/text" />
 
         <TextView
-            android:id="@+id/textView3"
+            android:id="@+id/greeting"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="32dp"
@@ -59,8 +59,8 @@
             android:text="@string/greeting_message"
             android:textColor="@color/text"
             android:textSize="20sp"
-            app:layout_constraintStart_toStartOf="@+id/circleImageView"
-            app:layout_constraintTop_toBottomOf="@+id/circleImageView" />
+            app:layout_constraintStart_toStartOf="@+id/profile_picture"
+            app:layout_constraintTop_toBottomOf="@+id/profile_picture" />
 
         <TextView
             android:id="@+id/textView4"
@@ -70,8 +70,8 @@
             android:text="@string/welcome_back"
             android:textColor="@color/text"
             android:textSize="36sp"
-            app:layout_constraintStart_toStartOf="@+id/textView3"
-            app:layout_constraintTop_toBottomOf="@+id/textView3" />
+            app:layout_constraintStart_toStartOf="@+id/greeting"
+            app:layout_constraintTop_toBottomOf="@+id/greeting" />
 
         <!--organizers-->
         <com.google.android.material.card.MaterialCardView

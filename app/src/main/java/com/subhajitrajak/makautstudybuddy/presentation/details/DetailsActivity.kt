@@ -16,9 +16,9 @@ import androidx.lifecycle.ViewModelProvider
 import com.subhajitrajak.makautstudybuddy.R
 import com.subhajitrajak.makautstudybuddy.databinding.ActivityDetailsBinding
 import com.subhajitrajak.makautstudybuddy.databinding.LayoutProgressBinding
-import com.subhajitrajak.makautstudybuddy.models.BooksModel
+import com.subhajitrajak.makautstudybuddy.data.models.BooksModel
 import com.subhajitrajak.makautstudybuddy.presentation.pdf.PdfActivity
-import com.subhajitrajak.makautstudybuddy.repository.BookRepo
+import com.subhajitrajak.makautstudybuddy.data.repository.BookRepo
 import com.subhajitrajak.makautstudybuddy.utils.MyResponses
 
 class DetailsActivity : AppCompatActivity() {
@@ -49,8 +49,21 @@ class DetailsActivity : AppCompatActivity() {
         val bookModel = intent.getSerializableExtra("book_model") as BooksModel
 
         binding.apply {
+            val contributor = bookModel.contributor ?: "Subhajit"
+            contributorName.text = "contributed by $contributor"
 
-            mReadBookBtn.setOnClickListener {
+            // read online button
+            readOnline.setOnClickListener {
+                Intent().apply {
+                    putExtra("book_pdf", bookModel.bookPDF)
+                    putExtra("location", "remote")
+                    setClass(activity, PdfActivity::class.java)
+                    startActivity(this)
+                }
+            }
+
+            // read online button
+            readOffline.setOnClickListener {
                 viewModel.downloadFile(bookModel.bookPDF, "${bookModel.bookName}.pdf")
             }
             val dialogBinding = LayoutProgressBinding.inflate(layoutInflater)
@@ -88,6 +101,7 @@ class DetailsActivity : AppCompatActivity() {
                         dialog.dismiss()
                         Intent().apply {
                             putExtra("book_pdf", it.data?.filePath)
+                            putExtra("location", "local")
                             setClass(activity, PdfActivity::class.java)
                             startActivity(this)
                         }

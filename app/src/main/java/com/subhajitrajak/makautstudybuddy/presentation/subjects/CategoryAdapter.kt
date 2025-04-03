@@ -7,11 +7,10 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.subhajitrajak.makautstudybuddy.presentation.details.DetailsActivity
 import com.subhajitrajak.makautstudybuddy.databinding.ItemSemsBinding
-import com.subhajitrajak.makautstudybuddy.models.BooksModel
+import com.subhajitrajak.makautstudybuddy.data.models.BooksModel
 
-class CategoryAdapter(val list: ArrayList<BooksModel>, val context: Context) :
+class CategoryAdapter(private val list: ArrayList<BooksModel>, val context: Context) :
     RecyclerView.Adapter<CategoryAdapter.CategoryViewHolder>() {
-
 
     class CategoryViewHolder(val binding: ItemSemsBinding) :
         RecyclerView.ViewHolder(binding.root) {

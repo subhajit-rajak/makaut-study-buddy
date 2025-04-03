@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Focused state (when user taps inside the field) -->
+    <item android:color="@color/highlight" android:state_focused="true"/>
+
+    <!-- Default state (when not focused) -->
+    <item android:color="@color/text"/>
+</selector>

@@ -1,4 +1,4 @@
-package com.subhajitrajak.makautstudybuddy.repository
+package com.subhajitrajak.makautstudybuddy.data.repository
 
 import android.annotation.SuppressLint
 import android.app.DownloadManager

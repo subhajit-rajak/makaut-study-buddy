@@ -1,7 +1,7 @@
 package com.subhajitrajak.makautstudybuddy.presentation.organizers
 
 import androidx.lifecycle.ViewModel
-import com.subhajitrajak.makautstudybuddy.repository.MainRepo
+import com.subhajitrajak.makautstudybuddy.data.repository.MainRepo
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch

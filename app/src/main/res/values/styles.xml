@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="CustomChipStyle" parent="Widget.MaterialComponents.Chip.Filter">
+        <item name="chipBackgroundColor">@color/chip_background</item>
+        <item name="android:textColor">@color/chip_text</item>
+        <item name="checkedIconTint">@color/background_upfront</item>
+    </style>
+
+    <style name="CustomDropDownInputStyle" parent="Widget.Material3.TextInputLayout.OutlinedBox.ExposedDropdownMenu">
+        <item name="boxCornerRadiusBottomStart">32dp</item>
+        <item name="boxCornerRadiusBottomEnd">32dp</item>
+        <item name="boxCornerRadiusTopEnd">32dp</item>
+        <item name="boxCornerRadiusTopStart">32dp</item>
+    </style>
+
+    <style name="CustomTextInputStyle" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+        <item name="boxCornerRadiusBottomStart">32dp</item>
+        <item name="boxCornerRadiusBottomEnd">32dp</item>
+        <item name="boxCornerRadiusTopEnd">32dp</item>
+        <item name="boxCornerRadiusTopStart">32dp</item>
+    </style>
+
+    <style name="CustomOutlinedButton" parent="Widget.Material3.Button.OutlinedButton">
+        <item name="strokeColor">@color/highlight</item>
+        <item name="strokeWidth">2dp</item>
+    </style>
+
+
+</resources>

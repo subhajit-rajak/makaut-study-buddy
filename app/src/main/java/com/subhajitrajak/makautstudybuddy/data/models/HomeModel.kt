@@ -1,4 +1,4 @@
-package com.subhajitrajak.makautstudybuddy.models
+package com.subhajitrajak.makautstudybuddy.data.models
 
 
 data class HomeModel(

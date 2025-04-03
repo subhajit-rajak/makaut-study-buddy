@@ -9,8 +9,8 @@ import androidx.core.view.WindowInsetsCompat
 import androidx.lifecycle.ViewModelProvider
 import com.subhajitrajak.makautstudybuddy.R
 import com.subhajitrajak.makautstudybuddy.databinding.ActivityOrganizerBinding
-import com.subhajitrajak.makautstudybuddy.models.HomeModel
-import com.subhajitrajak.makautstudybuddy.repository.MainRepo
+import com.subhajitrajak.makautstudybuddy.data.models.HomeModel
+import com.subhajitrajak.makautstudybuddy.data.repository.MainRepo
 import com.subhajitrajak.makautstudybuddy.utils.MyResponses
 import com.subhajitrajak.makautstudybuddy.utils.removeWithAnim
 import com.subhajitrajak.makautstudybuddy.utils.showWithAnim

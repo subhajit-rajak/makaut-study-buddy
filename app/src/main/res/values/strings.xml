@@ -34,7 +34,7 @@
     <string name="attachment_summary_on">Automatically download attachments for incoming emails
     </string>
     <string name="attachment_summary_off">Only download attachments when manually requested</string>
-    <string name="back_button">back button</string>
+    <string name="back_button">back</string>
     <string name="rate_us">Rate Us</string>
     <string name="share_app">Share App</string>
     <string name="privacy_policy">Privacy Policy</string>
@@ -58,10 +58,24 @@
     <string name="upload">Upload</string>
     <string name="videos">Videos</string>
     <string name="welcome_back">Welcome Back</string>
-    <string name="greeting_message">Hey Subhajit,</string>
+    <string name="greeting_message">Hey Guest,</string>
     <string name="favourites">Favourites</string>
     <string name="onboarding_heading">Let\'s Study</string>
     <string name="onboarding_subheading" tools:ignore="TypographyEllipsis">Search Less,\nExplore More...</string>
     <string name="onboarding_description">Get all your organizer, notes and videos all in\na single place. Find less, do more.</string>
     <string name="get_started">Get Started</string>
+    <string name="default_web_client_id">547075402114-bdg2t0c1c51n8refr8tmo1v8c8amlglt.apps.googleusercontent.com</string>
+    <string name="log_out">Log Out</string>
+    <string name="contributed_by">contributed by Subhajit</string>
+    <string name="file_should_be_5mb"><![CDATA[*File should be <5MB]]></string>
+    <string name="subject">Subject</string>
+    <string name="semester_">Semester</string>
+    <string name="branch">Branch</string>
+    <string name="choose_file">Choose File*</string>
+    <string name="submit_request">Submit Request</string>
+    <string name="no_requests_found">No Requests found</string>
+    <string name="there_are_no_records_nto_display_right_now">There are no records\nto display right now.</string>
+    <string name="requests">Requests</string>
+    <string name="read_online">Read Online</string>
+    <string name="read_offline">Read Offline</string>
 </resources>

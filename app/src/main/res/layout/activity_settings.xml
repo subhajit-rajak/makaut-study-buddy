@@ -282,6 +282,51 @@
 
             </LinearLayout>
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="16dp"
+                android:layout_marginTop="24dp"
+                android:background="@drawable/item_card_settings_logout">
+
+                <LinearLayout
+                    android:id="@+id/logout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="16dp" >
+
+                    <ImageView
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:contentDescription="@string/log_out"
+                        app:tint="@color/text"
+                        android:layout_gravity="center"
+                        android:src="@drawable/logout"/>
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:text="@string/log_out"
+                        android:layout_weight="1"
+                        android:layout_gravity="center"
+                        android:textColor="@color/text"
+                        android:textSize="18sp"/>
+
+                    <ImageView
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:layout_gravity="center"
+                        android:contentDescription="@string/log_out"
+                        android:src="@drawable/rv_right"
+                        app:tint="@color/text" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
             <TextView
                 android:id="@+id/app_version"
                 android:layout_width="wrap_content"
