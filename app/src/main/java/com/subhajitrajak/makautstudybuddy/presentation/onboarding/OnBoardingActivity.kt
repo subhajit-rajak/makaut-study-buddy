@@ -40,7 +40,9 @@ class OnBoardingActivity : AppCompatActivity() {
                     signInViewModel.onSignInResult(signInResult)
 
                     if (signInResult.data != null) {
-                        showToast(this@OnBoardingActivity, "Welcome, ${signInResult.data.username}")
+                        val username = signInResult.data.username
+                        val firstName = username?.substring(0, username.indexOf(' '))
+                        showToast(this@OnBoardingActivity, "Welcome, $firstName")
                         navigateToHome()
                     } else {
                         showToast(this@OnBoardingActivity, "Sign-in failed: ${signInResult.errorMessage}")
@@ -66,7 +68,7 @@ class OnBoardingActivity : AppCompatActivity() {
             insets
         }
 
-        binding.getStarted.setOnClickListener {
+        binding.getStarted.setOnActiveListener {
             loginUsingGoogle()
         }
 
