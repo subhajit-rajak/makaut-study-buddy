@@ -9,11 +9,11 @@
         android:id="@+id/card"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
         app:cardCornerRadius="24dp"
         android:backgroundTint="@android:color/transparent"
         app:strokeWidth="2dp"
-        app:strokeColor="@color/highlight_darker">
+        app:strokeColor="@color/semi_grey">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -48,7 +48,7 @@
                 android:layout_height="wrap_content"
                 android:text="Status: Pending"
                 android:textStyle="italic"
-                android:textColor="@color/highlight"
+                android:textColor="@color/yellow"
                 app:layout_constraintStart_toStartOf="@+id/subject_name"
                 app:layout_constraintTop_toBottomOf="@id/subject_name"/>
 

@@ -9,8 +9,10 @@ import com.subhajitrajak.makautstudybuddy.presentation.details.DetailsActivity
 import com.subhajitrajak.makautstudybuddy.databinding.ItemSemsBinding
 import com.subhajitrajak.makautstudybuddy.data.models.BooksModel
 
-class CategoryAdapter(private val list: ArrayList<BooksModel>, val context: Context) :
-    RecyclerView.Adapter<CategoryAdapter.CategoryViewHolder>() {
+class CategoryAdapter(
+    private val list: ArrayList<BooksModel>,
+    val context: Context
+) : RecyclerView.Adapter<CategoryAdapter.CategoryViewHolder>() {
 
     class CategoryViewHolder(val binding: ItemSemsBinding) :
         RecyclerView.ViewHolder(binding.root) {

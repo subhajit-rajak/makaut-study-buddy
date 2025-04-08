@@ -78,4 +78,9 @@
     <string name="requests">Requests</string>
     <string name="read_online">Read Online</string>
     <string name="read_offline">Read Offline</string>
+    <string name="example_file_name_pdf">example_file_name.pdf</string>
+    <string name="uploading">Uploading...</string>
+    <string name="contributed_by_who">contributed by %1$s</string>
+    <string name="upload_requests_details_text">%1$s, Sem-%2$s, %3$s</string>
+    <string name="upload_requests_status_text">Status: %1$s</string>
 </resources>

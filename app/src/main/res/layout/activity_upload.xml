@@ -9,40 +9,41 @@
     tools:context=".presentation.upload.UploadActivity">
 
     <ImageView
-        android:id="@+id/settings_back_button"
+        android:id="@+id/back_button"
         android:layout_width="wrap_content"
         android:layout_height="0dp"
         android:contentDescription="@string/back_button"
         android:paddingHorizontal="22dp"
         android:src="@drawable/arrow_back"
-        app:layout_constraintBottom_toBottomOf="@+id/settings_back_button_text"
+        app:layout_constraintBottom_toBottomOf="@+id/header_text"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/settings_back_button_text"
+        app:layout_constraintTop_toTopOf="@+id/header_text"
         app:tint="@color/text"
         tools:ignore="RedundantDescriptionCheck" />
 
     <TextView
-        android:id="@+id/settings_back_button_text"
+        android:id="@+id/header_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:paddingVertical="18dp"
         android:text="@string/upload"
         android:textColor="@color/text"
         android:textSize="22sp"
-        app:layout_constraintStart_toEndOf="@+id/settings_back_button"
+        app:layout_constraintStart_toEndOf="@+id/back_button"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <androidx.core.widget.NestedScrollView
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/pullToRefresh"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@+id/settings_back_button_text">
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/header_text">
 
-        <LinearLayout
+        <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginEnd="16dp"
-            android:orientation="vertical">
+            android:layout_height="match_parent">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -51,210 +52,260 @@
                 android:layout_marginEnd="16dp"
                 android:orientation="vertical">
 
-                <com.google.android.material.chip.ChipGroup
-                    android:id="@+id/chipGroup"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    app:singleSelection="true"
-                    app:selectionRequired="true"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent">
-
-                    <com.google.android.material.chip.Chip
-                        android:id="@+id/chip"
-                        android:text="@string/notes"
-                        android:textSize="16sp"
-                        android:checked="true"
-                        style="@style/CustomChipStyle"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content" />
-
-                    <com.google.android.material.chip.Chip
-                        android:id="@+id/chip2"
-                        android:text="@string/organizers"
-                        android:textSize="16sp"
-                        style="@style/CustomChipStyle"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content" />
-                </com.google.android.material.chip.ChipGroup>
-
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/editTextBookName"
-                    style="@style/CustomTextInputStyle"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textColor="@color/text"
-                    android:textColorHint="@color/text"
-                    app:boxStrokeColor="@color/text_input_stroke"
-                    app:hintTextColor="@color/highlight">
-
-                    <EditText
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:hint="@string/subject"
-                        android:importantForAutofill="no"
-                        android:inputType="text"
-                        android:singleLine="true"
-                        android:textColor="@color/text"
-                        android:textColorHint="@color/text" />
-
-                </com.google.android.material.textfield.TextInputLayout>
-
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/editTextSemester"
-                    style="@style/CustomDropDownInputStyle"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="2dp"
-                    android:textColor="@color/text"
-                    app:boxBackgroundMode="outline"
-                    app:boxStrokeColor="@color/text_input_stroke"
-                    app:hintTextColor="@color/highlight"
-                    app:endIconTint="@color/highlight">
-
-                    <AutoCompleteTextView
-                        android:id="@+id/listOfSemesters"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:dropDownHeight="200dp"
-                        android:inputType="none"
-                        android:popupBackground="@drawable/dropdown_bg"
-                        android:singleLine="true"
-                        android:text="@string/semester_" />
-                </com.google.android.material.textfield.TextInputLayout>
-
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/editTextBranch"
-                    style="@style/CustomDropDownInputStyle"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="2dp"
-                    android:textColor="@color/text"
-                    app:boxBackgroundMode="outline"
-                    app:boxStrokeColor="@color/text_input_stroke"
-                    app:hintTextColor="@color/highlight"
-                    app:endIconTint="@color/highlight">
-
-                    <AutoCompleteTextView
-                        android:id="@+id/listOfBranches"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:dropDownHeight="200dp"
-                        android:inputType="none"
-                        android:singleLine="true"
-                        android:popupBackground="@drawable/dropdown_bg"
-                        android:text="@string/branch" />
-                </com.google.android.material.textfield.TextInputLayout>
-
-                <CheckBox
-                    android:id="@+id/checkBox"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    app:buttonTint="@color/highlight"
-                    app:buttonIconTint="@color/background_upfront"
-                    android:checked="true"
-                    android:text="@string/contributed_by"
-                    android:textColor="@color/text"
-                    android:textStyle="italic" />
-
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:weightSum="2">
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:orientation="vertical">
 
-                    <Button
-                        android:layout_width="0dp"
+                    <com.google.android.material.chip.ChipGroup
+                        android:id="@+id/chipGroup"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        style="@style/CustomOutlinedButton"
-                        android:layout_weight="1"
-                        android:layout_marginEnd="16dp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:selectionRequired="true"
+                        app:singleSelection="true">
+
+                        <com.google.android.material.chip.Chip
+                            android:id="@+id/notesChip"
+                            style="@style/CustomChipStyle"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:checked="true"
+                            android:text="@string/notes"
+                            android:textSize="16sp" />
+
+                        <com.google.android.material.chip.Chip
+                            android:id="@+id/organizersChip"
+                            style="@style/CustomChipStyle"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/organizers"
+                            android:textSize="16sp" />
+                    </com.google.android.material.chip.ChipGroup>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        style="@style/CustomTextInputStyle"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
                         android:textColor="@color/text"
-                        android:text="@string/choose_file"/>
+                        android:textColorHint="@color/text"
+                        app:boxStrokeColor="@color/text_input_stroke"
+                        app:hintTextColor="@color/highlight">
 
-                    <Button
-                        android:layout_width="0dp"
+                        <EditText
+                            android:id="@+id/editTextBookName"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="@string/subject"
+                            android:importantForAutofill="no"
+                            android:inputType="text"
+                            android:singleLine="true"
+                            android:textColor="@color/text"
+                            android:textColorHint="@color/text" />
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/editTextSemester"
+                        style="@style/CustomDropDownInputStyle"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        style="@style/Widget.Material3.Button"
-                        android:backgroundTint="@color/highlight"
-                        android:textColor="@color/background_upfront"
-                        android:text="@string/submit_request"/>
+                        android:layout_marginTop="2dp"
+                        android:hint="@string/semester_"
+                        android:textColor="@color/text"
+                        android:textColorHint="@color/text"
+                        app:boxBackgroundMode="outline"
+                        app:boxStrokeColor="@color/text_input_stroke"
+                        app:endIconTint="@color/highlight"
+                        app:hintTextColor="@color/highlight">
+
+                        <AutoCompleteTextView
+                            android:id="@+id/listOfSemesters"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:dropDownHeight="200dp"
+                            android:inputType="none"
+                            android:popupBackground="@drawable/dropdown_bg"
+                            android:singleLine="true" />
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/editTextBranch"
+                        style="@style/CustomDropDownInputStyle"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="2dp"
+                        android:hint="@string/branch"
+                        android:textColor="@color/text"
+                        android:textColorHint="@color/text"
+                        app:boxBackgroundMode="outline"
+                        app:boxStrokeColor="@color/text_input_stroke"
+                        app:endIconTint="@color/highlight"
+                        app:hintTextColor="@color/highlight">
+
+                        <AutoCompleteTextView
+                            android:id="@+id/listOfBranches"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:dropDownHeight="200dp"
+                            android:inputType="none"
+                            android:popupBackground="@drawable/dropdown_bg"
+                            android:singleLine="true" />
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <CheckBox
+                        android:id="@+id/contributorCheckBox"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:checked="true"
+                        android:text="@string/contributed_by"
+                        android:textColor="@color/text"
+                        android:textStyle="italic"
+                        app:buttonIconTint="@color/background_upfront"
+                        app:buttonTint="@color/highlight" />
+
+                    <TextView
+                        android:id="@+id/fileNameTextView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="2dp"
+                        android:drawablePadding="6dp"
+                        android:text="@string/example_file_name_pdf"
+                        android:textColor="@color/text"
+                        android:textSize="12sp"
+                        android:textStyle="italic"
+                        android:visibility="gone"
+                        app:drawableStartCompat="@drawable/document"
+                        app:drawableTint="@color/white" />
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:weightSum="2">
+
+                        <ProgressBar
+                            android:id="@+id/progressBar"
+                            style="?android:attr/progressBarStyle"
+                            android:layout_width="0dp"
+                            android:layout_height="0dp"
+                            android:indeterminateTint="@color/white"
+                            android:padding="14dp"
+                            android:visibility="gone"
+                            app:layout_constraintBottom_toBottomOf="@+id/chooseFileButton"
+                            app:layout_constraintEnd_toEndOf="@+id/chooseFileButton"
+                            app:layout_constraintStart_toStartOf="@+id/chooseFileButton"
+                            app:layout_constraintTop_toTopOf="@+id/chooseFileButton" />
+
+                        <Button
+                            android:id="@+id/chooseFileButton"
+                            style="@style/CustomOutlinedButton"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="16dp"
+                            android:layout_weight="1"
+                            android:text="@string/choose_file"
+                            android:textColor="@color/text"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toStartOf="@+id/submitButton"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <Button
+                            android:id="@+id/submitButton"
+                            style="@style/Widget.Material3.Button"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:backgroundTint="@color/highlight"
+                            android:text="@string/submit_request"
+                            android:textColor="@color/background_upfront"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toEndOf="@+id/chooseFileButton"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="2dp"
+                        android:text="@string/file_should_be_5mb"
+                        android:textColor="@color/text"
+                        android:textSize="12sp"
+                        android:textStyle="italic" />
 
                 </LinearLayout>
 
+                <com.google.android.material.divider.MaterialDivider
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    app:dividerColor="@color/semi_grey" />
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/file_should_be_5mb"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginBottom="16dp"
+                    android:text="@string/requests"
                     android:textColor="@color/text"
-                    android:layout_marginTop="2dp"
-                    android:textStyle="italic"
-                    android:textSize="12sp"/>
+                    android:textSize="22sp"
+                    android:textStyle="bold" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rvUploadRequests"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:visibility="visible"
+                    tools:listitem="@layout/item_upload_requests" />
+
+                <LinearLayout
+                    android:id="@+id/errorLayout"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="32dp"
+                    android:gravity="center_horizontal"
+                    android:orientation="vertical"
+                    android:visibility="visible">
+
+                    <ImageView
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
+                        android:contentDescription="@string/no_requests_found"
+                        android:src="@drawable/empty_box" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="12dp"
+                        android:text="@string/no_requests_found"
+                        android:textAlignment="center"
+                        android:textColor="@color/text"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:text="@string/there_are_no_records_nto_display_right_now"
+                        android:textAlignment="center"
+                        android:textColor="@color/text" />
+
+                </LinearLayout>
 
             </LinearLayout>
+        </androidx.core.widget.NestedScrollView>
 
-            <com.google.android.material.divider.MaterialDivider
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:dividerColor="@color/semi_grey"
-                android:layout_marginTop="16dp"/>
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/requests"
-                android:textSize="22sp"
-                android:textStyle="bold"
-                android:layout_marginTop="16dp"
-                android:layout_marginBottom="16dp"
-                android:textColor="@color/text"/>
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rvUploadRequests"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:visibility="gone"
-                tools:listitem="@layout/item_upload_requests" />
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:gravity="center_horizontal"
-                android:visibility="visible"
-                android:layout_marginTop="32dp"
-                android:orientation="vertical">
-
-                <ImageView
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
-                    android:contentDescription="@string/no_requests_found"
-                    android:src="@drawable/empty_box" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="12dp"
-                    android:textAlignment="center"
-                    android:textStyle="bold"
-                    android:textColor="@color/text"
-                    android:textSize="18sp"
-                    android:text="@string/no_requests_found"/>
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:textAlignment="center"
-                    android:textColor="@color/text"
-                    android:text="@string/there_are_no_records_nto_display_right_now"/>
-
-            </LinearLayout>
-
-        </LinearLayout>
-    </androidx.core.widget.NestedScrollView>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

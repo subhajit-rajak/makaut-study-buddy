@@ -34,5 +34,7 @@
     <color name="logout_stroke">#E8A6A6</color>
     <color name="dark_white">#FDFDFD</color>
     <color name="swipe_button_gray">#5F5F5F</color>
+    <color name="yellow">#FFD600</color>
+    <color name="red">#FF0000</color>
 
 </resources>
