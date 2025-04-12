@@ -43,6 +43,21 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
+                android:id="@+id/topic_name"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="16dp"
+                android:text="Topic Name"
+                android:visibility="gone"
+                android:textColor="@color/background"
+                android:fontFamily="@font/inter_semibold"
+                android:textSize="13sp"
+                android:transitionName="NameTrans"
+                app:layout_constraintStart_toStartOf="@+id/organizer_name"
+                app:layout_constraintTop_toBottomOf="@id/organizer_name"
+                />
+
+            <TextView
                 android:id="@+id/semester"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -51,7 +66,7 @@
                 android:textSize="12sp"
                 android:textStyle="italic"
                 app:layout_constraintStart_toStartOf="@+id/organizer_name"
-                app:layout_constraintTop_toBottomOf="@id/organizer_name"
+                app:layout_constraintTop_toBottomOf="@id/topic_name"
                 tools:ignore="TextContrastCheck" />
 
             <TextView
@@ -62,7 +77,7 @@
                 android:textColor="@color/background"
                 android:textSize="12sp"
                 android:textStyle="italic"
-                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintBottom_toBottomOf="@id/semester"
                 app:layout_constraintStart_toEndOf="@+id/semester"
                 app:layout_constraintTop_toTopOf="@id/semester"
                 tools:ignore="TextContrastCheck" />

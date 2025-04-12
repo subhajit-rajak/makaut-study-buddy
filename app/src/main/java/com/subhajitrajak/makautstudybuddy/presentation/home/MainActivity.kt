@@ -28,6 +28,7 @@ import com.subhajitrajak.makautstudybuddy.presentation.organizers.OrganizerActiv
 import com.subhajitrajak.makautstudybuddy.presentation.settings.SettingsActivity
 import com.subhajitrajak.makautstudybuddy.data.repository.userLogin.GoogleAuthUiClient
 import com.subhajitrajak.makautstudybuddy.data.repository.userLogin.UserData
+import com.subhajitrajak.makautstudybuddy.presentation.notes.NotesActivity
 import com.subhajitrajak.makautstudybuddy.presentation.upload.UploadActivity
 import com.subhajitrajak.makautstudybuddy.utils.showToast
 
@@ -91,6 +92,10 @@ class MainActivity : AppCompatActivity() {
 
             upload.setOnClickListener {
                 startActivity(Intent(this@MainActivity, UploadActivity::class.java))
+            }
+
+            notes.setOnClickListener {
+                startActivity(Intent(this@MainActivity, NotesActivity::class.java))
             }
         }
 

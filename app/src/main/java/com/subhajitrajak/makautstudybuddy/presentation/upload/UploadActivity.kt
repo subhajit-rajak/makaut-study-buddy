@@ -25,6 +25,7 @@ import com.subhajitrajak.makautstudybuddy.data.repository.userLogin.GoogleAuthUi
 import com.subhajitrajak.makautstudybuddy.data.repository.userLogin.UserData
 import com.subhajitrajak.makautstudybuddy.databinding.ActivityUploadBinding
 import com.subhajitrajak.makautstudybuddy.utils.Constants.BOOK_LIST
+import com.subhajitrajak.makautstudybuddy.utils.Constants.NOTES
 import com.subhajitrajak.makautstudybuddy.utils.Constants.PENDING
 import com.subhajitrajak.makautstudybuddy.utils.Constants.UPLOAD_REQUESTS
 import com.subhajitrajak.makautstudybuddy.utils.MyResponses
@@ -67,7 +68,7 @@ class UploadActivity : AppCompatActivity() {
                 val fileName = fileInfo.first
                 val fileSize = fileInfo.second.toFloat()
                 val fileSizeInMB = String.format("%.3f", fileSize / 1000000.0)
-                binding.fileNameTextView.text = "${fileName} [${fileSizeInMB}MB]"
+                binding.fileNameTextView.text = "$fileName [${fileSizeInMB}MB]"
                 binding.fileNameTextView.visibility = View.VISIBLE
 
                 if (fileSize > 10000000) {
@@ -132,6 +133,18 @@ class UploadActivity : AppCompatActivity() {
                 pullToRefresh.isRefreshing = false
             }
 
+            chipGroup.setOnCheckedStateChangeListener { group, checkedIds ->
+                val selectedChipId = checkedIds.firstOrNull()
+                val selectedChip = selectedChipId?.let { group.findViewById<Chip>(it) }
+                val type = selectedChip?.text.toString()
+
+                if (type == NOTES) {
+                    topicInputLayout.visibility = View.VISIBLE
+                } else {
+                    topicInputLayout.visibility = View.GONE
+                }
+            }
+
             binding.fileNameTextView.visibility = View.GONE
             binding.progressBar.visibility = View.GONE
             binding.chooseFileButton.text = getString(R.string.choose_file)
@@ -146,6 +159,7 @@ class UploadActivity : AppCompatActivity() {
                 val type =
                     binding.chipGroup.findViewById<Chip>(binding.chipGroup.checkedChipId)?.text.toString()
                 val subject = binding.editTextBookName.text.toString()
+                val topic = if (type == NOTES) binding.editTextTopicName.text.toString() else null
                 val branch = binding.listOfBranches.text.toString()
                 val semester = binding.listOfSemesters.text.toString()
                 val isContributorEnabled = binding.contributorCheckBox.isChecked
@@ -158,7 +172,25 @@ class UploadActivity : AppCompatActivity() {
                     return@setOnClickListener
                 }
 
-                uploadPdf(type, subject, branch, getBranchCode(branch), semester, contributor)
+                if (selectedPdfUri == null) {
+                    showToast(this@UploadActivity, "Please select a PDF file")
+                    return@setOnClickListener
+                }
+
+                if (type == NOTES && topic.isNullOrEmpty()) {
+                    showToast(this@UploadActivity, "Please enter a topic name")
+                    return@setOnClickListener
+                }
+
+                uploadPdf(
+                    type = type,
+                    subject = subject,
+                    topic = topic,
+                    branch = branch,
+                    branchCode = getBranchCode(branch),
+                    semester = semester,
+                    contributor = contributor
+                )
             }
         }
     }
@@ -183,6 +215,7 @@ class UploadActivity : AppCompatActivity() {
     private fun uploadPdf(
         type: String,
         subject: String,
+        topic: String?,
         branch: String,
         branchCode: String,
         semester: String,
@@ -192,8 +225,15 @@ class UploadActivity : AppCompatActivity() {
         storage = FirebaseStorage.getInstance().reference
 
         selectedPdfUri?.let { url ->
+            var sanitizedTopicName: String? = null
+            if (topic!=null) sanitizedTopicName = topic.replace(" ", "_").replace(Regex("[^a-zA-Z0-9_]"), "")
+
             val sanitizedBookName = subject.replace(" ", "_").replace(Regex("[^a-zA-Z0-9_]"), "")
-            val fileName = "${sanitizedBookName}.pdf"
+            val fileName = if (sanitizedTopicName != null) {
+                "$sanitizedBookName-$sanitizedTopicName.pdf"
+            } else {
+                "$sanitizedBookName.pdf"
+            }
             val fileRef = storage.child(fileName)
 
             binding.progressBar.visibility = View.VISIBLE
@@ -213,6 +253,7 @@ class UploadActivity : AppCompatActivity() {
                         val newBook = BooksModel(
                             id = bookId,
                             bookName = subject,
+                            topicName = topic,
                             bookPDF = pdfUrl,
                             semester = semester,
                             contributor = contributor,
@@ -261,7 +302,7 @@ class UploadActivity : AppCompatActivity() {
             rvUploadRequests.adapter = adapter
             viewModel.getRequestsData()
 
-            viewModel.uploadRequestsLiveData.observe(this@UploadActivity) { it ->
+            viewModel.uploadRequestsLiveData.observe(this@UploadActivity) {
                 when (it) {
                     is MyResponses.Error -> {
                         binding.errorLayout.visibility = View.VISIBLE

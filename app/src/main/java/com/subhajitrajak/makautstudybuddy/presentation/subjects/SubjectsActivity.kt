@@ -5,6 +5,7 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import com.google.android.material.chip.Chip
 import com.subhajitrajak.makautstudybuddy.R
 import com.subhajitrajak.makautstudybuddy.databinding.ActivitySubjectsBinding
 import com.subhajitrajak.makautstudybuddy.data.models.BooksModel
@@ -16,7 +17,7 @@ class SubjectsActivity : AppCompatActivity() {
         ActivitySubjectsBinding.inflate(layoutInflater)
     }
     private val list = ArrayList<BooksModel>()
-    private val adapter = CategoryAdapter(list, activity)
+    private lateinit var adapter: CategoryAdapter
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -28,6 +29,7 @@ class SubjectsActivity : AppCompatActivity() {
         }
 
         binding.apply {
+            adapter = CategoryAdapter(list, activity)
             rvSubjects.adapter=adapter
             val bookList = intent.getSerializableExtra("book_list") as ArrayList<*>
             bookList.forEach {
@@ -36,6 +38,22 @@ class SubjectsActivity : AppCompatActivity() {
 
             backButton.setOnClickListener {
                 finish()
+            }
+
+            // Handle chip selection
+            chipGroup.setOnCheckedChangeListener { group, checkedId ->
+                val selectedChip = group.findViewById<Chip>(checkedId)
+                val chipText = selectedChip.text.toString()
+
+                if (chipText == "All") {
+                    adapter = CategoryAdapter(list, activity)
+                    rvSubjects.adapter = adapter
+                } else {
+                    val selectedSem = chipText.split("-").last() // Extracts "1" from "Sem-1"
+                    val filtered = list.filter { it.semester == selectedSem }
+                    adapter = CategoryAdapter(ArrayList(filtered), activity)
+                    rvSubjects.adapter = adapter
+                }
             }
         }
     }

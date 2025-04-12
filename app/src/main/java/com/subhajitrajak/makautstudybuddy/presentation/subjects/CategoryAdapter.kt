@@ -3,11 +3,14 @@ package com.subhajitrajak.makautstudybuddy.presentation.subjects
 import android.content.Context
 import android.content.Intent
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.subhajitrajak.makautstudybuddy.presentation.details.DetailsActivity
 import com.subhajitrajak.makautstudybuddy.databinding.ItemSemsBinding
 import com.subhajitrajak.makautstudybuddy.data.models.BooksModel
+import com.subhajitrajak.makautstudybuddy.utils.Constants
+import com.subhajitrajak.makautstudybuddy.utils.Constants.NOTES
 
 class CategoryAdapter(
     private val list: ArrayList<BooksModel>,
@@ -20,6 +23,12 @@ class CategoryAdapter(
             binding.apply {
                 organizerName.text = model.bookName
                 semesterNumber.text = model.semester
+
+                if (model.type == NOTES) {
+                    topicName.text = model.topicName
+                    topicName.visibility = View.VISIBLE
+                }
+
                 binding.root.setOnClickListener {
                     Intent().apply {
                         putExtra("book_model", model)

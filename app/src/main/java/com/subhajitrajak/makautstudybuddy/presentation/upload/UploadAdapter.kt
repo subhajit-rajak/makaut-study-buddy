@@ -70,12 +70,15 @@ class UploadAdapter(
         )
 
         holder.binding.card.setOnLongClickListener {
-            showDeleteDialog(position)
+            showDeleteDialog(holder.adapterPosition)
             true
         }
     }
 
     private fun showDeleteDialog(position: Int) {
+        // Avoid crash if position is no longer valid
+        if (position < 0 || position >= list.size) return
+
         val dialogView = LayoutInflater.from(context).inflate(R.layout.dialog_confirm_delete, null)
         val dialog = android.app.AlertDialog.Builder(context)
             .setView(dialogView)
@@ -92,12 +95,21 @@ class UploadAdapter(
         }
 
         deleteButton.setOnClickListener {
+            deleteButton.isEnabled = false
+
+            // Double check again just before deletion
+            if (position >= list.size) {
+                dialog.dismiss()
+                return@setOnClickListener
+            }
+
             // Perform delete
             deleteBookRequest(
                 type = list[position].type!!,
                 branch = list[position].branch!!,
                 bookId = list[position].id,
                 bookName = list[position].bookName,
+                topicName = list[position].topicName,
                 onComplete = { success, message ->
                     if (success) {
                         list.removeAt(position)
@@ -124,6 +136,7 @@ class UploadAdapter(
         branch: String,
         bookId: String,
         bookName: String,
+        topicName: String?,
         onComplete: (Boolean, String) -> Unit
     ) {
         val firebaseDatabase = FirebaseDatabase.getInstance()
@@ -135,7 +148,12 @@ class UploadAdapter(
 
         dataRef.removeValue()
             .addOnSuccessListener {
-                val fileRef = FirebaseStorage.getInstance().reference.child("$bookName.pdf")
+                val bookRef = if (topicName != null) {
+                    "$bookName-$topicName.pdf"
+                } else {
+                    "$bookName.pdf"
+                }
+                val fileRef = FirebaseStorage.getInstance().reference.child(bookRef)
                 fileRef.delete()
                     .addOnSuccessListener {
                         showToast(context, "Storage: Delete successful")

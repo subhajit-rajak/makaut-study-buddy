@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools" >
+    xmlns:tools="http://schemas.android.com/tools">
 
     <uses-permission android:name="android.permission.INTERNET" />
 
@@ -15,13 +15,16 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MakautStudyBuddy"
-        tools:targetApi="34" >
+        tools:targetApi="34">
+        <activity
+            android:name=".presentation.notes.NotesActivity"
+            android:exported="false" />
         <activity
             android:name=".presentation.upload.UploadActivity"
             android:exported="false" />
         <activity
             android:name=".presentation.onboarding.OnBoardingActivity"
-            android:exported="true" >
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

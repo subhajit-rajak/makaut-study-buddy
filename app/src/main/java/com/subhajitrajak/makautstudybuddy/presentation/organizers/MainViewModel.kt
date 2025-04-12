@@ -14,5 +14,4 @@ class MainViewModel(private val repo: MainRepo) : ViewModel() {
             repo.getHomeData()
         }
     }
-
 }
