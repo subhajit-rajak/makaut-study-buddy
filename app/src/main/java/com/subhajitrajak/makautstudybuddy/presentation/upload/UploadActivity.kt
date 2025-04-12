@@ -1,5 +1,6 @@
 package com.subhajitrajak.makautstudybuddy.presentation.upload
 
+import android.annotation.SuppressLint
 import android.net.Uri
 import android.os.Bundle
 import android.provider.OpenableColumns
@@ -33,6 +34,8 @@ import com.subhajitrajak.makautstudybuddy.utils.getBranchCode
 import com.subhajitrajak.makautstudybuddy.utils.getTypeCode
 import com.subhajitrajak.makautstudybuddy.utils.log
 import com.subhajitrajak.makautstudybuddy.utils.showToast
+import java.lang.String.format
+import kotlin.text.*
 
 class UploadActivity : AppCompatActivity() {
     // for firebase upload purposes
@@ -60,6 +63,7 @@ class UploadActivity : AppCompatActivity() {
         ViewModelProvider(this, UploadViewModelFactory(repo))[UploadViewModel::class.java]
     }
 
+    @SuppressLint("DefaultLocale")
     private val pickPdfLauncher =
         registerForActivityResult(ActivityResultContracts.OpenDocument()) { uri ->
             uri?.let {
@@ -67,8 +71,9 @@ class UploadActivity : AppCompatActivity() {
                 val fileInfo = getFileInfo(it)
                 val fileName = fileInfo.first
                 val fileSize = fileInfo.second.toFloat()
-                val fileSizeInMB = String.format("%.3f", fileSize / 1000000.0)
-                binding.fileNameTextView.text = "$fileName [${fileSizeInMB}MB]"
+                val fileSizeInMB = format("%.3f", fileSize / 1000000.0)
+                binding.fileNameTextView.text =
+                    getString(R.string.filename_after_pickup, fileName, fileSizeInMB)
                 binding.fileNameTextView.visibility = View.VISIBLE
 
                 if (fileSize > 10000000) {

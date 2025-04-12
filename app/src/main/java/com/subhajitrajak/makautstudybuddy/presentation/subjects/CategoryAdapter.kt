@@ -6,10 +6,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.subhajitrajak.makautstudybuddy.presentation.details.DetailsActivity
-import com.subhajitrajak.makautstudybuddy.databinding.ItemSemsBinding
 import com.subhajitrajak.makautstudybuddy.data.models.BooksModel
-import com.subhajitrajak.makautstudybuddy.utils.Constants
+import com.subhajitrajak.makautstudybuddy.databinding.ItemSemsBinding
+import com.subhajitrajak.makautstudybuddy.presentation.details.DetailsActivity
 import com.subhajitrajak.makautstudybuddy.utils.Constants.NOTES
 
 class CategoryAdapter(

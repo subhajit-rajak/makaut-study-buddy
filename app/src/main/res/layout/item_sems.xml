@@ -47,7 +47,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="16dp"
-                android:text="Topic Name"
+                android:text="@string/topic_name"
                 android:visibility="gone"
                 android:textColor="@color/background"
                 android:fontFamily="@font/inter_semibold"

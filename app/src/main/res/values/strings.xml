@@ -83,4 +83,15 @@
     <string name="contributed_by_who">contributed by %1$s</string>
     <string name="upload_requests_details_text">%1$s, Sem-%2$s, %3$s</string>
     <string name="upload_requests_status_text">Status: %1$s</string>
+    <string name="topic_name">Topic Name</string>
+    <string name="sem_1">Sem-1</string>
+    <string name="sem_2">Sem-2</string>
+    <string name="sem_3">Sem-3</string>
+    <string name="sem_4">Sem-4</string>
+    <string name="sem_5">Sem-5</string>
+    <string name="sem_6">Sem-6</string>
+    <string name="sem_7">Sem-7</string>
+    <string name="sem_8">Sem-8</string>
+    <string name="filename_after_pickup">%1$s [%2$sMB]</string>
+    <string name="topic">Topic</string>
 </resources>

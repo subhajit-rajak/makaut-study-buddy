@@ -100,7 +100,7 @@
                             android:id="@+id/editTextTopicName"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:hint="Topic"
+                            android:hint="@string/topic"
                             android:importantForAutofill="no"
                             android:inputType="text"
                             android:singleLine="true"
