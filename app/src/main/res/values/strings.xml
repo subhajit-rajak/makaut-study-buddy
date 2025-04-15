@@ -94,4 +94,7 @@
     <string name="sem_8">Sem-8</string>
     <string name="filename_after_pickup">%1$s [%2$sMB]</string>
     <string name="topic">Topic</string>
+    <string name="thumbnail">Thumbnail</string>
+    <string name="video_title">Video Title</string>
+    <string name="channel_name">Channel Name</string>
 </resources>

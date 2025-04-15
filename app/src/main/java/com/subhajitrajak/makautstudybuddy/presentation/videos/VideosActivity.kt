@@ -1,5 +1,6 @@
 package com.subhajitrajak.makautstudybuddy.presentation.videos
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -83,6 +84,7 @@ class VideosActivity : AppCompatActivity() {
         }
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     private fun enrichAndDisplayVideos(videos: List<VideosModel>) {
         videoList.clear()
 

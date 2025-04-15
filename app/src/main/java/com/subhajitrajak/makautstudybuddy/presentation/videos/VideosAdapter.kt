@@ -1,7 +1,6 @@
 package com.subhajitrajak.makautstudybuddy.presentation.videos
 
 import android.content.ActivityNotFoundException
-import android.content.ComponentName
 import android.content.Context
 import android.content.Intent
 import android.net.Uri
@@ -11,7 +10,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.subhajitrajak.makautstudybuddy.data.models.VideosModel
 import com.subhajitrajak.makautstudybuddy.databinding.ItemVideosBinding
-import com.subhajitrajak.makautstudybuddy.utils.showToast
 
 class VideosAdapter(private val list: ArrayList<VideosModel>, private val context: Context) :
     RecyclerView.Adapter<VideosAdapter.VideoItemViewHolder>() {
