@@ -1,23 +1,23 @@
 package com.subhajitrajak.makautstudybuddy.data.models
 
 data class PlaylistResponse(
-    val items: List<PlaylistItem>
+    val items: List<PlaylistMetadataItem>
 )
 
-data class PlaylistItem(
-    val snippet: Snippet
+data class PlaylistMetadataItem(
+    val snippet: PlaylistSnippet
 )
 
-data class Snippet(
+data class PlaylistSnippet(
     val title: String,
     val channelTitle: String,
-    val thumbnails: Thumbnails
+    val thumbnails: PlaylistThumbnails
 )
 
-data class Thumbnails(
-    val medium: Thumbnail
+data class PlaylistThumbnails(
+    val medium: PlaylistThumbnail
 )
 
-data class Thumbnail(
+data class PlaylistThumbnail(
     val url: String
 )
