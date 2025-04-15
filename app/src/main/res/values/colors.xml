@@ -5,6 +5,7 @@
     <color name="semi_grey">#74888888</color>
     <color name="light_grey">#74C8C8C8</color>
     <color name="semi_darker_grey">#745E5E5E</color>
+    <color name="darker_grey">#99303030</color>
 
     <color name="purple_200">#4D455D</color>
     <color name="purple_500">#E96479</color>

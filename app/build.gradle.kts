@@ -1,3 +1,5 @@
+import java.util.Properties
+
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
@@ -5,6 +7,11 @@ plugins {
     id("kotlin-kapt")
     id("com.google.dagger.hilt.android")
 }
+
+val localProperties = rootProject.file("local.properties").inputStream().use { input ->
+    Properties().apply { load(input) }
+}
+val apiKey: String = localProperties.getProperty("API_KEY") ?: "\"\""
 
 android {
     namespace = "com.subhajitrajak.makautstudybuddy"
@@ -18,6 +25,7 @@ android {
         versionName = "1.1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        buildConfigField("String", "API_KEY", "\"$apiKey\"")
     }
 
     buildTypes {
@@ -32,6 +40,7 @@ android {
 
     buildFeatures {
         viewBinding=true
+        buildConfig=true
     }
 
     compileOptions {
@@ -90,4 +99,8 @@ dependencies {
 
     // glide (image loading)
     implementation ("com.github.bumptech.glide:glide:4.16.0")
+
+    // retrofit
+    implementation ("com.squareup.retrofit2:retrofit:2.9.0")
+    implementation ("com.squareup.retrofit2:converter-gson:2.9.0")
 }

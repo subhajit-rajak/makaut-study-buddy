@@ -30,6 +30,7 @@ import com.subhajitrajak.makautstudybuddy.data.repository.userLogin.GoogleAuthUi
 import com.subhajitrajak.makautstudybuddy.data.repository.userLogin.UserData
 import com.subhajitrajak.makautstudybuddy.presentation.notes.NotesActivity
 import com.subhajitrajak.makautstudybuddy.presentation.upload.UploadActivity
+import com.subhajitrajak.makautstudybuddy.presentation.videos.VideosActivity
 import com.subhajitrajak.makautstudybuddy.utils.showToast
 
 class MainActivity : AppCompatActivity() {
@@ -96,6 +97,10 @@ class MainActivity : AppCompatActivity() {
 
             notes.setOnClickListener {
                 startActivity(Intent(this@MainActivity, NotesActivity::class.java))
+            }
+
+            videos.setOnClickListener {
+                startActivity(Intent(this@MainActivity, VideosActivity::class.java))
             }
         }
 

@@ -7,11 +7,13 @@ import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import com.subhajitrajak.makautstudybuddy.data.models.HomeModel
+import com.subhajitrajak.makautstudybuddy.utils.Constants.APP_DATA
+import com.subhajitrajak.makautstudybuddy.utils.Constants.HOME
 import com.subhajitrajak.makautstudybuddy.utils.MyResponses
 
 class MainRepo(val context: Context) {
     private val firebaseDatabase = FirebaseDatabase.getInstance()
-    private val databaseRef = firebaseDatabase.getReference("AppData").child("Home")
+    private val databaseRef = firebaseDatabase.getReference(APP_DATA).child(HOME)
     private val homeLD = MutableLiveData<MyResponses<ArrayList<HomeModel>>>()
 
     val homeLiveData get() = homeLD

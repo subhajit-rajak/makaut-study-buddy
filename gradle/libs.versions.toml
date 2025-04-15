@@ -1,6 +1,6 @@
 [versions]
 agp = "8.8.2"
-androidPdfViewer = "3.2.0-beta.1"
+androidPdfViewer = "3.2.0-beta.3"
 appUpdate = "2.1.0"
 circleimageview = "3.1.0"
 firebaseBom = "33.10.0"

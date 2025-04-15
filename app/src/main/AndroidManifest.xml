@@ -17,6 +17,9 @@
         android:theme="@style/Theme.MakautStudyBuddy"
         tools:targetApi="34">
         <activity
+            android:name=".presentation.videos.VideosActivity"
+            android:exported="false" />
+        <activity
             android:name=".presentation.notes.NotesActivity"
             android:exported="false" />
         <activity
