@@ -69,7 +69,7 @@ class OnBoardingActivity : AppCompatActivity() {
         }
 
         binding.getStarted.setOnActiveListener {
-            loginUsingGoogle()
+            loginAsGuest()
         }
 
         // Initialize ViewModel
@@ -91,6 +91,22 @@ class OnBoardingActivity : AppCompatActivity() {
         }
     }
 
+    // anonymous login
+    private fun loginAsGuest() {
+        CoroutineScope(Dispatchers.Main).launch {
+            val signInResult = googleAuthUiClient.signInAnonymously()
+            signInViewModel.onSignInResult(signInResult)
+
+            if (signInResult.data != null) {
+                showToast(this@OnBoardingActivity, "Welcome, Guest")
+                navigateToHome()
+            } else {
+                showToast(this@OnBoardingActivity, "Guest login failed: ${signInResult.errorMessage}")
+            }
+        }
+    }
+
+    // google login
     private fun loginUsingGoogle() {
         CoroutineScope(Dispatchers.Main).launch {
             showLoading(true)

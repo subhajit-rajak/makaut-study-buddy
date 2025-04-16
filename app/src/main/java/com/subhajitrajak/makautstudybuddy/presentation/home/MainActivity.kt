@@ -62,7 +62,7 @@ class MainActivity : AppCompatActivity() {
 
         if (userData != null) {
             val username = userData.username ?: "Guest"
-            val name = username.substring(0, username.indexOf(' '))
+            val name = username.substringBefore(" ")
             binding.greeting.text = buildString {
                 append("Hey, ")
                 append(name)

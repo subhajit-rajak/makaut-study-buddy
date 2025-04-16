@@ -59,6 +59,30 @@ class GoogleAuthUiClient(
         }
     }
 
+    suspend fun signInAnonymously(): SignInResult {
+        return try {
+            val user = auth.signInAnonymously().await().user
+            SignInResult(
+                data = user?.run {
+                    UserData(
+                        userId = uid,
+                        username = "Guest",
+                        userEmail = null,
+                        profilePictureUrl = null
+                    )
+                },
+                errorMessage = null
+            )
+        } catch (e: Exception) {
+            e.printStackTrace()
+            if (e is CancellationException) throw e
+            SignInResult(
+                data = null,
+                errorMessage = e.message
+            )
+        }
+    }
+
     suspend fun signOut() {
         try {
             oneTapClient.signOut().await()
