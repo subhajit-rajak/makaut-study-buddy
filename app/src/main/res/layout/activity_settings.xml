@@ -27,6 +27,7 @@
         android:layout_height="wrap_content"
         android:paddingVertical="18dp"
         android:text="@string/settings"
+        android:fontFamily="@font/inter_semibold"
         android:textColor="@color/text"
         android:textSize="22sp"
         app:layout_constraintStart_toEndOf="@+id/settings_back_button"
