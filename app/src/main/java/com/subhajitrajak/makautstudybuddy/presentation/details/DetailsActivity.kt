@@ -14,11 +14,11 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.lifecycle.ViewModelProvider
 import com.subhajitrajak.makautstudybuddy.R
+import com.subhajitrajak.makautstudybuddy.data.models.BooksModel
+import com.subhajitrajak.makautstudybuddy.data.repository.BookRepo
 import com.subhajitrajak.makautstudybuddy.databinding.ActivityDetailsBinding
 import com.subhajitrajak.makautstudybuddy.databinding.LayoutProgressBinding
-import com.subhajitrajak.makautstudybuddy.data.models.BooksModel
 import com.subhajitrajak.makautstudybuddy.presentation.pdf.PdfActivity
-import com.subhajitrajak.makautstudybuddy.data.repository.BookRepo
 import com.subhajitrajak.makautstudybuddy.utils.MyResponses
 
 class DetailsActivity : AppCompatActivity() {

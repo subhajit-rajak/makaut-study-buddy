@@ -37,7 +37,6 @@ import com.subhajitrajak.makautstudybuddy.utils.removeWithAnim
 import com.subhajitrajak.makautstudybuddy.utils.showToast
 import com.subhajitrajak.makautstudybuddy.utils.showWithAnim
 import java.lang.String.format
-import kotlin.text.*
 
 @Suppress("LABEL_NAME_CLASH")
 class UploadActivity : AppCompatActivity() {

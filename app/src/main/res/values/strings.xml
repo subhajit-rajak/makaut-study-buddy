@@ -101,4 +101,7 @@
     <string name="example_book_name_pdf">Example Book Name.pdf</string>
     <string name="delete">Delete</string>
     <string name="downloads">Downloads</string>
+    <string name="request_tab_book_title">Economics</string>
+    <string name="request_tab_book_description">Organizer, Sem-7, Information Technology</string>
+    <string name="request_tab_book_status">Status: Pending</string>
 </resources>

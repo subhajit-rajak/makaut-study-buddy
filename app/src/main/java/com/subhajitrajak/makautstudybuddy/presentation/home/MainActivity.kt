@@ -23,13 +23,13 @@ import com.google.android.play.core.install.model.AppUpdateType
 import com.google.android.play.core.install.model.InstallStatus
 import com.google.android.play.core.install.model.UpdateAvailability
 import com.subhajitrajak.makautstudybuddy.R
-import com.subhajitrajak.makautstudybuddy.databinding.ActivityMainBinding
-import com.subhajitrajak.makautstudybuddy.presentation.organizers.OrganizerActivity
-import com.subhajitrajak.makautstudybuddy.presentation.settings.SettingsActivity
 import com.subhajitrajak.makautstudybuddy.data.repository.userLogin.GoogleAuthUiClient
 import com.subhajitrajak.makautstudybuddy.data.repository.userLogin.UserData
+import com.subhajitrajak.makautstudybuddy.databinding.ActivityMainBinding
 import com.subhajitrajak.makautstudybuddy.presentation.downloads.DownloadedFilesActivity
 import com.subhajitrajak.makautstudybuddy.presentation.notes.NotesActivity
+import com.subhajitrajak.makautstudybuddy.presentation.organizers.OrganizerActivity
+import com.subhajitrajak.makautstudybuddy.presentation.settings.SettingsActivity
 import com.subhajitrajak.makautstudybuddy.presentation.upload.UploadActivity
 import com.subhajitrajak.makautstudybuddy.presentation.videos.VideosActivity
 import com.subhajitrajak.makautstudybuddy.utils.showToast

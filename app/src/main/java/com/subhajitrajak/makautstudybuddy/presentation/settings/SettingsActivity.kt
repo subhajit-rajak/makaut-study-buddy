@@ -16,10 +16,10 @@ import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import com.subhajitrajak.makautstudybuddy.R
-import com.subhajitrajak.makautstudybuddy.databinding.ActivitySettingsBinding
 import com.subhajitrajak.makautstudybuddy.data.models.SettingsModel
-import com.subhajitrajak.makautstudybuddy.presentation.onboarding.OnBoardingActivity
 import com.subhajitrajak.makautstudybuddy.data.repository.userLogin.GoogleAuthUiClient
+import com.subhajitrajak.makautstudybuddy.databinding.ActivitySettingsBinding
+import com.subhajitrajak.makautstudybuddy.presentation.onboarding.OnBoardingActivity
 import com.subhajitrajak.makautstudybuddy.utils.showToast
 import kotlinx.coroutines.launch
 

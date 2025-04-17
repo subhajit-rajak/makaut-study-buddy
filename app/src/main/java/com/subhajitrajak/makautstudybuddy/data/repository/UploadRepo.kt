@@ -2,7 +2,10 @@ package com.subhajitrajak.makautstudybuddy.data.repository
 
 import android.content.Context
 import androidx.lifecycle.MutableLiveData
-import com.google.firebase.database.*
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
 import com.subhajitrajak.makautstudybuddy.data.models.BooksModel
 import com.subhajitrajak.makautstudybuddy.utils.Constants.NOTES_DATA
 import com.subhajitrajak.makautstudybuddy.utils.Constants.ORGANIZERS_DATA
@@ -17,7 +20,7 @@ class UploadRepo(val context: Context) {
 
     val uploadRequestsLiveData get() = uploadRequestsLD
 
-    suspend fun getRequestsData() {
+    fun getRequestsData() {
         uploadRequestsLiveData.postValue(MyResponses.Loading())
 
         val finalList = ArrayList<BooksModel>()

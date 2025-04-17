@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
@@ -26,7 +25,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="16dp"
-                android:text="Economics"
+                android:text="@string/request_tab_book_title"
                 android:textColor="@color/text"
                 android:textSize="18sp"
                 android:textStyle="bold"
@@ -37,7 +36,7 @@
                 android:id="@+id/details"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Organizer, Sem-7, Information Technology"
+                android:text="@string/request_tab_book_description"
                 android:textColor="@color/text"
                 app:layout_constraintStart_toStartOf="@+id/subject_name"
                 app:layout_constraintTop_toBottomOf="@id/subject_name"/>
@@ -46,7 +45,7 @@
                 android:id="@+id/status"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Status: Pending"
+                android:text="@string/request_tab_book_status"
                 android:textStyle="italic"
                 android:textColor="@color/yellow"
                 app:layout_constraintStart_toStartOf="@+id/subject_name"
