@@ -38,12 +38,13 @@
             app:tint="@color/text" />
 
         <ImageButton
+            android:id="@+id/downloads"
             android:layout_width="54dp"
             android:layout_height="54dp"
             android:layout_marginEnd="8dp"
             android:background="@drawable/item_bg_settings"
             android:contentDescription="@string/favourites"
-            android:src="@drawable/ic_favorites"
+            android:src="@drawable/downloads"
             app:layout_constraintBottom_toBottomOf="@+id/profile_picture"
             app:layout_constraintEnd_toStartOf="@+id/settings"
             app:layout_constraintTop_toTopOf="@+id/profile_picture"

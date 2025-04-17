@@ -28,6 +28,7 @@ import com.subhajitrajak.makautstudybuddy.presentation.organizers.OrganizerActiv
 import com.subhajitrajak.makautstudybuddy.presentation.settings.SettingsActivity
 import com.subhajitrajak.makautstudybuddy.data.repository.userLogin.GoogleAuthUiClient
 import com.subhajitrajak.makautstudybuddy.data.repository.userLogin.UserData
+import com.subhajitrajak.makautstudybuddy.presentation.downloads.DownloadedFilesActivity
 import com.subhajitrajak.makautstudybuddy.presentation.notes.NotesActivity
 import com.subhajitrajak.makautstudybuddy.presentation.upload.UploadActivity
 import com.subhajitrajak.makautstudybuddy.presentation.videos.VideosActivity
@@ -78,6 +79,10 @@ class MainActivity : AppCompatActivity() {
             organizers.setOnClickListener {
                 val intent = Intent(this@MainActivity, OrganizerActivity::class.java)
                 startActivity(intent)
+            }
+
+            downloads.setOnClickListener {
+                startActivity(Intent(this@MainActivity, DownloadedFilesActivity::class.java))
             }
 
             settings.setOnClickListener {

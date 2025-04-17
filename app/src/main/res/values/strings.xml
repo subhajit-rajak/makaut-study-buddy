@@ -97,4 +97,5 @@
     <string name="thumbnail">Thumbnail</string>
     <string name="video_title">Video Title</string>
     <string name="channel_name">Channel Name</string>
+    <string name="no_downloads_found">No Downloads found</string>
 </resources>

@@ -33,7 +33,9 @@ import com.subhajitrajak.makautstudybuddy.utils.MyResponses
 import com.subhajitrajak.makautstudybuddy.utils.getBranchCode
 import com.subhajitrajak.makautstudybuddy.utils.getTypeCode
 import com.subhajitrajak.makautstudybuddy.utils.log
+import com.subhajitrajak.makautstudybuddy.utils.removeWithAnim
 import com.subhajitrajak.makautstudybuddy.utils.showToast
+import com.subhajitrajak.makautstudybuddy.utils.showWithAnim
 import java.lang.String.format
 import kotlin.text.*
 
@@ -310,18 +312,18 @@ class UploadActivity : AppCompatActivity() {
             viewModel.uploadRequestsLiveData.observe(this@UploadActivity) {
                 when (it) {
                     is MyResponses.Error -> {
-                        binding.errorLayout.visibility = View.VISIBLE
-                        binding.rvUploadRequests.visibility = View.GONE
+                        binding.errorLayout.showWithAnim()
+                        binding.rvUploadRequests.removeWithAnim()
                     }
 
                     is MyResponses.Loading -> {
-                        binding.errorLayout.visibility = View.VISIBLE
-                        binding.rvUploadRequests.visibility = View.GONE
+                        binding.errorLayout.showWithAnim()
+                        binding.rvUploadRequests.removeWithAnim()
                     }
 
                     is MyResponses.Success -> {
-                        binding.errorLayout.visibility = View.GONE
-                        binding.rvUploadRequests.visibility = View.VISIBLE
+                        binding.errorLayout.removeWithAnim()
+                        binding.rvUploadRequests.showWithAnim()
                         val tempList = it.data
                         list.clear()
                         tempList?.forEach { request ->
@@ -332,8 +334,8 @@ class UploadActivity : AppCompatActivity() {
                         log("list: $list")
 
                         if (list.isEmpty()) {
-                            binding.errorLayout.visibility = View.VISIBLE
-                            binding.rvUploadRequests.visibility = View.GONE
+                            binding.errorLayout.showWithAnim()
+                            binding.rvUploadRequests.removeWithAnim()
                         } else {
                             binding.errorLayout.visibility = View.GONE
                             binding.rvUploadRequests.visibility = View.VISIBLE
