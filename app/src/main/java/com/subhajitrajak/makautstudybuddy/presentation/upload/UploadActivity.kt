@@ -39,6 +39,7 @@ import com.subhajitrajak.makautstudybuddy.utils.showWithAnim
 import java.lang.String.format
 import kotlin.text.*
 
+@Suppress("LABEL_NAME_CLASH")
 class UploadActivity : AppCompatActivity() {
     // for firebase upload purposes
     private lateinit var database: DatabaseReference
@@ -303,6 +304,7 @@ class UploadActivity : AppCompatActivity() {
         viewModel.getRequestsData()
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     private fun setupUploadRequests() {
         binding.apply {
             rvUploadRequests.layoutManager = LinearLayoutManager(this@UploadActivity)

@@ -27,7 +27,7 @@
         android:layout_height="wrap_content"
         android:fontFamily="@font/inter_semibold"
         android:paddingVertical="18dp"
-        android:text="Downloads"
+        android:text="@string/downloads"
         android:textColor="@color/text"
         android:textSize="22sp"
         app:layout_constraintStart_toEndOf="@+id/back_button"

@@ -8,6 +8,7 @@
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:contentDescription="@string/books"
         android:src="@drawable/pdf_file_icon"
         android:layout_weight="3"
         android:padding="16dp"
@@ -23,13 +24,14 @@
         android:paddingTop="16dp"
         android:paddingBottom="16dp"
         android:textColor="@color/text"
-        android:text="Economics.pdf"
+        android:text="@string/example_book_name_pdf"
         android:textSize="16sp"/>
 
     <ImageView
         android:id="@+id/deleteButton"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:contentDescription="@string/delete"
         android:src="@drawable/more_vert"
         android:padding="16dp"
         android:layout_weight="3"

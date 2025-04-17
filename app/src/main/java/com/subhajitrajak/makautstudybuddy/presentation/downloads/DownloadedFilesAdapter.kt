@@ -1,16 +1,10 @@
 package com.subhajitrajak.makautstudybuddy.presentation.downloads
 
 import android.content.Context
-import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import android.widget.Button
-import androidx.core.content.FileProvider
 import androidx.recyclerview.widget.RecyclerView
-import com.subhajitrajak.makautstudybuddy.R
 import com.subhajitrajak.makautstudybuddy.databinding.ItemDownloadedFileBinding
-import com.subhajitrajak.makautstudybuddy.presentation.pdf.PdfActivity
-import com.subhajitrajak.makautstudybuddy.utils.showToast
 import java.io.File
 
 class DownloadedFilesAdapter(
