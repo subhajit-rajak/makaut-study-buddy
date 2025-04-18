@@ -3,7 +3,6 @@ package com.subhajitrajak.makautstudybuddy.presentation.upload
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import android.widget.Button
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.storage.FirebaseStorage
@@ -11,9 +10,7 @@ import com.subhajitrajak.makautstudybuddy.R
 import com.subhajitrajak.makautstudybuddy.data.models.BooksModel
 import com.subhajitrajak.makautstudybuddy.databinding.ItemUploadRequestsBinding
 import com.subhajitrajak.makautstudybuddy.utils.Constants
-import com.subhajitrajak.makautstudybuddy.utils.Constants.BOOK_LIST
 import com.subhajitrajak.makautstudybuddy.utils.Constants.UPLOAD_REQUESTS
-import com.subhajitrajak.makautstudybuddy.utils.getBranchCode
 import com.subhajitrajak.makautstudybuddy.utils.getTypeCode
 import com.subhajitrajak.makautstudybuddy.utils.showDeleteConfirmationDialog
 import com.subhajitrajak.makautstudybuddy.utils.showToast
@@ -84,7 +81,6 @@ class UploadAdapter(
             onConfirm = {
                 deleteBookRequest(
                     type = list[position].type!!,
-                    branch = list[position].branch!!,
                     bookId = list[position].id,
                     bookName = list[position].bookName,
                     topicName = list[position].topicName,
@@ -102,7 +98,6 @@ class UploadAdapter(
 
     private fun deleteBookRequest(
         type: String, // NOTES_DATA or ORGANIZERS_DATA
-        branch: String,
         bookId: String,
         bookName: String,
         topicName: String?,

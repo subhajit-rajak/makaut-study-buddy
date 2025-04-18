@@ -20,7 +20,6 @@ import com.subhajitrajak.makautstudybuddy.databinding.ActivityDetailsBinding
 import com.subhajitrajak.makautstudybuddy.databinding.LayoutProgressBinding
 import com.subhajitrajak.makautstudybuddy.presentation.pdf.PdfActivity
 import com.subhajitrajak.makautstudybuddy.utils.Constants.NOTES
-import com.subhajitrajak.makautstudybuddy.utils.Constants.ORGANIZERS
 import com.subhajitrajak.makautstudybuddy.utils.MyResponses
 
 class DetailsActivity : AppCompatActivity() {

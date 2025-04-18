@@ -18,7 +18,7 @@ class NotesRepo(val context: Context) {
 
     val notesLiveData get() = notesLD
 
-    suspend fun getNotesData() {
+    fun getNotesData() {
         notesLiveData.postValue(MyResponses.Loading())
         databaseRef.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshots: DataSnapshot) {
