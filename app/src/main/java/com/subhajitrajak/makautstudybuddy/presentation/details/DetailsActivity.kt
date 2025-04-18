@@ -19,6 +19,8 @@ import com.subhajitrajak.makautstudybuddy.data.repository.BookRepo
 import com.subhajitrajak.makautstudybuddy.databinding.ActivityDetailsBinding
 import com.subhajitrajak.makautstudybuddy.databinding.LayoutProgressBinding
 import com.subhajitrajak.makautstudybuddy.presentation.pdf.PdfActivity
+import com.subhajitrajak.makautstudybuddy.utils.Constants.NOTES
+import com.subhajitrajak.makautstudybuddy.utils.Constants.ORGANIZERS
 import com.subhajitrajak.makautstudybuddy.utils.MyResponses
 
 class DetailsActivity : AppCompatActivity() {
@@ -64,7 +66,12 @@ class DetailsActivity : AppCompatActivity() {
 
             // read online button
             readOffline.setOnClickListener {
-                viewModel.downloadFile(bookModel.bookPDF, "${bookModel.bookName}.pdf")
+                val fileName = if (bookModel.type == NOTES) {
+                    "${bookModel.bookName} - ${bookModel.topicName}.pdf"
+                } else {
+                    "${bookModel.bookName}.pdf"
+                }
+                viewModel.downloadFile(bookModel.bookPDF, fileName)
             }
             val dialogBinding = LayoutProgressBinding.inflate(layoutInflater)
             val dialog = Dialog(activity).apply {

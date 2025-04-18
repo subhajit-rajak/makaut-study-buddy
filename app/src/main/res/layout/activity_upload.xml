@@ -297,7 +297,7 @@
                     android:layout_marginTop="32dp"
                     android:gravity="center_horizontal"
                     android:orientation="vertical"
-                    android:visibility="visible">
+                    android:visibility="gone">
 
                     <ImageView
                         android:layout_width="100dp"

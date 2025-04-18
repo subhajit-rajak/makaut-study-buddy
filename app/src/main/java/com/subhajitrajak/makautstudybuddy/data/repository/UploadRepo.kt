@@ -15,7 +15,8 @@ import com.subhajitrajak.makautstudybuddy.utils.MyResponses
 class UploadRepo(val context: Context) {
     private val firebaseDatabase = FirebaseDatabase.getInstance()
     private val notesDataRef = firebaseDatabase.getReference(UPLOAD_REQUESTS).child(NOTES_DATA)
-    private val organizersDataRef = firebaseDatabase.getReference(UPLOAD_REQUESTS).child(ORGANIZERS_DATA)
+    private val organizersDataRef =
+        firebaseDatabase.getReference(UPLOAD_REQUESTS).child(ORGANIZERS_DATA)
     private val uploadRequestsLD = MutableLiveData<MyResponses<ArrayList<BooksModel>>>()
 
     val uploadRequestsLiveData get() = uploadRequestsLD
@@ -40,13 +41,10 @@ class UploadRepo(val context: Context) {
 
         val listener = object : ValueEventListener {
             override fun onDataChange(snapshots: DataSnapshot) {
-                for (branchSnapshot in snapshots.children) {
-                    val booksListSnapshot = branchSnapshot.child("booksList")
-                    for (bookSnap in booksListSnapshot.children) {
-                        val book = bookSnap.getValue(BooksModel::class.java)
-                        book?.let {
-                            finalList.add(it)
-                        }
+                for (bookSnap in snapshots.children) {
+                    val book = bookSnap.getValue(BooksModel::class.java)
+                    book?.let {
+                        finalList.add(it)
                     }
                 }
                 checkAndPost()

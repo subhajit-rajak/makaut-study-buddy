@@ -35,6 +35,7 @@ class SubjectsActivity : AppCompatActivity() {
             bookList.forEach {
                 list.add(it as BooksModel)
             }
+            list.sortBy { it.semester }
 
             backButton.setOnClickListener {
                 finish()

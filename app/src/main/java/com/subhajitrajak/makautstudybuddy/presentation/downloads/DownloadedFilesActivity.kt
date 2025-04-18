@@ -16,6 +16,7 @@ import com.subhajitrajak.makautstudybuddy.R
 import com.subhajitrajak.makautstudybuddy.databinding.ActivityDownloadedFilesBinding
 import com.subhajitrajak.makautstudybuddy.presentation.pdf.PdfActivity
 import com.subhajitrajak.makautstudybuddy.utils.removeWithAnim
+import com.subhajitrajak.makautstudybuddy.utils.showDeleteConfirmationDialog
 import com.subhajitrajak.makautstudybuddy.utils.showToast
 import com.subhajitrajak.makautstudybuddy.utils.showWithAnim
 import java.io.File
@@ -70,44 +71,20 @@ class DownloadedFilesActivity : AppCompatActivity() {
     }
 
     private fun deletePdfFile(file: File) {
-        val dialogView = LayoutInflater.from(activity).inflate(R.layout.dialog_confirm_delete, null)
-        val dialog = android.app.AlertDialog.Builder(activity)
-            .setView(dialogView)
-            .setCancelable(true)
-            .create()
-
-        dialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
-
-        val cancelButton = dialogView.findViewById<Button>(R.id.cancelButton)
-        val deleteButton = dialogView.findViewById<Button>(R.id.deleteButton)
-
-        cancelButton.setOnClickListener {
-            dialog.dismiss()
-        }
-
-        deleteButton.setOnClickListener {
-            deleteButton.isEnabled = false
-
-            // Perform delete
-            val deleted = file.delete()
-            if (deleted) {
-                showToast(activity, "Delete successful")
-                recreate()
-            } else {
-                showToast(activity, "Delete failed")
+        showDeleteConfirmationDialog (
+            context = activity,
+            onConfirm = {
+                val deleted = file.delete()
+                if (deleted) {
+                    showToast(activity, "Delete successful")
+                    recreate()
+                } else {
+                    showToast(activity, "Delete failed")
+                }
             }
-            dialog.dismiss()
-        }
-
-        dialog.show()
-
-        // Force width to wrap content and apply margins manually
-        val window = dialog.window
-        window?.setLayout(
-            (this.resources.displayMetrics.widthPixels * 0.70).toInt(),  // 70% of screen width
-            ViewGroup.LayoutParams.WRAP_CONTENT
         )
     }
+
 
     private fun openPdfFile(file: File) {
         val uri = FileProvider.getUriForFile(

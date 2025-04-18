@@ -15,6 +15,7 @@ import com.subhajitrajak.makautstudybuddy.utils.Constants.BOOK_LIST
 import com.subhajitrajak.makautstudybuddy.utils.Constants.UPLOAD_REQUESTS
 import com.subhajitrajak.makautstudybuddy.utils.getBranchCode
 import com.subhajitrajak.makautstudybuddy.utils.getTypeCode
+import com.subhajitrajak.makautstudybuddy.utils.showDeleteConfirmationDialog
 import com.subhajitrajak.makautstudybuddy.utils.showToast
 
 class UploadAdapter(
@@ -76,58 +77,26 @@ class UploadAdapter(
     }
 
     private fun showDeleteDialog(position: Int) {
-        // Avoid crash if position is no longer valid
         if (position < 0 || position >= list.size) return
 
-        val dialogView = LayoutInflater.from(context).inflate(R.layout.dialog_confirm_delete, null)
-        val dialog = android.app.AlertDialog.Builder(context)
-            .setView(dialogView)
-            .setCancelable(true)
-            .create()
-
-        dialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
-
-        val cancelButton = dialogView.findViewById<Button>(R.id.cancelButton)
-        val deleteButton = dialogView.findViewById<Button>(R.id.deleteButton)
-
-        cancelButton.setOnClickListener {
-            dialog.dismiss()
-        }
-
-        deleteButton.setOnClickListener {
-            deleteButton.isEnabled = false
-
-            // Double check again just before deletion
-            if (position >= list.size) {
-                dialog.dismiss()
-                return@setOnClickListener
-            }
-
-            // Perform delete
-            deleteBookRequest(
-                type = list[position].type!!,
-                branch = list[position].branch!!,
-                bookId = list[position].id,
-                bookName = list[position].bookName,
-                topicName = list[position].topicName,
-                onComplete = { success, message ->
-                    if (success) {
-                        list.removeAt(position)
-                        notifyItemRemoved(position)
-                        dialog.dismiss()
+        showDeleteConfirmationDialog (
+            context = context,
+            onConfirm = {
+                deleteBookRequest(
+                    type = list[position].type!!,
+                    branch = list[position].branch!!,
+                    bookId = list[position].id,
+                    bookName = list[position].bookName,
+                    topicName = list[position].topicName,
+                    onComplete = { success, message ->
+                        if (success) {
+                            list.removeAt(position)
+                            notifyItemRemoved(position)
+                        }
+                        showToast(context, message)
                     }
-                    showToast(context, message)
-                }
-            )
-        }
-
-        dialog.show()
-
-        // Force width to wrap content and apply margins manually
-        val window = dialog.window
-        window?.setLayout(
-            (context.resources.displayMetrics.widthPixels * 0.70).toInt(),  // 70% of screen width
-            ViewGroup.LayoutParams.WRAP_CONTENT
+                )
+            }
         )
     }
 
@@ -142,8 +111,6 @@ class UploadAdapter(
         val firebaseDatabase = FirebaseDatabase.getInstance()
         val dataRef = firebaseDatabase.getReference(UPLOAD_REQUESTS)
             .child(getTypeCode(type))
-            .child(getBranchCode(branch))
-            .child(BOOK_LIST)
             .child(bookId)
 
         dataRef.removeValue()

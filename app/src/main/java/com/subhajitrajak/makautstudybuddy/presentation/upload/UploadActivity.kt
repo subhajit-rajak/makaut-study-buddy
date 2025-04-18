@@ -76,11 +76,11 @@ class UploadActivity : AppCompatActivity() {
                 val fileSizeInMB = format("%.3f", fileSize / 1000000.0)
                 binding.fileNameTextView.text =
                     getString(R.string.filename_after_pickup, fileName, fileSizeInMB)
-                binding.fileNameTextView.visibility = View.VISIBLE
+                binding.fileNameTextView.showWithAnim()
 
                 if (fileSize > 10000000) {
                     showToast(this, "File size should be less than 10MB")
-                    binding.progressBar.visibility = View.GONE
+                    binding.progressBar.removeWithAnim()
                     binding.chooseFileButton.text = getString(R.string.choose_file)
                     binding.submitButton.isEnabled = false
                 } else {
@@ -146,14 +146,14 @@ class UploadActivity : AppCompatActivity() {
                 val type = selectedChip?.text.toString()
 
                 if (type == NOTES) {
-                    topicInputLayout.visibility = View.VISIBLE
+                    topicInputLayout.showWithAnim()
                 } else {
                     topicInputLayout.visibility = View.GONE
                 }
             }
 
-            binding.fileNameTextView.visibility = View.GONE
-            binding.progressBar.visibility = View.GONE
+            binding.fileNameTextView.removeWithAnim()
+            binding.progressBar.removeWithAnim()
             binding.chooseFileButton.text = getString(R.string.choose_file)
 
             contributorCheckBox.text = getString(R.string.contributed_by_who, userName)
@@ -243,7 +243,7 @@ class UploadActivity : AppCompatActivity() {
             }
             val fileRef = storage.child(fileName)
 
-            binding.progressBar.visibility = View.VISIBLE
+            binding.progressBar.showWithAnim()
             binding.chooseFileButton.text = ""
             binding.submitButton.text = getString(R.string.uploading)
 
@@ -270,21 +270,21 @@ class UploadActivity : AppCompatActivity() {
                             status = PENDING
                         )
 
-                        database.child(branchCode).child(BOOK_LIST).child(bookId)
+                        database.child(bookId)
                             .setValue(newBook)
                             .addOnSuccessListener {
                                 clearFields()
                                 showToast(this, "Upload successful")
 
                             }.addOnFailureListener {
-                                binding.progressBar.visibility = View.GONE
+                                binding.progressBar.removeWithAnim()
                                 binding.chooseFileButton.text = getString(R.string.choose_file)
                                 showToast(this, "Failed to upload PDF")
                             }
                     }
                 }
                 .addOnFailureListener {
-                    binding.progressBar.visibility = View.GONE
+                    binding.progressBar.removeWithAnim()
                     binding.chooseFileButton.text = getString(R.string.choose_file)
                     showToast(this, "No file selected")
                 }
@@ -292,10 +292,10 @@ class UploadActivity : AppCompatActivity() {
     }
 
     private fun clearFields() {
-        binding.progressBar.visibility = View.GONE
+        binding.progressBar.removeWithAnim()
         binding.chooseFileButton.text = getString(R.string.choose_file)
         binding.submitButton.text = getString(R.string.submit_request)
-        binding.fileNameTextView.visibility = View.GONE
+        binding.fileNameTextView.removeWithAnim()
         binding.editTextBookName.text.clear()
         binding.listOfBranches.text.clear()
         binding.listOfSemesters.text.clear()
@@ -317,10 +317,7 @@ class UploadActivity : AppCompatActivity() {
                         binding.rvUploadRequests.removeWithAnim()
                     }
 
-                    is MyResponses.Loading -> {
-                        binding.errorLayout.showWithAnim()
-                        binding.rvUploadRequests.removeWithAnim()
-                    }
+                    is MyResponses.Loading -> {}
 
                     is MyResponses.Success -> {
                         binding.errorLayout.removeWithAnim()
@@ -338,8 +335,8 @@ class UploadActivity : AppCompatActivity() {
                             binding.errorLayout.showWithAnim()
                             binding.rvUploadRequests.removeWithAnim()
                         } else {
-                            binding.errorLayout.visibility = View.GONE
-                            binding.rvUploadRequests.visibility = View.VISIBLE
+                            binding.errorLayout.removeWithAnim()
+                            binding.rvUploadRequests.showWithAnim()
                         }
 
                         adapter.notifyItemRangeChanged(0, list.size)
