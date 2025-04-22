@@ -21,7 +21,7 @@
         android:layout_height="wrap_content"
         android:fontFamily="@font/inter_semibold"
         android:paddingVertical="8dp"
-        android:text="Share a playlist"
+        android:text="@string/share_a_playlist"
         android:textColor="@color/text"
         android:textSize="18sp" />
 
@@ -39,7 +39,7 @@
             android:id="@+id/editTextPlaylistId"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Playlist link"
+            android:hint="@string/playlist_link"
             android:importantForAutofill="no"
             android:inputType="text"
             android:singleLine="true"
@@ -51,7 +51,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="2dp"
-        android:text="*Only educational playlists helpful for MAKAUT exams"
+        android:text="@string/only_educational_playlists_helpful_for_makaut_exams"
         android:textColor="@color/text"
         android:textSize="12sp"
         android:textStyle="italic" />
@@ -63,6 +63,6 @@
         android:layout_marginTop="16dp"
         android:backgroundTint="@color/highlight"
         android:paddingVertical="16dp"
-        android:text="Submit"
+        android:text="@string/submit_request"
         android:textColor="@color/background_upfront" />
 </LinearLayout>

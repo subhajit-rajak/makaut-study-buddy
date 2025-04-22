@@ -104,4 +104,7 @@
     <string name="request_tab_book_title">Economics</string>
     <string name="request_tab_book_description">Organizer, Sem-7, Information Technology</string>
     <string name="request_tab_book_status">Status: Pending</string>
+    <string name="share_a_playlist">Share a playlist</string>
+    <string name="playlist_link">Playlist link</string>
+    <string name="only_educational_playlists_helpful_for_makaut_exams">*Only educational playlists helpful for MAKAUT exams</string>
 </resources>

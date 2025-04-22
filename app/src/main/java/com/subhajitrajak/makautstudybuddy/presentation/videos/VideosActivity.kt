@@ -73,7 +73,7 @@ class VideosActivity : AppCompatActivity() {
 
             uploadButton.setOnClickListener {
                 val bottomSheetView =
-                    layoutInflater.inflate(R.layout.bottom_sheet_upload_video, null)
+                    layoutInflater.inflate(R.layout.bottom_sheet_upload_video, binding.root, false)
                 val dialog = BottomSheetDialog(this@VideosActivity)
                 dialog.setContentView(bottomSheetView)
 
