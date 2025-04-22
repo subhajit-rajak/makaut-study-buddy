@@ -1,5 +1,6 @@
 package com.subhajitrajak.makautstudybuddy.data.models
 
+import com.subhajitrajak.makautstudybuddy.utils.Constants.PENDING
 import com.subhajitrajak.makautstudybuddy.utils.Constants.VIDEOS
 
 data class VideosModel( // from firebase response
@@ -8,7 +9,6 @@ data class VideosModel( // from firebase response
     val channelTitle: String? = null,
 
     val playlistId: String? = null,
-    val semester: String? = null,
-    val branch: String? = null,
-    val type: String = VIDEOS
+    val type: String = VIDEOS,
+    val status: String = PENDING
 )

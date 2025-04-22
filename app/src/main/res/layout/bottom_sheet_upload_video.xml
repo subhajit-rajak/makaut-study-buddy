@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/bottomSheetLayout"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/item_bg_curve"
+    android:backgroundTint="@color/background"
+    android:orientation="vertical"
+    android:paddingHorizontal="32dp"
+    android:paddingBottom="16dp">
+
+    <com.google.android.material.bottomsheet.BottomSheetDragHandleView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        app:tint="@color/text" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/inter_semibold"
+        android:paddingVertical="8dp"
+        android:text="Share a playlist"
+        android:textColor="@color/text"
+        android:textSize="18sp" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/playlistIdInputLayout"
+        style="@style/CustomTextInputStyle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/text"
+        android:textColorHint="@color/text"
+        app:boxStrokeColor="@color/text_input_stroke"
+        app:hintTextColor="@color/highlight">
+
+        <EditText
+            android:id="@+id/editTextPlaylistId"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Playlist link"
+            android:importantForAutofill="no"
+            android:inputType="text"
+            android:singleLine="true"
+            android:textColor="@color/text"
+            android:textColorHint="@color/text" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="2dp"
+        android:text="*Only educational playlists helpful for MAKAUT exams"
+        android:textColor="@color/text"
+        android:textSize="12sp"
+        android:textStyle="italic" />
+
+    <Button
+        android:id="@+id/buttonSubmit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:backgroundTint="@color/highlight"
+        android:paddingVertical="16dp"
+        android:text="Submit"
+        android:textColor="@color/background_upfront" />
+</LinearLayout>

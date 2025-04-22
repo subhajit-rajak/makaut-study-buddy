@@ -33,6 +33,20 @@
         app:layout_constraintStart_toEndOf="@+id/back_button"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <ImageView
+        android:id="@+id/uploadButton"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:contentDescription="@string/back_button"
+        android:paddingHorizontal="22dp"
+        android:src="@drawable/downloads"
+        android:rotation="180"
+        app:layout_constraintBottom_toBottomOf="@+id/header_text"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/header_text"
+        app:tint="@color/text"
+        tools:ignore="RedundantDescriptionCheck" />
+
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
         android:id="@+id/pullToRefresh"
         android:layout_width="match_parent"
