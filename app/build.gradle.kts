@@ -91,16 +91,16 @@ dependencies {
     implementation (libs.circleimageview)
 
     // hilt
-    implementation ("com.google.dagger:hilt-android:2.51.1")
-    kapt ("com.google.dagger:hilt-compiler:2.51.1")
+    implementation (libs.hilt.android)
+    kapt (libs.hilt.compiler)
 
     implementation ("com.google.android.gms:play-services-auth:21.3.0")
     implementation ("com.facebook.android:facebook-login:18.0.2")
 
     // glide (image loading)
-    implementation ("com.github.bumptech.glide:glide:4.16.0")
+    implementation (libs.glide)
 
     // retrofit
-    implementation ("com.squareup.retrofit2:retrofit:2.9.0")
-    implementation ("com.squareup.retrofit2:converter-gson:2.9.0")
+    implementation (libs.retrofit)
+    implementation (libs.converter.gson)
 }
