@@ -1,6 +1,5 @@
 package com.subhajitrajak.makautstudybuddy.presentation.videos
 
-import android.annotation.SuppressLint
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
@@ -8,6 +7,7 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.core.widget.addTextChangedListener
 import androidx.lifecycle.ViewModelProvider
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.firebase.database.DataSnapshot
@@ -95,6 +95,10 @@ class VideosActivity : AppCompatActivity() {
                 dialog.show()
             }
 
+            searchBar.addTextChangedListener {
+                val query = it.toString().trim()
+                videosViewModel.filterVideos(query)
+            }
         }
     }
 
@@ -120,6 +124,10 @@ class VideosActivity : AppCompatActivity() {
     }
 
     private fun handleBackend() {
+        videosViewModel.filteredVideos.observe(this) {
+            adapter.updateData(it)
+        }
+
         videosViewModel.videosLiveData.observe(this) {
             when (it) {
                 is MyResponses.Error -> {
@@ -127,49 +135,44 @@ class VideosActivity : AppCompatActivity() {
                     binding.rvVideos.removeWithAnim()
                 }
 
-                is MyResponses.Loading -> {}
+                is MyResponses.Loading -> { }
+
                 is MyResponses.Success -> {
                     binding.mErrorHolder.removeWithAnim()
                     binding.rvVideos.showWithAnim()
                     val tempList = it.data ?: return@observe
-                    enrichAndDisplayVideos(tempList)
+                    videosViewModel.setVideos(tempList)
+                    enrichMissingData(tempList)
                 }
             }
         }
+
     }
 
-    @SuppressLint("NotifyDataSetChanged")
-    private fun enrichAndDisplayVideos(videos: List<VideosModel>) {
-        videoList.clear()
+    private fun enrichMissingData(videos: List<VideosModel>) {
+        val pending = videos.filter {
+            it.title.isNullOrEmpty() || it.thumbnailUrl.isNullOrEmpty() || it.channelTitle.isNullOrEmpty()
+        }
 
-        for (model in videos) {
-            if (model.title.isNullOrEmpty() || model.thumbnailUrl.isNullOrEmpty() || model.channelTitle.isNullOrEmpty()) {
-                val playlistId = model.playlistId ?: continue
+        for (model in pending) {
+            val playlistId = model.playlistId ?: continue
+            youtubeViewModel.fetchThumbnailOnce(apiKey, playlistId) { ytData ->
+                if (ytData != null) {
+                    val updatedModel = model.copy(
+                        title = ytData.title,
+                        thumbnailUrl = ytData.thumbnailUrl,
+                        channelTitle = ytData.channelTitle
+                    )
 
-                youtubeViewModel.fetchThumbnailOnce(apiKey, playlistId) { ytData ->
-                    if (ytData != null) {
-                        val updatedModel = model.copy(
-                            title = ytData.title,
-                            thumbnailUrl = ytData.thumbnailUrl,
-                            channelTitle = ytData.channelTitle
-                        )
+                    updateFirebase(playlistId, updatedModel)
 
-                        log("Fetched: ${ytData.title}")
-                        updateFirebase(playlistId, updatedModel)
-
-                        runOnUiThread {
-                            videoList.add(updatedModel)
-                            adapter.notifyDataSetChanged()
-                        }
+                    runOnUiThread {
+                        videosViewModel.addEnrichedVideo(updatedModel)
                     }
                 }
-            } else {
-                videoList.add(model)
-                adapter.notifyDataSetChanged()
             }
         }
     }
-
 
     private fun updateFirebase(playlistId: String, updatedModel: VideosModel) {
         val ref = FirebaseDatabase.getInstance().getReference(VIDEOS_DATA)
@@ -184,5 +187,4 @@ class VideosActivity : AppCompatActivity() {
                 override fun onCancelled(error: DatabaseError) {}
             })
     }
-
 }

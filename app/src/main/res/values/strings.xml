@@ -107,4 +107,5 @@
     <string name="share_a_playlist">Share a playlist</string>
     <string name="playlist_link">Playlist link</string>
     <string name="only_educational_playlists_helpful_for_makaut_exams">*Only educational playlists helpful for MAKAUT exams</string>
+    <string name="search_videos_hint_text">Search videos...</string>
 </resources>
