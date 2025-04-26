@@ -71,7 +71,8 @@ class MainActivity : AppCompatActivity() {
 
             Glide.with(this)
                 .load(userData.profilePictureUrl)
-                .placeholder(R.drawable.men_avatar)
+                .placeholder(R.drawable.avatar)
+                .error(R.drawable.men_avatar)
                 .into(binding.profilePicture)
         }
 

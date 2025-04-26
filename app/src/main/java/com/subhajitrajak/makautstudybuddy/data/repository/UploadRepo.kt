@@ -7,6 +7,7 @@ import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import com.subhajitrajak.makautstudybuddy.data.models.BooksModel
+import com.subhajitrajak.makautstudybuddy.utils.Constants.BOOKS_DATA
 import com.subhajitrajak.makautstudybuddy.utils.Constants.NOTES_DATA
 import com.subhajitrajak.makautstudybuddy.utils.Constants.ORGANIZERS_DATA
 import com.subhajitrajak.makautstudybuddy.utils.Constants.UPLOAD_REQUESTS
@@ -15,8 +16,8 @@ import com.subhajitrajak.makautstudybuddy.utils.MyResponses
 class UploadRepo(val context: Context) {
     private val firebaseDatabase = FirebaseDatabase.getInstance()
     private val notesDataRef = firebaseDatabase.getReference(UPLOAD_REQUESTS).child(NOTES_DATA)
-    private val organizersDataRef =
-        firebaseDatabase.getReference(UPLOAD_REQUESTS).child(ORGANIZERS_DATA)
+    private val organizersDataRef = firebaseDatabase.getReference(UPLOAD_REQUESTS).child(ORGANIZERS_DATA)
+    private val booksDataRef = firebaseDatabase.getReference(UPLOAD_REQUESTS).child(BOOKS_DATA)
     private val uploadRequestsLD = MutableLiveData<MyResponses<ArrayList<BooksModel>>>()
 
     val uploadRequestsLiveData get() = uploadRequestsLD
@@ -57,5 +58,6 @@ class UploadRepo(val context: Context) {
 
         notesDataRef.addListenerForSingleValueEvent(listener)
         organizersDataRef.addListenerForSingleValueEvent(listener)
+        booksDataRef.addListenerForSingleValueEvent(listener)
     }
 }

@@ -67,7 +67,7 @@
     <string name="default_web_client_id">547075402114-bdg2t0c1c51n8refr8tmo1v8c8amlglt.apps.googleusercontent.com</string>
     <string name="log_out">Log Out</string>
     <string name="contributed_by">contributed by Subhajit</string>
-    <string name="file_should_be_5mb"><![CDATA[*File should be <5MB]]></string>
+    <string name="file_should_be_10mb"><![CDATA[*File should be <10MB]]></string>
     <string name="subject">Subject</string>
     <string name="semester_">Semester</string>
     <string name="branch">Branch</string>
@@ -108,4 +108,6 @@
     <string name="playlist_link">Playlist link</string>
     <string name="only_educational_playlists_helpful_for_makaut_exams">*Only educational playlists helpful for MAKAUT exams</string>
     <string name="search_videos_hint_text">Search videos...</string>
+    <string name="author_name">Author Name</string>
+    <string name="request_tab_topic_author_name">Topic Name</string>
 </resources>

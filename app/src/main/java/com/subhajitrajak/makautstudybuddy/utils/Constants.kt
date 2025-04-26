@@ -6,6 +6,7 @@ object Constants {
     const val ORGANIZERS_DATA = "OrganizersData"
     const val APP_DATA = "AppData" // Organizers
     const val VIDEOS_DATA = "VideoData"
+    const val BOOKS_DATA = "BooksData"
     const val HOME = "Home"
     const val UPLOAD_REQUESTS = "UploadRequests"
     const val BOOK_LIST = "booksList"
@@ -14,6 +15,7 @@ object Constants {
     const val NOTES = "Notes"
     const val ORGANIZERS = "Organizers"
     const val VIDEOS = "Videos"
+    const val BOOKS = "Books"
 
     // acceptance status
     const val PENDING = "Pending"

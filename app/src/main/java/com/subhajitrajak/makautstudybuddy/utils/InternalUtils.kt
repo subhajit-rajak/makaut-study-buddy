@@ -1,5 +1,7 @@
 package com.subhajitrajak.makautstudybuddy.utils
 
+import com.subhajitrajak.makautstudybuddy.utils.Constants.BOOKS
+import com.subhajitrajak.makautstudybuddy.utils.Constants.BOOKS_DATA
 import com.subhajitrajak.makautstudybuddy.utils.Constants.CE
 import com.subhajitrajak.makautstudybuddy.utils.Constants.CSE
 import com.subhajitrajak.makautstudybuddy.utils.Constants.ECE
@@ -25,6 +27,7 @@ fun getBranchCode(branch: String): String {
 fun getTypeCode(type: String): String {
     return when(type) {
         NOTES -> NOTES_DATA
+        BOOKS -> BOOKS_DATA
         else -> ORGANIZERS_DATA
     }
 }

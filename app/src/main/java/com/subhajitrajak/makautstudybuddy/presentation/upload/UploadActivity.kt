@@ -25,6 +25,7 @@ import com.subhajitrajak.makautstudybuddy.data.repository.UploadRepo
 import com.subhajitrajak.makautstudybuddy.data.repository.userLogin.GoogleAuthUiClient
 import com.subhajitrajak.makautstudybuddy.data.repository.userLogin.UserData
 import com.subhajitrajak.makautstudybuddy.databinding.ActivityUploadBinding
+import com.subhajitrajak.makautstudybuddy.utils.Constants.BOOKS
 import com.subhajitrajak.makautstudybuddy.utils.Constants.BOOK_LIST
 import com.subhajitrajak.makautstudybuddy.utils.Constants.NOTES
 import com.subhajitrajak.makautstudybuddy.utils.Constants.PENDING
@@ -145,10 +146,22 @@ class UploadActivity : AppCompatActivity() {
                 val selectedChip = selectedChipId?.let { group.findViewById<Chip>(it) }
                 val type = selectedChip?.text.toString()
 
-                if (type == NOTES) {
-                    topicInputLayout.showWithAnim()
-                } else {
-                    topicInputLayout.visibility = View.GONE
+                when (type) {
+                    NOTES -> {
+                        topicInputLayout.showWithAnim()
+                        authorInputLayout.visibility = View.GONE
+                        subjectInputLayout.hint = getString(R.string.subject)
+                    }
+                    BOOKS -> {
+                        authorInputLayout.showWithAnim()
+                        topicInputLayout.visibility = View.GONE
+                        subjectInputLayout.hint = "Book Name"
+                    }
+                    else -> {
+                        topicInputLayout.visibility = View.GONE
+                        authorInputLayout.visibility = View.GONE
+                        subjectInputLayout.hint = getString(R.string.subject)
+                    }
                 }
             }
 
@@ -165,8 +178,9 @@ class UploadActivity : AppCompatActivity() {
             submitButton.setOnClickListener {
                 val type =
                     binding.chipGroup.findViewById<Chip>(binding.chipGroup.checkedChipId)?.text.toString()
-                val subject = binding.editTextBookName.text.toString()
-                val topic = if (type == NOTES) binding.editTextTopicName.text.toString() else null
+                val subject = binding.editTextBookName.text.toString().trim()
+                val topic = if (type == NOTES) binding.editTextTopicName.text.toString().trim() else null
+                val author = if (type == BOOKS) binding.editTextAuthorName.text.toString().trim() else null
                 val branch = binding.listOfBranches.text.toString()
                 val semester = binding.listOfSemesters.text.toString()
                 val isContributorEnabled = binding.contributorCheckBox.isChecked
@@ -189,10 +203,16 @@ class UploadActivity : AppCompatActivity() {
                     return@setOnClickListener
                 }
 
+                if (type == BOOKS && author.isNullOrEmpty()) {
+                    showToast(this@UploadActivity, "Please enter an author name")
+                    return@setOnClickListener
+                }
+
                 uploadPdf(
                     type = type,
                     subject = subject,
                     topic = topic,
+                    author = author,
                     branch = branch,
                     branchCode = getBranchCode(branch),
                     semester = semester,
@@ -223,6 +243,7 @@ class UploadActivity : AppCompatActivity() {
         type: String,
         subject: String,
         topic: String?,
+        author: String?,
         branch: String,
         branchCode: String,
         semester: String,
@@ -232,14 +253,16 @@ class UploadActivity : AppCompatActivity() {
         storage = FirebaseStorage.getInstance().reference
 
         selectedPdfUri?.let { url ->
-            var sanitizedTopicName: String? = null
-            if (topic!=null) sanitizedTopicName = topic.replace(" ", "_").replace(Regex("[^a-zA-Z0-9_]"), "")
-
-            val sanitizedBookName = subject.replace(" ", "_").replace(Regex("[^a-zA-Z0-9_]"), "")
-            val fileName = if (sanitizedTopicName != null) {
-                "$sanitizedBookName-$sanitizedTopicName.pdf"
-            } else {
-                "$sanitizedBookName.pdf"
+            val fileName = when (type) {
+                NOTES -> {
+                    "$subject-$topic.pdf"
+                }
+                BOOKS -> {
+                    "$subject-$author.pdf"
+                }
+                else -> {
+                    "$subject.pdf"
+                }
             }
             val fileRef = storage.child(fileName)
 
@@ -261,6 +284,7 @@ class UploadActivity : AppCompatActivity() {
                             id = bookId,
                             bookName = subject,
                             topicName = topic,
+                            authorName = author,
                             bookPDF = pdfUrl,
                             semester = semester,
                             contributor = contributor,
@@ -297,8 +321,7 @@ class UploadActivity : AppCompatActivity() {
         binding.submitButton.text = getString(R.string.submit_request)
         binding.fileNameTextView.removeWithAnim()
         binding.editTextBookName.text.clear()
-        binding.listOfBranches.text.clear()
-        binding.listOfSemesters.text.clear()
+        binding.editTextAuthorName.text.clear()
 
         viewModel.getRequestsData()
     }

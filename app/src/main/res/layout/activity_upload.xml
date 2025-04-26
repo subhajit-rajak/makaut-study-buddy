@@ -25,9 +25,9 @@
         android:id="@+id/header_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:fontFamily="@font/inter_semibold"
         android:paddingVertical="18dp"
         android:text="@string/upload"
-        android:fontFamily="@font/inter_semibold"
         android:textColor="@color/text"
         android:textSize="22sp"
         app:layout_constraintStart_toEndOf="@+id/back_button"
@@ -70,20 +70,28 @@
                         app:singleSelection="true">
 
                         <com.google.android.material.chip.Chip
-                            android:id="@+id/notesChip"
-                            style="@style/CustomChipStyle"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:checked="true"
-                            android:text="@string/notes"
-                            android:textSize="16sp" />
-
-                        <com.google.android.material.chip.Chip
                             android:id="@+id/organizersChip"
                             style="@style/CustomChipStyle"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:checked="true"
                             android:text="@string/organizers"
+                            android:textSize="16sp" />
+
+                        <com.google.android.material.chip.Chip
+                            android:id="@+id/notesChip"
+                            style="@style/CustomChipStyle"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/notes"
+                            android:textSize="16sp" />
+
+                        <com.google.android.material.chip.Chip
+                            android:id="@+id/booksChip"
+                            style="@style/CustomChipStyle"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/books"
                             android:textSize="16sp" />
                     </com.google.android.material.chip.ChipGroup>
 
@@ -92,6 +100,7 @@
                         style="@style/CustomTextInputStyle"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:visibility="gone"
                         android:textColor="@color/text"
                         android:textColorHint="@color/text"
                         app:boxStrokeColor="@color/text_input_stroke"
@@ -111,6 +120,7 @@
                     </com.google.android.material.textfield.TextInputLayout>
 
                     <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/subjectInputLayout"
                         style="@style/CustomTextInputStyle"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -124,6 +134,30 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:hint="@string/subject"
+                            android:importantForAutofill="no"
+                            android:inputType="text"
+                            android:singleLine="true"
+                            android:textColor="@color/text"
+                            android:textColorHint="@color/text" />
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/authorInputLayout"
+                        style="@style/CustomTextInputStyle"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/text"
+                        android:visibility="gone"
+                        android:textColorHint="@color/text"
+                        app:boxStrokeColor="@color/text_input_stroke"
+                        app:hintTextColor="@color/highlight">
+
+                        <EditText
+                            android:id="@+id/editTextAuthorName"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="@string/author_name"
                             android:importantForAutofill="no"
                             android:inputType="text"
                             android:singleLine="true"
@@ -259,7 +293,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="2dp"
-                        android:text="@string/file_should_be_5mb"
+                        android:text="@string/file_should_be_10mb"
                         android:textColor="@color/text"
                         android:textSize="12sp"
                         android:textStyle="italic" />
@@ -329,7 +363,6 @@
         </androidx.core.widget.NestedScrollView>
 
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
-
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

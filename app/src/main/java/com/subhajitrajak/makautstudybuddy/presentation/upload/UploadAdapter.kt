@@ -2,6 +2,7 @@ package com.subhajitrajak.makautstudybuddy.presentation.upload
 
 import android.content.Context
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.database.FirebaseDatabase
@@ -24,6 +25,10 @@ class UploadAdapter(
         fun bind(model: BooksModel, context: Context) {
             binding.apply {
                 subjectName.text = model.bookName
+                (model.topicName ?: model.authorName)?.also {
+                    topicOrAuthorName.text = it
+                    topicOrAuthorName.visibility = View.VISIBLE
+                }
                 details.text = context.getString(
                     R.string.upload_requests_details_text,
                     model.type,
@@ -44,6 +49,11 @@ class UploadAdapter(
                     else -> {
                         status.setTextColor(context.getColor(R.color.red))
                     }
+                }
+
+                card.setOnLongClickListener {
+                    if (model.status == Constants.PENDING) showDeleteDialog(adapterPosition)
+                    true
                 }
             }
         }
@@ -66,11 +76,6 @@ class UploadAdapter(
         holder.bind(
             model = list[position], context = context
         )
-
-        holder.binding.card.setOnLongClickListener {
-            showDeleteDialog(holder.adapterPosition)
-            true
-        }
     }
 
     private fun showDeleteDialog(position: Int) {
@@ -84,6 +89,7 @@ class UploadAdapter(
                     bookId = list[position].id,
                     bookName = list[position].bookName,
                     topicName = list[position].topicName,
+                    authorName = list[position].authorName,
                     onComplete = { success, message ->
                         if (success) {
                             list.removeAt(position)
@@ -101,6 +107,7 @@ class UploadAdapter(
         bookId: String,
         bookName: String,
         topicName: String?,
+        authorName: String?,
         onComplete: (Boolean, String) -> Unit
     ) {
         val firebaseDatabase = FirebaseDatabase.getInstance()
@@ -112,6 +119,8 @@ class UploadAdapter(
             .addOnSuccessListener {
                 val bookRef = if (topicName != null) {
                     "$bookName-$topicName.pdf"
+                } else if (authorName != null) {
+                    "$bookName-$authorName.pdf"
                 } else {
                     "$bookName.pdf"
                 }
