@@ -2,6 +2,12 @@
 
 <div align="center">
 
+![visits](https://visit-counter.vercel.app/counter.png?page=https%3A%2F%2Fgithub.com%2Fsubhajit-rajak%2Fmakaut-study-buddy&s=40&c=00ff00&bg=00000000&no=5&ff=digii&tb=&ta=+)
+
+</div>
+
+<div align="center">
+
 # Makaut Study Buddy
 
 </div>
