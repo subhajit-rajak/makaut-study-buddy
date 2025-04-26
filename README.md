@@ -1,4 +1,4 @@
-![Playstore graphic msb](https://github.com/user-attachments/assets/4e08d9d3-64b5-4ca7-8794-897cf71794ad)
+![Playstore graphic msb v2 0 0](https://github.com/user-attachments/assets/d3ce529f-097c-4505-87d2-48c3e6f3c43d)
 
 <div align="center">
 
