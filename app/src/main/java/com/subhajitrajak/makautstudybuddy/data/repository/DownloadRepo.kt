@@ -10,7 +10,7 @@ import androidx.lifecycle.MutableLiveData
 import com.subhajitrajak.makautstudybuddy.utils.MyResponses
 import java.io.File
 
-class BookRepo(private val context: Context) {
+class DownloadRepo(private val context: Context) {
 
     private val downloadLd = MutableLiveData<MyResponses<DownloadModel>>()
     val downloadLiveData get() = downloadLd

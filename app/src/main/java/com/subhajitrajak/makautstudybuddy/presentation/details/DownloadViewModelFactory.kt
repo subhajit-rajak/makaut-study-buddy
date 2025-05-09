@@ -2,11 +2,11 @@ package com.subhajitrajak.makautstudybuddy.presentation.details
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.subhajitrajak.makautstudybuddy.data.repository.BookRepo
+import com.subhajitrajak.makautstudybuddy.data.repository.DownloadRepo
 
 @Suppress("UNCHECKED_CAST")
-class BookViewModelFactory (private val repo: BookRepo) : ViewModelProvider.Factory {
+class DownloadViewModelFactory (private val repo: DownloadRepo) : ViewModelProvider.Factory {
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
-        return BookViewModel(repo) as T
+        return DownloadViewModel(repo) as T
     }
 }

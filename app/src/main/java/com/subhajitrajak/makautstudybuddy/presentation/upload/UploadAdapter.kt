@@ -52,8 +52,10 @@ class UploadAdapter(
                 }
 
                 card.setOnLongClickListener {
-                    if (model.status == Constants.PENDING) showDeleteDialog(adapterPosition)
-                    true
+                    if (model.status == Constants.PENDING) {
+                        showDeleteDialog(adapterPosition)
+                        true
+                    } else false
                 }
             }
         }
