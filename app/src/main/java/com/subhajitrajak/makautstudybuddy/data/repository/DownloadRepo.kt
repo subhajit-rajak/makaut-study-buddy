@@ -17,7 +17,7 @@ class DownloadRepo(private val context: Context) {
     private var currentDownloadId: Long? = null
 
     @SuppressLint("Range")
-    suspend fun downloadPdf(url: String, fileName: String) {
+    fun downloadPdf(url: String, fileName: String) {
         val file = File(context.getExternalFilesDir(Environment.DIRECTORY_DOWNLOADS), fileName)
         if (file.exists()) {
             val model = DownloadModel(100, true, -1, file.toURI().toString())

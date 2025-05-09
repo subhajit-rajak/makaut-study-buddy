@@ -17,7 +17,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fontFamily="@font/inter_semibold"
-            android:text="Delete"
+            android:text="@string/delete"
             android:layout_marginTop="16dp"
             android:textAlignment="center"
             android:textColor="@color/white"
@@ -27,7 +27,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fontFamily="@font/inter"
-            android:text="Are you sure you want to delete?"
+            android:text="@string/are_you_sure_you_want_to_delete"
             android:textAlignment="center"
             android:textColor="@color/white"
             android:textSize="13sp" />
@@ -51,7 +51,7 @@
                 android:layout_height="wrap_content"
                 android:textColor="@color/white"
                 android:layout_weight="1"
-                android:text="Cancel"
+                android:text="@string/cancel"
                 android:textAlignment="center" />
 
             <com.google.android.material.divider.MaterialDivider
@@ -65,7 +65,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Delete"
+                android:text="@string/delete"
                 android:textAlignment="center"
                 android:textColor="@color/red" />
         </LinearLayout>

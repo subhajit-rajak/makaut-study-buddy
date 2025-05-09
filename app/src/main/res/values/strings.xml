@@ -110,4 +110,5 @@
     <string name="search_videos_hint_text">Search videos...</string>
     <string name="author_name">Author Name</string>
     <string name="request_tab_topic_author_name">Topic Name</string>
+    <string name="are_you_sure_you_want_to_delete">Are you sure you want to delete?</string>
 </resources>
