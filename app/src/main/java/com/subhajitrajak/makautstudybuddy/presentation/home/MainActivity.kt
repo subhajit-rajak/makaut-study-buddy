@@ -86,6 +86,10 @@ class MainActivity : AppCompatActivity() {
                 startActivity(Intent(this@MainActivity, DownloadedFilesActivity::class.java))
             }
 
+            books.setOnClickListener {
+                showToast(this@MainActivity, "Don't worry, it's coming soon...")
+            }
+
             settings.setOnClickListener {
                 startActivity(Intent(this@MainActivity, SettingsActivity::class.java))
             }
