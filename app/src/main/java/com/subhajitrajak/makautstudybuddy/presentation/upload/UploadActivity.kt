@@ -369,4 +369,9 @@ class UploadActivity : AppCompatActivity() {
             }
         }
     }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        viewModel.clearListeners()
+    }
 }

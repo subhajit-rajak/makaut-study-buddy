@@ -15,4 +15,7 @@ class UploadViewModel(private val repo: UploadRepo) : ViewModel() {
         }
     }
 
+    fun clearListeners() {
+        repo.removeListeners()
+    }
 }

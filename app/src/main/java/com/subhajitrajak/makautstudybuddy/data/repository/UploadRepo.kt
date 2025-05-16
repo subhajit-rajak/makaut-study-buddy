@@ -22,25 +22,14 @@ class UploadRepo(val context: Context) {
 
     val uploadRequestsLiveData get() = uploadRequestsLD
 
-    fun getRequestsData() {
-        uploadRequestsLiveData.postValue(MyResponses.Loading())
+    // Store listeners
+    private val notesListener = createListener()
+    private val organizersListener = createListener()
+    private val booksListener = createListener()
 
-        val finalList = ArrayList<BooksModel>()
-        var fetchedCount = 0
-        val totalFetches = 2
-
-        fun checkAndPost() {
-            fetchedCount++
-            if (fetchedCount == totalFetches) {
-                if (finalList.isNotEmpty()) {
-                    uploadRequestsLiveData.postValue(MyResponses.Success(finalList))
-                } else {
-                    uploadRequestsLiveData.postValue(MyResponses.Error("No Books Found"))
-                }
-            }
-        }
-
-        val listener = object : ValueEventListener {
+    // Create listener function
+    private fun createListener(): ValueEventListener {
+        return object : ValueEventListener {
             override fun onDataChange(snapshots: DataSnapshot) {
                 for (bookSnap in snapshots.children) {
                     val book = bookSnap.getValue(BooksModel::class.java)
@@ -55,9 +44,38 @@ class UploadRepo(val context: Context) {
                 uploadRequestsLiveData.postValue(MyResponses.Error("Database error occurred"))
             }
         }
+    }
 
-        notesDataRef.addListenerForSingleValueEvent(listener)
-        organizersDataRef.addListenerForSingleValueEvent(listener)
-        booksDataRef.addListenerForSingleValueEvent(listener)
+    private val finalList = ArrayList<BooksModel>()
+    private var fetchedCount = 0
+    private val totalFetches = 3
+
+    private fun checkAndPost() {
+        fetchedCount++
+        if (fetchedCount == totalFetches) {
+            if (finalList.isNotEmpty()) {
+                uploadRequestsLiveData.postValue(MyResponses.Success(finalList))
+            } else {
+                uploadRequestsLiveData.postValue(MyResponses.Error("No Books Found"))
+            }
+        }
+    }
+
+    fun getRequestsData() {
+        uploadRequestsLiveData.postValue(MyResponses.Loading())
+
+        // Reset
+        finalList.clear()
+        fetchedCount = 0
+
+        notesDataRef.addValueEventListener(notesListener)
+        organizersDataRef.addValueEventListener(organizersListener)
+        booksDataRef.addValueEventListener(booksListener)
+    }
+
+    fun removeListeners() {
+        notesDataRef.removeEventListener(notesListener)
+        organizersDataRef.removeEventListener(organizersListener)
+        booksDataRef.removeEventListener(booksListener)
     }
 }
