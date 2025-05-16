@@ -73,83 +73,38 @@
         app:button_width="45dp"
         app:has_active_status="false"
         app:has_finish_animation="true"
-        app:inner_text="Get Started"
+        app:inner_text="Get Started as Guest"
         app:inner_text_color="@color/background_upfront"
         app:inner_text_gravity="center"
         app:inner_text_left_padding="24dp"
-        app:inner_text_size="16sp"
+        app:inner_text_size="15sp"
         app:outer_background_drawable="@drawable/swipe_circular_white_background"
         app:outer_background_height="54dp"
         app:outer_background_tint="@color/highlight"
         app:trail_background_tint="@color/highlight"
         app:trail_enabled="false"
-
         android:layout_marginStart="32dp"
         android:layout_marginEnd="16dp"
-        app:layout_constraintBottom_toBottomOf="@+id/facebookButton"
+        app:layout_constraintBottom_toBottomOf="@+id/googleButton"
         app:layout_constraintEnd_toStartOf="@+id/googleButton"
         app:layout_constraintHorizontal_chainStyle="packed"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/facebookButton"/>
+        app:layout_constraintTop_toTopOf="@+id/googleButton"/>
 
-    <!--keeping it just in case the swipe button doesn't work anymore-->
-    <!--
-    <androidx.cardview.widget.CardView
-        android:id="@+id/get_started"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginStart="32dp"
-        android:layout_marginEnd="16dp"
-        android:backgroundTint="@color/highlight"
-        app:cardCornerRadius="100dp"
-        android:visibility="invisible"
-        app:layout_constraintBottom_toBottomOf="@+id/facebookButton"
-        app:layout_constraintEnd_toStartOf="@+id/googleButton"
-        app:layout_constraintHorizontal_chainStyle="packed"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/facebookButton">
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <de.hdodenhof.circleimageview.CircleImageView
-                android:id="@+id/circular_imageview"
-                android:layout_width="45dp"
-                android:layout_height="45dp"
-                android:layout_marginStart="5dp"
-                android:src="@color/text"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.5" />
-
-            <ImageView
-                android:id="@+id/imageView3"
-                android:layout_width="24dp"
-                android:layout_height="24dp"
-                android:contentDescription="@string/get_started"
-                android:src="@drawable/rv_right"
-                app:layout_constraintBottom_toBottomOf="@id/circular_imageview"
-                app:layout_constraintEnd_toEndOf="@id/circular_imageview"
-                app:layout_constraintStart_toStartOf="@id/circular_imageview"
-                app:layout_constraintTop_toTopOf="@id/circular_imageview" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:fontFamily="@font/montserrat_semibold"
-                android:text="@string/get_started"
-                android:textColor="@color/background_upfront"
-                android:textSize="16sp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/circular_imageview"
-                app:layout_constraintTop_toTopOf="parent" />
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
-    </androidx.cardview.widget.CardView>
-    -->
+    <ImageButton
+        android:id="@+id/googleButton"
+        android:layout_width="54dp"
+        android:layout_height="54dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginBottom="54dp"
+        android:background="@drawable/item_bg_google_icon"
+        android:contentDescription="@string/log_in_using_google"
+        android:src="@drawable/ic_google"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/facebookButton"
+        app:layout_constraintStart_toEndOf="@+id/get_started"
+        app:tint="@color/text" />
 
     <ImageButton
         android:id="@+id/facebookButton"
@@ -157,41 +112,27 @@
         android:layout_height="54dp"
         android:layout_marginEnd="32dp"
         android:layout_marginBottom="54dp"
+        android:visibility="gone"
         android:background="@drawable/item_bg_google_icon"
-        android:contentDescription="@string/favourites"
+        android:contentDescription="@string/log_in_using_facebook"
         android:src="@drawable/ic_facebook"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/googleButton"
         app:tint="@color/text" />
 
-    <ImageButton
-        android:id="@+id/googleButton"
-        android:layout_width="54dp"
-        android:layout_height="54dp"
-        android:layout_marginEnd="16dp"
-        android:background="@drawable/item_bg_google_icon"
-        android:contentDescription="@string/favourites"
-        android:src="@drawable/ic_google"
-        android:visibility="visible"
-        app:tint="@color/text"
-        app:layout_constraintBottom_toBottomOf="@+id/facebookButton"
-        app:layout_constraintEnd_toStartOf="@+id/facebookButton"
-        app:layout_constraintStart_toEndOf="@+id/get_started"
-        app:layout_constraintTop_toTopOf="@+id/facebookButton" />
-
     <ProgressBar
         android:id="@+id/googleProgressBar"
         android:layout_width="54dp"
         android:layout_height="54dp"
-        android:visibility="invisible"
+        android:background="@drawable/item_bg_google_icon"
         android:indeterminate="true"
         android:indeterminateTint="@color/text"
         android:padding="14dp"
-        android:background="@drawable/item_bg_google_icon"
+        android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="@+id/googleButton"
-        app:layout_constraintStart_toStartOf="@+id/googleButton"
         app:layout_constraintEnd_toEndOf="@+id/googleButton"
+        app:layout_constraintStart_toStartOf="@+id/googleButton"
         app:layout_constraintTop_toTopOf="@+id/googleButton" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
