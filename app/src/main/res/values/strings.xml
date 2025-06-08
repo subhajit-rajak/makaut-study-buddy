@@ -109,12 +109,13 @@
     <string name="share_a_playlist">Share a playlist</string>
     <string name="playlist_link">Playlist link</string>
     <string name="only_educational_playlists_helpful_for_makaut_exams">*Only educational playlists helpful for MAKAUT exams</string>
-    <string name="search_videos_hint_text">Search videos...</string>
-    <string name="search_books_hint_text">Search your favorite book...</string>
+    <string name="search_videos_hint_text" tools:ignore="TypographyEllipsis">Search videos...</string>
+    <string name="search_books_hint_text" tools:ignore="TypographyEllipsis">Search your favorite book...</string>
     <string name="author_name">Author Name</string>
     <string name="request_tab_topic_author_name">Topic Name</string>
     <string name="are_you_sure_you_want_to_delete">Are you sure you want to delete?</string>
     <string name="log_in_using_google">Log in with Google</string>
     <string name="log_in_using_facebook">Log in with Facebook</string>
     <string name="book_title">Book Title</string>
+    <string name="notes_by_students_professors"><![CDATA[Notes by Students & Professors]]></string>
 </resources>

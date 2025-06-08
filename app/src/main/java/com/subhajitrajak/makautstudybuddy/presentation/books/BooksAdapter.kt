@@ -8,7 +8,6 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.subhajitrajak.makautstudybuddy.data.models.BooksModel
-import com.subhajitrajak.makautstudybuddy.data.models.VideosModel
 import com.subhajitrajak.makautstudybuddy.databinding.ItemBooksBinding
 import com.subhajitrajak.makautstudybuddy.presentation.details.DetailsActivity
 

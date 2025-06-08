@@ -36,9 +36,4 @@ class BooksViewModel(private val repo: BookRepo) : ViewModel() {
             }
         )
     }
-
-    fun addEnrichedVideo(video: BooksModel) {
-        val updated = (_allBooks.value ?: emptyList()) + video
-        setBooks(updated)
-    }
 }

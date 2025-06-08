@@ -148,7 +148,7 @@ class DetailsActivity : AppCompatActivity() {
     private fun updateView(bookModel: BooksModel) {
         binding.apply {
             val contributor = bookModel.contributor ?: "Subhajit"
-            contributorName.text = "contributed by $contributor"
+            contributorName.text = getString(R.string.contributed_by_who, contributor)
             mBookTitle.text = bookModel.bookName
 
             when (bookModel.type) {
@@ -156,7 +156,7 @@ class DetailsActivity : AppCompatActivity() {
                     Glide.with(this@DetailsActivity).load(R.drawable.notes_sample).into(mBookImage)
                     mAuthorName.text = bookModel.topicName
                     bookDescription.visibility = View.GONE
-                    bookTypeTitle.text = "Notes by Students & Professors"
+                    bookTypeTitle.text = getString(R.string.notes_by_students_professors)
                 }
                 BOOKS -> {
                     Glide.with(this@DetailsActivity).load(bookModel.preview).into(mBookImage)

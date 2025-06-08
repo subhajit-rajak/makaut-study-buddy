@@ -1,5 +1,6 @@
 package com.subhajitrajak.makautstudybuddy.presentation.books
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -59,6 +60,7 @@ class BooksActivity : AppCompatActivity() {
         }
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     private fun handleBackend() {
         booksViewModel.filteredBooks.observe(this) {
             adapter.updateData(it)

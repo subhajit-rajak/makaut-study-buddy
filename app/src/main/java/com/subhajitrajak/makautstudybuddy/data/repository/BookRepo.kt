@@ -17,7 +17,7 @@ class BookRepo(val context: Context) {
 
     val booksLiveData get() = bookLD
 
-    suspend fun getBooksData() {
+    fun getBooksData() {
         booksLiveData.postValue(MyResponses.Loading())
         databaseRef.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshots: DataSnapshot) {
