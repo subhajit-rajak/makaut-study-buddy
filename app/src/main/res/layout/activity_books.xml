@@ -6,7 +6,7 @@
     android:background="@drawable/background"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".presentation.videos.VideosActivity">
+    tools:context=".presentation.books.BooksActivity">
 
     <ImageView
         android:id="@+id/back_button"
@@ -26,26 +26,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:paddingVertical="18dp"
-        android:text="@string/videos"
+        android:text="@string/books"
         android:textColor="@color/text"
         android:fontFamily="@font/inter_semibold"
         android:textSize="22sp"
         app:layout_constraintStart_toEndOf="@+id/back_button"
         app:layout_constraintTop_toTopOf="parent" />
-
-    <ImageView
-        android:id="@+id/uploadButton"
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        android:contentDescription="@string/back_button"
-        android:paddingHorizontal="22dp"
-        android:src="@drawable/downloads"
-        android:rotation="180"
-        app:layout_constraintBottom_toBottomOf="@+id/header_text"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/header_text"
-        app:tint="@color/text"
-        tools:ignore="RedundantDescriptionCheck" />
 
     <EditText
         android:id="@+id/search_bar"
@@ -55,7 +41,7 @@
         android:background="@drawable/item_card_settings"
         android:drawableStart="@drawable/ic_search"
         android:drawablePadding="12dp"
-        android:hint="@string/search_videos_hint_text"
+        android:hint="@string/search_books_hint_text"
         android:importantForAutofill="no"
         android:inputType="text"
         android:padding="16dp"
@@ -77,12 +63,12 @@
         app:layout_constraintTop_toBottomOf="@+id/search_bar">
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rvVideos"
+            android:id="@+id/rvBooks"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             android:visibility="visible"
-            tools:listitem="@layout/item_videos" />
+            tools:listitem="@layout/item_books" />
 
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
@@ -101,14 +87,14 @@
         <ImageView
             android:layout_width="100dp"
             android:layout_height="100dp"
-            android:contentDescription="@string/no_videos_found"
+            android:contentDescription="@string/no_books_found"
             android:src="@drawable/empty_box" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="12dp"
-            android:text="@string/no_videos_found"
+            android:text="@string/no_books_found"
             android:textAlignment="center"
             android:textColor="@color/text"
             android:textSize="18sp"

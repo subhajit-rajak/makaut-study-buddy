@@ -32,6 +32,7 @@
         android:layout_height="wrap_content"
         android:textColor="@color/text"
         android:textColorHint="@color/text"
+        app:cursorColor="@color/white"
         app:boxStrokeColor="@color/text_input_stroke"
         app:hintTextColor="@color/highlight">
 
@@ -41,6 +42,8 @@
             android:layout_height="wrap_content"
             android:hint="@string/playlist_link"
             android:importantForAutofill="no"
+            android:drawableStart="@drawable/playlist_icon2"
+            android:drawablePadding="8dp"
             android:inputType="text"
             android:singleLine="true"
             android:textColor="@color/text"

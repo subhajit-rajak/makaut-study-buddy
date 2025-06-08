@@ -74,6 +74,8 @@
     <string name="choose_file">Choose File*</string>
     <string name="submit_request">Submit Request</string>
     <string name="no_requests_found">No Requests found</string>
+    <string name="no_videos_found">No Videos found</string>
+    <string name="no_books_found">No Books found</string>
     <string name="there_are_no_records_nto_display_right_now">There are no records\nto display right now.</string>
     <string name="requests">Requests</string>
     <string name="read_online">Read Online</string>
@@ -108,9 +110,11 @@
     <string name="playlist_link">Playlist link</string>
     <string name="only_educational_playlists_helpful_for_makaut_exams">*Only educational playlists helpful for MAKAUT exams</string>
     <string name="search_videos_hint_text">Search videos...</string>
+    <string name="search_books_hint_text">Search your favorite book...</string>
     <string name="author_name">Author Name</string>
     <string name="request_tab_topic_author_name">Topic Name</string>
     <string name="are_you_sure_you_want_to_delete">Are you sure you want to delete?</string>
     <string name="log_in_using_google">Log in with Google</string>
     <string name="log_in_using_facebook">Log in with Facebook</string>
+    <string name="book_title">Book Title</string>
 </resources>

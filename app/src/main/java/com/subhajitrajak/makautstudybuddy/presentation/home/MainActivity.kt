@@ -26,6 +26,7 @@ import com.subhajitrajak.makautstudybuddy.R
 import com.subhajitrajak.makautstudybuddy.data.repository.userLogin.GoogleAuthUiClient
 import com.subhajitrajak.makautstudybuddy.data.repository.userLogin.UserData
 import com.subhajitrajak.makautstudybuddy.databinding.ActivityMainBinding
+import com.subhajitrajak.makautstudybuddy.presentation.books.BooksActivity
 import com.subhajitrajak.makautstudybuddy.presentation.downloads.DownloadedFilesActivity
 import com.subhajitrajak.makautstudybuddy.presentation.notes.NotesActivity
 import com.subhajitrajak.makautstudybuddy.presentation.organizers.OrganizerActivity
@@ -87,7 +88,7 @@ class MainActivity : AppCompatActivity() {
             }
 
             books.setOnClickListener {
-                showToast(this@MainActivity, "Don't worry, it's coming soon...")
+                startActivity(Intent(this@MainActivity, BooksActivity::class.java))
             }
 
             settings.setOnClickListener {

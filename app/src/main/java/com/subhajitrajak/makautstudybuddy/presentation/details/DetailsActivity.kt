@@ -8,18 +8,21 @@ import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Build
 import android.os.Bundle
+import android.view.View
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
+import com.bumptech.glide.Glide
 import com.subhajitrajak.makautstudybuddy.R
 import com.subhajitrajak.makautstudybuddy.data.models.BooksModel
 import com.subhajitrajak.makautstudybuddy.data.repository.DownloadRepo
 import com.subhajitrajak.makautstudybuddy.databinding.ActivityDetailsBinding
 import com.subhajitrajak.makautstudybuddy.databinding.LayoutProgressBinding
 import com.subhajitrajak.makautstudybuddy.presentation.pdf.PdfActivity
+import com.subhajitrajak.makautstudybuddy.utils.Constants.BOOKS
 import com.subhajitrajak.makautstudybuddy.utils.Constants.NOTES
 import com.subhajitrajak.makautstudybuddy.utils.MyResponses
 import com.subhajitrajak.makautstudybuddy.utils.hasFastInternet
@@ -54,8 +57,7 @@ class DetailsActivity : AppCompatActivity() {
         val bookModel = intent.getSerializableExtra("book_model") as BooksModel
 
         binding.apply {
-            val contributor = bookModel.contributor ?: "Subhajit"
-            contributorName.text = "contributed by $contributor"
+            updateView(bookModel)
 
             // read online button
             readOnline.setOnClickListener {
@@ -77,10 +79,16 @@ class DetailsActivity : AppCompatActivity() {
             readOffline.setOnClickListener {
                 lifecycleScope.launch {
                     if (hasFastInternet()) {
-                        val fileName = if (bookModel.type == NOTES) {
-                            "${bookModel.bookName} - ${bookModel.topicName}.pdf"
-                        } else {
-                            "${bookModel.bookName}.pdf"
+                        val fileName = when (bookModel.type) {
+                            NOTES -> {
+                                "${bookModel.bookName} - ${bookModel.topicName}.pdf"
+                            }
+                            BOOKS -> {
+                                "${bookModel.bookName} - ${bookModel.authorName}.pdf"
+                            }
+                            else -> {
+                                "${bookModel.bookName}.pdf"
+                            }
                         }
                         viewModel.downloadFile(bookModel.bookPDF, fileName)
                     } else {
@@ -133,6 +141,29 @@ class DetailsActivity : AppCompatActivity() {
 
             backButton.setOnClickListener {
                 finish()
+            }
+        }
+    }
+
+    private fun updateView(bookModel: BooksModel) {
+        binding.apply {
+            val contributor = bookModel.contributor ?: "Subhajit"
+            contributorName.text = "contributed by $contributor"
+            mBookTitle.text = bookModel.bookName
+
+            when (bookModel.type) {
+                NOTES -> {
+                    Glide.with(this@DetailsActivity).load(R.drawable.notes_sample).into(mBookImage)
+                    mAuthorName.text = bookModel.topicName
+                    bookDescription.visibility = View.GONE
+                    bookTypeTitle.text = "Notes by Students & Professors"
+                }
+                BOOKS -> {
+                    Glide.with(this@DetailsActivity).load(bookModel.preview).into(mBookImage)
+                    mAuthorName.text = bookModel.authorName
+                    bookDescription.visibility = View.GONE
+                    bookTypeTitle.text = bookModel.bookName
+                }
             }
         }
     }

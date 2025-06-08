@@ -8,6 +8,7 @@ data class BooksModel (
     val bookName: String = "",
     val topicName: String? = null,
     val authorName: String? = null,
+    val preview: String? = null,
     val bookPDF: String = "",
     val contributor: String? = null,
     val contributorEmail: String? = null,
