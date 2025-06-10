@@ -62,7 +62,7 @@
     <string name="favourites">Favourites</string>
     <string name="onboarding_heading">Let\'s Study</string>
     <string name="onboarding_subheading" tools:ignore="TypographyEllipsis">Search Less,\nExplore More...</string>
-    <string name="onboarding_description">Get all your organizer, notes and videos all in\na single place. Find less, do more.</string>
+    <string name="onboarding_description">Get all your organizer, books, notes and videos all in a single place. Find less, do more.</string>
     <string name="get_started">Get Started</string>
     <string name="default_web_client_id">547075402114-bdg2t0c1c51n8refr8tmo1v8c8amlglt.apps.googleusercontent.com</string>
     <string name="log_out">Log Out</string>
@@ -118,4 +118,7 @@
     <string name="log_in_using_facebook">Log in with Facebook</string>
     <string name="book_title">Book Title</string>
     <string name="notes_by_students_professors"><![CDATA[Notes by Students & Professors]]></string>
+    <string name="term_and_policy_agreement">By continuing, you agree to our Terms of Service and Privacy Policy.</string>
+    <string name="or_swipe_to">or swipe to</string>
+    <string name="login_as_guest">Login as Guest</string>
 </resources>

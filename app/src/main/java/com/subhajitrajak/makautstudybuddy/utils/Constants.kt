@@ -10,6 +10,7 @@ object Constants {
     const val HOME = "Home"
     const val UPLOAD_REQUESTS = "UploadRequests"
     const val BOOK_LIST = "booksList"
+    const val SETTINGS_DATA = "SettingsData"
 
     // types
     const val NOTES = "Notes"

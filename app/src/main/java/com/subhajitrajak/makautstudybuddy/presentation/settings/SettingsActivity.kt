@@ -20,6 +20,8 @@ import com.subhajitrajak.makautstudybuddy.data.models.SettingsModel
 import com.subhajitrajak.makautstudybuddy.data.repository.userLogin.GoogleAuthUiClient
 import com.subhajitrajak.makautstudybuddy.databinding.ActivitySettingsBinding
 import com.subhajitrajak.makautstudybuddy.presentation.onboarding.OnBoardingActivity
+import com.subhajitrajak.makautstudybuddy.utils.Constants.HOME
+import com.subhajitrajak.makautstudybuddy.utils.Constants.SETTINGS_DATA
 import com.subhajitrajak.makautstudybuddy.utils.showToast
 import kotlinx.coroutines.launch
 
@@ -62,7 +64,7 @@ class SettingsActivity : AppCompatActivity() {
         binding.appVersion.text = text
 
         val firebaseDatabase = FirebaseDatabase.getInstance()
-        val databaseRef = firebaseDatabase.getReference("SettingsData").child("Home")
+        val databaseRef = firebaseDatabase.getReference(SETTINGS_DATA).child(HOME)
 
         databaseRef.addListenerForSingleValueEvent(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
