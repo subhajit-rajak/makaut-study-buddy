@@ -97,7 +97,6 @@ dependencies {
     kapt (libs.hilt.compiler)
 
     implementation ("com.google.android.gms:play-services-auth:21.3.0")
-    implementation ("com.facebook.android:facebook-login:18.0.2")
 
     // glide (image loading)
     implementation (libs.glide)
@@ -105,4 +104,6 @@ dependencies {
     // retrofit
     implementation (libs.retrofit)
     implementation (libs.converter.gson)
+
+    implementation("androidx.swiperefreshlayout:swiperefreshlayout:1.1.0")
 }
