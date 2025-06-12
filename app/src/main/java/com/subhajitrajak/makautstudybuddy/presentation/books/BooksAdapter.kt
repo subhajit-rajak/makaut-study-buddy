@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.subhajitrajak.makautstudybuddy.R
 import com.subhajitrajak.makautstudybuddy.data.models.BooksModel
 import com.subhajitrajak.makautstudybuddy.databinding.ItemBooksBinding
 import com.subhajitrajak.makautstudybuddy.presentation.details.DetailsActivity
@@ -22,9 +23,9 @@ class BooksAdapter (
                 model.apply {
                     bookTitle.text = bookName
                     binding.authorName.text = authorName
-                    preview?.let {
-                        Glide.with(context).load(it).into(thumbnail)
-                    }
+                    Glide.with(context)
+                        .load(preview.takeIf { !it.isNullOrEmpty() } ?: R.drawable.no_preview)
+                        .into(thumbnail)
 
                     root.setOnClickListener {
                         Intent().apply {

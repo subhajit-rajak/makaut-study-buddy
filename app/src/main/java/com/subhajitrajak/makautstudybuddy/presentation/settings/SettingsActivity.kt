@@ -160,7 +160,7 @@ class SettingsActivity : AppCompatActivity() {
                 googleAuthUiClient.signOut()
                 showToast(this@SettingsActivity, "Logged out successfully.")
                 startActivity(Intent(this@SettingsActivity, OnBoardingActivity::class.java))
-                finish()
+                finishAffinity()
             }
         }
     }

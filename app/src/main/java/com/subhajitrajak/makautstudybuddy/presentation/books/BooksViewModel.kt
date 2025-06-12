@@ -32,7 +32,7 @@ class BooksViewModel(private val repo: BookRepo) : ViewModel() {
         _filteredBooks.postValue(
             if (query.isBlank()) original
             else original.filter {
-                it.bookName.contains(query, ignoreCase = true)
+                it.bookName.contains(query, ignoreCase = true) || it.authorName?.contains(query, ignoreCase = true) == true
             }
         )
     }

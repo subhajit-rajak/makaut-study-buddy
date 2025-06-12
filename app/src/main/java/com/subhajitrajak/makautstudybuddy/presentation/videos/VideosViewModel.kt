@@ -34,7 +34,7 @@ class VideosViewModel(private val repo: VideosRepo) : ViewModel() {
         _filteredVideos.postValue(
             if (query.isBlank()) original
             else original.filter {
-                it.title?.contains(query, ignoreCase = true) == true
+                it.title?.contains(query, ignoreCase = true) == true || it.channelTitle?.contains(query, ignoreCase = true) == true
             }
         )
     }

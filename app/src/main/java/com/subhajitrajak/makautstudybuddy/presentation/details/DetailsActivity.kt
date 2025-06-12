@@ -159,7 +159,9 @@ class DetailsActivity : AppCompatActivity() {
                     bookTypeTitle.text = getString(R.string.notes_by_students_professors)
                 }
                 BOOKS -> {
-                    Glide.with(this@DetailsActivity).load(bookModel.preview).into(mBookImage)
+                    Glide.with(this@DetailsActivity)
+                        .load(bookModel.preview.takeIf { !it.isNullOrEmpty() } ?: R.drawable.no_preview)
+                        .into(mBookImage)
                     mAuthorName.text = bookModel.authorName
                     bookDescription.visibility = View.GONE
                     bookTypeTitle.text = bookModel.bookName

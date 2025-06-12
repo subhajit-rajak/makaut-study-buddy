@@ -165,9 +165,9 @@ class UploadActivity : AppCompatActivity() {
                 }
             }
 
-            binding.fileNameTextView.removeWithAnim()
-            binding.progressBar.removeWithAnim()
-            binding.chooseFileButton.text = getString(R.string.choose_file)
+            fileNameTextView.removeWithAnim()
+            progressBar.removeWithAnim()
+            chooseFileButton.text = getString(R.string.choose_file)
 
             contributorCheckBox.text = getString(R.string.contributed_by_who, userName)
 
@@ -177,13 +177,13 @@ class UploadActivity : AppCompatActivity() {
 
             submitButton.setOnClickListener {
                 val type =
-                    binding.chipGroup.findViewById<Chip>(binding.chipGroup.checkedChipId)?.text.toString()
-                val subject = binding.editTextBookName.text.toString().trim()
-                val topic = if (type == NOTES) binding.editTextTopicName.text.toString().trim() else null
-                val author = if (type == BOOKS) binding.editTextAuthorName.text.toString().trim() else null
-                val branch = binding.listOfBranches.text.toString()
-                val semester = binding.listOfSemesters.text.toString()
-                val isContributorEnabled = binding.contributorCheckBox.isChecked
+                    chipGroup.findViewById<Chip>(chipGroup.checkedChipId)?.text.toString()
+                val subject = editTextBookName.text.toString().trim()
+                val topic = if (type == NOTES) editTextTopicName.text.toString().trim() else null
+                val author = if (type == BOOKS) editTextAuthorName.text.toString().trim() else null
+                val branch = listOfBranches.text.toString()
+                val semester = listOfSemesters.text.toString()
+                val isContributorEnabled = contributorCheckBox.isChecked
                 val contributor = if (isContributorEnabled) {
                     userName
                 } else "Anonymous"
