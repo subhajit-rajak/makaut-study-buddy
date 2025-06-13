@@ -86,7 +86,9 @@ class GoogleAuthUiClient(
     suspend fun signOut() {
         try {
             oneTapClient.signOut().await()
-            auth.signOut()
+            if (!auth.currentUser!!.isAnonymous) {
+                auth.signOut() // not singing out anonymous users
+            }
         } catch(e: Exception) {
             e.printStackTrace()
             if(e is CancellationException) throw e
@@ -116,4 +118,6 @@ class GoogleAuthUiClient(
     }
 
     fun isUserLoggedIn(): Boolean = auth.currentUser!=null
+
+    fun isUserAnonymous(): Boolean = auth.currentUser!!.isAnonymous
 }

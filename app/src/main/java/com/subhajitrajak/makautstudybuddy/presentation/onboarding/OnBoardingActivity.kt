@@ -105,7 +105,7 @@ class OnBoardingActivity : AppCompatActivity() {
             oneTapClient = Identity.getSignInClient(this)
         )
 
-        if(googleAuthUiClient.isUserLoggedIn()){
+        if(googleAuthUiClient.isUserLoggedIn() && !googleAuthUiClient.isUserAnonymous()){
             navigateToHome()
         }
 
