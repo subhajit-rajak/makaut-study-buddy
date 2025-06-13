@@ -115,7 +115,7 @@ class DetailsActivity : AppCompatActivity() {
                 when (it) {
                     is MyResponses.Error -> {
                         if (!it.errorMessage.isNullOrEmpty()) {
-                            showToast(this@DetailsActivity, "Download cancelled")
+                            showToast(this@DetailsActivity, it.errorMessage)
                         }
                         dialog.dismiss()
                     }
