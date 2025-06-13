@@ -1,22 +1,27 @@
 package com.subhajitrajak.makautstudybuddy.data.repository
 
-import android.annotation.SuppressLint
-import android.app.DownloadManager
 import android.content.Context
-import android.content.Context.DOWNLOAD_SERVICE
-import android.net.Uri
 import android.os.Environment
 import androidx.lifecycle.MutableLiveData
+import com.subhajitrajak.makautstudybuddy.presentation.details.DownloaderRetrofitInstance
 import com.subhajitrajak.makautstudybuddy.utils.MyResponses
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.isActive
+import kotlinx.coroutines.launch
 import java.io.File
+import java.io.FileOutputStream
+import java.io.InputStream
+import java.io.OutputStream
 
 class DownloadRepo(private val context: Context) {
 
     private val downloadLd = MutableLiveData<MyResponses<DownloadModel>>()
     val downloadLiveData get() = downloadLd
-    private var currentDownloadId: Long? = null
 
-    @SuppressLint("Range")
+    private var downloadJob: Job? = null
+
     fun downloadPdf(url: String, fileName: String) {
         val file = File(context.getExternalFilesDir(Environment.DIRECTORY_DOWNLOADS), fileName)
         if (file.exists()) {
@@ -27,72 +32,52 @@ class DownloadRepo(private val context: Context) {
 
         downloadLiveData.postValue(MyResponses.Loading())
 
-        val downloadManager = context.getSystemService(DOWNLOAD_SERVICE) as DownloadManager
-        val downloadRequest = DownloadManager.Request(Uri.parse(url)).apply {
-            setAllowedNetworkTypes(DownloadManager.Request.NETWORK_MOBILE or DownloadManager.Request.NETWORK_WIFI)
-            setTitle(fileName)
-            setDescription("Downloading PDF")
-            setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED)
-            setAllowedOverRoaming(false)
-            setAllowedOverMetered(true)
-            setDestinationInExternalFilesDir(context, Environment.DIRECTORY_DOWNLOADS, fileName)
-        }
-        currentDownloadId = downloadManager.enqueue(downloadRequest)
-        var isDownloaded = false
-        var progress: Int
-        while (!isDownloaded) {
-            val downloadId = currentDownloadId ?: break
+        downloadJob = CoroutineScope(Dispatchers.IO).launch {
+            try {
+                val response = DownloaderRetrofitInstance.downloadService.downloadFile(url)
 
-            val cursor = downloadManager.query(DownloadManager.Query().setFilterById(downloadId))
-            if (cursor!=null && cursor.moveToNext()) {
-                val status = cursor.getInt(cursor.getColumnIndex(DownloadManager.COLUMN_STATUS))
-                when (status) {
-                    DownloadManager.STATUS_RUNNING -> {
-                        val totalSize =
-                            cursor.getLong(cursor.getColumnIndex(DownloadManager.COLUMN_TOTAL_SIZE_BYTES))
-                        if (totalSize > 0) {
-                            val downloadedByteSize =
-                                cursor.getLong(cursor.getColumnIndex(DownloadManager.COLUMN_BYTES_DOWNLOADED_SO_FAR))
-                            progress = (downloadedByteSize * 100 / totalSize).toInt()
-                            downloadLiveData.postValue(MyResponses.Loading(progress))
-                        }
+                val inputStream: InputStream = response.byteStream()
+                val outputStream: OutputStream = FileOutputStream(file)
 
-                    }
+                val totalSize = response.contentLength()
+                val buffer = ByteArray(4096)
+                var downloaded = 0L
+                var read: Int
 
-                    DownloadManager.STATUS_PENDING -> {
-                        downloadLiveData.postValue(MyResponses.Loading())
-                    }
-                    DownloadManager.STATUS_PAUSED -> {
-                        downloadLiveData.postValue(MyResponses.Loading())
-                    }
-                    DownloadManager.STATUS_SUCCESSFUL -> {
-                        isDownloaded = true
-                        progress = 100
-                        val filePath = cursor.getString(cursor.getColumnIndex(DownloadManager.COLUMN_LOCAL_URI))
+                while (inputStream.read(buffer).also { read = it } != -1 && isActive) {
+                    outputStream.write(buffer, 0, read)
+                    downloaded += read
 
-                        val model = DownloadModel(progress, isDownloaded, currentDownloadId!!, filePath)
-                        downloadLiveData.postValue(MyResponses.Success(model))
-                    }
-                    DownloadManager.STATUS_FAILED -> {
-                        val reason = cursor.getInt(cursor.getColumnIndex(DownloadManager.COLUMN_REASON))
-                        isDownloaded = true
-                        downloadLiveData.postValue(MyResponses.Error("Failed to download $fileName.\nReason: $reason"))
-                    }
+                    val progress = (downloaded * 100 / totalSize).toInt()
+                    downloadLiveData.postValue(MyResponses.Loading(progress))
                 }
-            } else {
-                downloadLiveData.postValue(MyResponses.Error("Failed to download $fileName.Reason: Unknown"))
-                break
+
+                outputStream.flush()
+                outputStream.close()
+                inputStream.close()
+
+                if (isActive) {
+                    downloadLiveData.postValue(
+                        MyResponses.Success(
+                            DownloadModel(100, true, -1, file.toURI().toString())
+                        )
+                    )
+                } else {
+                    // If the coroutine was cancelled mid-download
+                    file.delete()
+                    downloadLiveData.postValue(MyResponses.Error("Download cancelled"))
+                }
+
+            } catch (e: Exception) {
+                e.printStackTrace()
+                downloadLiveData.postValue(MyResponses.Error("Failed to download $fileName.\nReason: ${e.message}"))
             }
         }
     }
 
     fun cancelDownload() {
-        currentDownloadId?.let { id->
-            val downloadManager = context.getSystemService(DOWNLOAD_SERVICE) as DownloadManager
-            downloadManager.remove(id)
-            downloadLiveData.postValue(MyResponses.Error("Download cancelled"))
-            currentDownloadId = null
-        }
+        downloadJob?.cancel()
+        downloadJob = null
     }
 
     data class DownloadModel(

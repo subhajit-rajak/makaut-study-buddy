@@ -114,6 +114,9 @@ class DetailsActivity : AppCompatActivity() {
             viewModel.downloadLiveData.observe(activity) {
                 when (it) {
                     is MyResponses.Error -> {
+                        if (!it.errorMessage.isNullOrEmpty()) {
+                            showToast(this@DetailsActivity, "Download cancelled")
+                        }
                         dialog.dismiss()
                     }
 
