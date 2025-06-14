@@ -22,8 +22,8 @@ android {
         applicationId = "com.subhajitrajak.makautstudybuddy"
         minSdk = 24
         targetSdk = 35
-        versionCode = 6
-        versionName = "2.0.1"
+        versionCode = 7
+        versionName = "2.1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         buildConfigField("String", "API_KEY", "\"$apiKey\"")

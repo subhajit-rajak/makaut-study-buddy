@@ -48,7 +48,6 @@
             app:layout_constraintBottom_toBottomOf="@+id/profile_picture"
             app:layout_constraintEnd_toStartOf="@+id/settings"
             app:layout_constraintTop_toTopOf="@+id/profile_picture"
-            app:layout_constraintVertical_bias="0.0"
             app:tint="@color/text" />
 
         <TextView
@@ -120,7 +119,6 @@
             app:cardBackgroundColor="@color/background_lighter"
             app:layout_constraintBottom_toTopOf="@+id/videos"
             app:layout_constraintEnd_toEndOf="@+id/settings"
-            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/organizers"
             app:layout_constraintTop_toTopOf="@+id/organizers"
             app:layout_constraintVertical_chainStyle="packed"
@@ -129,7 +127,7 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="@drawable/book_button">
+                android:background="@color/background_lighter">
 
                 <TextView
                     android:id="@+id/textView6"
@@ -143,6 +141,16 @@
                     android:textSize="16sp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
+
+                <ImageView
+                    android:layout_width="200dp"
+                    android:layout_height="100dp"
+                    android:layout_marginEnd="-65dp"
+                    android:layout_marginBottom="-25dp"
+                    android:contentDescription="@string/books"
+                    android:src="@drawable/book"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -167,7 +175,7 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="@drawable/videos_button">
+                android:background="@color/white">
 
                 <TextView
                     android:id="@+id/textView8"
@@ -181,6 +189,16 @@
                     android:textSize="16sp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
+
+                <ImageView
+                    android:layout_width="200dp"
+                    android:layout_height="130dp"
+                    android:layout_marginEnd="-65dp"
+                    android:layout_marginBottom="-50dp"
+                    android:contentDescription="@string/videos"
+                    android:src="@drawable/youtube"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -232,7 +250,6 @@
             app:cardBackgroundColor="@color/white"
             app:layout_constraintBottom_toTopOf="@+id/upload"
             app:layout_constraintEnd_toStartOf="@+id/notes"
-            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="@+id/organizers"
             app:layout_constraintTop_toTopOf="@+id/notes"
             app:layout_constraintVertical_chainStyle="packed"
@@ -241,7 +258,7 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="@drawable/github_button">
+                android:background="@color/white">
 
                 <TextView
                     android:id="@+id/git_text"
@@ -256,10 +273,21 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
+                <ImageView
+                    android:layout_width="200dp"
+                    android:layout_height="100dp"
+                    android:layout_marginEnd="-65dp"
+                    android:layout_marginBottom="-35dp"
+                    android:contentDescription="@string/contribute"
+                    android:src="@drawable/github"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent" />
+
             </androidx.constraintlayout.widget.ConstraintLayout>
 
         </com.google.android.material.card.MaterialCardView>
 
+        <!--upload-->
         <com.google.android.material.card.MaterialCardView
             android:id="@+id/upload"
             android:layout_width="0dp"
@@ -269,9 +297,8 @@
             app:cardCornerRadius="24dp"
             app:cardElevation="0dp"
             app:cardBackgroundColor="@color/highlight"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintBottom_toBottomOf="@id/notes"
             app:layout_constraintEnd_toStartOf="@+id/notes"
-            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="@+id/organizers"
             app:layout_constraintTop_toBottomOf="@+id/github_contribute"
             app:strokeWidth="0dp">
@@ -279,7 +306,7 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="@drawable/upload_button">
+                android:background="@color/highlight">
 
                 <TextView
                     android:id="@+id/upload_text"
@@ -294,6 +321,59 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
+                <ImageView
+                    android:layout_width="200dp"
+                    android:layout_height="100dp"
+                    android:layout_marginEnd="-70dp"
+                    android:layout_marginBottom="-30dp"
+                    android:contentDescription="@string/upload"
+                    android:src="@drawable/upload"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </com.google.android.material.card.MaterialCardView>
+
+        <!--syllabus-->
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/syllabus"
+            android:layout_width="0dp"
+            android:layout_height="80dp"
+            android:layout_marginTop="16dp"
+            app:cardCornerRadius="24dp"
+            app:cardElevation="0dp"
+            app:layout_constraintEnd_toEndOf="@+id/videos"
+            app:layout_constraintStart_toStartOf="@+id/organizers"
+            app:layout_constraintTop_toBottomOf="@id/notes"
+            app:strokeWidth="0dp">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/white">
+
+                <TextView
+                    android:id="@+id/syllabus_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginBottom="16dp"
+                    android:fontFamily="@font/montserrat_medium"
+                    android:singleLine="true"
+                    android:text="@string/syllabus"
+                    android:textColor="@color/background_upfront"
+                    android:textSize="20sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent" />
+
+                <ImageView
+                    android:layout_width="200dp"
+                    android:layout_height="70dp"
+                    android:contentDescription="@string/syllabus"
+                    android:src="@drawable/backpack"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
         </com.google.android.material.card.MaterialCardView>
