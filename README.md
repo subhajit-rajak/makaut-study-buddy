@@ -54,9 +54,17 @@ Download the app to enjoy a well-organized academic life, and join the community
 ## 📱 Screenshots
 
 <p align="center">
-  <img src="https://github.com/user-attachments/assets/2dc01394-bef5-4005-91fc-130bc18259d8" width="19%%">
-  <img src="https://github.com/user-attachments/assets/5b753f31-d838-4412-86c9-7ea09a41d8ff" width="19%%">
-  <img src="https://github.com/user-attachments/assets/291be147-c5a9-4982-885c-69d4b33082a5" width="19%%">
-  <img src="https://github.com/user-attachments/assets/289ed6ee-a356-4288-b517-29a282b44b04" width="19%%">
-  <img src="https://github.com/user-attachments/assets/0e4a3308-ac1e-49ba-bf42-50434c4a27d5" width="19%%">
+  <img src="https://github.com/user-attachments/assets/4852cbb8-c0a0-4ac5-bab5-5c97ab74d521" width="19%%">
+  <img src="https://github.com/user-attachments/assets/60d646a7-a914-4c1d-b1d1-fe2e39f9a3fd" width="19%%">
+  <img src="https://github.com/user-attachments/assets/664a6293-ba38-4079-a189-e0bb091f6725" width="19%%">
+  <img src="https://github.com/user-attachments/assets/6358d2c0-5c1d-4158-9309-4250780d0056" width="19%%">
+  <img src="https://github.com/user-attachments/assets/94c5b075-9f73-47b4-841f-fbf19c32d858" width="19%%">
+</p>
+
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/bceddcb1-6018-4a31-b430-cfe8d468922e" width="19%%">
+  <img src="https://github.com/user-attachments/assets/cf26bb57-97be-4365-8578-4a9d66759f89" width="19%%">
+  <img src="https://github.com/user-attachments/assets/8c15e2b8-a98b-49a1-9473-f54b775f940e" width="19%%">
+  <img src="https://github.com/user-attachments/assets/c4901aaa-40fe-4c26-a3bd-0b94d48a392d" width="19%%">
+  <img src="https://github.com/user-attachments/assets/e34cb64c-8f38-4124-a5df-0cd54d7e1f52" width="19%%">
 </p>
