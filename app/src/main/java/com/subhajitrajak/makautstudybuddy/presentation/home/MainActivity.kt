@@ -54,7 +54,7 @@ class MainActivity : AppCompatActivity() {
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
-        }
+    }
 
         // Initialize GoogleAuthUiClient
         googleAuthUiClient = GoogleAuthUiClient(this, Identity.getSignInClient(this))
@@ -103,7 +103,12 @@ class MainActivity : AppCompatActivity() {
             }
 
             upload.setOnClickListener {
-                startActivity(Intent(this@MainActivity, UploadActivity::class.java))
+                // not allowing contributions for guest users
+                if (googleAuthUiClient.isUserAnonymous()) {
+                    showToast(this@MainActivity, "Login with google for contributions")
+                } else {
+                    startActivity(Intent(this@MainActivity, UploadActivity::class.java))
+                }
             }
 
             notes.setOnClickListener {
