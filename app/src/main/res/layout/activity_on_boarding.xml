@@ -16,7 +16,7 @@
         android:fontFamily="@font/la_belle_aurore"
         android:text="@string/onboarding_heading"
         android:textColor="@color/text"
-        android:textSize="32sp"
+        android:textSize="@dimen/_24ssp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
@@ -42,7 +42,7 @@
         android:text="@string/onboarding_subheading"
         android:textAlignment="center"
         android:textColor="@color/text"
-        android:textSize="32sp"
+        android:textSize="@dimen/_24ssp"
         app:layout_constraintBottom_toTopOf="@+id/textView9"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
@@ -57,7 +57,7 @@
         android:text="@string/onboarding_description"
         android:textAlignment="center"
         android:textColor="@color/text"
-        android:textSize="15sp"
+        android:textSize="@dimen/_12ssp"
         app:layout_constraintBottom_toTopOf="@+id/constraintLayout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
@@ -66,7 +66,7 @@
         android:id="@+id/constraintLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingVertical="32dp"
+        android:paddingVertical="@dimen/_24sdp"
         app:layout_constraintBottom_toTopOf="@+id/tvAgreement">
 
         <Button

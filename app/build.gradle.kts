@@ -96,7 +96,8 @@ dependencies {
     implementation (libs.hilt.android)
     kapt (libs.hilt.compiler)
 
-    implementation ("com.google.android.gms:play-services-auth:21.3.0")
+    // gms play service
+    implementation (libs.play.services.auth)
 
     // glide (image loading)
     implementation (libs.glide)
@@ -105,5 +106,10 @@ dependencies {
     implementation (libs.retrofit)
     implementation (libs.converter.gson)
 
-    implementation("androidx.swiperefreshlayout:swiperefreshlayout:1.1.0")
+    // swipe to refresh layout
+    implementation(libs.androidx.swiperefreshlayout)
+
+    // scalable sp and dp by intuit
+    implementation (libs.ssp.android)
+    implementation (libs.sdp.android)
 }
