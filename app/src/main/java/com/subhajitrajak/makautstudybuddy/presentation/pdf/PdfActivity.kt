@@ -8,7 +8,6 @@ import android.view.WindowInsets
 import android.view.WindowInsetsController
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.WindowCompat
-import androidx.core.view.isVisible
 import com.github.barteksc.pdfviewer.scroll.DefaultScrollHandle
 import com.subhajitrajak.makautstudybuddy.databinding.ActivityPdfBinding
 import com.subhajitrajak.makautstudybuddy.utils.showToast
@@ -44,9 +43,9 @@ class PdfActivity : AppCompatActivity() {
             // For older versions, use deprecated methods
             @Suppress("DEPRECATION")
             window.decorView.systemUiVisibility = (
-                    android.view.View.SYSTEM_UI_FLAG_FULLSCREEN
-                            or android.view.View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
-                            or android.view.View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY
+                    View.SYSTEM_UI_FLAG_FULLSCREEN
+                            or View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
+                            or View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY
                     )
         }
 

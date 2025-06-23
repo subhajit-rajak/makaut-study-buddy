@@ -5,13 +5,11 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
-import com.google.android.material.chip.Chip
 import com.subhajitrajak.makautstudybuddy.R
-import com.subhajitrajak.makautstudybuddy.data.models.BooksModel
 import com.subhajitrajak.makautstudybuddy.data.models.SyllabusSemModel
 import com.subhajitrajak.makautstudybuddy.databinding.ActivitySyllabusSemBinding
-import com.subhajitrajak.makautstudybuddy.presentation.subjects.CategoryAdapter
 
+@Suppress("DEPRECATION")
 class SyllabusSemActivity : AppCompatActivity() {
     private val activity = this
     private val binding: ActivitySyllabusSemBinding by lazy {

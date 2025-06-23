@@ -73,7 +73,7 @@
                 android:id="@+id/lastUpdatedDate"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="23-06-2025"
+                android:text="@string/example_date"
                 android:textColor="@color/background"
                 android:textSize="12sp"
                 android:textStyle="italic"
