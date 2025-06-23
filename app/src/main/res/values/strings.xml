@@ -125,5 +125,5 @@
     <string name="new_badge">New</string>
     <string name="last_updated">Last Updated:</string>
     <string name="semester_screen_title">Pick your semester</string>
-    <string name="example_date">23-06-2025</string>
+    <string name="example_date">23–06–2025</string>
 </resources>
