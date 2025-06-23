@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/card"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="10dp"
+        app:strokeWidth="0dp"
+        android:backgroundTint="@color/highlight"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:rippleColor="@color/semi_grey">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="16dp">
+
+            <TextView
+                android:id="@+id/semester_number"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="16dp"
+                android:text="@string/semester_"
+                android:textColor="@color/background"
+                android:fontFamily="@font/belgan_aesthetic"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:transitionName="NameTrans"
+                app:layout_constraintEnd_toStartOf="@+id/imageView"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/topic_name"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="16dp"
+                android:text="@string/topic_name"
+                android:visibility="gone"
+                android:textColor="@color/background"
+                android:fontFamily="@font/inter_semibold"
+                android:textSize="13sp"
+                android:transitionName="NameTrans"
+                app:layout_constraintStart_toStartOf="@+id/semester_number"
+                app:layout_constraintTop_toBottomOf="@id/semester_number"
+                />
+
+            <TextView
+                android:id="@+id/lastUpdated"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@string/last_updated"
+                android:textColor="@color/background"
+                android:textSize="12sp"
+                android:textStyle="italic"
+                app:layout_constraintStart_toStartOf="@+id/semester_number"
+                app:layout_constraintTop_toBottomOf="@id/topic_name"
+                tools:ignore="TextContrastCheck" />
+
+            <TextView
+                android:id="@+id/lastUpdatedDate"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="23-06-2025"
+                android:textColor="@color/background"
+                android:textSize="12sp"
+                android:textStyle="italic"
+                app:layout_constraintBottom_toBottomOf="@id/lastUpdated"
+                app:layout_constraintStart_toEndOf="@+id/lastUpdated"
+                app:layout_constraintTop_toTopOf="@id/lastUpdated"
+                tools:ignore="TextContrastCheck" />
+
+            <ImageView
+                android:id="@+id/imageView"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:contentDescription="@string/organizer_name"
+                android:src="@drawable/rv_right"
+                app:tint="@color/background"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+</androidx.constraintlayout.widget.ConstraintLayout>

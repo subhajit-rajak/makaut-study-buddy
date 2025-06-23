@@ -31,11 +31,13 @@ import com.subhajitrajak.makautstudybuddy.presentation.downloads.DownloadedFiles
 import com.subhajitrajak.makautstudybuddy.presentation.notes.NotesActivity
 import com.subhajitrajak.makautstudybuddy.presentation.organizers.OrganizerActivity
 import com.subhajitrajak.makautstudybuddy.presentation.settings.SettingsActivity
+import com.subhajitrajak.makautstudybuddy.presentation.syllabus.SyllabusActivity
 import com.subhajitrajak.makautstudybuddy.presentation.upload.UploadActivity
 import com.subhajitrajak.makautstudybuddy.presentation.videos.VideosActivity
 import com.subhajitrajak.makautstudybuddy.utils.showToast
 
 class MainActivity : AppCompatActivity() {
+    private val activity = this
     private val binding: ActivityMainBinding by lazy {
         ActivityMainBinding.inflate(layoutInflater)
     }
@@ -57,7 +59,7 @@ class MainActivity : AppCompatActivity() {
     }
 
         // Initialize GoogleAuthUiClient
-        googleAuthUiClient = GoogleAuthUiClient(this, Identity.getSignInClient(this))
+        googleAuthUiClient = GoogleAuthUiClient(activity, Identity.getSignInClient(activity))
 
         // Fetch signed-in user data
         val userData: UserData? = googleAuthUiClient.getSignedInUser()
@@ -70,7 +72,7 @@ class MainActivity : AppCompatActivity() {
                 append(name)
             }
 
-            Glide.with(this)
+            Glide.with(activity)
                 .load(userData.profilePictureUrl)
                 .placeholder(R.drawable.avatar)
                 .error(R.drawable.avatar)
@@ -79,20 +81,20 @@ class MainActivity : AppCompatActivity() {
 
         binding.apply {
             organizers.setOnClickListener {
-                val intent = Intent(this@MainActivity, OrganizerActivity::class.java)
+                val intent = Intent(activity, OrganizerActivity::class.java)
                 startActivity(intent)
             }
 
             downloads.setOnClickListener {
-                startActivity(Intent(this@MainActivity, DownloadedFilesActivity::class.java))
+                startActivity(Intent(activity, DownloadedFilesActivity::class.java))
             }
 
             books.setOnClickListener {
-                startActivity(Intent(this@MainActivity, BooksActivity::class.java))
+                startActivity(Intent(activity, BooksActivity::class.java))
             }
 
             settings.setOnClickListener {
-                startActivity(Intent(this@MainActivity, SettingsActivity::class.java))
+                startActivity(Intent(activity, SettingsActivity::class.java))
             }
 
             githubContribute.setOnClickListener {
@@ -105,18 +107,22 @@ class MainActivity : AppCompatActivity() {
             upload.setOnClickListener {
                 // not allowing contributions for guest users
                 if (googleAuthUiClient.isUserAnonymous()) {
-                    showToast(this@MainActivity, "Login with google for contributions")
+                    showToast(activity, "Login with google for contributions")
                 } else {
-                    startActivity(Intent(this@MainActivity, UploadActivity::class.java))
+                    startActivity(Intent(activity, UploadActivity::class.java))
                 }
             }
 
             notes.setOnClickListener {
-                startActivity(Intent(this@MainActivity, NotesActivity::class.java))
+                startActivity(Intent(activity, NotesActivity::class.java))
             }
 
             videos.setOnClickListener {
-                startActivity(Intent(this@MainActivity, VideosActivity::class.java))
+                startActivity(Intent(activity, VideosActivity::class.java))
+            }
+
+            syllabus.setOnClickListener {
+                startActivity(Intent(activity, SyllabusActivity::class.java))
             }
         }
 
@@ -125,11 +131,11 @@ class MainActivity : AppCompatActivity() {
 
     // checking for in-app updates
     private fun checkForInAppUpdates() {
-        appUpdateManager = AppUpdateManagerFactory.create(this)
+        appUpdateManager = AppUpdateManagerFactory.create(activity)
         activityResultLauncher =
             registerForActivityResult(ActivityResultContracts.StartIntentSenderForResult()) { result: ActivityResult ->
                 if (result.resultCode != RESULT_OK) {
-                    showToast(this, "Update failed: ${result.resultCode}")
+                    showToast(activity, "Update failed: ${result.resultCode}")
                     Log.d("Update", "Update flow failed! Result code: ${result.resultCode}")
                 }
             }

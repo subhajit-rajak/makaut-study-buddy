@@ -7,6 +7,7 @@ object Constants {
     const val APP_DATA = "AppData" // Organizers
     const val VIDEOS_DATA = "VideoData"
     const val BOOKS_DATA = "BooksData"
+    const val SYLLABUS_DATA = "SyllabusData"
     const val HOME = "Home"
     const val UPLOAD_REQUESTS = "UploadRequests"
     const val BOOK_LIST = "booksList"

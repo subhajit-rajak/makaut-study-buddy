@@ -123,4 +123,6 @@
     <string name="login_as_guest">Login as Guest</string>
     <string name="syllabus">Syllabus</string>
     <string name="new_badge">New</string>
+    <string name="last_updated">Last Updated:</string>
+    <string name="semester_screen_title">Pick your semester</string>
 </resources>
