@@ -42,6 +42,12 @@ class SyllabusActivity : AppCompatActivity() {
             rv.adapter=adapter
             viewModel.getSyllabusData()
             handleHomeBackend()
+
+            pullToRefresh.setOnRefreshListener {
+                viewModel.getSyllabusData()
+                pullToRefresh.isRefreshing = false
+            }
+
             mErrorLayout.mTryAgainBtn.setOnClickListener {
                 viewModel.getSyllabusData()
             }
