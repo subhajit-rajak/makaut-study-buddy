@@ -2,6 +2,7 @@ package com.subhajitrajak.makautstudybuddy.presentation.home
 
 import android.content.Intent
 import android.net.Uri
+import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import androidx.activity.enableEdgeToEdge
@@ -13,6 +14,9 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.bumptech.glide.Glide
+import com.google.android.gms.ads.AdRequest
+import com.google.android.gms.ads.AdSize
+import com.google.android.gms.ads.AdView
 import com.google.android.gms.auth.api.identity.Identity
 import com.google.android.material.snackbar.Snackbar
 import com.google.android.play.core.appupdate.AppUpdateManager
@@ -22,6 +26,7 @@ import com.google.android.play.core.install.InstallStateUpdatedListener
 import com.google.android.play.core.install.model.AppUpdateType
 import com.google.android.play.core.install.model.InstallStatus
 import com.google.android.play.core.install.model.UpdateAvailability
+import com.subhajitrajak.makautstudybuddy.BuildConfig
 import com.subhajitrajak.makautstudybuddy.R
 import com.subhajitrajak.makautstudybuddy.data.repository.userLogin.GoogleAuthUiClient
 import com.subhajitrajak.makautstudybuddy.data.repository.userLogin.UserData
@@ -34,6 +39,7 @@ import com.subhajitrajak.makautstudybuddy.presentation.settings.SettingsActivity
 import com.subhajitrajak.makautstudybuddy.presentation.syllabus.SyllabusActivity
 import com.subhajitrajak.makautstudybuddy.presentation.upload.UploadActivity
 import com.subhajitrajak.makautstudybuddy.presentation.videos.VideosActivity
+import com.subhajitrajak.makautstudybuddy.utils.Constants.TEST_AD_UNIT_ID
 import com.subhajitrajak.makautstudybuddy.utils.showToast
 
 class MainActivity : AppCompatActivity() {
@@ -41,6 +47,7 @@ class MainActivity : AppCompatActivity() {
     private val binding: ActivityMainBinding by lazy {
         ActivityMainBinding.inflate(layoutInflater)
     }
+    private var adUnitId = if(BuildConfig.DEBUG) TEST_AD_UNIT_ID else BuildConfig.MAIN_ADMOB_UNIT_ID
 
     private lateinit var googleAuthUiClient: GoogleAuthUiClient
 
@@ -126,6 +133,7 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
+        loadAd()
         checkForInAppUpdates()
     }
 
@@ -189,5 +197,31 @@ class MainActivity : AppCompatActivity() {
                     popupSnackbarForCompleteUpdate()
                 }
             }
+    }
+
+    private fun loadAd() {
+        val adView = AdView(activity)
+        adView.adUnitId = adUnitId
+        adView.setAdSize(getAdSize())
+
+        binding.adView.removeAllViews()
+        binding.adView.addView(adView)
+
+        val adRequest = AdRequest.Builder().build()
+        adView.loadAd(adRequest)
+    }
+
+    private fun getAdSize(): AdSize {
+        val displayMetrics = resources.displayMetrics
+        var adWidthPixels = displayMetrics.widthPixels
+
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+            val windowMetrics = windowManager.currentWindowMetrics
+            adWidthPixels = windowMetrics.bounds.width()
+        }
+
+        val density = displayMetrics.density
+        val adWidth = (adWidthPixels / density).toInt()
+        return AdSize.getCurrentOrientationAnchoredAdaptiveBannerAdSize(activity, adWidth)
     }
 }

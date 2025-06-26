@@ -13,6 +13,14 @@ val localProperties = rootProject.file("local.properties").inputStream().use { i
     Properties().apply { load(input) }
 }
 val apiKey: String = localProperties.getProperty("API_KEY") ?: "\"\""
+val admobAppId: String = localProperties.getProperty("ADMOB_APP_ID") ?: "SAMPLE_APP_ID"
+
+val mainAdUnitId: String = localProperties.getProperty("MAIN_ADMOB_UNIT_ID") ?: "\"\""
+val organizersAdUnitId: String = localProperties.getProperty("ORGANIZERS_ADMOB_UNIT_ID") ?: "\"\""
+val notesAdUnitId: String = localProperties.getProperty("NOTES_ADMOB_UNIT_ID") ?: "\"\""
+val syllabusAdUnitId: String = localProperties.getProperty("SYLLABUS_ADMOB_UNIT_ID") ?: "\"\""
+val videosAdUnitId: String = localProperties.getProperty("VIDEOS_ADMOB_UNIT_ID") ?: "\"\""
+val booksAdUnitId: String = localProperties.getProperty("BOOKS_ADMOB_UNIT_ID") ?: "\"\""
 
 android {
     namespace = "com.subhajitrajak.makautstudybuddy"
@@ -27,6 +35,14 @@ android {
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         buildConfigField("String", "API_KEY", "\"$apiKey\"")
+        manifestPlaceholders["admob_app_id"] = admobAppId
+
+        buildConfigField("String", "MAIN_ADMOB_UNIT_ID", "\"$mainAdUnitId\"")
+        buildConfigField("String", "ORGANIZERS_ADMOB_UNIT_ID", "\"$organizersAdUnitId\"")
+        buildConfigField("String", "NOTES_ADMOB_UNIT_ID", "\"$notesAdUnitId\"")
+        buildConfigField("String", "SYLLABUS_ADMOB_UNIT_ID", "\"$syllabusAdUnitId\"")
+        buildConfigField("String", "VIDEOS_ADMOB_UNIT_ID", "\"$videosAdUnitId\"")
+        buildConfigField("String", "BOOKS_ADMOB_UNIT_ID", "\"$booksAdUnitId\"")
     }
 
     buildTypes {
@@ -98,6 +114,7 @@ dependencies {
 
     // gms play service
     implementation (libs.play.services.auth)
+    implementation(libs.play.services.ads)
 
     // glide (image loading)
     implementation (libs.glide)

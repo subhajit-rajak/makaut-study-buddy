@@ -31,4 +31,7 @@ object Constants {
     const val ME = "Mechanical Engineering"
     const val CE = "Civil Engineering"
     const val EE = "Electrical Engineering"
+
+    // ads
+    const val TEST_AD_UNIT_ID = "ca-app-pub-3940256099942544/6300978111"
 }
