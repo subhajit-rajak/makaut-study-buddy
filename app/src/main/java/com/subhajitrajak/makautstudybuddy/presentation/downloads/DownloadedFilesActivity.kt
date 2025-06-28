@@ -54,6 +54,7 @@ class DownloadedFilesActivity : AppCompatActivity() {
 
             pullToRefresh.setOnRefreshListener {
                 recreate()
+                pullToRefresh.isRefreshing = false
             }
 
             recyclerViewFiles.layoutManager = LinearLayoutManager(activity)
