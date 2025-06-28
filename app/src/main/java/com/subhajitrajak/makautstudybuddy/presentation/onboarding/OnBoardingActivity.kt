@@ -1,5 +1,6 @@
 package com.subhajitrajak.makautstudybuddy.presentation.onboarding
 
+import android.Manifest
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Color
@@ -22,6 +23,7 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.lifecycle.ViewModelProvider
@@ -80,6 +82,16 @@ class OnBoardingActivity : AppCompatActivity() {
         }
     }
 
+    private val requestPermissionLauncher = registerForActivityResult(
+        ActivityResultContracts.RequestPermission()
+    ) { isGranted: Boolean ->
+        if (isGranted) {
+            showToast(this, "Notification permission granted")
+        } else {
+            showToast(this, "Notification permission denied")
+        }
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         // force dark mode
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
@@ -92,7 +104,7 @@ class OnBoardingActivity : AppCompatActivity() {
             insets
         }
 
-        requestNotificationPermission()
+        checkNotificationPermission()
 
         binding.googleButton.setOnActiveListener {
             loginUsingGoogle()
@@ -229,10 +241,24 @@ class OnBoardingActivity : AppCompatActivity() {
         })
     }
 
-    private fun requestNotificationPermission() {
+    private fun checkNotificationPermission() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-            if (applicationContext.checkSelfPermission(android.Manifest.permission.POST_NOTIFICATIONS) != PackageManager.PERMISSION_GRANTED) {
-                ActivityCompat.requestPermissions(this, arrayOf(android.Manifest.permission.POST_NOTIFICATIONS), 0)
+            when {
+                ContextCompat.checkSelfPermission(
+                    this,
+                    Manifest.permission.POST_NOTIFICATIONS
+                ) == PackageManager.PERMISSION_GRANTED -> {
+                    // Permission already granted
+                }
+
+                shouldShowRequestPermissionRationale(Manifest.permission.POST_NOTIFICATIONS) -> {
+                    // Optional: show rationale dialog before requesting
+                    requestPermissionLauncher.launch(Manifest.permission.POST_NOTIFICATIONS)
+                }
+
+                else -> {
+                    requestPermissionLauncher.launch(Manifest.permission.POST_NOTIFICATIONS)
+                }
             }
         }
     }

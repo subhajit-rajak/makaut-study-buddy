@@ -77,6 +77,9 @@
         <meta-data android:name="com.google.firebase.messaging.default_notification_icon"
             android:resource="@drawable/ic_notification_small_icon" />
 
+        <meta-data android:name="com.google.firebase.messaging.default_notification_color"
+            android:resource="@color/black" />
+
         <provider
             android:name="androidx.core.content.FileProvider"
             android:authorities="${applicationId}.provider"

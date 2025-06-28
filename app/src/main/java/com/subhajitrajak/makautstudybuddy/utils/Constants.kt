@@ -34,4 +34,9 @@ object Constants {
 
     // ads
     const val TEST_AD_UNIT_ID = "ca-app-pub-3940256099942544/6300978111"
+
+    // notifications
+    const val CHANNEL_ID = "general"
+    const val CHANNEL_NAME = "All Notifications"
+    const val CHANNEL_DESC = "All notifications including promotions, announcements and new features."
 }
