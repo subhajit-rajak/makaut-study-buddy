@@ -211,6 +211,8 @@ class MainActivity : AppCompatActivity() {
         adView.loadAd(adRequest)
     }
 
+    /*
+    * Function to get ad Size
     private fun getAdSize(): AdSize {
         val displayMetrics = resources.displayMetrics
         var adWidthPixels = displayMetrics.widthPixels
@@ -224,4 +226,5 @@ class MainActivity : AppCompatActivity() {
         val adWidth = (adWidthPixels / density).toInt()
         return AdSize.getCurrentOrientationAnchoredAdaptiveBannerAdSize(activity, adWidth)
     }
+     */
 }
