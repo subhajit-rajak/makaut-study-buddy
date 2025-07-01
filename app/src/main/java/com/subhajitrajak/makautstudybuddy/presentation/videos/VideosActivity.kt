@@ -200,26 +200,12 @@ class VideosActivity : AppCompatActivity() {
     private fun loadAd() {
         val adView = AdView(this)
         adView.adUnitId = adUnitId
-        adView.setAdSize(getAdSize())
+        adView.setAdSize(AdSize.BANNER)
 
         binding.adView.removeAllViews()
         binding.adView.addView(adView)
 
         val adRequest = AdRequest.Builder().build()
         adView.loadAd(adRequest)
-    }
-
-    private fun getAdSize(): AdSize {
-        val displayMetrics = resources.displayMetrics
-        var adWidthPixels = displayMetrics.widthPixels
-
-        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
-            val windowMetrics = windowManager.currentWindowMetrics
-            adWidthPixels = windowMetrics.bounds.width()
-        }
-
-        val density = displayMetrics.density
-        val adWidth = (adWidthPixels / density).toInt()
-        return AdSize.getCurrentOrientationAnchoredAdaptiveBannerAdSize(this, adWidth)
     }
 }

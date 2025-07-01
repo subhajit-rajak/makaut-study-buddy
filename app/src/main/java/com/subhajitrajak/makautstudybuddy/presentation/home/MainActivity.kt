@@ -202,7 +202,7 @@ class MainActivity : AppCompatActivity() {
     private fun loadAd() {
         val adView = AdView(activity)
         adView.adUnitId = adUnitId
-        adView.setAdSize(getAdSize())
+        adView.setAdSize(AdSize.BANNER)
 
         binding.adView.removeAllViews()
         binding.adView.addView(adView)
