@@ -5,7 +5,6 @@ plugins {
     alias(libs.plugins.jetbrains.kotlin.android)
     id("com.google.gms.google-services")
     id("kotlin-kapt")
-    id("com.google.dagger.hilt.android")
     alias(libs.plugins.google.firebase.crashlytics)
 }
 
@@ -24,12 +23,12 @@ val booksAdUnitId: String = localProperties.getProperty("BOOKS_ADMOB_UNIT_ID") ?
 
 android {
     namespace = "com.subhajitrajak.makautstudybuddy"
-    compileSdk = 35
+    compileSdk = 36
 
     defaultConfig {
         applicationId = "com.subhajitrajak.makautstudybuddy"
         minSdk = 24
-        targetSdk = 35
+        targetSdk = 36
         versionCode = 8
         versionName = "2.1.1"
 
@@ -108,10 +107,6 @@ dependencies {
 
     // circle-image view
     implementation (libs.circleimageview)
-
-    // hilt
-    implementation (libs.hilt.android)
-    kapt (libs.hilt.compiler)
 
     // gms play service
     implementation (libs.play.services.auth)

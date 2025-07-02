@@ -1,36 +1,31 @@
 [versions]
-agp = "8.8.2"
+agp = "8.11.0"
 androidPdfViewer = "3.2.0-beta.3"
 appUpdate = "2.1.0"
 circleimageview = "3.1.0"
-firebaseBom = "33.10.0"
+firebaseBom = "33.16.0"
 glide = "4.16.0"
-hiltAndroid = "2.51.1"
-hiltCompiler = "2.51.1"
-kotlin = "2.1.0"
-coreKtx = "1.15.0"
+kotlin = "2.2.0"
+coreKtx = "1.16.0"
 junit = "4.13.2"
 junitVersion = "1.2.1"
 espressoCore = "3.6.1"
-appcompat = "1.7.0"
-kotlinxCoroutinesAndroid = "1.7.3"
-lifecycleVersion = "2.8.7"
+appcompat = "1.7.1"
+kotlinxCoroutinesAndroid = "1.10.2"
+lifecycleVersion = "2.9.1"
 material = "1.12.0"
 activity = "1.10.1"
 constraintlayout = "2.2.1"
-firebaseAuth = "23.2.0"
-credentials = "1.3.0"
-credentialsPlayServicesAuth = "1.3.0"
+credentials = "1.5.0"
+credentialsPlayServicesAuth = "1.5.0"
 googleid = "1.1.1"
-firebaseStorageKtx = "21.0.1"
 playServicesAds = "24.4.0"
 playServicesAuth = "21.3.0"
-retrofit = "2.9.0"
-converterGson = "2.9.0"
-firebaseCrashlytics = "19.4.3"
-googleFirebaseCrashlytics = "3.0.3"
-sdpAndroid = "1.0.6"
-sspAndroid = "1.0.6"
+retrofit = "3.0.0"
+converterGson = "3.0.0"
+googleFirebaseCrashlytics = "3.0.4"
+sdpAndroid = "1.1.1"
+sspAndroid = "1.1.1"
 swiperefreshlayout = "1.1.0"
 
 [libraries]
@@ -43,13 +38,7 @@ app-update = { module = "com.google.android.play:app-update", version.ref = "app
 app-update-ktx = { module = "com.google.android.play:app-update-ktx", version.ref = "appUpdate" }
 circleimageview = { module = "de.hdodenhof:circleimageview", version.ref = "circleimageview" }
 converter-gson = { module = "com.squareup.retrofit2:converter-gson", version.ref = "converterGson" }
-firebase-analytics-ktx = { module = "com.google.firebase:firebase-analytics-ktx" }
-firebase-bom = { module = "com.google.firebase:firebase-bom", version.ref = "firebaseBom" }
-firebase-database-ktx = { module = "com.google.firebase:firebase-database-ktx" }
-firebase-messaging = { module = "com.google.firebase:firebase-messaging" }
 glide = { module = "com.github.bumptech.glide:glide", version.ref = "glide" }
-hilt-android = { module = "com.google.dagger:hilt-android", version.ref = "hiltAndroid" }
-hilt-compiler = { module = "com.google.dagger:hilt-compiler", version.ref = "hiltCompiler" }
 junit = { group = "junit", name = "junit", version.ref = "junit" }
 androidx-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junitVersion" }
 androidx-espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espressoCore" }
@@ -58,20 +47,25 @@ kotlinx-coroutines-android = { module = "org.jetbrains.kotlinx:kotlinx-coroutine
 material = { group = "com.google.android.material", name = "material", version.ref = "material" }
 androidx-activity = { group = "androidx.activity", name = "activity", version.ref = "activity" }
 androidx-constraintlayout = { group = "androidx.constraintlayout", name = "constraintlayout", version.ref = "constraintlayout" }
-firebase-auth = { group = "com.google.firebase", name = "firebase-auth", version.ref = "firebaseAuth" }
 androidx-credentials = { group = "androidx.credentials", name = "credentials", version.ref = "credentials" }
 androidx-credentials-play-services-auth = { group = "androidx.credentials", name = "credentials-play-services-auth", version.ref = "credentialsPlayServicesAuth" }
 googleid = { group = "com.google.android.libraries.identity.googleid", name = "googleid", version.ref = "googleid" }
-firebase-storage-ktx = { group = "com.google.firebase", name = "firebase-storage-ktx", version.ref = "firebaseStorageKtx" }
 play-services-ads = { module = "com.google.android.gms:play-services-ads", version.ref = "playServicesAds" }
 play-services-auth = { module = "com.google.android.gms:play-services-auth", version.ref = "playServicesAuth" }
 retrofit = { module = "com.squareup.retrofit2:retrofit", version.ref = "retrofit" }
-firebase-crashlytics = { group = "com.google.firebase", name = "firebase-crashlytics", version.ref = "firebaseCrashlytics" }
 sdp-android = { module = "com.intuit.sdp:sdp-android", version.ref = "sdpAndroid" }
 ssp-android = { module = "com.intuit.ssp:ssp-android", version.ref = "sspAndroid" }
+
+# firebase libraries
+firebase-bom = { module = "com.google.firebase:firebase-bom", version.ref = "firebaseBom" }
+firebase-auth = { module = "com.google.firebase:firebase-auth" }
+firebase-storage-ktx = { module = "com.google.firebase:firebase-storage-ktx" }
+firebase-crashlytics = { module = "com.google.firebase:firebase-crashlytics" }
+firebase-database-ktx = { module = "com.google.firebase:firebase-database-ktx" }
+firebase-messaging = { module = "com.google.firebase:firebase-messaging" }
+firebase-analytics-ktx = { module = "com.google.firebase:firebase-analytics-ktx" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
 jetbrains-kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 google-firebase-crashlytics = { id = "com.google.firebase.crashlytics", version.ref = "googleFirebaseCrashlytics" }
-
