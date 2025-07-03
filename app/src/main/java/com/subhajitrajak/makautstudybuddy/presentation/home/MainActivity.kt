@@ -1,7 +1,6 @@
 package com.subhajitrajak.makautstudybuddy.presentation.home
 
 import android.content.Intent
-import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import androidx.activity.enableEdgeToEdge
@@ -10,6 +9,7 @@ import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.IntentSenderRequest
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.net.toUri
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.bumptech.glide.Glide
@@ -106,7 +106,7 @@ class MainActivity : AppCompatActivity() {
             githubContribute.setOnClickListener {
                 val url = "https://github.com/subhajit-rajak/makaut-study-buddy"
                 val intent = Intent(Intent.ACTION_VIEW)
-                intent.data = Uri.parse(url)
+                intent.data = url.toUri()
                 startActivity(intent)
             }
 

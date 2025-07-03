@@ -119,5 +119,5 @@ class GoogleAuthUiClient(
 
     fun isUserLoggedIn(): Boolean = auth.currentUser!=null
 
-    fun isUserAnonymous(): Boolean = auth.currentUser!!.isAnonymous
+    fun isUserAnonymous(): Boolean = auth.currentUser?.isAnonymous ?: true
 }
