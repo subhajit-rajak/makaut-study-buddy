@@ -29,8 +29,8 @@ android {
         applicationId = "com.subhajitrajak.makautstudybuddy"
         minSdk = 24
         targetSdk = 36
-        versionCode = 8
-        versionName = "2.1.1"
+        versionCode = 9
+        versionName = "2.1.2"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         buildConfigField("String", "API_KEY", "\"$apiKey\"")
@@ -63,9 +63,10 @@ android {
         sourceCompatibility = JavaVersion.VERSION_11
         targetCompatibility = JavaVersion.VERSION_11
     }
-    kotlinOptions {
-        jvmTarget = "11"
-    }
+}
+
+kotlin {
+    jvmToolchain(11)
 }
 
 dependencies {
