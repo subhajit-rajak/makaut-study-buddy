@@ -1,5 +1,5 @@
-package com.subhajitrajak.makautstudybuddy.utils;
+package com.subhajitrajak.makautstudybuddy.utils
 
-public interface OnActiveListener {
-    void onActive();
+interface OnActiveListener {
+    fun onActive()
 }

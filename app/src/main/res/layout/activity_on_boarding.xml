@@ -120,7 +120,7 @@
             android:layout_marginEnd="32dp"
             app:button_background_drawable="@drawable/swipe_circular_white_background"
             app:button_background_padding="8dp"
-            app:button_background_src="@drawable/rv_right"
+            app:button_background_src="@drawable/arrow_right"
             app:button_background_tint="@color/dark_white"
             app:button_height="45dp"
             app:button_width="45dp"

@@ -5,7 +5,6 @@ import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Color
 import android.graphics.Typeface
-import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.text.SpannableString
@@ -42,6 +41,7 @@ import com.subhajitrajak.makautstudybuddy.utils.showToast
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import androidx.core.net.toUri
 
 class OnBoardingActivity : AppCompatActivity() {
     private val binding: ActivityOnBoardingBinding by lazy {
@@ -87,7 +87,7 @@ class OnBoardingActivity : AppCompatActivity() {
         if (isGranted) {
             showToast(this, "Notification permission granted")
         } else {
-            showToast(this, "Notification permission denied")
+            showToast(this, "Please allow notifications to get important announcements")
         }
     }
 
@@ -217,7 +217,7 @@ class OnBoardingActivity : AppCompatActivity() {
     }
 
     fun openUrl(url: String, view: View) {
-        val intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
+        val intent = Intent(Intent.ACTION_VIEW, url.toUri())
         view.context.startActivity(intent)
     }
 

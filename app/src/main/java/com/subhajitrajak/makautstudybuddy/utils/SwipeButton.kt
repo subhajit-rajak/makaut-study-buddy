@@ -1,405 +1,402 @@
-package com.subhajitrajak.makautstudybuddy.utils;
+package com.subhajitrajak.makautstudybuddy.utils
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-import android.animation.AnimatorSet;
-import android.animation.ObjectAnimator;
-import android.animation.ValueAnimator;
-import android.annotation.SuppressLint;
-import android.content.Context;
-import android.content.res.ColorStateList;
-import android.content.res.TypedArray;
-import android.graphics.Color;
-import android.graphics.Typeface;
-import android.graphics.drawable.Drawable;
-import android.util.AttributeSet;
-import android.view.Gravity;
-import android.view.MotionEvent;
-import android.view.View;
-import android.view.ViewGroup;
-import android.view.animation.AccelerateDecelerateInterpolator;
-import android.widget.ImageView;
-import android.widget.RelativeLayout;
-import android.widget.TextView;
+import android.animation.Animator
+import android.animation.AnimatorListenerAdapter
+import android.animation.AnimatorSet
+import android.animation.ObjectAnimator
+import android.animation.ValueAnimator
+import android.annotation.SuppressLint
+import android.content.Context
+import android.content.res.ColorStateList
+import android.graphics.Color
+import android.graphics.drawable.Drawable
+import android.util.AttributeSet
+import android.view.Gravity
+import android.view.MotionEvent
+import android.view.View
+import android.view.ViewGroup
+import android.view.animation.AccelerateDecelerateInterpolator
+import android.widget.ImageView
+import android.widget.RelativeLayout
+import android.widget.TextView
+import androidx.core.content.ContextCompat
+import androidx.core.content.res.ResourcesCompat
+import androidx.core.content.withStyledAttributes
+import com.subhajitrajak.makautstudybuddy.R
 
-import androidx.core.content.ContextCompat;
-import androidx.core.content.res.ResourcesCompat;
+class SwipeButton @JvmOverloads constructor(
+    context: Context,
+    attrs: AttributeSet? = null,
+    defStyleAttr: Int = -1,
+    defStyleRes: Int = -1
+) : RelativeLayout(context, attrs, defStyleAttr, defStyleRes) {
 
-import com.subhajitrajak.makautstudybuddy.R;
-
-public class SwipeButton extends RelativeLayout {
-    private static final int START = 0;
-    private static final int CENTER = 1;
-    private static final int END = 2;
-    private ImageView swipeBtn;
-    private TextView centerText;
-    private ViewGroup background, trail;
-    private int collapsedHeight, collapsedWidth;
-    private boolean trailEnabled = false, hasActiveStatus = false, hasFinishAnimation = true;
-    private Context context;
-    private OnActiveListener onActiveListener;
-    private boolean isActive = false;
-
-    public SwipeButton(Context context) {
-        super(context);
-        init(context, null, -1, -1);
+    companion object {
+        private const val START = 0
+        private const val CENTER = 1
+        private const val END = 2
     }
 
-    public SwipeButton(Context context, AttributeSet attrs) {
-        super(context, attrs);
-        init(context, attrs, -1, -1);
+    private var swipeBtn: ImageView = ImageView(context)
+    private var centerText: TextView = TextView(context)
+    private lateinit var background: ViewGroup
+    private var trail: ViewGroup? = null
+    private var collapsedHeight = 0
+    private var collapsedWidth = 0
+    private var trailEnabled = false
+    private var hasActiveStatus = false
+    private var hasFinishAnimation = true
+    private var isActive = false
+    private var onActiveListener: OnActiveListener? = null
+
+    init {
+        initView(context, attrs, defStyleAttr, defStyleRes)
     }
 
-    public SwipeButton(Context context, AttributeSet attrs, int defStyleAttr) {
-        super(context, attrs, defStyleAttr);
-        init(context, attrs, defStyleAttr, -1);
-    }
-
-    public SwipeButton(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
-        super(context, attrs, defStyleAttr, defStyleRes);
-        init(context, attrs, defStyleAttr, defStyleRes);
-    }
-
-    public void setOnActiveListener(OnActiveListener onActiveListener) {
-        this.onActiveListener = onActiveListener;
-    }
-
-    public void setInnerText(String text) {
-        centerText.setText(text);
-    }
-
-    public void setInnerTextColor(int color) {
-        centerText.setTextColor(color);
-    }
-
-    public void setInnerTextSize(int size) {
-        centerText.setTextSize(size);
-    }
-
-    public void setInnerTextPadding(int innerTextPadding) {
-        centerText.setPadding((int) innerTextPadding, (int) innerTextPadding, (int) innerTextPadding, (int) innerTextPadding);
-    }
-
-    public void setInnerTextPaddings(int left, int top, int right, int bottom) {
-        centerText.setPadding(left, top, right, bottom);
-    }
-
-    public void setInnerTextGravity(int gravity) {
-        LayoutParams layoutParams = new LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-        switch (gravity) {
-            case START: {
-                layoutParams.addRule(RelativeLayout.ALIGN_PARENT_LEFT, RelativeLayout.TRUE);
-                layoutParams.leftMargin = 32;
-                break;
-            }
-            case CENTER: {
-                layoutParams.addRule(RelativeLayout.CENTER_IN_PARENT, RelativeLayout.TRUE);
-                break;
-            }
-            case END: {
-                layoutParams.addRule(RelativeLayout.ALIGN_PARENT_END, RelativeLayout.TRUE);
-                layoutParams.rightMargin = 32;
-                break;
+    fun setOnActiveListener(listener: () -> Unit) {
+        onActiveListener = object : OnActiveListener {
+            override fun onActive() {
+                listener()
             }
         }
-        layoutParams.addRule(RelativeLayout.CENTER_VERTICAL, RelativeLayout.TRUE);
-        background.updateViewLayout(centerText, layoutParams);
     }
 
-    public void setOuterBackgroundDrawable(Drawable drawable) {
-        if (drawable != null)
-            background.setBackground(drawable);
-        else
-            background.setBackground(ContextCompat.getDrawable(context, R.drawable.swipe_rounded_background));
+    fun setInnerText(text: String) {
+        centerText.text = text
     }
 
-    public void setOuterBackgroundTint(int color) {
-        if (color != -1)
-            background.setBackgroundTintList(ColorStateList.valueOf(color));
+    fun setInnerTextColor(color: Int) {
+        centerText.setTextColor(color)
     }
 
-    public void setOuterBackgroundHeight(float height) {
-        ViewGroup.LayoutParams backgroundLayoutParam = background.getLayoutParams();
-        backgroundLayoutParam.height = (int) height;
-        background.setLayoutParams(backgroundLayoutParam);
+    fun setInnerTextSize(size: Int) {
+        centerText.textSize = size.toFloat()
     }
 
-    public void setButtonBackgroundDrawable(Drawable drawable) {
-        if (drawable != null)
-            swipeBtn.setBackground(drawable);
-        else
-            swipeBtn.setBackground(ContextCompat.getDrawable(context, R.drawable.swipe_btn_background));
+    fun setInnerTextPadding(padding: Int) {
+        centerText.setPadding(padding, padding, padding, padding)
     }
 
-    public void setButtonBackgroundTint(int color) {
-        if (color != -1)
-            swipeBtn.setBackgroundTintList(ColorStateList.valueOf(color));
+    fun setInnerTextPaddings(left: Int, top: Int, right: Int, bottom: Int) {
+        centerText.setPadding(left, top, right, bottom)
     }
 
-    public void setButtonBackgroundImage(Drawable drawable) {
-        swipeBtn.setImageDrawable(drawable);
+    fun setInnerTextGravity(gravity: Int) {
+        val params = LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT)
+        when (gravity) {
+            START -> {
+                params.addRule(ALIGN_PARENT_START)
+                params.leftMargin = 32
+            }
+            CENTER -> {
+                params.addRule(CENTER_IN_PARENT)
+            }
+            END -> {
+                params.addRule(ALIGN_PARENT_END)
+                params.rightMargin = 32
+            }
+        }
+        params.addRule(CENTER_VERTICAL)
+        background.updateViewLayout(centerText, params)
     }
 
-    public void setButtonWidth(int width) {
-        ViewGroup.LayoutParams layoutParams = swipeBtn.getLayoutParams();
-        layoutParams.width = width;
-        swipeBtn.setLayoutParams(layoutParams);
+    fun setOuterBackgroundDrawable(drawable: Drawable?) {
+        background.background = drawable ?: ContextCompat.getDrawable(context, R.drawable.swipe_rounded_background)
     }
 
-    public void setButtonHeight(int height) {
-        ViewGroup.LayoutParams layoutParams = swipeBtn.getLayoutParams();
-        layoutParams.height = height;
-        swipeBtn.setLayoutParams(layoutParams);
+    fun setOuterBackgroundTint(color: Int) {
+        if (color != -1) {
+            background.backgroundTintList = ColorStateList.valueOf(color)
+        }
     }
 
-    public void setButtonPadding(int padding) {
-        swipeBtn.setPadding(padding, padding, padding, padding);
+    fun setOuterBackgroundHeight(height: Float) {
+        background.layoutParams = background.layoutParams.apply {
+            this.height = height.toInt()
+        }
     }
 
-    public void setTrailEnabled(boolean enabled) {
-        this.trailEnabled = enabled;
+    fun setButtonBackgroundDrawable(drawable: Drawable?) {
+        swipeBtn.background = drawable ?: ContextCompat.getDrawable(context, R.drawable.swipe_btn_background)
     }
 
-    public void setTrailBackgroundTint(int color) {
-        trail.setBackgroundTintList(ColorStateList.valueOf(color));
+    fun setButtonBackgroundTint(color: Int) {
+        if (color != -1) {
+            swipeBtn.backgroundTintList = ColorStateList.valueOf(color)
+        }
     }
 
-    @SuppressLint("UseCompatLoadingForDrawables")
-    public void init(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
-        this.context = context;
-        background = new RelativeLayout(context);
-        LayoutParams layoutParamsView = new LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-        layoutParamsView.addRule(RelativeLayout.CENTER_IN_PARENT, RelativeLayout.TRUE);
-        addView(background, layoutParamsView);
+    fun setButtonBackgroundImage(drawable: Drawable?) {
+        swipeBtn.setImageDrawable(drawable)
+    }
 
-        final TextView centerText = new TextView(context);
-        this.centerText = centerText;
-        centerText.setGravity(Gravity.CENTER);
-        LayoutParams layoutParams = new LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-        layoutParams.addRule(RelativeLayout.CENTER_IN_PARENT, RelativeLayout.TRUE);
-        background.addView(centerText, layoutParams);
+    fun setButtonWidth(width: Int) {
+        swipeBtn.layoutParams = swipeBtn.layoutParams.apply {
+            this.width = width
+        }
+    }
 
-        swipeBtn = new ImageView(context);
+    fun setButtonHeight(height: Int) {
+        swipeBtn.layoutParams = swipeBtn.layoutParams.apply {
+            this.height = height
+        }
+    }
+
+    fun setButtonPadding(padding: Int) {
+        swipeBtn.setPadding(padding, padding, padding, padding)
+    }
+
+    fun setTrailEnabled(enabled: Boolean) {
+        trailEnabled = enabled
+    }
+
+    fun setTrailBackgroundTint(color: Int) {
+        trail?.backgroundTintList = ColorStateList.valueOf(color)
+    }
+
+    @SuppressLint("ClickableViewAccessibility")
+    private fun initView(context: Context, attrs: AttributeSet?, defStyleAttr: Int, defStyleRes: Int) {
+        background = RelativeLayout(context)
+        val layoutParamsView = LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT)
+        layoutParamsView.addRule(CENTER_IN_PARENT)
+        addView(background, layoutParamsView)
+
+        centerText.gravity = Gravity.CENTER
+        val textLayoutParams = LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT)
+        textLayoutParams.addRule(CENTER_IN_PARENT)
+        background.addView(centerText, textLayoutParams)
 
         if (attrs != null && defStyleAttr == -1 && defStyleRes == -1) {
-            TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.SwipeButton,defStyleAttr, R.style.default_swipe_button_style);
-            //----- HANDLE THE OUTER BACKGROUND -----//
-            setOuterBackgroundDrawable(typedArray.getDrawable(R.styleable.SwipeButton_outer_background_drawable));
-            setOuterBackgroundTint(typedArray.getColor(R.styleable.SwipeButton_outer_background_tint, -1));
-            setOuterBackgroundHeight(typedArray.getDimension(R.styleable.SwipeButton_outer_background_height, ViewGroup.LayoutParams.WRAP_CONTENT));
+            context.withStyledAttributes(
+                attrs,
+                R.styleable.SwipeButton,
+                defStyleAttr,
+                R.style.default_swipe_button_style
+            ) {
 
-            //----- HANDLE THE INNER TEXT -----//
-            centerText.setText(typedArray.getText(R.styleable.SwipeButton_inner_text));
-            centerText.setTextColor(typedArray.getColor(R.styleable.SwipeButton_inner_text_color, Color.WHITE));
-            Typeface typeface = ResourcesCompat.getFont(context, R.font.montserrat_semibold);
-            centerText.setTypeface(typeface);
+                setOuterBackgroundDrawable(getDrawable(R.styleable.SwipeButton_outer_background_drawable))
+                setOuterBackgroundTint(getColor(R.styleable.SwipeButton_outer_background_tint, -1))
+                setOuterBackgroundHeight(
+                    getDimension(
+                        R.styleable.SwipeButton_outer_background_height,
+                        LayoutParams.WRAP_CONTENT.toFloat()
+                    )
+                )
 
-            float innerTextPadding = typedArray.getDimension(R.styleable.SwipeButton_inner_text_padding, -1);
-            float innerTextLeftPadding = typedArray.getDimension(R.styleable.SwipeButton_inner_text_left_padding, 0);
-            float innerTextTopPadding = typedArray.getDimension(R.styleable.SwipeButton_inner_text_top_padding, 0);
-            float innerTextRightPadding = typedArray.getDimension(R.styleable.SwipeButton_inner_text_right_padding, 0);
-            float innerTextBottomPadding = typedArray.getDimension(R.styleable.SwipeButton_inner_text_bottom_padding, 0);
-            if (innerTextPadding != -1)
-                centerText.setPadding((int) innerTextPadding, (int) innerTextPadding, (int) innerTextPadding, (int) innerTextPadding);
-            else
-                centerText.setPadding((int) innerTextLeftPadding, (int) innerTextTopPadding, (int) innerTextRightPadding, (int) innerTextBottomPadding);
+                centerText.text = getText(R.styleable.SwipeButton_inner_text)
+                centerText.setTextColor(
+                    getColor(
+                        R.styleable.SwipeButton_inner_text_color,
+                        Color.WHITE
+                    )
+                )
+                centerText.typeface = ResourcesCompat.getFont(context, R.font.montserrat_semibold)
 
-            float textSize = convertPixelsToSp(typedArray.getDimension(R.styleable.SwipeButton_inner_text_size, 0), context);
-
-            if (textSize != 0) centerText.setTextSize(textSize);
-            else centerText.setTextSize(12);
-            setInnerTextGravity(typedArray.getInt(R.styleable.SwipeButton_inner_text_gravity, 1));
-
-            //----- HANDLE THE SWIPE BTN -----//
-            collapsedWidth = (int) typedArray.getDimension(R.styleable.SwipeButton_button_width, ViewGroup.LayoutParams.WRAP_CONTENT);
-            collapsedHeight = (int) typedArray.getDimension(R.styleable.SwipeButton_button_height, ViewGroup.LayoutParams.WRAP_CONTENT);
-
-            setButtonBackgroundDrawable(typedArray.getDrawable(R.styleable.SwipeButton_button_background_drawable));
-            setButtonBackgroundTint(typedArray.getColor(R.styleable.SwipeButton_button_background_tint, -1));
-            setButtonBackgroundImage(typedArray.getDrawable(R.styleable.SwipeButton_button_background_src));
-
-            LayoutParams btnLayoutParam = new LayoutParams(collapsedWidth, collapsedHeight);
-            btnLayoutParam.addRule(RelativeLayout.ALIGN_PARENT_LEFT, RelativeLayout.TRUE);
-            btnLayoutParam.addRule(RelativeLayout.CENTER_VERTICAL, RelativeLayout.TRUE);
-            btnLayoutParam.leftMargin = 16;
-            btnLayoutParam.rightMargin = 16;
-            addView(swipeBtn, btnLayoutParam);
-            setButtonPadding((int) typedArray.getDimension(R.styleable.SwipeButton_button_background_padding, 0));
-            swipeBtn.setElevation(1);
-
-            //----- HANDLE THE TRAIL -----//
-            trailEnabled = typedArray.getBoolean(R.styleable.SwipeButton_trail_enabled, false);
-            int trailBackgroundTint = typedArray.getColor(R.styleable.SwipeButton_trail_background_tint, getResources().getColor(R.color.swipe_button_gray));
-            Drawable trailBackgroundDrawable = typedArray.getDrawable(R.styleable.SwipeButton_outer_background_drawable);
-
-            if (trailEnabled) {
-                trail = new RelativeLayout(context);
-                LayoutParams trailLayoutParams = new LayoutParams(collapsedWidth, collapsedHeight);
-                trailLayoutParams.addRule(RelativeLayout.ALIGN_PARENT_LEFT, RelativeLayout.TRUE);
-                trailLayoutParams.addRule(RelativeLayout.CENTER_VERTICAL, RelativeLayout.TRUE);
-                trail.setBackgroundTintList(ColorStateList.valueOf(trailBackgroundTint));
-                trail.setElevation(0);
-                if (trailBackgroundDrawable != null)
-                    trail.setBackground(trailBackgroundDrawable);
-                else
-                    trail.setBackground(ContextCompat.getDrawable(context, R.drawable.swipe_rounded_background));
-
-                addView(trail, trailLayoutParams);
-            }
-
-            //----- HANDLE THE ACTIVE STATUS -----//
-            hasActiveStatus = typedArray.getBoolean(R.styleable.SwipeButton_has_active_status, false);
-            hasFinishAnimation = typedArray.getBoolean(R.styleable.SwipeButton_has_finish_animation, true);
-            typedArray.recycle();
-        }
-        setOnTouchListener(getButtonTouchListener());
-    }
-
-    private OnTouchListener getButtonTouchListener() {
-        return new OnTouchListener() {
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                switch (event.getAction()) {
-                    case MotionEvent.ACTION_DOWN:
-                        return !isTouchOutsideInitialPosition(event, swipeBtn);
-                    case MotionEvent.ACTION_MOVE:
-                        if (event.getX() > swipeBtn.getWidth() / 2 && event.getX() + swipeBtn.getWidth() / 2 < getWidth()) {
-                            swipeBtn.setX(event.getX() - swipeBtn.getWidth() / 2);
-                            centerText.setAlpha(1 - 1.3f * (swipeBtn.getX() + swipeBtn.getWidth()) / getWidth());
-                        }
-
-                        //DON'T LET THE BUTTON GET OUTSIDE THE SCREEN
-                        if (event.getX() + swipeBtn.getWidth() / 2 > getWidth() && swipeBtn.getX() + swipeBtn.getWidth() / 2 < getWidth()) {
-                            swipeBtn.setX(getWidth() - swipeBtn.getWidth());
-                        }
-
-                        if (event.getX() < swipeBtn.getWidth() / 2) {
-                            swipeBtn.setX(0);
-                        }
-                        expandTrail();
-                        return true;
-                    case MotionEvent.ACTION_UP:
-                        if (isActive) {
-                            if (hasFinishAnimation)
-                                deactivateButton();
-                            if (onActiveListener != null)
-                                onActiveListener.onActive();
-                        } else {
-                            if (swipeBtn.getX() + swipeBtn.getWidth() > background.getWidth() * 0.9) {
-                                if (hasActiveStatus) {
-                                    activateButton();
-                                } else {
-                                    if (onActiveListener != null)
-                                        onActiveListener.onActive();
-                                    if (hasFinishAnimation)
-                                        moveButtonBack();
-                                }
-                            } else
-                                moveButtonBack();
-                        }
-                        return true;
+                val padding = getDimension(R.styleable.SwipeButton_inner_text_padding, -1f)
+                if (padding != -1f) {
+                    setInnerTextPadding(padding.toInt())
+                } else {
+                    val left =
+                        getDimension(R.styleable.SwipeButton_inner_text_left_padding, 0f).toInt()
+                    val top =
+                        getDimension(R.styleable.SwipeButton_inner_text_top_padding, 0f).toInt()
+                    val right =
+                        getDimension(R.styleable.SwipeButton_inner_text_right_padding, 0f).toInt()
+                    val bottom =
+                        getDimension(R.styleable.SwipeButton_inner_text_bottom_padding, 0f).toInt()
+                    setInnerTextPaddings(left, top, right, bottom)
                 }
-                return false;
+
+                centerText.textSize = convertPixelsToSp(
+                    getDimension(R.styleable.SwipeButton_inner_text_size, 0f), context
+                ).takeIf { it != 0f } ?: 12f
+
+                setInnerTextGravity(getInt(R.styleable.SwipeButton_inner_text_gravity, CENTER))
+
+                collapsedWidth = getDimensionPixelSize(
+                    R.styleable.SwipeButton_button_width,
+                    LayoutParams.WRAP_CONTENT
+                )
+                collapsedHeight = getDimensionPixelSize(
+                    R.styleable.SwipeButton_button_height,
+                    LayoutParams.WRAP_CONTENT
+                )
+
+                setButtonBackgroundDrawable(getDrawable(R.styleable.SwipeButton_button_background_drawable))
+                setButtonBackgroundTint(
+                    getColor(
+                        R.styleable.SwipeButton_button_background_tint,
+                        -1
+                    )
+                )
+                setButtonBackgroundImage(getDrawable(R.styleable.SwipeButton_button_background_src))
+
+                val btnParams = LayoutParams(collapsedWidth, collapsedHeight).apply {
+                    addRule(ALIGN_PARENT_START)
+                    addRule(CENTER_VERTICAL)
+                    leftMargin = 16
+                    rightMargin = 16
+                }
+                addView(swipeBtn, btnParams)
+
+                setButtonPadding(
+                    getDimensionPixelSize(
+                        R.styleable.SwipeButton_button_background_padding,
+                        0
+                    )
+                )
+                swipeBtn.elevation = 1f
+
+                trailEnabled = getBoolean(R.styleable.SwipeButton_trail_enabled, false)
+                val trailTint = getColor(
+                    R.styleable.SwipeButton_trail_background_tint,
+                    ContextCompat.getColor(context, R.color.swipe_button_gray)
+                )
+                val trailDrawable = getDrawable(R.styleable.SwipeButton_outer_background_drawable)
+
+                if (trailEnabled) {
+                    trail = RelativeLayout(context).apply {
+                        layoutParams = LayoutParams(collapsedWidth, collapsedHeight).apply {
+                            addRule(ALIGN_PARENT_START)
+                            addRule(CENTER_VERTICAL)
+                        }
+                        background = trailDrawable ?: ContextCompat.getDrawable(
+                            context,
+                            R.drawable.swipe_rounded_background
+                        )
+                        backgroundTintList = ColorStateList.valueOf(trailTint)
+                        elevation = 0f
+                    }
+                    addView(trail)
+                }
+
+                hasActiveStatus = getBoolean(R.styleable.SwipeButton_has_active_status, false)
+                hasFinishAnimation = getBoolean(R.styleable.SwipeButton_has_finish_animation, true)
+
             }
-        };
+        }
+
+        setOnTouchListener(getButtonTouchListener())
     }
 
-    private void activateButton() {
-        final ValueAnimator positionAnimator = ValueAnimator.ofFloat(swipeBtn.getX(), background.getWidth() - swipeBtn.getWidth() - 16);
-        positionAnimator.addUpdateListener(animation -> {
-            float x = (Float) positionAnimator.getAnimatedValue();
-            swipeBtn.setX(x);
-        });
+    @SuppressLint("ClickableViewAccessibility")
+    private fun getButtonTouchListener() = OnTouchListener { _, event ->
+        when (event.action) {
+            MotionEvent.ACTION_DOWN -> !isTouchOutsideInitialPosition(event, swipeBtn)
+            MotionEvent.ACTION_MOVE -> {
+                val x = event.x
+                val halfBtn = swipeBtn.width / 2
 
-        background.setPadding(16, 0, 16, 0);
+                when {
+                    x > halfBtn && x + halfBtn < width -> swipeBtn.x = x - halfBtn
+                    x + halfBtn >= width -> swipeBtn.x = (width - swipeBtn.width).toFloat()
+                    x < halfBtn -> swipeBtn.x = 0f
+                }
 
-
-        final ValueAnimator widthAnimator = ValueAnimator.ofInt(
-                collapsedWidth,
-                background.getWidth()
-        );
-
-        widthAnimator.addUpdateListener(animation -> {
-            ViewGroup.LayoutParams params = swipeBtn.getLayoutParams();
-            params.width = (Integer) widthAnimator.getAnimatedValue();
-            swipeBtn.setLayoutParams(params);
-        });
-
-
-        AnimatorSet animatorSet = new AnimatorSet();
-        animatorSet.addListener(new AnimatorListenerAdapter() {
-            @Override
-            public void onAnimationEnd(Animator animation) {
-                super.onAnimationEnd(animation);
-                isActive = true;
-
-                // Restore left margin explicitly
-                LayoutParams params = (LayoutParams) swipeBtn.getLayoutParams();
-                params.leftMargin = 16;
-                swipeBtn.setLayoutParams(params);
+                centerText.alpha = 1 - 1.3f * (swipeBtn.x + swipeBtn.width) / width
+                expandTrail()
+                true
             }
-        });
-
-        animatorSet.playTogether(positionAnimator, widthAnimator);
-        animatorSet.start();
-    }
-
-    private void deactivateButton() {
-        final ValueAnimator widthAnimator = ValueAnimator.ofInt(
-                swipeBtn.getWidth(),
-                collapsedWidth
-        );
-
-        widthAnimator.addUpdateListener(animation -> {
-            ViewGroup.LayoutParams params = swipeBtn.getLayoutParams();
-            params.width = (Integer) widthAnimator.getAnimatedValue();
-            swipeBtn.setLayoutParams(params);
-            expandTrail();
-        });
-
-        AnimatorSet animatorSet = new AnimatorSet();
-        animatorSet.addListener(new AnimatorListenerAdapter() {
-            @Override
-            public void onAnimationEnd(Animator animation) {
-                super.onAnimationEnd(animation);
-                isActive = false;
+            MotionEvent.ACTION_UP -> {
+                if (isActive) {
+                    if (hasFinishAnimation) deactivateButton()
+                    onActiveListener?.onActive()
+                } else {
+                    if (swipeBtn.x + swipeBtn.width > background.width * 0.9f) {
+                        if (hasActiveStatus) activateButton()
+                        else {
+                            onActiveListener?.onActive()
+                            if (hasFinishAnimation) moveButtonBack()
+                        }
+                    } else {
+                        moveButtonBack()
+                    }
+                }
+                true
             }
-        });
-
-        ObjectAnimator objectAnimator = ObjectAnimator.ofFloat(centerText, "alpha", 1);
-
-        animatorSet.playTogether(objectAnimator, widthAnimator);
-        animatorSet.start();
+            else -> false
+        }
     }
 
-    private void expandTrail() {
-        if (!trailEnabled) return;
-        ViewGroup.LayoutParams trailLayoutParams = trail.getLayoutParams();
-        trailLayoutParams.width = (int) (swipeBtn.getX() + collapsedWidth);
-        trail.setLayoutParams(trailLayoutParams);
+    private fun activateButton() {
+        val positionAnimator = ValueAnimator.ofFloat(swipeBtn.x, background.width - swipeBtn.width - 16f).apply {
+            addUpdateListener { swipeBtn.x = it.animatedValue as Float }
+        }
+
+        val widthAnimator = ValueAnimator.ofInt(collapsedWidth, background.width).apply {
+            addUpdateListener {
+                swipeBtn.layoutParams = swipeBtn.layoutParams.apply { width = it.animatedValue as Int }
+            }
+        }
+
+        AnimatorSet().apply {
+            addListener(object : AnimatorListenerAdapter() {
+                override fun onAnimationEnd(animation: Animator) {
+                    isActive = true
+                    (swipeBtn.layoutParams as LayoutParams).leftMargin = 16
+                    swipeBtn.requestLayout()
+                }
+            })
+            playTogether(positionAnimator, widthAnimator)
+            start()
+        }
     }
 
-    private void moveButtonBack() {
-        final ValueAnimator positionAnimator = ValueAnimator.ofFloat(swipeBtn.getX(), 16);
-        positionAnimator.setInterpolator(new AccelerateDecelerateInterpolator());
-        positionAnimator.addUpdateListener(animation -> {
-            float x = (Float) positionAnimator.getAnimatedValue();
-            swipeBtn.setX(x);
-            expandTrail();
-        });
-        ObjectAnimator objectAnimator = ObjectAnimator.ofFloat(centerText, "alpha", 1);
-        positionAnimator.setDuration(200);
-        AnimatorSet animatorSet = new AnimatorSet();
-        animatorSet.playTogether(objectAnimator, positionAnimator);
-        animatorSet.start();
+    private fun deactivateButton() {
+        val widthAnimator = ValueAnimator.ofInt(swipeBtn.width, collapsedWidth).apply {
+            addUpdateListener {
+                swipeBtn.layoutParams = swipeBtn.layoutParams.apply { width = it.animatedValue as Int }
+                expandTrail()
+            }
+        }
+
+        val fadeInText = ObjectAnimator.ofFloat(centerText, "alpha", 1f)
+
+        AnimatorSet().apply {
+            addListener(object : AnimatorListenerAdapter() {
+                override fun onAnimationEnd(animation: Animator) {
+                    isActive = false
+                }
+            })
+            playTogether(fadeInText, widthAnimator)
+            start()
+        }
     }
 
-    private boolean isTouchOutsideInitialPosition(MotionEvent event, View view) {
-        return event.getX() > view.getX() + view.getWidth();
+    private fun expandTrail() {
+        if (!trailEnabled || trail == null) return
+        trail!!.layoutParams = trail!!.layoutParams.apply {
+            width = (swipeBtn.x + collapsedWidth).toInt()
+        }
     }
 
-    float convertPixelsToSp(float px, Context context) {
-        return px / context.getResources().getDisplayMetrics().scaledDensity;
+    private fun moveButtonBack() {
+        val positionAnimator = ValueAnimator.ofFloat(swipeBtn.x, 16f).apply {
+            interpolator = AccelerateDecelerateInterpolator()
+            duration = 200
+            addUpdateListener {
+                swipeBtn.x = it.animatedValue as Float
+                expandTrail()
+            }
+        }
+
+        val fadeInText = ObjectAnimator.ofFloat(centerText, "alpha", 1f)
+
+        AnimatorSet().apply {
+            playTogether(positionAnimator, fadeInText)
+            start()
+        }
     }
 
+    private fun isTouchOutsideInitialPosition(event: MotionEvent, view: View): Boolean {
+        return event.x > view.x + view.width
+    }
+
+    private fun convertPixelsToSp(px: Float, context: Context): Float {
+        return px / context.resources.displayMetrics.scaledDensity
+    }
+
+    interface OnActiveListener {
+        fun onActive()
+    }
 }
