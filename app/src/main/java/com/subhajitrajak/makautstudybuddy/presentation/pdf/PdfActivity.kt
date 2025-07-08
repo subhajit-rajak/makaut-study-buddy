@@ -1,15 +1,18 @@
 package com.subhajitrajak.makautstudybuddy.presentation.pdf
 
-import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.view.View
 import android.view.WindowInsets
 import android.view.WindowInsetsController
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.net.toUri
 import androidx.core.view.WindowCompat
 import com.github.barteksc.pdfviewer.scroll.DefaultScrollHandle
+import com.itextpdf.text.pdf.PdfReader
+import com.itextpdf.text.pdf.parser.PdfTextExtractor
 import com.subhajitrajak.makautstudybuddy.databinding.ActivityPdfBinding
+import com.subhajitrajak.makautstudybuddy.utils.log
 import com.subhajitrajak.makautstudybuddy.utils.showToast
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -26,6 +29,10 @@ class PdfActivity : AppCompatActivity() {
     private val binding: ActivityPdfBinding by lazy {
         ActivityPdfBinding.inflate(layoutInflater)
     }
+
+    private var currentInputStream: InputStream? = null
+    private var isRemote = false
+    private var pdfUrlOrPath: String = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -52,22 +59,51 @@ class PdfActivity : AppCompatActivity() {
         setContentView(binding.root)
         supportActionBar?.hide()
 
-        binding.apply {
-            val pdf = intent.getStringExtra("book_pdf").toString()
-            val location = intent.getStringExtra("location").toString()
+        pdfUrlOrPath = intent.getStringExtra("book_pdf").toString()
+        isRemote = intent.getStringExtra("location") != "local"
+        log(pdfUrlOrPath)
 
-            if (location == "local") {
-                pdfView.fromUri(Uri.parse(pdf))
-                    .swipeHorizontal(true)
-                    .scrollHandle(DefaultScrollHandle(this@PdfActivity))
-                    .enableSwipe(true)
-                    .pageSnap(true)
-                    .autoSpacing(true)
-                    .pageFling(true)
-                    .load()
+        binding.apply {
+            if (isRemote) {
+                loadPdfFromUrl(pdfUrlOrPath)
+                askAiButton.visibility = View.GONE
             } else {
-                loadPdfFromUrl(pdf)
+                loadPdfFromLocal(pdfUrlOrPath)
             }
+
+            askAiButton.setOnClickListener {
+                if (currentInputStream != null) {
+                    CoroutineScope(Dispatchers.IO).launch {
+                        val extracted = extractTextFromPdfPage(pdfUrlOrPath, binding.pdfView.currentPage)
+                        log("Extracted text: $extracted")
+                        withContext(Dispatchers.Main) {
+                            val prompt = "Explain this page:\n$extracted"
+                            supportFragmentManager.beginTransaction()
+                                .replace(android.R.id.content, PdfAssistantFragment.newInstance(extracted))
+                                .addToBackStack(null)
+                                .commit()
+                        }
+                    }
+                } else {
+                    showToast(this@PdfActivity, "PDF not loaded yet.")
+                }
+            }
+        }
+    }
+
+    private fun loadPdfFromLocal(path: String) {
+        val uri = path.toUri()
+        contentResolver.openInputStream(uri)?.let { input ->
+            currentInputStream = input
+            binding.pdfView.fromStream(input)
+                .swipeHorizontal(true)
+                .scrollHandle(DefaultScrollHandle(this))
+                .enableSwipe(true)
+                .pageSnap(true)
+                .autoSpacing(true)
+                .fitEachPage(true)
+                .pageFling(true)
+                .load()
         }
     }
 
@@ -76,6 +112,7 @@ class PdfActivity : AppCompatActivity() {
         binding.progressBar.visibility = View.VISIBLE
         CoroutineScope(Dispatchers.IO).launch {
             val inputStream = fetchPdfStream(url)
+            currentInputStream = inputStream
             withContext(Dispatchers.Main) {
                 inputStream?.let {
                     binding.pdfView.fromStream(it)
@@ -84,6 +121,7 @@ class PdfActivity : AppCompatActivity() {
                         .enableSwipe(true)
                         .pageSnap(true)
                         .autoSpacing(true)
+                        .fitEachPage(true)
                         .pageFling(true)
                         .onLoad {
                             binding.progressBar.visibility = View.GONE
@@ -102,19 +140,33 @@ class PdfActivity : AppCompatActivity() {
             }
         }
     }
-}
 
-private fun fetchPdfStream(urlString: String): InputStream? {
-    return try {
-        val url = URL(urlString)
-        val urlConnection = url.openConnection() as HttpsURLConnection
-        if (urlConnection.responseCode == HttpURLConnection.HTTP_OK) {
-            BufferedInputStream(urlConnection.inputStream)
-        } else {
+    private fun fetchPdfStream(urlString: String): InputStream? {
+        return try {
+            val url = URL(urlString)
+            val urlConnection = url.openConnection() as HttpsURLConnection
+            if (urlConnection.responseCode == HttpURLConnection.HTTP_OK) {
+                BufferedInputStream(urlConnection.inputStream)
+            } else {
+                null
+            }
+        } catch (e: IOException) {
+            e.printStackTrace()
             null
         }
-    } catch (e: IOException) {
-        e.printStackTrace()
-        null
+    }
+
+    private fun extractTextFromPdfPage(fileName: String, pageNumber: Int): String {
+        return try {
+            // Create a PdfReader from InputStream
+            val reader = PdfReader(fileName)
+            val text = PdfTextExtractor.getTextFromPage(reader, pageNumber + 1).trim()
+
+            reader.close()
+            text
+        } catch (e: Exception) {
+            e.printStackTrace()
+            "Unable to extract text"
+        }
     }
 }

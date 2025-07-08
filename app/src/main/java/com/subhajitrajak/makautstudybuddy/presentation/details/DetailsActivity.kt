@@ -28,6 +28,7 @@ import com.subhajitrajak.makautstudybuddy.utils.MyResponses
 import com.subhajitrajak.makautstudybuddy.utils.hasFastInternet
 import com.subhajitrajak.makautstudybuddy.utils.showToast
 import kotlinx.coroutines.launch
+import androidx.core.graphics.drawable.toDrawable
 
 class DetailsActivity : AppCompatActivity() {
     private val activity = this
@@ -99,7 +100,7 @@ class DetailsActivity : AppCompatActivity() {
             val dialogBinding = LayoutProgressBinding.inflate(layoutInflater)
             val dialog = Dialog(activity).apply {
                 setContentView(dialogBinding.root)
-                this.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+                this.window!!.setBackgroundDrawable(Color.TRANSPARENT.toDrawable())
                 this.window!!.setLayout(
                     ActionBar.LayoutParams.MATCH_PARENT,
                     ActionBar.LayoutParams.WRAP_CONTENT

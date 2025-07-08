@@ -5,7 +5,6 @@ import android.os.Bundle
 import android.os.Environment
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.FileProvider
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -85,14 +84,8 @@ class DownloadedFilesActivity : AppCompatActivity() {
 
 
     private fun openPdfFile(file: File) {
-        val uri = FileProvider.getUriForFile(
-            activity,
-            "${packageName}.provider",
-            file
-        )
-
         Intent().apply {
-            putExtra("book_pdf", uri.toString())
+            putExtra("book_pdf", file.toURI().toString())
             putExtra("location", "local")
             setClass(activity, PdfActivity::class.java)
             startActivity(this)
