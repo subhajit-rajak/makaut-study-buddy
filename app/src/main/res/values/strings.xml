@@ -126,7 +126,6 @@
     <string name="last_updated">Last Updated:</string>
     <string name="semester_screen_title">Pick your semester</string>
     <string name="example_date">23–06–2025</string>
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="ask_ai">Ask Ai</string>
     <string name="what_can_i_help_with">What can I help with?</string>
