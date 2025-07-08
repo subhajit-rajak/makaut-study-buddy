@@ -87,12 +87,12 @@ dependencies {
 
     // pdf viewer
     implementation (libs.android.pdf.viewer)
-    implementation("com.itextpdf:itextg:5.5.10")
+    implementation(libs.itextg)
 
     // view models
     implementation (libs.androidx.lifecycle.viewmodel)
     implementation (libs.androidx.lifecycle.viewmodel.ktx)
-    implementation("androidx.fragment:fragment-ktx:1.8.8")
+    implementation(libs.androidx.fragment.ktx)
 
     // kotlin coroutines
     implementation (libs.kotlinx.coroutines.android)

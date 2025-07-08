@@ -4,7 +4,9 @@ androidPdfViewer = "3.2.0-beta.3"
 appUpdate = "2.1.0"
 circleimageview = "3.1.0"
 firebaseBom = "33.16.0"
+fragmentKtx = "1.8.8"
 glide = "4.16.0"
+itextg = "5.5.10"
 kotlin = "2.2.0"
 coreKtx = "1.16.0"
 junit = "4.13.2"
@@ -31,6 +33,7 @@ swiperefreshlayout = "1.1.0"
 [libraries]
 android-pdf-viewer = { module = "com.github.mhiew:android-pdf-viewer", version.ref = "androidPdfViewer" }
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
+androidx-fragment-ktx = { module = "androidx.fragment:fragment-ktx", version.ref = "fragmentKtx" }
 androidx-lifecycle-viewmodel = { module = "androidx.lifecycle:lifecycle-viewmodel", version.ref = "lifecycleVersion" }
 androidx-lifecycle-viewmodel-ktx = { module = "androidx.lifecycle:lifecycle-viewmodel-ktx", version.ref = "lifecycleVersion" }
 androidx-swiperefreshlayout = { module = "androidx.swiperefreshlayout:swiperefreshlayout", version.ref = "swiperefreshlayout" }
@@ -39,6 +42,7 @@ app-update-ktx = { module = "com.google.android.play:app-update-ktx", version.re
 circleimageview = { module = "de.hdodenhof:circleimageview", version.ref = "circleimageview" }
 converter-gson = { module = "com.squareup.retrofit2:converter-gson", version.ref = "converterGson" }
 glide = { module = "com.github.bumptech.glide:glide", version.ref = "glide" }
+itextg = { module = "com.itextpdf:itextg", version.ref = "itextg" }
 junit = { group = "junit", name = "junit", version.ref = "junit" }
 androidx-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junitVersion" }
 androidx-espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espressoCore" }
