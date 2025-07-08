@@ -14,7 +14,7 @@
         android:fillViewport="true"
         android:paddingHorizontal="24dp"
         android:paddingTop="32dp"
-        android:paddingBottom="72dp"
+        android:paddingBottom="84dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -34,8 +34,8 @@
                 android:text="@string/ask_ai"
                 android:textColor="@color/text"
                 android:textSize="32sp"
-                app:drawableStartCompat="@drawable/deepseek_logo"
-                app:drawableTint="@color/deepseek_blue" />
+                app:drawableStartCompat="@drawable/msblogo"
+                app:drawableTint="@color/highlight" />
 
             <TextView
                 android:id="@+id/tvResponse"
@@ -105,7 +105,7 @@
                 android:layout_marginEnd="4dp"
                 android:layout_marginBottom="16dp"
                 android:background="@drawable/dropdown_bg"
-                android:backgroundTint="@color/deepseek_blue"
+                android:backgroundTint="@color/highlight"
                 android:contentDescription="@string/send_message_to_ai"
                 android:elevation="4dp"
                 android:padding="12dp"
@@ -115,7 +115,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias="0.5"
-                app:tint="@color/text" />
+                app:tint="@color/background_upfront" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
 </androidx.constraintlayout.widget.ConstraintLayout>

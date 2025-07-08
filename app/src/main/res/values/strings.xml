@@ -131,5 +131,4 @@
     <string name="what_can_i_help_with">What can I help with?</string>
     <string name="ask_anything_from_this_pdf" tools:ignore="TypographyEllipsis">Ask anything from this PDF...</string>
     <string name="send_message_to_ai">Send Message to AI</string>
-    <string name="analyzing" tools:ignore="TypographyEllipsis">Analyzing...</string>
 </resources>

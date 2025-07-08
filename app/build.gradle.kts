@@ -12,7 +12,7 @@ val localProperties = rootProject.file("local.properties").inputStream().use { i
     Properties().apply { load(input) }
 }
 val apiKey: String = localProperties.getProperty("API_KEY") ?: "\"\""
-val deepSeekApiKey: String = localProperties.getProperty("DEEPSEEK_R1_API_KEY") ?: "\"\""
+val openRouterApiKey: String = localProperties.getProperty("OPENROUTER_API_KEY") ?: "\"\""
 val admobAppId: String = localProperties.getProperty("ADMOB_APP_ID") ?: "SAMPLE_APP_ID"
 
 val mainAdUnitId: String = localProperties.getProperty("MAIN_ADMOB_UNIT_ID") ?: "\"\""
@@ -35,7 +35,7 @@ android {
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         buildConfigField("String", "API_KEY", "\"$apiKey\"")
-        buildConfigField("String", "DEEPSEEK_API_KEY", "\"$deepSeekApiKey\"")
+        buildConfigField("String", "OPENROUTER_API_KEY", "\"$openRouterApiKey\"")
         manifestPlaceholders["admob_app_id"] = admobAppId
 
         buildConfigField("String", "MAIN_ADMOB_UNIT_ID", "\"$mainAdUnitId\"")

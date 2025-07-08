@@ -1,4 +1,4 @@
-package com.subhajitrajak.makautstudybuddy.presentation.pdf
+package com.subhajitrajak.makautstudybuddy.data.models
 
 data class DeepSeekRequest(
     val model: String = "deepseek/deepseek-r1:free",

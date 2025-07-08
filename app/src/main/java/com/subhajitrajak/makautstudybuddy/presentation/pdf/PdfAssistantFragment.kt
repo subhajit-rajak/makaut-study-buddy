@@ -26,7 +26,6 @@ class PdfAssistantFragment : Fragment() {
         binding.sendButton.setOnClickListener {
             binding.tvResponse.visibility = View.VISIBLE
             binding.emptyResponse.visibility = View.GONE
-            binding.tvResponse.text = getString(R.string.analyzing)
 
             val question = binding.messageEditText.text.toString()
             if (question.isNotBlank()) {
