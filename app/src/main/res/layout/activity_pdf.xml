@@ -36,7 +36,7 @@
         android:backgroundTint="@color/deepseek_blue"
         android:drawableEnd="@drawable/deepseek_logo"
         android:fontFamily="@font/inter_bold"
-        android:text="Ask Ai"
+        android:text="@string/ask_ai"
         android:textColor="@color/text"
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"

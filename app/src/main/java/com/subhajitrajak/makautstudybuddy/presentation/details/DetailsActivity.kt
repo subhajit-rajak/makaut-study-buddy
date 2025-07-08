@@ -5,12 +5,12 @@ import android.app.ActionBar
 import android.app.Dialog
 import android.content.Intent
 import android.graphics.Color
-import android.graphics.drawable.ColorDrawable
 import android.os.Build
 import android.os.Bundle
 import android.view.View
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.graphics.drawable.toDrawable
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.lifecycle.ViewModelProvider
@@ -28,7 +28,6 @@ import com.subhajitrajak.makautstudybuddy.utils.MyResponses
 import com.subhajitrajak.makautstudybuddy.utils.hasFastInternet
 import com.subhajitrajak.makautstudybuddy.utils.showToast
 import kotlinx.coroutines.launch
-import androidx.core.graphics.drawable.toDrawable
 
 class DetailsActivity : AppCompatActivity() {
     private val activity = this

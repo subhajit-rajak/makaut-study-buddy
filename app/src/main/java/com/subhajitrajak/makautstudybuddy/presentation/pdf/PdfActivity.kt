@@ -77,7 +77,6 @@ class PdfActivity : AppCompatActivity() {
                         val extracted = extractTextFromPdfPage(pdfUrlOrPath, binding.pdfView.currentPage)
                         log("Extracted text: $extracted")
                         withContext(Dispatchers.Main) {
-                            val prompt = "Explain this page:\n$extracted"
                             supportFragmentManager.beginTransaction()
                                 .replace(android.R.id.content, PdfAssistantFragment.newInstance(extracted))
                                 .addToBackStack(null)

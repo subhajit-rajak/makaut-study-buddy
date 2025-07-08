@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import com.subhajitrajak.makautstudybuddy.R
 import com.subhajitrajak.makautstudybuddy.databinding.FragmentPdfAssistantBinding
 
 class PdfAssistantFragment : Fragment() {
@@ -25,11 +26,11 @@ class PdfAssistantFragment : Fragment() {
         binding.sendButton.setOnClickListener {
             binding.tvResponse.visibility = View.VISIBLE
             binding.emptyResponse.visibility = View.GONE
-            binding.tvResponse.text = "Analyzing..."
+            binding.tvResponse.text = getString(R.string.analyzing)
 
             val question = binding.messageEditText.text.toString()
             if (question.isNotBlank()) {
-                viewModel.askDeepSeek(question + "\nwith respect to the following page\n" + initialPrompt)
+                viewModel.askDeepSeek("$question\nwith respect to the following page\n$initialPrompt")
                 binding.messageEditText.setText("")
             }
         }
