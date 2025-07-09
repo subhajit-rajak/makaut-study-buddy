@@ -86,19 +86,19 @@ dependencies {
     androidTestImplementation(libs.androidx.espresso.core)
 
     // pdf viewer
-    implementation (libs.android.pdf.viewer)
+    implementation(libs.android.pdf.viewer)
     implementation(libs.itextg)
 
     // view models
-    implementation (libs.androidx.lifecycle.viewmodel)
-    implementation (libs.androidx.lifecycle.viewmodel.ktx)
+    implementation(libs.androidx.lifecycle.viewmodel)
+    implementation(libs.androidx.lifecycle.viewmodel.ktx)
     implementation(libs.androidx.fragment.ktx)
 
     // kotlin coroutines
-    implementation (libs.kotlinx.coroutines.android)
+    implementation(libs.kotlinx.coroutines.android)
 
     // firebase
-    implementation (platform(libs.firebase.bom))
+    implementation(platform(libs.firebase.bom))
     implementation(libs.firebase.analytics.ktx)
     implementation(libs.firebase.database.ktx)
     implementation(libs.firebase.auth)
@@ -111,23 +111,26 @@ dependencies {
     implementation(libs.app.update.ktx)
 
     // circle-image view
-    implementation (libs.circleimageview)
+    implementation(libs.circleimageview)
 
     // gms play service
-    implementation (libs.play.services.auth)
+    implementation(libs.play.services.auth)
     implementation(libs.play.services.ads)
 
     // glide (image loading)
-    implementation (libs.glide)
+    implementation(libs.glide)
 
     // retrofit
-    implementation (libs.retrofit)
-    implementation (libs.converter.gson)
+    implementation(libs.retrofit)
+    implementation(libs.converter.gson)
 
     // swipe to refresh layout
     implementation(libs.androidx.swiperefreshlayout)
 
     // scalable sp and dp by intuit
-    implementation (libs.ssp.android)
-    implementation (libs.sdp.android)
+    implementation(libs.ssp.android)
+    implementation(libs.sdp.android)
+
+    // markdown
+    implementation(libs.noties.markwon.core)
 }

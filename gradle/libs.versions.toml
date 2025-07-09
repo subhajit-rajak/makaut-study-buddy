@@ -3,6 +3,7 @@ agp = "8.11.0"
 androidPdfViewer = "3.2.0-beta.3"
 appUpdate = "2.1.0"
 circleimageview = "3.1.0"
+core = "4.6.2"
 firebaseBom = "33.16.0"
 fragmentKtx = "1.8.8"
 glide = "4.16.0"
@@ -41,6 +42,7 @@ app-update = { module = "com.google.android.play:app-update", version.ref = "app
 app-update-ktx = { module = "com.google.android.play:app-update-ktx", version.ref = "appUpdate" }
 circleimageview = { module = "de.hdodenhof:circleimageview", version.ref = "circleimageview" }
 converter-gson = { module = "com.squareup.retrofit2:converter-gson", version.ref = "converterGson" }
+noties-markwon-core = { module = "io.noties.markwon:core", version.ref = "core" }
 glide = { module = "com.github.bumptech.glide:glide", version.ref = "glide" }
 itextg = { module = "com.itextpdf:itextg", version.ref = "itextg" }
 junit = { group = "junit", name = "junit", version.ref = "junit" }
