@@ -32,7 +32,7 @@ class BookRepo(val context: Context) {
                         tempList.add(booksModel)
                     }
                 }
-                if(tempList.size>0)
+                if(tempList.isNotEmpty())
                     booksLiveData.postValue(MyResponses.Success(tempList))
             }
 

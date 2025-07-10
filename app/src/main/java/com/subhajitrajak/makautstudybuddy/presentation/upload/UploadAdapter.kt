@@ -66,7 +66,7 @@ class UploadAdapter(
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
-    ): UploadAdapter.UploadViewHolder {
+    ): UploadViewHolder {
         return UploadViewHolder(
             ItemUploadRequestsBinding.inflate(
                 LayoutInflater.from(context), parent, false
@@ -74,7 +74,7 @@ class UploadAdapter(
         )
     }
 
-    override fun onBindViewHolder(holder: UploadAdapter.UploadViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: UploadViewHolder, position: Int) {
         holder.bind(
             model = list[position], context = context
         )

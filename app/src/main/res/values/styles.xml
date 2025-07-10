@@ -47,11 +47,4 @@
         <item name="has_active_status">true</item>
     </style>
 
-    <style name="CustomPopupMenu" parent="Widget.AppCompat.PopupMenu">
-        <item name="android:textColor">@color/background_upfront</item>
-        <item name="android:popupBackground">@color/highlight</item>
-        <item name="cornerRadius">24dp</item>
-    </style>
-
-
 </resources>

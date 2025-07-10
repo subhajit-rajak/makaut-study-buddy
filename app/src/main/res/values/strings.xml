@@ -1,15 +1,11 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <string name="app_name">Makaut Study Buddy</string>
-    <string name="sample_book_title">Rich Dad Poor Dad</string>
     <string name="makaut_organizer_description">MAKAUT ORGANIZER contains previous years Semester Exam questions with answers. Organizers doesn\'t contains all the Semester questions. It contains the question and answers of a particular semester. It is like a Holy Book for the students studying in colleges under MAKAUT. If you are thinking to start preparation for Semester Exam just 15 days before the exam then this thing will help you a lot.</string>
-    <string name="wanna_contribute">Wanna\nContribute?</string>
     <string name="makaut_organizer_book">Makaut Organizer Book</string>
     <string name="the_ultimate_examination_guide">The Ultimate\nExamination Guide</string>
     <string name="popular_publications">Popular Publications</string>
     <string name="makaut_organizer">MAKAUT Organizer</string>
     <string name="read_book">Read Book</string>
-    <string name="hola_amigos">Hola Amigos!! 👋</string>
-    <string name="click_here">Click Here</string>
     <string name="branch_screen_title">Your department, your fate</string>
     <string name="subject_screen_title">Last-minute prep? Pick your subject!</string>
     <string name="failed_to_fetch_query_please_try_again">Failed to fetch query.\nPlease try again</string>
@@ -18,22 +14,6 @@
     <string name="downloading">Downloading…</string>
     <string name="_35">35%</string>
     <string name="settings">Settings</string>
-    <string name="title_activity_settings">SettingsActivity</string>
-
-    <!-- Preference Titles -->
-    <string name="messages_header">Messages</string>
-    <string name="sync_header">Sync</string>
-
-    <!-- Messages Preferences -->
-    <string name="signature_title">Your signature</string>
-    <string name="reply_title">Default reply action</string>
-
-    <!-- Sync Preferences -->
-    <string name="sync_title">Sync email periodically</string>
-    <string name="attachment_title">Download incoming attachments</string>
-    <string name="attachment_summary_on">Automatically download attachments for incoming emails
-    </string>
-    <string name="attachment_summary_off">Only download attachments when manually requested</string>
     <string name="back_button">back</string>
     <string name="rate_us">Rate Us</string>
     <string name="share_app">Share App</string>
@@ -63,7 +43,6 @@
     <string name="onboarding_heading">Let\'s Study</string>
     <string name="onboarding_subheading" tools:ignore="TypographyEllipsis">Search Less,\nExplore More...</string>
     <string name="onboarding_description">Get all your organizer, books, notes and videos all in a single place. Find less, do more.</string>
-    <string name="get_started">Get Started</string>
     <string name="default_web_client_id">547075402114-bdg2t0c1c51n8refr8tmo1v8c8amlglt.apps.googleusercontent.com</string>
     <string name="log_out">Log Out</string>
     <string name="contributed_by">contributed by Subhajit</string>
@@ -114,8 +93,6 @@
     <string name="author_name">Author Name</string>
     <string name="request_tab_topic_author_name">Topic Name</string>
     <string name="are_you_sure_you_want_to_delete">Are you sure you want to delete?</string>
-    <string name="log_in_using_google">Log in with Google</string>
-    <string name="log_in_using_facebook">Log in with Facebook</string>
     <string name="book_title">Book Title</string>
     <string name="notes_by_students_professors"><![CDATA[Notes by Students & Professors]]></string>
     <string name="term_and_policy_agreement">By continuing, you agree to our Terms of Service and Privacy Policy.</string>
@@ -126,7 +103,6 @@
     <string name="last_updated">Last Updated:</string>
     <string name="semester_screen_title">Pick your semester</string>
     <string name="example_date">23–06–2025</string>
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="ask_ai">Ask Ai</string>
     <string name="what_can_i_help_with">What can I help with?</string>
     <string name="ask_anything_from_this_pdf" tools:ignore="TypographyEllipsis">Ask anything from this page...</string>
@@ -134,7 +110,7 @@
 
     <string-array name="ai_models">
         <item>deepseek/deepseek-r1:free</item>
-        <item>qwen/qwen3-8b:free</item>
+        <item tools:ignore="TypographyDashes">qwen/qwen3-8b:free</item>
     </string-array>
 
 </resources>

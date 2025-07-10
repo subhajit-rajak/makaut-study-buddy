@@ -33,7 +33,7 @@ class SyllabusRepo(val context: Context) {
                         tempList.add(syllabusModel)
                     }
                 }
-                if(tempList.size>0)
+                if(tempList.isNotEmpty())
                     syllabusLiveData.postValue(MyResponses.Success(tempList))
             }
 

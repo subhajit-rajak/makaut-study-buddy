@@ -33,7 +33,7 @@ class MainRepo(val context: Context) {
                         tempList.add(homeModel)
                     }
                 }
-                if(tempList.size>0)
+                if(tempList.isNotEmpty())
                     homeLiveData.postValue(MyResponses.Success(tempList))
             }
 

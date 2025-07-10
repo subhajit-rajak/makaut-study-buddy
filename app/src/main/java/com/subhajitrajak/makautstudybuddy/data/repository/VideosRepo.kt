@@ -32,7 +32,7 @@ class VideosRepo (val context: Context) {
                         tempList.add(videosModel)
                     }
                 }
-                if(tempList.size>0)
+                if(tempList.isNotEmpty())
                     videosLiveData.postValue(MyResponses.Success(tempList))
             }
 

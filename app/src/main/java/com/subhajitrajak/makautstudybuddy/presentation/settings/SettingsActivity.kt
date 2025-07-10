@@ -1,12 +1,12 @@
 package com.subhajitrajak.makautstudybuddy.presentation.settings
 
 import android.content.Intent
-import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.net.toUri
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.lifecycle.lifecycleScope
@@ -97,7 +97,7 @@ class SettingsActivity : AppCompatActivity() {
     ) {
         binding.rateUs.setOnClickListener {
             if (rateUs.isNotEmpty()) {
-                val intent = Intent(Intent.ACTION_VIEW, Uri.parse(rateUs))
+                val intent = Intent(Intent.ACTION_VIEW, rateUs.toUri())
                 startActivity(intent)
             } else {
                 showToast(this, "Rate Us link is unavailable.")
@@ -106,7 +106,7 @@ class SettingsActivity : AppCompatActivity() {
 
         binding.privacyPolicy.setOnClickListener {
             if (privacyPolicy.isNotEmpty()) {
-                val intent = Intent(Intent.ACTION_VIEW, Uri.parse(privacyPolicy))
+                val intent = Intent(Intent.ACTION_VIEW, privacyPolicy.toUri())
                 startActivity(intent)
             } else {
                 showToast(this, "Privacy Policy is unavailable.")
@@ -115,7 +115,7 @@ class SettingsActivity : AppCompatActivity() {
 
         binding.terms.setOnClickListener {
             if (terms.isNotEmpty()) {
-                val intent = Intent(Intent.ACTION_VIEW, Uri.parse(terms))
+                val intent = Intent(Intent.ACTION_VIEW, terms.toUri())
                 startActivity(intent)
             } else {
                 showToast(this, "Terms of Service are unavailable.")
@@ -135,7 +135,7 @@ class SettingsActivity : AppCompatActivity() {
 
         binding.contact.setOnClickListener {
             if (contact.isNotEmpty()) {
-                val intent = Intent(Intent.ACTION_SENDTO, Uri.parse("mailto:$contact"))
+                val intent = Intent(Intent.ACTION_SENDTO, "mailto:$contact".toUri())
                 intent.putExtra(Intent.EXTRA_SUBJECT, getString(R.string.email_subject_contact))
                 intent.putExtra(Intent.EXTRA_TEXT, getString(R.string.email_body_contact))
                 startActivity(Intent.createChooser(intent, "Contact Us"))
@@ -146,7 +146,7 @@ class SettingsActivity : AppCompatActivity() {
 
         binding.feedback.setOnClickListener {
             if (feedback.isNotEmpty()) {
-                val intent = Intent(Intent.ACTION_SENDTO, Uri.parse("mailto:$feedback"))
+                val intent = Intent(Intent.ACTION_SENDTO, "mailto:$feedback".toUri())
                 intent.putExtra(Intent.EXTRA_SUBJECT, getString(R.string.email_subject_feedback))
                 intent.putExtra(Intent.EXTRA_TEXT, getString(R.string.email_body_feedback))
                 startActivity(Intent.createChooser(intent, "Share your feedback"))

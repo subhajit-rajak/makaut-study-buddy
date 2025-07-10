@@ -33,7 +33,7 @@ class NotesRepo(val context: Context) {
                         tempList.add(notesModel)
                     }
                 }
-                if(tempList.size>0)
+                if(tempList.isNotEmpty())
                     notesLiveData.postValue(MyResponses.Success(tempList))
             }
 
