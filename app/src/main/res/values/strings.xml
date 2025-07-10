@@ -131,4 +131,10 @@
     <string name="what_can_i_help_with">What can I help with?</string>
     <string name="ask_anything_from_this_pdf" tools:ignore="TypographyEllipsis">Ask anything from this page...</string>
     <string name="send_message_to_ai">Send Message to AI</string>
+
+    <string-array name="ai_models">
+        <item>deepseek/deepseek-r1:free</item>
+        <item>qwen/qwen3-8b:free</item>
+    </string-array>
+
 </resources>

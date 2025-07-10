@@ -4,8 +4,11 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.AdapterView
+import android.widget.ArrayAdapter
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import com.subhajitrajak.makautstudybuddy.R
 import com.subhajitrajak.makautstudybuddy.databinding.FragmentPdfAssistantBinding
 import io.noties.markwon.Markwon
 
@@ -20,6 +23,20 @@ class PdfAssistantFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentPdfAssistantBinding.inflate(inflater, container, false)
+
+        val models = resources.getStringArray(R.array.ai_models)
+        val adapter = ArrayAdapter(requireContext(), R.layout.spinner_item, models)
+        adapter.setDropDownViewResource(R.layout.spinner_item)
+        binding.modelSpinner.adapter = adapter
+
+        binding.modelSpinner.setSelection(0)
+        binding.modelSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+                viewModel.setModel(models[position])
+            }
+
+            override fun onNothingSelected(parent: AdapterView<*>?) {}
+        }
 
         val initialPrompt = arguments?.getString("initial_prompt")
         val markwon = Markwon.create(requireContext())

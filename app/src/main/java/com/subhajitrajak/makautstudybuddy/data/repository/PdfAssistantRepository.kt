@@ -20,10 +20,10 @@ class PdfAssistantRepository {
         api = retrofit.create(DeepSeekApiService::class.java)
     }
 
-    suspend fun askDeepSeek(prompt: String): Result<String> {
+    suspend fun askDeepSeek(prompt: String, model: String): Result<String> {
         return try {
             val request = DeepSeekRequest(
-                model = "deepseek/deepseek-r1:free",
+                model = model,
                 messages = listOf(DeepSeekMessage("user", prompt))
             )
             val result = api.chatWithAI(request, "Bearer ${BuildConfig.OPENROUTER_API_KEY}")
@@ -31,7 +31,7 @@ class PdfAssistantRepository {
                 val reply = result.body()?.choices?.firstOrNull()?.message?.content ?: "No reply"
                 Result.success(reply)
             } else {
-                Result.failure(Exception("Error: ${result.code()}"))
+                Result.failure(Exception(result.code().toString()))
             }
         } catch (e: Exception) {
             Result.failure(e)
