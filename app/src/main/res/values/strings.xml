@@ -111,6 +111,7 @@
     <string name="summarize">#Summarize</string>
     <string name="explain">#Explain</string>
     <string name="generate_mcqs">#Generate mcqs</string>
+    <string name="page_snapshot">Page Snapshot</string>
 
     <string-array name="ai_models">
         <item tools:ignore="TypographyDashes">qwen/qwen3-8b:free</item>
