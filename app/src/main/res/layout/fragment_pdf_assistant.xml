@@ -32,7 +32,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:fontFamily="@font/inter_bold"
-                android:text="@string/ask_ai"
+                android:text="@string/ask_ai_heading"
                 android:textColor="@color/text"
                 android:textSize="32sp"
                 app:drawableStartCompat="@drawable/msblogo"
@@ -162,9 +162,25 @@
                 android:textColor="@color/text"
                 android:textColorHint="@color/light_grey"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/sendButton"
+                app:layout_constraintEnd_toStartOf="@+id/talkButton"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:id="@+id/talkButton"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_marginEnd="4dp"
+                android:background="@drawable/dropdown_bg"
+                android:backgroundTint="@color/white"
+                android:contentDescription="@string/tap_to_speak"
+                android:elevation="4dp"
+                android:padding="12dp"
+                android:src="@drawable/mic"
+                app:layout_constraintBottom_toBottomOf="@id/sendButton"
+                app:layout_constraintEnd_toStartOf="@id/sendButton"
+                app:layout_constraintTop_toTopOf="@id/sendButton"
+                app:tint="@color/background_upfront" />
 
             <ImageView
                 android:id="@+id/sendButton"
@@ -208,5 +224,31 @@
             android:contentDescription="@string/page_snapshot"
             android:scaleType="centerCrop" />
     </com.google.android.material.card.MaterialCardView>
+
+    <View
+        android:id="@+id/listeningOverlay"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:background="@drawable/gradient_listening_overlay"
+        android:elevation="20dp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/listeningText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="48dp"
+        android:elevation="20dp"
+        android:fontFamily="@font/montserrat_medium"
+        android:text="Listening..."
+        android:textColor="@color/text"
+        android:textSize="16sp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

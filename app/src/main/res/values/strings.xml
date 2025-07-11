@@ -104,14 +104,16 @@
     <string name="semester_screen_title">Pick your semester</string>
     <string name="example_date">23–06–2025</string>
     <string name="ask_ai">Ask Ai</string>
+    <string name="ask_ai_heading">Ask <font color="#83D65C">Ai</font></string>
     <string name="ai_page_title">What can I help with?</string>
-    <string name="ai_message_box_hint">Type your question or tap to speak..</string>
+    <string name="ai_message_box_hint">Ask your question…</string>
     <string name="send_message_to_ai">Send Message to AI</string>
     <string name="ai_page_description">Choose an Ai model from above and\nask me anything related to this page…</string>
     <string name="summarize">#Summarize</string>
     <string name="explain">#Explain</string>
     <string name="generate_mcqs">#Generate mcqs</string>
     <string name="page_snapshot">Page Snapshot</string>
+    <string name="tap_to_speak">Tap to Speak</string>
 
     <string-array name="ai_models">
         <item tools:ignore="TypographyDashes">qwen/qwen3-8b:free</item>
