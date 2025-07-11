@@ -104,9 +104,13 @@
     <string name="semester_screen_title">Pick your semester</string>
     <string name="example_date">23–06–2025</string>
     <string name="ask_ai">Ask Ai</string>
-    <string name="what_can_i_help_with">What can I help with?</string>
-    <string name="ask_anything_from_this_pdf" tools:ignore="TypographyEllipsis">Ask anything from this page...</string>
+    <string name="ai_page_title">What can I help with?</string>
+    <string name="ai_message_box_hint">Type your question or tap to speak..</string>
     <string name="send_message_to_ai">Send Message to AI</string>
+    <string name="ai_page_description">Choose an Ai model from above and\nask me anything related to this page…</string>
+    <string name="summarize">#Summarize</string>
+    <string name="explain">#Explain</string>
+    <string name="generate_mcqs">#Generate mcqs</string>
 
     <string-array name="ai_models">
         <item>deepseek/deepseek-r1:free</item>

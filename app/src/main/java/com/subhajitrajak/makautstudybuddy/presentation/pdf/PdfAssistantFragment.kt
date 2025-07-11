@@ -57,6 +57,20 @@ class PdfAssistantFragment : Fragment() {
             markwon.setParsedMarkdown(binding.tvResponse, markdown)
         }
 
+        binding.apply {
+            summarize.setOnClickListener {
+                messageEditText.setText(summarize.text.toString())
+            }
+
+            explain.setOnClickListener {
+                messageEditText.setText(explain.text.toString())
+            }
+
+            generateMCQs.setOnClickListener {
+                messageEditText.setText(generateMCQs.text.toString())
+            }
+        }
+
         return binding.root
     }
 

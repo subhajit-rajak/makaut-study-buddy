@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/fragment_container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -63,15 +64,67 @@
                 android:textColor="@color/text"
                 android:textSize="16sp" />
 
-            <TextView
+            <LinearLayout
                 android:id="@+id/emptyResponse"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:fontFamily="@font/inter_bold"
-                android:gravity="center"
-                android:text="@string/what_can_i_help_with"
-                android:textColor="@color/text"
-                android:textSize="24sp" />
+                android:orientation="vertical"
+                android:gravity="center">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/inter_bold"
+                    android:gravity="center"
+                    android:text="@string/ai_page_title"
+                    android:textColor="@color/text"
+                    android:textSize="24sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/inter"
+                    android:gravity="center"
+                    android:text="@string/ai_page_description"
+                    android:textColor="@color/light_grey"
+                    android:textSize="12sp" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:orientation="horizontal">
+
+                    <androidx.appcompat.widget.AppCompatButton
+                        android:id="@+id/summarize"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        style="@style/GlassButtonStyle"
+                        android:layout_marginEnd="12dp"
+                        android:text="@string/summarize"
+                        android:textColor="@color/text"/>
+
+                    <androidx.appcompat.widget.AppCompatButton
+                        android:id="@+id/explain"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        style="@style/GlassButtonStyle"
+                        android:text="@string/explain"
+                        android:textColor="@color/text"/>
+
+                </LinearLayout>
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/generateMCQs"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    style="@style/GlassButtonStyle"
+                    android:layout_marginTop="12dp"
+                    android:text="@string/generate_mcqs"
+                    android:textColor="@color/text"
+                    tools:ignore="VisualLintButtonSize" />
+
+            </LinearLayout>
 
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
@@ -99,7 +152,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
                 android:background="@android:color/transparent"
-                android:hint="@string/ask_anything_from_this_pdf"
+                android:hint="@string/ai_message_box_hint"
                 android:importantForAutofill="no"
                 android:inputType="textMultiLine"
                 android:maxLines="5"
