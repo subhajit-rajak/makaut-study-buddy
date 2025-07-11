@@ -187,4 +187,25 @@
                 app:tint="@color/background_upfront" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/snapshotCard"
+        android:layout_width="100dp"
+        android:layout_height="140dp"
+        android:layout_margin="12dp"
+        app:cardCornerRadius="16dp"
+        android:elevation="6dp"
+        app:strokeWidth="1dp"
+        app:strokeColor="@color/text"
+        app:cardBackgroundColor="#40FFFFFF"
+        app:layout_constraintBottom_toTopOf="@+id/messageInputCard"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <ImageView
+            android:id="@+id/pdfSnapshot"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop" />
+    </com.google.android.material.card.MaterialCardView>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

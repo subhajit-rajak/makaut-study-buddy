@@ -1,5 +1,7 @@
 package com.subhajitrajak.makautstudybuddy.presentation.pdf
 
+import android.graphics.Bitmap
+import android.graphics.Canvas
 import android.os.Build
 import android.os.Bundle
 import android.view.View
@@ -19,11 +21,13 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import java.io.BufferedInputStream
+import java.io.ByteArrayOutputStream
 import java.io.IOException
 import java.io.InputStream
 import java.net.HttpURLConnection
 import java.net.URL
 import javax.net.ssl.HttpsURLConnection
+import androidx.core.graphics.createBitmap
 
 class PdfActivity : AppCompatActivity() {
     private val binding: ActivityPdfBinding by lazy {
@@ -76,9 +80,20 @@ class PdfActivity : AppCompatActivity() {
                     CoroutineScope(Dispatchers.IO).launch {
                         val extracted = extractTextFromPdfPage(pdfUrlOrPath, binding.pdfView.currentPage)
                         log("Extracted text: $extracted")
+
+                        // Capture bitmap on UI thread
+                        val bitmapBytes = withContext(Dispatchers.Main) {
+                            val bitmap = createBitmap(binding.pdfView.width, binding.pdfView.height)
+                            val canvas = Canvas(bitmap)
+                            binding.pdfView.draw(canvas)
+                            val stream = ByteArrayOutputStream()
+                            bitmap.compress(Bitmap.CompressFormat.PNG, 80, stream)
+                            stream.toByteArray()
+                        }
+
                         withContext(Dispatchers.Main) {
                             supportFragmentManager.beginTransaction()
-                                .replace(android.R.id.content, PdfAssistantFragment.newInstance(extracted))
+                                .replace(android.R.id.content, PdfAssistantFragment.newInstance(extracted, bitmapBytes))
                                 .addToBackStack(null)
                                 .commit()
                         }

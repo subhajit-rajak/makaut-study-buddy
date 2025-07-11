@@ -14,7 +14,7 @@ class PdfAssistantViewModel(
     private val _response = MutableLiveData<String>()
     val response: LiveData<String> = _response
 
-    private var selectedModel = "deepseek/deepseek-r1:free"
+    private var selectedModel = "qwen/qwen3-8b:free"
 
     fun setModel(model: String) {
         selectedModel = model

@@ -113,8 +113,8 @@
     <string name="generate_mcqs">#Generate mcqs</string>
 
     <string-array name="ai_models">
-        <item>deepseek/deepseek-r1:free</item>
         <item tools:ignore="TypographyDashes">qwen/qwen3-8b:free</item>
+        <item>deepseek/deepseek-r1:free</item>
         <item>nvidia/llama-3.3-nemotron-super-49b-v1:free</item>
     </string-array>
 

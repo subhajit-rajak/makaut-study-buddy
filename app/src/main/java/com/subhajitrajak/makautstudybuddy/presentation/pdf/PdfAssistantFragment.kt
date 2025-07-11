@@ -1,15 +1,20 @@
 package com.subhajitrajak.makautstudybuddy.presentation.pdf
 
+import android.app.Dialog
+import android.graphics.BitmapFactory
+import android.graphics.Color
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
+import android.widget.ImageView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.subhajitrajak.makautstudybuddy.R
 import com.subhajitrajak.makautstudybuddy.databinding.FragmentPdfAssistantBinding
+import com.subhajitrajak.makautstudybuddy.utils.removeWithAnim
 import io.noties.markwon.Markwon
 
 class PdfAssistantFragment : Fragment() {
@@ -42,6 +47,10 @@ class PdfAssistantFragment : Fragment() {
         val markwon = Markwon.create(requireContext())
 
         binding.sendButton.setOnClickListener {
+            binding.tvResponse.visibility = View.VISIBLE
+            binding.emptyResponse.visibility = View.GONE
+            binding.snapshotCard.removeWithAnim()
+
             val question = binding.messageEditText.text.toString()
             if (question.isNotBlank()) {
                 viewModel.askDeepSeek("$question\nwith respect to the following page\n$initialPrompt")
@@ -50,9 +59,6 @@ class PdfAssistantFragment : Fragment() {
         }
 
         viewModel.response.observe(viewLifecycleOwner) {
-            binding.tvResponse.visibility = View.VISIBLE
-            binding.emptyResponse.visibility = View.GONE
-
             val markdown = markwon.toMarkdown(it)
             markwon.setParsedMarkdown(binding.tvResponse, markdown)
         }
@@ -71,14 +77,33 @@ class PdfAssistantFragment : Fragment() {
             }
         }
 
+        val snapshotBytes = arguments?.getByteArray("snapshot")
+        snapshotBytes?.let {
+            val bitmap = BitmapFactory.decodeByteArray(it, 0, it.size)
+            binding.pdfSnapshot.setImageBitmap(bitmap)
+        }
+
+        binding.pdfSnapshot.setOnClickListener {
+            val dialog = Dialog(requireContext(), android.R.style.Theme_Black_NoTitleBar_Fullscreen)
+            val imageView = ImageView(requireContext()).apply {
+                setImageBitmap(BitmapFactory.decodeByteArray(snapshotBytes, 0, snapshotBytes!!.size))
+                scaleType = ImageView.ScaleType.FIT_CENTER
+                setBackgroundColor(Color.BLACK)
+                setOnClickListener { dialog.dismiss() }
+            }
+            dialog.setContentView(imageView)
+            dialog.show()
+        }
+
         return binding.root
     }
 
     companion object {
-        fun newInstance(initialPrompt: String): PdfAssistantFragment {
+        fun newInstance(initialPrompt: String, snapshot: ByteArray): PdfAssistantFragment {
             val fragment = PdfAssistantFragment()
             val args = Bundle().apply {
                 putString("initial_prompt", initialPrompt)
+                putByteArray("snapshot", snapshot)
             }
             fragment.arguments = args
             return fragment

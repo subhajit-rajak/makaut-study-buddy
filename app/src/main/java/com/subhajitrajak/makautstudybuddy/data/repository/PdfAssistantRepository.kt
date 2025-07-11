@@ -38,7 +38,3 @@ class PdfAssistantRepository {
         }
     }
 }
-
-// list of working models -
-// "qwen/qwen3-8b:free"
-// "deepseek/deepseek-r1:free"
