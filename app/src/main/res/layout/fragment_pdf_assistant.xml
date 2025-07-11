@@ -243,7 +243,7 @@
         android:layout_marginBottom="48dp"
         android:elevation="20dp"
         android:fontFamily="@font/montserrat_medium"
-        android:text="Listening..."
+        android:text="@string/listening"
         android:textColor="@color/text"
         android:textSize="16sp"
         android:visibility="gone"
