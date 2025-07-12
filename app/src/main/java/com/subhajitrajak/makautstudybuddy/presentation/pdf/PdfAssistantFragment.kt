@@ -18,6 +18,7 @@ import android.widget.Toast
 import java.util.Locale
 import android.Manifest
 import android.content.pm.PackageManager
+import android.view.animation.AnimationUtils
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
@@ -212,6 +213,9 @@ class PdfAssistantFragment : Fragment() {
                 }
                 dialog.setContentView(imageView)
                 dialog.show()
+
+                val animation = AnimationUtils.loadAnimation(requireContext(), R.anim.zoom_in)
+                imageView.startAnimation(animation)
             }
         }
     }
