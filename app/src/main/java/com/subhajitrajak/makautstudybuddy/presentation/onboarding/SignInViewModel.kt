@@ -3,8 +3,8 @@ package com.subhajitrajak.makautstudybuddy.presentation.onboarding
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.subhajitrajak.makautstudybuddy.data.repository.userLogin.SignInResult
-import com.subhajitrajak.makautstudybuddy.data.repository.userLogin.SignInState
+import com.subhajitrajak.makautstudybuddy.data.auth.SignInResult
+import com.subhajitrajak.makautstudybuddy.data.auth.SignInState
 
 class SignInViewModel : ViewModel() {
 

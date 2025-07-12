@@ -22,8 +22,8 @@ import com.google.firebase.storage.StorageReference
 import com.subhajitrajak.makautstudybuddy.R
 import com.subhajitrajak.makautstudybuddy.data.models.BooksModel
 import com.subhajitrajak.makautstudybuddy.data.repository.UploadRepo
-import com.subhajitrajak.makautstudybuddy.data.repository.userLogin.GoogleAuthUiClient
-import com.subhajitrajak.makautstudybuddy.data.repository.userLogin.UserData
+import com.subhajitrajak.makautstudybuddy.data.auth.GoogleAuthUiClient
+import com.subhajitrajak.makautstudybuddy.data.auth.UserData
 import com.subhajitrajak.makautstudybuddy.databinding.ActivityUploadBinding
 import com.subhajitrajak.makautstudybuddy.utils.Constants.BOOKS
 import com.subhajitrajak.makautstudybuddy.utils.Constants.BOOK_LIST

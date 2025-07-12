@@ -27,8 +27,8 @@ import com.google.android.play.core.install.model.InstallStatus
 import com.google.android.play.core.install.model.UpdateAvailability
 import com.subhajitrajak.makautstudybuddy.BuildConfig
 import com.subhajitrajak.makautstudybuddy.R
-import com.subhajitrajak.makautstudybuddy.data.repository.userLogin.GoogleAuthUiClient
-import com.subhajitrajak.makautstudybuddy.data.repository.userLogin.UserData
+import com.subhajitrajak.makautstudybuddy.data.auth.GoogleAuthUiClient
+import com.subhajitrajak.makautstudybuddy.data.auth.UserData
 import com.subhajitrajak.makautstudybuddy.databinding.ActivityMainBinding
 import com.subhajitrajak.makautstudybuddy.presentation.books.BooksActivity
 import com.subhajitrajak.makautstudybuddy.presentation.downloads.DownloadedFilesActivity

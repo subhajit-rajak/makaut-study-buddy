@@ -32,7 +32,7 @@ import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import com.subhajitrajak.makautstudybuddy.R
 import com.subhajitrajak.makautstudybuddy.data.models.SettingsModel
-import com.subhajitrajak.makautstudybuddy.data.repository.userLogin.GoogleAuthUiClient
+import com.subhajitrajak.makautstudybuddy.data.auth.GoogleAuthUiClient
 import com.subhajitrajak.makautstudybuddy.databinding.ActivityOnBoardingBinding
 import com.subhajitrajak.makautstudybuddy.presentation.home.MainActivity
 import com.subhajitrajak.makautstudybuddy.utils.Constants.HOME

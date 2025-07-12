@@ -1,4 +1,4 @@
-package com.subhajitrajak.makautstudybuddy.data.repository.userLogin
+package com.subhajitrajak.makautstudybuddy.data.auth
 
 import android.content.Context
 import android.content.Intent

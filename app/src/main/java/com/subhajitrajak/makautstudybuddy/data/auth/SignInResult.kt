@@ -1,4 +1,4 @@
-package com.subhajitrajak.makautstudybuddy.data.repository.userLogin
+package com.subhajitrajak.makautstudybuddy.data.auth
 
 data class SignInResult(
     val data: UserData?,
