@@ -28,6 +28,7 @@ import java.net.HttpURLConnection
 import java.net.URL
 import javax.net.ssl.HttpsURLConnection
 import androidx.core.graphics.createBitmap
+import com.subhajitrajak.makautstudybuddy.R
 
 class PdfActivity : AppCompatActivity() {
     private val binding: ActivityPdfBinding by lazy {
@@ -93,6 +94,12 @@ class PdfActivity : AppCompatActivity() {
 
                         withContext(Dispatchers.Main) {
                             supportFragmentManager.beginTransaction()
+                                .setCustomAnimations(
+                                    R.anim.slide_in_right,
+                                    R.anim.fade_out,
+                                    R.anim.fade_in,
+                                    R.anim.slide_out_right
+                                )
                                 .replace(android.R.id.content, PdfAssistantFragment.newInstance(extracted, bitmapBytes))
                                 .addToBackStack(null)
                                 .commit()
