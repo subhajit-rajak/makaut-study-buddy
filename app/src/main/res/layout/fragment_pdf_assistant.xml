@@ -5,7 +5,7 @@
     android:id="@+id/fragment_container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/background_pdf">
+    android:background="@color/background_upfront">
 
     <!-- Response Section (Scrollable) -->
     <androidx.core.widget.NestedScrollView
@@ -14,7 +14,6 @@
         android:layout_height="0dp"
         android:fillViewport="true"
         android:paddingHorizontal="24dp"
-        android:paddingTop="24dp"
         android:paddingBottom="84dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -33,6 +32,7 @@
                 android:layout_gravity="center_horizontal"
                 android:fontFamily="@font/inter_bold"
                 android:text="@string/ask_ai_heading"
+                android:paddingTop="24dp"
                 android:textColor="@color/text"
                 android:textSize="32sp"
                 app:drawableStartCompat="@drawable/msblogo"
@@ -229,11 +229,11 @@
         android:id="@+id/listeningOverlay"
         android:layout_width="match_parent"
         android:layout_height="200dp"
-        android:background="@drawable/gradient_listening_overlay"
-        android:elevation="20dp"
-        android:visibility="gone"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+    android:background="@drawable/gradient_listening_overlay"
+    android:elevation="20dp"
+    android:visibility="gone"
+    app:layout_constraintBottom_toBottomOf="parent"
+    app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView

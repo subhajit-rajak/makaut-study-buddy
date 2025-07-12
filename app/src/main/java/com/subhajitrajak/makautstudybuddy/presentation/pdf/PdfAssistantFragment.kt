@@ -47,7 +47,6 @@ class PdfAssistantFragment : Fragment() {
         }
     }
 
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -100,8 +99,10 @@ class PdfAssistantFragment : Fragment() {
                 val matches = results?.getStringArrayList(SpeechRecognizer.RESULTS_RECOGNITION)
                 if (!matches.isNullOrEmpty()) {
                     val spokenText = matches[0]
-                    binding.messageEditText.setText(spokenText)
-                    binding.messageEditText.setSelection(spokenText.length)
+                    val currentText = binding.messageEditText.text.toString()
+                    val newText = "$currentText $spokenText"
+                    binding.messageEditText.setText(newText)
+                    binding.messageEditText.setSelection(newText.length)
                 }
             }
 
