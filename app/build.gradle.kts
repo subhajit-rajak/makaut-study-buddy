@@ -62,13 +62,13 @@ android {
     }
 
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_11
-        targetCompatibility = JavaVersion.VERSION_11
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
     }
 }
 
 kotlin {
-    jvmToolchain(11)
+    jvmToolchain(17)
 }
 
 dependencies {
@@ -86,7 +86,7 @@ dependencies {
     androidTestImplementation(libs.androidx.espresso.core)
 
     // pdf viewer
-    implementation(libs.android.pdf.viewer)
+    implementation(libs.androidpdfviewer)
     implementation(libs.itextg)
 
     // view models

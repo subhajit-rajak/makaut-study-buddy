@@ -1,6 +1,6 @@
 [versions]
 agp = "8.11.0"
-androidPdfViewer = "3.2.0-beta.3"
+androidpdfviewer = "3.2.7"
 appUpdate = "2.1.0"
 circleimageview = "3.1.0"
 core = "4.6.2"
@@ -32,7 +32,7 @@ sspAndroid = "1.1.1"
 swiperefreshlayout = "1.1.0"
 
 [libraries]
-android-pdf-viewer = { module = "com.github.mhiew:android-pdf-viewer", version.ref = "androidPdfViewer" }
+androidpdfviewer = { module = "com.github.marain87:AndroidPdfViewer", version.ref = "androidpdfviewer" }
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
 androidx-fragment-ktx = { module = "androidx.fragment:fragment-ktx", version.ref = "fragmentKtx" }
 androidx-lifecycle-viewmodel = { module = "androidx.lifecycle:lifecycle-viewmodel", version.ref = "lifecycleVersion" }
