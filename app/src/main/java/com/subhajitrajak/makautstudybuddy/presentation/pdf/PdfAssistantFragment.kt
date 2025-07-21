@@ -18,9 +18,12 @@ import android.widget.Toast
 import java.util.Locale
 import android.Manifest
 import android.content.pm.PackageManager
+import android.view.animation.Animation
 import android.view.animation.AnimationUtils
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.content.ContextCompat
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowInsetsCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.subhajitrajak.makautstudybuddy.R
@@ -45,6 +48,21 @@ class PdfAssistantFragment : Fragment() {
             startListening()
         } else {
             Toast.makeText(requireContext(), "Microphone permission is required to use speech-to-text", Toast.LENGTH_SHORT).show()
+        }
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        ViewCompat.setOnApplyWindowInsetsListener(binding.root) { v, insets ->
+            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
+            v.setPadding(
+                systemBars.left,
+                systemBars.top,
+                systemBars.right,
+                systemBars.bottom
+            )
+            insets
         }
     }
 
@@ -100,10 +118,8 @@ class PdfAssistantFragment : Fragment() {
                 val matches = results?.getStringArrayList(SpeechRecognizer.RESULTS_RECOGNITION)
                 if (!matches.isNullOrEmpty()) {
                     val spokenText = matches[0]
-                    val currentText = binding.messageEditText.text.toString()
-                    val newText = "$currentText $spokenText"
-                    binding.messageEditText.setText(newText)
-                    binding.messageEditText.setSelection(newText.length)
+                    binding.messageEditText.setText(spokenText)
+                    binding.messageEditText.setSelection(spokenText.length)
                 }
             }
 
@@ -209,7 +225,18 @@ class PdfAssistantFragment : Fragment() {
                     setImageBitmap(BitmapFactory.decodeByteArray(bytes, 0, bytes.size))
                     scaleType = ImageView.ScaleType.FIT_CENTER
                     setBackgroundColor(Color.BLACK)
-                    setOnClickListener { dialog.dismiss() }
+                    setOnClickListener {
+                        val animation = AnimationUtils.loadAnimation(requireContext(), R.anim.fade_out)
+                        startAnimation(animation)
+
+                        animation.setAnimationListener(object : Animation.AnimationListener {
+                            override fun onAnimationStart(animation: Animation?) {}
+                            override fun onAnimationEnd(animation: Animation?) {
+                                dialog.dismiss()
+                            }
+                            override fun onAnimationRepeat(animation: Animation?) {}
+                        })
+                    }
                 }
                 dialog.setContentView(imageView)
                 dialog.show()

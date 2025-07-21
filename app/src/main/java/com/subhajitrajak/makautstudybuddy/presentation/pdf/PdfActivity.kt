@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.view.View
 import android.view.WindowInsets
 import android.view.WindowInsetsController
+import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.net.toUri
 import androidx.core.view.WindowCompat
@@ -28,7 +29,11 @@ import java.net.HttpURLConnection
 import java.net.URL
 import javax.net.ssl.HttpsURLConnection
 import androidx.core.graphics.createBitmap
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowInsetsCompat
 import com.subhajitrajak.makautstudybuddy.R
+import com.subhajitrajak.makautstudybuddy.utils.showWithAnim
+import androidx.core.view.isVisible
 
 class PdfActivity : AppCompatActivity() {
     private val binding: ActivityPdfBinding by lazy {
@@ -41,28 +46,22 @@ class PdfActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        enableEdgeToEdge()
         WindowCompat.setDecorFitsSystemWindows(window, false)
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
-            window.decorView.post {
-                window.insetsController?.apply {
-                    hide(WindowInsets.Type.statusBars())
-                    systemBarsBehavior =
-                        WindowInsetsController.BEHAVIOR_SHOW_TRANSIENT_BARS_BY_SWIPE
-                }
-            }
-        } else {
-            // For older versions, use deprecated methods
-            @Suppress("DEPRECATION")
-            window.decorView.systemUiVisibility = (
-                    View.SYSTEM_UI_FLAG_FULLSCREEN
-                            or View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
-                            or View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY
-                    )
+        ViewCompat.setOnApplyWindowInsetsListener(binding.root) { view, insets ->
+            val systemBarsInsets = insets.getInsets(WindowInsetsCompat.Type.systemBars())
+            // Apply padding to the root view to lift all children
+            view.setPadding(
+                systemBarsInsets.left,
+                systemBarsInsets.top,
+                systemBarsInsets.right,
+                systemBarsInsets.bottom
+            )
+            insets
         }
 
         setContentView(binding.root)
-        supportActionBar?.hide()
 
         pdfUrlOrPath = intent.getStringExtra("book_pdf").toString()
         isRemote = intent.getStringExtra("location") != "local"
@@ -71,12 +70,11 @@ class PdfActivity : AppCompatActivity() {
         binding.apply {
             if (isRemote) {
                 loadPdfFromUrl(pdfUrlOrPath)
-                askAiButton.visibility = View.GONE
             } else {
                 loadPdfFromLocal(pdfUrlOrPath)
             }
 
-            askAiButton.setOnClickListener {
+            askAiOverlay.setOnClickListener {
                 if (currentInputStream != null) {
                     CoroutineScope(Dispatchers.IO).launch {
                         val extracted = extractTextFromPdfPage(pdfUrlOrPath, binding.pdfView.currentPage)
@@ -124,6 +122,18 @@ class PdfActivity : AppCompatActivity() {
                 .autoSpacing(true)
                 .fitEachPage(true)
                 .pageFling(true)
+                .onPageScroll { _, _ ->
+                    // When user scrolls, hide overlay
+                    if (binding.askAiOverlay.isVisible) {
+                        binding.askAiOverlay.visibility = View.GONE
+                    }
+                }
+                .onPageChange { _, _ ->
+                    // After page change is settled, show overlay again
+                    binding.askAiOverlay.postDelayed({
+                        binding.askAiOverlay.showWithAnim()
+                    }, 1000) // 1 seconds
+                }
                 .load()
         }
     }
@@ -151,6 +161,18 @@ class PdfActivity : AppCompatActivity() {
                             // handle error
                             showToast(this@PdfActivity, "Some unknown error occurred")
                             binding.progressBar.visibility = View.GONE
+                        }
+                        .onPageScroll { _, _ ->
+                            // When user scrolls, hide overlay
+                            if (binding.askAiOverlay.isVisible) {
+                                binding.askAiOverlay.visibility = View.GONE
+                            }
+                        }
+                        .onPageChange { _, _ ->
+                            // After page change is settled, show overlay again
+                            binding.askAiOverlay.postDelayed({
+                                binding.askAiOverlay.showWithAnim()
+                            }, 1000) // 1 seconds
                         }
                         .load()
                 } ?: run {

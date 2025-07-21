@@ -35,7 +35,8 @@
                 android:paddingTop="24dp"
                 android:textColor="@color/text"
                 android:textSize="32sp"
-                app:drawableStartCompat="@drawable/msblogo"
+                android:drawablePadding="8dp"
+                app:drawableStartCompat="@drawable/ai_icon"
                 app:drawableTint="@color/highlight" />
 
             <Spinner
@@ -149,14 +150,14 @@
             <EditText
                 android:id="@+id/messageEditText"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="8dp"
+                android:layout_height="0dp"
                 android:background="@android:color/transparent"
                 android:hint="@string/ai_message_box_hint"
                 android:importantForAutofill="no"
                 android:inputType="textMultiLine"
                 android:maxLines="5"
                 android:minLines="1"
+                android:gravity="center_vertical"
                 android:overScrollMode="ifContentScrolls"
                 android:padding="12dp"
                 android:textColor="@color/text"
@@ -188,7 +189,7 @@
                 android:layout_height="48dp"
                 android:layout_marginTop="4dp"
                 android:layout_marginEnd="4dp"
-                android:layout_marginBottom="16dp"
+                android:layout_marginBottom="8dp"
                 android:background="@drawable/dropdown_bg"
                 android:backgroundTint="@color/highlight"
                 android:contentDescription="@string/send_message_to_ai"
@@ -229,11 +230,11 @@
         android:id="@+id/listeningOverlay"
         android:layout_width="match_parent"
         android:layout_height="200dp"
-    android:background="@drawable/gradient_listening_overlay"
-    android:elevation="20dp"
-    android:visibility="gone"
-    app:layout_constraintBottom_toBottomOf="parent"
-    app:layout_constraintEnd_toEndOf="parent"
+        android:background="@drawable/gradient_listening_overlay"
+        android:elevation="20dp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
