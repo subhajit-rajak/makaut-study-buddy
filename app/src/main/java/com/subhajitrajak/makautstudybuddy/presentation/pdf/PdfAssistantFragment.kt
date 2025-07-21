@@ -164,7 +164,12 @@ class PdfAssistantFragment : Fragment() {
         binding.sendButton.setOnClickListener {
             val question = binding.messageEditText.text.toString()
             if (question.isNotBlank()) {
-                viewModel.askDeepSeek("$question\nwith respect to the following page\n$initialPrompt")
+                initialPrompt?.let {
+                    viewModel.askDeepSeek("$question\nwith respect to the following page\n$initialPrompt")
+                } ?: run {
+                    viewModel.askDeepSeek(question)
+                }
+
                 binding.messageEditText.setText("")
             }
         }
@@ -216,6 +221,8 @@ class PdfAssistantFragment : Fragment() {
         snapshotBytes?.let {
             val bitmap = BitmapFactory.decodeByteArray(it, 0, it.size)
             binding.pdfSnapshot.setImageBitmap(bitmap)
+        } ?: run {
+            binding.snapshotCard.visibility = View.GONE
         }
 
         binding.pdfSnapshot.setOnClickListener {

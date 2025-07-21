@@ -9,397 +9,412 @@
     tools:context=".presentation.home.MainActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
-            <de.hdodenhof.circleimageview.CircleImageView
-                android:id="@+id/profile_picture"
-                android:layout_width="54dp"
-                android:layout_height="54dp"
-                android:layout_marginStart="32dp"
-                android:layout_marginTop="32dp"
-                android:src="@drawable/avatar"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/profile_picture"
+            android:layout_width="54dp"
+            android:layout_height="54dp"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="32dp"
+            android:src="@drawable/avatar"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-            <ImageButton
-                android:id="@+id/settings"
-                android:layout_width="54dp"
-                android:layout_height="54dp"
-                android:layout_marginEnd="32dp"
-                android:background="@drawable/item_bg_settings"
-                android:contentDescription="@string/settings"
-                android:src="@drawable/ic_settings"
-                app:layout_constraintBottom_toBottomOf="@+id/profile_picture"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/profile_picture"
-                app:tint="@color/text" />
+        <ImageButton
+            android:id="@+id/settings"
+            android:layout_width="54dp"
+            android:layout_height="54dp"
+            android:layout_marginEnd="32dp"
+            android:background="@drawable/item_bg_settings"
+            android:contentDescription="@string/settings"
+            android:src="@drawable/ic_settings"
+            app:layout_constraintBottom_toBottomOf="@+id/profile_picture"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/profile_picture"
+            app:tint="@color/text" />
 
-            <ImageButton
-                android:id="@+id/downloads"
-                android:layout_width="54dp"
-                android:layout_height="54dp"
-                android:layout_marginEnd="8dp"
-                android:background="@drawable/item_bg_settings"
-                android:contentDescription="@string/favourites"
-                android:src="@drawable/downloads"
-                app:layout_constraintBottom_toBottomOf="@+id/profile_picture"
-                app:layout_constraintEnd_toStartOf="@+id/settings"
-                app:layout_constraintTop_toTopOf="@+id/profile_picture"
-                app:tint="@color/text" />
+        <ImageButton
+            android:id="@+id/downloads"
+            android:layout_width="54dp"
+            android:layout_height="54dp"
+            android:layout_marginEnd="8dp"
+            android:background="@drawable/item_bg_settings"
+            android:contentDescription="@string/favourites"
+            android:src="@drawable/downloads"
+            app:layout_constraintBottom_toBottomOf="@+id/profile_picture"
+            app:layout_constraintEnd_toStartOf="@+id/settings"
+            app:layout_constraintTop_toTopOf="@+id/profile_picture"
+            app:tint="@color/text" />
 
-            <TextView
-                android:id="@+id/greeting"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="32dp"
-                android:fontFamily="@font/gilroy"
-                android:text="@string/greeting_message"
-                android:textColor="@color/text"
-                android:textSize="20sp"
-                app:layout_constraintStart_toStartOf="@+id/profile_picture"
-                app:layout_constraintTop_toBottomOf="@+id/profile_picture" />
+        <ImageButton
+            android:id="@+id/talkToAi"
+            android:layout_width="0dp"
+            android:layout_height="54dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:background="@drawable/button_glass_background"
+            android:contentDescription="@string/ask_ai"
+            android:src="@drawable/ai_icon"
+            app:layout_constraintBottom_toBottomOf="@+id/profile_picture"
+            app:layout_constraintEnd_toStartOf="@+id/downloads"
+            app:layout_constraintStart_toEndOf="@+id/profile_picture"
+            app:layout_constraintTop_toTopOf="@+id/profile_picture"
+            app:tint="@color/text" />
 
-            <TextView
-                android:id="@+id/textView4"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/gilroy_bold"
-                android:text="@string/welcome_back"
-                android:textColor="@color/text"
-                android:textSize="36sp"
-                app:layout_constraintStart_toStartOf="@+id/greeting"
-                app:layout_constraintTop_toBottomOf="@+id/greeting" />
+        <TextView
+            android:id="@+id/greeting"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:fontFamily="@font/gilroy"
+            android:text="@string/greeting_message"
+            android:textColor="@color/text"
+            android:textSize="20sp"
+            app:layout_constraintStart_toStartOf="@+id/profile_picture"
+            app:layout_constraintTop_toBottomOf="@+id/profile_picture" />
 
-            <!--organizers-->
-            <com.google.android.material.card.MaterialCardView
-                android:id="@+id/organizers"
-                android:layout_width="200dp"
-                android:layout_height="200dp"
-                android:layout_marginTop="32dp"
-                app:cardCornerRadius="24dp"
-                app:cardElevation="0dp"
-                app:layout_constraintStart_toStartOf="@+id/textView4"
-                app:layout_constraintTop_toBottomOf="@+id/textView4"
-                app:strokeWidth="0dp">
+        <TextView
+            android:id="@+id/textView4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/gilroy_bold"
+            android:text="@string/welcome_back"
+            android:textColor="@color/text"
+            android:textSize="36sp"
+            app:layout_constraintStart_toStartOf="@+id/greeting"
+            app:layout_constraintTop_toBottomOf="@+id/greeting" />
 
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:background="@drawable/organizer_button">
+        <!--organizers-->
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/organizers"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:layout_marginTop="32dp"
+            app:cardCornerRadius="24dp"
+            app:cardElevation="0dp"
+            app:layout_constraintStart_toStartOf="@+id/textView4"
+            app:layout_constraintTop_toBottomOf="@+id/textView4"
+            app:strokeWidth="0dp">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/organizer_button">
+
+                <TextView
+                    android:id="@+id/textView5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="24dp"
+                    android:layout_marginEnd="24dp"
+                    android:fontFamily="@font/montserrat_medium"
+                    android:singleLine="true"
+                    android:text="@string/organizers"
+                    android:textColor="@color/background_upfront"
+                    android:textSize="20sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </com.google.android.material.card.MaterialCardView>
+
+        <!--books-->
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/books"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="16dp"
+            app:cardBackgroundColor="@color/background_lighter"
+            app:cardCornerRadius="24dp"
+            app:cardElevation="0dp"
+            app:layout_constraintBottom_toTopOf="@+id/videos"
+            app:layout_constraintEnd_toEndOf="@+id/settings"
+            app:layout_constraintStart_toEndOf="@+id/organizers"
+            app:layout_constraintTop_toTopOf="@+id/organizers"
+            app:layout_constraintVertical_chainStyle="packed"
+            app:strokeWidth="0dp">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/background_lighter">
+
+                <TextView
+                    android:id="@+id/textView6"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="16dp"
+                    android:fontFamily="@font/montserrat_medium"
+                    android:text="@string/books"
+                    android:textColor="@color/text"
+                    android:textSize="16sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <ImageView
+                    android:layout_width="200dp"
+                    android:layout_height="100dp"
+                    android:layout_marginEnd="-65dp"
+                    android:layout_marginBottom="-25dp"
+                    android:contentDescription="@string/books"
+                    android:src="@drawable/book"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </com.google.android.material.card.MaterialCardView>
+
+        <!--videos-->
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/videos"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            app:cardBackgroundColor="@color/white"
+            app:cardCornerRadius="24dp"
+            app:cardElevation="0dp"
+            app:layout_constraintBottom_toBottomOf="@id/organizers"
+            app:layout_constraintEnd_toEndOf="@+id/books"
+            app:layout_constraintStart_toEndOf="@+id/organizers"
+            app:layout_constraintTop_toBottomOf="@+id/books"
+            app:strokeWidth="0dp">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/white">
+
+                <TextView
+                    android:id="@+id/textView8"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="16dp"
+                    android:fontFamily="@font/montserrat_medium"
+                    android:text="@string/videos"
+                    android:textColor="@color/background_upfront"
+                    android:textSize="16sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <ImageView
+                    android:layout_width="200dp"
+                    android:layout_height="130dp"
+                    android:layout_marginEnd="-65dp"
+                    android:layout_marginBottom="-50dp"
+                    android:contentDescription="@string/videos"
+                    android:src="@drawable/youtube"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </com.google.android.material.card.MaterialCardView>
+
+        <!--notes-->
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/notes"
+            android:layout_width="200dp"
+            android:layout_height="190dp"
+            android:layout_marginTop="16dp"
+            app:cardCornerRadius="24dp"
+            app:cardElevation="0dp"
+            app:layout_constraintEnd_toEndOf="@+id/videos"
+            app:layout_constraintTop_toBottomOf="@id/organizers"
+            app:strokeWidth="0dp">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/notes_button">
+
+                <TextView
+                    android:id="@+id/notes_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginTop="24dp"
+                    android:fontFamily="@font/montserrat_medium"
+                    android:singleLine="true"
+                    android:text="@string/notes"
+                    android:textColor="@color/text"
+                    android:textSize="20sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </com.google.android.material.card.MaterialCardView>
+
+        <!--contribute-->
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/github_contribute"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginEnd="16dp"
+            app:cardBackgroundColor="@color/white"
+            app:cardCornerRadius="24dp"
+            app:cardElevation="0dp"
+            app:layout_constraintBottom_toTopOf="@+id/upload"
+            app:layout_constraintEnd_toStartOf="@+id/notes"
+            app:layout_constraintStart_toStartOf="@+id/organizers"
+            app:layout_constraintTop_toTopOf="@+id/notes"
+            app:layout_constraintVertical_chainStyle="packed"
+            app:strokeWidth="0dp">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/white">
+
+                <TextView
+                    android:id="@+id/git_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="16dp"
+                    android:fontFamily="@font/montserrat_medium"
+                    android:text="@string/contribute"
+                    android:textColor="@color/background_upfront"
+                    android:textSize="16sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <ImageView
+                    android:layout_width="200dp"
+                    android:layout_height="100dp"
+                    android:layout_marginEnd="-65dp"
+                    android:layout_marginBottom="-35dp"
+                    android:contentDescription="@string/contribute"
+                    android:src="@drawable/github"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </com.google.android.material.card.MaterialCardView>
+
+        <!--upload-->
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/upload"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            app:cardBackgroundColor="@color/highlight"
+            app:cardCornerRadius="24dp"
+            app:cardElevation="0dp"
+            app:layout_constraintBottom_toBottomOf="@id/notes"
+            app:layout_constraintEnd_toStartOf="@+id/notes"
+            app:layout_constraintStart_toStartOf="@+id/organizers"
+            app:layout_constraintTop_toBottomOf="@+id/github_contribute"
+            app:strokeWidth="0dp">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/highlight">
+
+                <TextView
+                    android:id="@+id/upload_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="19dp"
+                    android:fontFamily="@font/montserrat_medium"
+                    android:text="@string/upload"
+                    android:textColor="@color/background_upfront"
+                    android:textSize="16sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <ImageView
+                    android:layout_width="200dp"
+                    android:layout_height="100dp"
+                    android:layout_marginEnd="-70dp"
+                    android:layout_marginBottom="-30dp"
+                    android:contentDescription="@string/upload"
+                    android:src="@drawable/upload"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </com.google.android.material.card.MaterialCardView>
+
+        <!--syllabus-->
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/syllabus"
+            android:layout_width="0dp"
+            android:layout_height="80dp"
+            android:layout_marginTop="16dp"
+            app:cardCornerRadius="24dp"
+            app:cardElevation="0dp"
+            app:layout_constraintEnd_toEndOf="@+id/videos"
+            app:layout_constraintStart_toStartOf="@+id/organizers"
+            app:layout_constraintTop_toBottomOf="@id/notes"
+            app:strokeWidth="0dp">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/white">
+
+                <TextView
+                    android:id="@+id/syllabus_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginBottom="16dp"
+                    android:fontFamily="@font/montserrat_medium"
+                    android:singleLine="true"
+                    android:text="@string/syllabus"
+                    android:textColor="@color/background_upfront"
+                    android:textSize="20sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent" />
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/newBadgeSyllabus"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    app:cardBackgroundColor="@color/highlight"
+                    app:cardCornerRadius="4dp"
+                    app:cardElevation="0dp"
+                    app:layout_constraintBottom_toBottomOf="@+id/syllabus_text"
+                    app:layout_constraintStart_toEndOf="@+id/syllabus_text"
+                    app:layout_constraintTop_toTopOf="@+id/syllabus_text"
+                    app:layout_constraintVertical_bias="0.3">
 
                     <TextView
-                        android:id="@+id/textView5"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="24dp"
-                        android:layout_marginEnd="24dp"
-                        android:fontFamily="@font/montserrat_medium"
-                        android:singleLine="true"
-                        android:text="@string/organizers"
+                        android:fontFamily="@font/inter_semibold"
+                        android:paddingHorizontal="6dp"
+                        android:paddingVertical="2dp"
+                        android:text="@string/new_badge"
                         android:textColor="@color/background_upfront"
-                        android:textSize="20sp"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
+                        android:textSize="11sp" />
 
-                </androidx.constraintlayout.widget.ConstraintLayout>
+                </androidx.cardview.widget.CardView>
 
-            </com.google.android.material.card.MaterialCardView>
+                <ImageView
+                    android:layout_width="200dp"
+                    android:layout_height="70dp"
+                    android:contentDescription="@string/syllabus"
+                    android:src="@drawable/backpack"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
-            <!--books-->
-            <com.google.android.material.card.MaterialCardView
-                android:id="@+id/books"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:layout_marginStart="16dp"
-                app:cardBackgroundColor="@color/background_lighter"
-                app:cardCornerRadius="24dp"
-                app:cardElevation="0dp"
-                app:layout_constraintBottom_toTopOf="@+id/videos"
-                app:layout_constraintEnd_toEndOf="@+id/settings"
-                app:layout_constraintStart_toEndOf="@+id/organizers"
-                app:layout_constraintTop_toTopOf="@+id/organizers"
-                app:layout_constraintVertical_chainStyle="packed"
-                app:strokeWidth="0dp">
-
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:background="@color/background_lighter">
-
-                    <TextView
-                        android:id="@+id/textView6"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="16dp"
-                        android:layout_marginTop="16dp"
-                        android:fontFamily="@font/montserrat_medium"
-                        android:text="@string/books"
-                        android:textColor="@color/text"
-                        android:textSize="16sp"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
-
-                    <ImageView
-                        android:layout_width="200dp"
-                        android:layout_height="100dp"
-                        android:layout_marginEnd="-65dp"
-                        android:layout_marginBottom="-25dp"
-                        android:contentDescription="@string/books"
-                        android:src="@drawable/book"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent" />
-
-                </androidx.constraintlayout.widget.ConstraintLayout>
-
-            </com.google.android.material.card.MaterialCardView>
-
-            <!--videos-->
-            <com.google.android.material.card.MaterialCardView
-                android:id="@+id/videos"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="16dp"
-                app:cardBackgroundColor="@color/white"
-                app:cardCornerRadius="24dp"
-                app:cardElevation="0dp"
-                app:layout_constraintBottom_toBottomOf="@id/organizers"
-                app:layout_constraintEnd_toEndOf="@+id/books"
-                app:layout_constraintStart_toEndOf="@+id/organizers"
-                app:layout_constraintTop_toBottomOf="@+id/books"
-                app:strokeWidth="0dp">
-
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:background="@color/white">
-
-                    <TextView
-                        android:id="@+id/textView8"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="16dp"
-                        android:layout_marginTop="16dp"
-                        android:fontFamily="@font/montserrat_medium"
-                        android:text="@string/videos"
-                        android:textColor="@color/background_upfront"
-                        android:textSize="16sp"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
-
-                    <ImageView
-                        android:layout_width="200dp"
-                        android:layout_height="130dp"
-                        android:layout_marginEnd="-65dp"
-                        android:layout_marginBottom="-50dp"
-                        android:contentDescription="@string/videos"
-                        android:src="@drawable/youtube"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent" />
-
-                </androidx.constraintlayout.widget.ConstraintLayout>
-
-            </com.google.android.material.card.MaterialCardView>
-
-            <!--notes-->
-            <com.google.android.material.card.MaterialCardView
-                android:id="@+id/notes"
-                android:layout_width="200dp"
-                android:layout_height="190dp"
-                android:layout_marginTop="16dp"
-                app:cardCornerRadius="24dp"
-                app:cardElevation="0dp"
-                app:layout_constraintEnd_toEndOf="@+id/videos"
-                app:layout_constraintTop_toBottomOf="@id/organizers"
-                app:strokeWidth="0dp">
-
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:background="@drawable/notes_button">
-
-                    <TextView
-                        android:id="@+id/notes_text"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="24dp"
-                        android:layout_marginTop="24dp"
-                        android:fontFamily="@font/montserrat_medium"
-                        android:singleLine="true"
-                        android:text="@string/notes"
-                        android:textColor="@color/text"
-                        android:textSize="20sp"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
-
-                </androidx.constraintlayout.widget.ConstraintLayout>
-
-            </com.google.android.material.card.MaterialCardView>
-
-            <!--contribute-->
-            <com.google.android.material.card.MaterialCardView
-                android:id="@+id/github_contribute"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:layout_marginEnd="16dp"
-                app:cardBackgroundColor="@color/white"
-                app:cardCornerRadius="24dp"
-                app:cardElevation="0dp"
-                app:layout_constraintBottom_toTopOf="@+id/upload"
-                app:layout_constraintEnd_toStartOf="@+id/notes"
-                app:layout_constraintStart_toStartOf="@+id/organizers"
-                app:layout_constraintTop_toTopOf="@+id/notes"
-                app:layout_constraintVertical_chainStyle="packed"
-                app:strokeWidth="0dp">
-
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:background="@color/white">
-
-                    <TextView
-                        android:id="@+id/git_text"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="16dp"
-                        android:layout_marginTop="16dp"
-                        android:fontFamily="@font/montserrat_medium"
-                        android:text="@string/contribute"
-                        android:textColor="@color/background_upfront"
-                        android:textSize="16sp"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
-
-                    <ImageView
-                        android:layout_width="200dp"
-                        android:layout_height="100dp"
-                        android:layout_marginEnd="-65dp"
-                        android:layout_marginBottom="-35dp"
-                        android:contentDescription="@string/contribute"
-                        android:src="@drawable/github"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent" />
-
-                </androidx.constraintlayout.widget.ConstraintLayout>
-
-            </com.google.android.material.card.MaterialCardView>
-
-            <!--upload-->
-            <com.google.android.material.card.MaterialCardView
-                android:id="@+id/upload"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginEnd="16dp"
-                app:cardBackgroundColor="@color/highlight"
-                app:cardCornerRadius="24dp"
-                app:cardElevation="0dp"
-                app:layout_constraintBottom_toBottomOf="@id/notes"
-                app:layout_constraintEnd_toStartOf="@+id/notes"
-                app:layout_constraintStart_toStartOf="@+id/organizers"
-                app:layout_constraintTop_toBottomOf="@+id/github_contribute"
-                app:strokeWidth="0dp">
-
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:background="@color/highlight">
-
-                    <TextView
-                        android:id="@+id/upload_text"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="16dp"
-                        android:layout_marginTop="19dp"
-                        android:fontFamily="@font/montserrat_medium"
-                        android:text="@string/upload"
-                        android:textColor="@color/background_upfront"
-                        android:textSize="16sp"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
-
-                    <ImageView
-                        android:layout_width="200dp"
-                        android:layout_height="100dp"
-                        android:layout_marginEnd="-70dp"
-                        android:layout_marginBottom="-30dp"
-                        android:contentDescription="@string/upload"
-                        android:src="@drawable/upload"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent" />
-
-                </androidx.constraintlayout.widget.ConstraintLayout>
-
-            </com.google.android.material.card.MaterialCardView>
-
-            <!--syllabus-->
-            <com.google.android.material.card.MaterialCardView
-                android:id="@+id/syllabus"
-                android:layout_width="0dp"
-                android:layout_height="80dp"
-                android:layout_marginTop="16dp"
-                app:cardCornerRadius="24dp"
-                app:cardElevation="0dp"
-                app:layout_constraintEnd_toEndOf="@+id/videos"
-                app:layout_constraintStart_toStartOf="@+id/organizers"
-                app:layout_constraintTop_toBottomOf="@id/notes"
-                app:strokeWidth="0dp">
-
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:background="@color/white">
-
-                    <TextView
-                        android:id="@+id/syllabus_text"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="24dp"
-                        android:layout_marginBottom="16dp"
-                        android:fontFamily="@font/montserrat_medium"
-                        android:singleLine="true"
-                        android:text="@string/syllabus"
-                        android:textColor="@color/background_upfront"
-                        android:textSize="20sp"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintStart_toStartOf="parent" />
-
-                    <androidx.cardview.widget.CardView
-                        android:id="@+id/newBadgeSyllabus"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="8dp"
-                        app:cardBackgroundColor="@color/highlight"
-                        app:cardCornerRadius="4dp"
-                        app:cardElevation="0dp"
-                        app:layout_constraintBottom_toBottomOf="@+id/syllabus_text"
-                        app:layout_constraintStart_toEndOf="@+id/syllabus_text"
-                        app:layout_constraintTop_toTopOf="@+id/syllabus_text"
-                        app:layout_constraintVertical_bias="0.3">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:fontFamily="@font/inter_semibold"
-                            android:paddingHorizontal="6dp"
-                            android:paddingVertical="2dp"
-                            android:text="@string/new_badge"
-                            android:textColor="@color/background_upfront"
-                            android:textSize="11sp" />
-
-                    </androidx.cardview.widget.CardView>
-
-                    <ImageView
-                        android:layout_width="200dp"
-                        android:layout_height="70dp"
-                        android:contentDescription="@string/syllabus"
-                        android:src="@drawable/backpack"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
-                </androidx.constraintlayout.widget.ConstraintLayout>
-
-            </com.google.android.material.card.MaterialCardView>
+        </com.google.android.material.card.MaterialCardView>
 
         <com.google.android.gms.ads.AdView
             android:id="@+id/adView"
@@ -410,6 +425,6 @@
             app:layout_constraintStart_toStartOf="@+id/syllabus"
             app:layout_constraintTop_toBottomOf="@+id/syllabus" />
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.core.widget.NestedScrollView>

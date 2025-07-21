@@ -11,6 +11,7 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.net.toUri
 import androidx.core.view.ViewCompat
+import androidx.core.view.WindowCompat
 import androidx.core.view.WindowInsetsCompat
 import com.bumptech.glide.Glide
 import com.google.android.gms.ads.AdRequest
@@ -34,12 +35,17 @@ import com.subhajitrajak.makautstudybuddy.presentation.books.BooksActivity
 import com.subhajitrajak.makautstudybuddy.presentation.downloads.DownloadedFilesActivity
 import com.subhajitrajak.makautstudybuddy.presentation.notes.NotesActivity
 import com.subhajitrajak.makautstudybuddy.presentation.organizers.OrganizerActivity
+import com.subhajitrajak.makautstudybuddy.presentation.pdf.PdfAssistantFragment
 import com.subhajitrajak.makautstudybuddy.presentation.settings.SettingsActivity
 import com.subhajitrajak.makautstudybuddy.presentation.syllabus.SyllabusActivity
 import com.subhajitrajak.makautstudybuddy.presentation.upload.UploadActivity
 import com.subhajitrajak.makautstudybuddy.presentation.videos.VideosActivity
 import com.subhajitrajak.makautstudybuddy.utils.Constants.TEST_AD_UNIT_ID
 import com.subhajitrajak.makautstudybuddy.utils.showToast
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 class MainActivity : AppCompatActivity() {
     private val activity = this
@@ -57,12 +63,20 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
-        setContentView(binding.root)
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
-            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
+        WindowCompat.setDecorFitsSystemWindows(window, false)
+
+        ViewCompat.setOnApplyWindowInsetsListener(binding.root) { view, insets ->
+            val systemBarsInsets = insets.getInsets(WindowInsetsCompat.Type.systemBars())
+            // Apply padding to the root view to lift all children
+            view.setPadding(
+                systemBarsInsets.left,
+                systemBarsInsets.top,
+                systemBarsInsets.right,
+                0
+            )
             insets
-    }
+        }
+        setContentView(binding.root)
 
         // Initialize GoogleAuthUiClient
         googleAuthUiClient = GoogleAuthUiClient(activity, Identity.getSignInClient(activity))
@@ -129,6 +143,23 @@ class MainActivity : AppCompatActivity() {
 
             syllabus.setOnClickListener {
                 startActivity(Intent(activity, SyllabusActivity::class.java))
+            }
+
+            talkToAi.setOnClickListener {
+                CoroutineScope(Dispatchers.IO).launch {
+                    withContext(Dispatchers.Main) {
+                        supportFragmentManager.beginTransaction()
+                            .setCustomAnimations(
+                                R.anim.slide_in_right,
+                                R.anim.fade_out,
+                                R.anim.fade_in,
+                                R.anim.slide_out_right
+                            )
+                            .replace(android.R.id.content, PdfAssistantFragment())
+                            .addToBackStack(null)
+                            .commit()
+                    }
+                }
             }
         }
 
