@@ -216,13 +216,13 @@ class PdfActivity : AppCompatActivity() {
 
     private fun playAnimation(play: Boolean) {
         if (play) {
-            binding.lottieAnimationView.visibility = View.VISIBLE
-            binding.askText.visibility = View.GONE
+            binding.loading.visibility = View.VISIBLE
+            binding.askAiOverlay.visibility = View.GONE
             binding.lottieAnimationView.playAnimation()
             binding.lottieAnimationView.repeatCount = LottieDrawable.INFINITE
         } else {
-            binding.lottieAnimationView.visibility = View.GONE
-            binding.askText.visibility = View.VISIBLE
+            binding.loading.visibility = View.GONE
+            binding.askAiOverlay.visibility = View.VISIBLE
         }
     }
 }
