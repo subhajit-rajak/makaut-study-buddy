@@ -52,7 +52,7 @@
             android:layout_marginBottom="32dp"
             android:elevation="20dp"
             android:fontFamily="@font/montserrat_medium"
-            android:text="Ask Ai about this page"
+            android:text="@string/ask_ai_about_this_page"
             android:textAlignment="center"
             android:textColor="@color/text"
             android:textSize="14sp"

@@ -115,6 +115,7 @@
     <string name="page_snapshot">Page Snapshot</string>
     <string name="tap_to_speak">Tap to Speak</string>
     <string name="listening">Listening…</string>
+    <string name="ask_ai_about_this_page">Ask Ai about this page</string>
 
     <string-array name="ai_models">
         <item tools:ignore="TypographyDashes">qwen/qwen3-8b:free</item>
