@@ -133,4 +133,7 @@ dependencies {
 
     // markdown
     implementation(libs.noties.markwon.core)
+
+    // lottie animation
+    implementation(libs.lottie)
 }

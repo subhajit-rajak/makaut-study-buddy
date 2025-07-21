@@ -12,6 +12,7 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.isVisible
+import com.airbnb.lottie.LottieDrawable
 import com.github.barteksc.pdfviewer.scroll.DefaultScrollHandle
 import com.itextpdf.text.pdf.PdfReader
 import com.itextpdf.text.pdf.parser.PdfTextExtractor
@@ -72,6 +73,7 @@ class PdfActivity : AppCompatActivity() {
             }
 
             askAiOverlay.setOnClickListener {
+                playAnimation(true)
                 if (currentInputStream != null) {
                     CoroutineScope(Dispatchers.IO).launch {
                         val extracted = extractTextFromPdfPage(pdfUrlOrPath, binding.pdfView.currentPage)
@@ -98,9 +100,11 @@ class PdfActivity : AppCompatActivity() {
                                 .replace(android.R.id.content, PdfAssistantFragment.newInstance(extracted, bitmapBytes))
                                 .addToBackStack(null)
                                 .commit()
+                            playAnimation(false)
                         }
                     }
                 } else {
+                    playAnimation(false)
                     showToast(this@PdfActivity, "PDF not loaded yet.")
                 }
             }
@@ -207,6 +211,18 @@ class PdfActivity : AppCompatActivity() {
         } catch (e: Exception) {
             e.printStackTrace()
             "Unable to extract text"
+        }
+    }
+
+    private fun playAnimation(play: Boolean) {
+        if (play) {
+            binding.lottieAnimationView.visibility = View.VISIBLE
+            binding.askText.visibility = View.GONE
+            binding.lottieAnimationView.playAnimation()
+            binding.lottieAnimationView.repeatCount = LottieDrawable.INFINITE
+        } else {
+            binding.lottieAnimationView.visibility = View.GONE
+            binding.askText.visibility = View.VISIBLE
         }
     }
 }
