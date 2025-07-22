@@ -1,16 +1,24 @@
 package com.subhajitrajak.makautstudybuddy.presentation.settings
 
+import android.Manifest
 import android.content.Intent
+import android.content.pm.PackageManager
+import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import androidx.activity.enableEdgeToEdge
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
+import android.provider.Settings
+import androidx.annotation.RequiresApi
 import androidx.core.net.toUri
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.lifecycle.lifecycleScope
 import com.google.android.gms.auth.api.identity.Identity
+import com.google.android.material.materialswitch.MaterialSwitch
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
@@ -32,6 +40,12 @@ class SettingsActivity : AppCompatActivity() {
 
     private lateinit var googleAuthUiClient: GoogleAuthUiClient
 
+    private val requestPermissionLauncher = registerForActivityResult(
+        ActivityResultContracts.RequestPermission()
+    ) { isGranted: Boolean ->
+        binding.notificationSwitch.isChecked = isGranted
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -41,6 +55,13 @@ class SettingsActivity : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
+
+        binding.notificationSwitch.isChecked = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            isNotificationPermissionGranted()
+        } else {
+            true
+        }
+        checkNotificationPermissionAndSetSwitch()
 
         binding.settingsBackButton.setOnClickListener {
             finish()
@@ -53,6 +74,7 @@ class SettingsActivity : AppCompatActivity() {
 
         val packageInfo = packageManager.getPackageInfo(packageName, 0)
         val versionName = packageInfo.versionName
+
         @Suppress("DEPRECATION")
         val versionCode = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
             packageInfo.longVersionCode
@@ -85,6 +107,39 @@ class SettingsActivity : AppCompatActivity() {
                 Log.d("DatabaseError", "onCancelled: ${error.message}")
             }
         })
+    }
+
+    private fun checkNotificationPermissionAndSetSwitch() {
+        val switch = binding.notificationSwitch
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            switch.setOnCheckedChangeListener { _, isChecked ->
+                if (isChecked) {
+                    requestPermissionLauncher.launch(Manifest.permission.POST_NOTIFICATIONS)
+                    return@setOnCheckedChangeListener
+                } else {
+                    showToast(
+                        this,
+                        "To fully disable notifications, turn it off in system settings."
+                    )
+                    val intent = Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS)
+                    intent.data = Uri.fromParts("package", packageName, null)
+                    startActivity(intent)
+                }
+            }
+        } else {
+            // Below Android 13, permission not needed
+            switch.isChecked = true
+            switch.isEnabled = false // Optional: dis`able switch for older versions
+        }
+    }
+
+    @RequiresApi(Build.VERSION_CODES.TIRAMISU)
+    fun isNotificationPermissionGranted(): Boolean {
+        return ContextCompat.checkSelfPermission(
+            this,
+            Manifest.permission.POST_NOTIFICATIONS
+        ) == PackageManager.PERMISSION_GRANTED
     }
 
     private fun setView(
@@ -163,5 +218,17 @@ class SettingsActivity : AppCompatActivity() {
                 finishAffinity()
             }
         }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            binding.notificationSwitch.isChecked = isNotificationPermissionGranted()
+        }
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        requestPermissionLauncher.unregister()
     }
 }

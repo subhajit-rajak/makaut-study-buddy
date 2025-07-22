@@ -116,6 +116,8 @@
     <string name="tap_to_speak">Tap to Speak</string>
     <string name="listening">Listening…</string>
     <string name="ask_ai_about_this_page">Ask Ai about this page</string>
+    <string name="notifications">Notifications</string>
+    <string name="notifications_description">Receive latest announcements from MAKAUT</string>
 
     <string-array name="ai_models">
         <item tools:ignore="TypographyDashes">qwen/qwen3-8b:free</item>

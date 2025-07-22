@@ -25,9 +25,9 @@
         android:id="@+id/settings_back_button_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:fontFamily="@font/inter_semibold"
         android:paddingVertical="18dp"
         android:text="@string/settings"
-        android:fontFamily="@font/inter_semibold"
         android:textColor="@color/text"
         android:textSize="22sp"
         app:layout_constraintStart_toEndOf="@+id/settings_back_button"
@@ -35,7 +35,10 @@
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/settings_back_button_text">
 
         <LinearLayout
@@ -47,34 +50,34 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:background="@drawable/item_card_settings"
                 android:orientation="vertical"
-                android:padding="16dp"
-                android:background="@drawable/item_card_settings">
+                android:padding="16dp">
 
                 <LinearLayout
                     android:id="@+id/rate_us"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
-                    android:padding="16dp" >
+                    android:padding="16dp">
 
                     <ImageView
                         android:layout_width="24dp"
                         android:layout_height="24dp"
-                        android:contentDescription="@string/rate_us"
-                        app:tint="@color/text"
                         android:layout_gravity="center"
-                        android:src="@drawable/star"/>
+                        android:contentDescription="@string/rate_us"
+                        android:src="@drawable/star"
+                        app:tint="@color/text" />
 
                     <TextView
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="16dp"
-                        android:text="@string/rate_us"
-                        android:layout_weight="1"
                         android:layout_gravity="center"
+                        android:layout_marginStart="16dp"
+                        android:layout_weight="1"
+                        android:text="@string/rate_us"
                         android:textColor="@color/text"
-                        android:textSize="18sp"/>
+                        android:textSize="18sp" />
 
                     <ImageView
                         android:layout_width="24dp"
@@ -90,26 +93,26 @@
                     android:id="@+id/share"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:padding="16dp"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:padding="16dp">
 
                     <ImageView
                         android:layout_width="24dp"
                         android:layout_height="24dp"
-                        android:contentDescription="@string/share_app"
-                        app:tint="@color/text"
                         android:layout_gravity="center"
-                        android:src="@drawable/share"/>
+                        android:contentDescription="@string/share_app"
+                        android:src="@drawable/share"
+                        app:tint="@color/text" />
 
                     <TextView
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="16dp"
-                        android:text="@string/share_app"
-                        android:layout_weight="1"
                         android:layout_gravity="center"
+                        android:layout_marginStart="16dp"
+                        android:layout_weight="1"
+                        android:text="@string/share_app"
                         android:textColor="@color/text"
-                        android:textSize="18sp"/>
+                        android:textSize="18sp" />
 
                     <ImageView
                         android:layout_width="24dp"
@@ -126,35 +129,100 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:padding="16dp"
                 android:layout_marginTop="24dp"
-                android:background="@drawable/item_card_settings">
+                android:background="@drawable/item_card_settings"
+                android:orientation="vertical"
+                android:paddingHorizontal="16dp"
+                android:paddingVertical="4dp">
+
+                <LinearLayout
+                    android:id="@+id/notifications"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="16dp">
+
+                    <ImageView
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:layout_gravity="center"
+                        android:contentDescription="@string/notifications"
+                        android:src="@drawable/notifications"
+                        app:tint="@color/text" />
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginStart="16dp"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/notifications"
+                            android:textColor="@color/text"
+                            android:textSize="18sp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/notifications_description"
+                            android:textColor="@color/grey"
+                            android:textSize="@dimen/_8ssp" />
+
+                    </LinearLayout>
+
+                    <com.google.android.material.materialswitch.MaterialSwitch
+                        android:id="@+id/notificationSwitch"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginStart="16dp"
+                        android:contentDescription="@string/notifications"
+                        android:src="@drawable/rv_right"
+                        app:thumbTint="#ECF4E2"
+                        app:tint="@color/text"
+                        app:trackDecorationTint="#34667A66"
+                        app:trackTint="#34667A66" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:background="@drawable/item_card_settings"
+                android:orientation="vertical"
+                android:padding="16dp">
 
                 <LinearLayout
                     android:id="@+id/privacy_policy"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
-                    android:padding="16dp" >
+                    android:padding="16dp">
 
                     <ImageView
                         android:layout_width="24dp"
                         android:layout_height="24dp"
-                        android:contentDescription="@string/privacy_policy"
-                        app:tint="@color/text"
                         android:layout_gravity="center"
-                        android:src="@drawable/privacy"/>
+                        android:contentDescription="@string/privacy_policy"
+                        android:src="@drawable/privacy"
+                        app:tint="@color/text" />
 
                     <TextView
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="16dp"
-                        android:text="@string/privacy_policy"
-                        android:layout_weight="1"
                         android:layout_gravity="center"
+                        android:layout_marginStart="16dp"
+                        android:layout_weight="1"
+                        android:text="@string/privacy_policy"
                         android:textColor="@color/text"
-                        android:textSize="18sp"/>
+                        android:textSize="18sp" />
 
                     <ImageView
                         android:layout_width="24dp"
@@ -170,26 +238,26 @@
                     android:id="@+id/terms"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:padding="16dp"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:padding="16dp">
 
                     <ImageView
                         android:layout_width="24dp"
                         android:layout_height="24dp"
-                        android:contentDescription="@string/terms_and_conditions"
-                        app:tint="@color/text"
                         android:layout_gravity="center"
-                        android:src="@drawable/terms_and_policy"/>
+                        android:contentDescription="@string/terms_and_conditions"
+                        android:src="@drawable/terms_and_policy"
+                        app:tint="@color/text" />
 
                     <TextView
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="16dp"
-                        android:text="@string/terms_and_conditions"
-                        android:layout_weight="1"
                         android:layout_gravity="center"
+                        android:layout_marginStart="16dp"
+                        android:layout_weight="1"
+                        android:text="@string/terms_and_conditions"
                         android:textColor="@color/text"
-                        android:textSize="18sp"/>
+                        android:textSize="18sp" />
 
                     <ImageView
                         android:layout_width="24dp"
@@ -206,35 +274,35 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:padding="16dp"
                 android:layout_marginTop="24dp"
-                android:background="@drawable/item_card_settings">
+                android:background="@drawable/item_card_settings"
+                android:orientation="vertical"
+                android:padding="16dp">
 
                 <LinearLayout
                     android:id="@+id/contact"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
-                    android:padding="16dp" >
+                    android:padding="16dp">
 
                     <ImageView
                         android:layout_width="24dp"
                         android:layout_height="24dp"
-                        android:contentDescription="@string/contact"
-                        app:tint="@color/text"
                         android:layout_gravity="center"
-                        android:src="@drawable/message"/>
+                        android:contentDescription="@string/contact"
+                        android:src="@drawable/message"
+                        app:tint="@color/text" />
 
                     <TextView
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="16dp"
-                        android:text="@string/contact"
-                        android:layout_weight="1"
                         android:layout_gravity="center"
+                        android:layout_marginStart="16dp"
+                        android:layout_weight="1"
+                        android:text="@string/contact"
                         android:textColor="@color/text"
-                        android:textSize="18sp"/>
+                        android:textSize="18sp" />
 
                     <ImageView
                         android:layout_width="24dp"
@@ -250,26 +318,26 @@
                     android:id="@+id/feedback"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:padding="16dp"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:padding="16dp">
 
                     <ImageView
                         android:layout_width="24dp"
                         android:layout_height="24dp"
-                        android:contentDescription="@string/feedback"
-                        app:tint="@color/text"
                         android:layout_gravity="center"
-                        android:src="@drawable/feedback"/>
+                        android:contentDescription="@string/feedback"
+                        android:src="@drawable/feedback"
+                        app:tint="@color/text" />
 
                     <TextView
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="16dp"
-                        android:text="@string/feedback"
-                        android:layout_weight="1"
                         android:layout_gravity="center"
+                        android:layout_marginStart="16dp"
+                        android:layout_weight="1"
+                        android:text="@string/feedback"
                         android:textColor="@color/text"
-                        android:textSize="18sp"/>
+                        android:textSize="18sp" />
 
                     <ImageView
                         android:layout_width="24dp"
@@ -286,35 +354,35 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:padding="16dp"
                 android:layout_marginTop="24dp"
-                android:background="@drawable/item_card_settings_logout">
+                android:background="@drawable/item_card_settings_logout"
+                android:orientation="vertical"
+                android:padding="16dp">
 
                 <LinearLayout
                     android:id="@+id/logout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
-                    android:padding="16dp" >
+                    android:padding="16dp">
 
                     <ImageView
                         android:layout_width="24dp"
                         android:layout_height="24dp"
-                        android:contentDescription="@string/log_out"
-                        app:tint="@color/text"
                         android:layout_gravity="center"
-                        android:src="@drawable/logout"/>
+                        android:contentDescription="@string/log_out"
+                        android:src="@drawable/logout"
+                        app:tint="@color/text" />
 
                     <TextView
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="16dp"
-                        android:text="@string/log_out"
-                        android:layout_weight="1"
                         android:layout_gravity="center"
+                        android:layout_marginStart="16dp"
+                        android:layout_weight="1"
+                        android:text="@string/log_out"
                         android:textColor="@color/text"
-                        android:textSize="18sp"/>
+                        android:textSize="18sp" />
 
                     <ImageView
                         android:layout_width="24dp"
@@ -334,9 +402,10 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginTop="16dp"
+                android:layout_marginBottom="48dp"
                 android:padding="16dp"
-                android:textColor="@color/text"
-                android:text="@string/app_version_x_x_x_x"/>
+                android:text="@string/app_version_x_x_x_x"
+                android:textColor="@color/text" />
 
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
