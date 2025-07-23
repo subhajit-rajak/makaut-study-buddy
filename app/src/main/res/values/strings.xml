@@ -122,7 +122,12 @@
     <string-array name="ai_models">
         <item tools:ignore="TypographyDashes">qwen/qwen3-8b:free</item>
         <item>deepseek/deepseek-r1:free</item>
-        <item>nvidia/llama-3.3-nemotron-super-49b-v1:free</item>
+        <item>google/gemma-3n-e4b-it:free</item>
+        <item tools:ignore="TypographyDashes">mistralai/mistral-small-3.2-24b-instruct:free</item>
+        <item>tencent/hunyuan-a13b-instruct:free</item>
+        <item>google/gemma-3n-e2b-it:free</item>
+        <item>moonshotai/kimi-k2:free</item>
+        <item tools:ignore="TypographyDashes">qwen/qwen3-235b-a22b-07-25:free</item>
     </string-array>
 
 </resources>
