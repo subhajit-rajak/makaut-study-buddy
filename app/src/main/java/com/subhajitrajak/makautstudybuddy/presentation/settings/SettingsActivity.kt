@@ -27,6 +27,7 @@ import com.subhajitrajak.makautstudybuddy.data.auth.GoogleAuthUiClient
 import com.subhajitrajak.makautstudybuddy.data.models.SettingsModel
 import com.subhajitrajak.makautstudybuddy.databinding.ActivitySettingsBinding
 import com.subhajitrajak.makautstudybuddy.presentation.onboarding.OnBoardingActivity
+import com.subhajitrajak.makautstudybuddy.presentation.subscription.PremiumFragment
 import com.subhajitrajak.makautstudybuddy.utils.Constants.HOME
 import com.subhajitrajak.makautstudybuddy.utils.Constants.SETTINGS_DATA
 import com.subhajitrajak.makautstudybuddy.utils.showToast
@@ -37,7 +38,12 @@ class SettingsActivity : AppCompatActivity() {
         ActivitySettingsBinding.inflate(layoutInflater)
     }
 
-    private lateinit var googleAuthUiClient: GoogleAuthUiClient
+    private val googleAuthUiClient: GoogleAuthUiClient by lazy {
+        GoogleAuthUiClient(
+            context = this,
+            oneTapClient = Identity.getSignInClient(this)
+        )
+    }
 
     private val requestPermissionLauncher = registerForActivityResult(
         ActivityResultContracts.RequestPermission()
@@ -55,35 +61,30 @@ class SettingsActivity : AppCompatActivity() {
             insets
         }
 
-        binding.notificationSwitch.isChecked = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-            isNotificationPermissionGranted()
-        } else {
-            true
-        }
         checkNotificationPermissionAndSetSwitch()
+        setupAppVersions()
 
         binding.settingsBackButton.setOnClickListener {
             finish()
         }
 
-        googleAuthUiClient = GoogleAuthUiClient(
-            context = this,
-            oneTapClient = Identity.getSignInClient(this)
-        )
+        setupSettings()
 
-        val packageInfo = packageManager.getPackageInfo(packageName, 0)
-        val versionName = packageInfo.versionName
-
-        @Suppress("DEPRECATION")
-        val versionCode = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
-            packageInfo.longVersionCode
-        } else {
-            packageInfo.versionCode
+        binding.premiumTab.setOnClickListener {
+            supportFragmentManager.beginTransaction()
+                .setCustomAnimations(
+                    R.anim.slide_in_right,
+                    R.anim.fade_out,
+                    R.anim.fade_in,
+                    R.anim.slide_out_right
+                )
+                .replace(android.R.id.content, PremiumFragment())
+                .addToBackStack(null)
+                .commit()
         }
+    }
 
-        val text = "App version $versionName ($versionCode)"
-        binding.appVersion.text = text
-
+    private fun setupSettings() {
         val firebaseDatabase = FirebaseDatabase.getInstance()
         val databaseRef = firebaseDatabase.getReference(SETTINGS_DATA).child(HOME)
 
@@ -108,7 +109,28 @@ class SettingsActivity : AppCompatActivity() {
         })
     }
 
+    private fun setupAppVersions() {
+        val packageInfo = packageManager.getPackageInfo(packageName, 0)
+        val versionName = packageInfo.versionName
+
+        @Suppress("DEPRECATION")
+        val versionCode = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
+            packageInfo.longVersionCode
+        } else {
+            packageInfo.versionCode
+        }
+
+        val text = "App version $versionName ($versionCode)"
+        binding.appVersion.text = text
+    }
+
     private fun checkNotificationPermissionAndSetSwitch() {
+        binding.notificationSwitch.isChecked = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            isNotificationPermissionGranted()
+        } else {
+            true
+        }
+
         val switch = binding.notificationSwitch
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {

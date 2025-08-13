@@ -118,7 +118,17 @@
     <string name="ask_ai_about_this_page">Ask Ai about this page</string>
     <string name="notifications">Notifications</string>
     <string name="notifications_description">Receive latest announcements from MAKAUT</string>
-
+    <string name="premium_title">Go Premium</string>
+    <string name="premium_description">Unlock Everything. Access to all AI Models. Go Ads free.</string>
+    <string name="premium">Premium</string>
+    <string name="premium_catchy_headline">Go Limitless with Premium.</string>
+    <string name="why_join_premium">Why join Premium?</string>
+    <string name="unlock_all_content">Unlock all content</string>
+    <string name="get_access_to_all_ai_models">Get Access to all AI models</string>
+    <string name="get_faster_responses_using_better_ai_models">Get faster responses using better AI models</string>
+    <string name="go_ads_free">Go Ads free</string>
+    <string name="access_to_all_future_premium_content">Access to all future premium content</string>
+    <string name="early_access_to_future_updates">Early access to future updates</string>
     <string-array name="ai_models">
         <item tools:ignore="TypographyDashes">qwen/qwen3-8b:free</item>
         <item>deepseek/deepseek-r1:free</item>

@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background_upfront"
+    tools:context=".presentation.subscription.PremiumFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="300dp">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:importantForAccessibility="no"
+                android:src="@drawable/premium_banner"
+                android:scaleType="centerCrop"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:importantForAccessibility="no"
+                android:src="@drawable/gradient_listening_overlay"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:id="@+id/back_button"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:layout_marginTop="42dp"
+                android:layout_marginEnd="16dp"
+                android:contentDescription="@string/back_button"
+                android:src="@drawable/cross"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:tint="@color/text" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:drawablePadding="4dp"
+                android:fontFamily="@font/inter_bold"
+                android:text="@string/premium"
+                android:textColor="@color/text"
+                android:textSize="18sp"
+                app:drawableStartCompat="@drawable/logo"
+                app:layout_constraintBottom_toTopOf="@+id/textView10"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <TextView
+                android:id="@+id/textView10"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="24dp"
+                android:fontFamily="@font/inter_bold"
+                android:paddingStart="24dp"
+                android:paddingEnd="32dp"
+                android:text="@string/premium_catchy_headline"
+                android:textColor="@color/text"
+                android:textSize="32sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <Button
+            android:id="@+id/getPremium"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Get Premium"
+            android:textSize="16sp"
+            android:layout_marginHorizontal="24dp"
+            android:layout_marginVertical="24dp"
+            android:fontFamily="@font/inter_bold"
+            android:textColor="@color/background_upfront"
+            android:backgroundTint="@color/text"/>
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="24dp"
+            app:cardCornerRadius="16dp"
+            app:cardBackgroundColor="@color/darker_grey">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/why_join_premium"
+                    android:fontFamily="@font/inter_bold"
+                    android:paddingHorizontal="16dp"
+                    android:paddingTop="24dp"
+                    android:paddingBottom="16dp"
+                    android:textColor="@color/text"
+                    android:textSize="16sp" />
+
+                <com.google.android.material.divider.MaterialDivider
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/unlock_all_content"
+                    android:fontFamily="@font/inter_semibold"
+                    android:paddingHorizontal="16dp"
+                    android:gravity="center"
+                    android:layout_marginTop="8dp"
+                    android:paddingVertical="4dp"
+                    android:textColor="@color/text"
+                    android:textSize="12sp"
+                    android:drawablePadding="8dp"
+                    app:drawableStartCompat="@drawable/content"
+                    app:drawableTint="@color/text" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/get_access_to_all_ai_models"
+                    android:fontFamily="@font/inter_semibold"
+                    android:paddingHorizontal="16dp"
+                    android:gravity="center"
+                    android:paddingVertical="4dp"
+                    android:textColor="@color/text"
+                    android:textSize="12sp"
+                    android:drawablePadding="8dp"
+                    app:drawableStartCompat="@drawable/ai_icon"
+                    app:drawableTint="@color/text" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/get_faster_responses_using_better_ai_models"
+                    android:fontFamily="@font/inter_semibold"
+                    android:paddingHorizontal="12dp"
+                    android:gravity="center"
+                    android:paddingVertical="4dp"
+                    android:textColor="@color/text"
+                    android:textSize="12sp"
+                    android:drawablePadding="8dp"
+                    app:drawableStartCompat="@drawable/thunder"
+                    app:drawableTint="@color/text" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/go_ads_free"
+                    android:fontFamily="@font/inter_semibold"
+                    android:paddingHorizontal="16dp"
+                    android:gravity="center"
+                    android:paddingVertical="4dp"
+                    android:textColor="@color/text"
+                    android:textSize="12sp"
+                    android:drawablePadding="8dp"
+                    app:drawableStartCompat="@drawable/no_ads"
+                    app:drawableTint="@color/text" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/access_to_all_future_premium_content"
+                    android:fontFamily="@font/inter_semibold"
+                    android:paddingHorizontal="16dp"
+                    android:gravity="center"
+                    android:paddingVertical="4dp"
+                    android:textColor="@color/text"
+                    android:textSize="12sp"
+                    android:drawablePadding="8dp"
+                    app:drawableStartCompat="@drawable/fast_forward"
+                    app:drawableTint="@color/text" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/early_access_to_future_updates"
+                    android:fontFamily="@font/inter_semibold"
+                    android:paddingHorizontal="16dp"
+                    android:gravity="center"
+                    android:paddingVertical="4dp"
+                    android:layout_marginBottom="16dp"
+                    android:textColor="@color/text"
+                    android:textSize="12sp"
+                    android:drawablePadding="8dp"
+                    app:drawableStartCompat="@drawable/open_lock"
+                    app:drawableTint="@color/text" />
+
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+
+    </LinearLayout>
+
+</androidx.core.widget.NestedScrollView>

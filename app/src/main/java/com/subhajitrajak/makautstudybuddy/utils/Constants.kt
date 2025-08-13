@@ -39,4 +39,7 @@ object Constants {
     const val CHANNEL_ID = "general"
     const val CHANNEL_NAME = "All Notifications"
     const val CHANNEL_DESC = "All notifications including promotions, announcements and new features."
+
+    // subscriptions
+    const val ENTITLEMENT_PREMIUM = "Premium"
 }

@@ -13,6 +13,7 @@ val localProperties = rootProject.file("local.properties").inputStream().use { i
 }
 val apiKey: String = localProperties.getProperty("API_KEY") ?: "\"\""
 val openRouterApiKey: String = localProperties.getProperty("OPENROUTER_API_KEY") ?: "\"\""
+val revenuecatApiKey: String = localProperties.getProperty("REVENUECAT_API_KEY") ?: "\"\""
 val admobAppId: String = localProperties.getProperty("ADMOB_APP_ID") ?: "SAMPLE_APP_ID"
 
 val mainAdUnitId: String = localProperties.getProperty("MAIN_ADMOB_UNIT_ID") ?: "\"\""
@@ -36,6 +37,7 @@ android {
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         buildConfigField("String", "API_KEY", "\"$apiKey\"")
         buildConfigField("String", "OPENROUTER_API_KEY", "\"$openRouterApiKey\"")
+        buildConfigField("String", "REVENUECAT_API_KEY", "\"$revenuecatApiKey\"")
         manifestPlaceholders["admob_app_id"] = admobAppId
 
         buildConfigField("String", "MAIN_ADMOB_UNIT_ID", "\"$mainAdUnitId\"")
@@ -136,4 +138,13 @@ dependencies {
 
     // lottie animation
     implementation(libs.lottie)
+
+    // RevenueCat for subscriptions
+    implementation(libs.purchases)
+    implementation("com.revenuecat.purchases:purchases-ui:9.2.0") {
+        exclude (group= "org.commonmark", module= "commonmark")
+    }
+
+    // billing
+    implementation(libs.billing)
 }
