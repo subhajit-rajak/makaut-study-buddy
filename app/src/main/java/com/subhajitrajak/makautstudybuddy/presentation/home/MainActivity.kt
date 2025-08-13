@@ -85,13 +85,6 @@ class MainActivity : AppCompatActivity() {
         val userData: UserData? = googleAuthUiClient.getSignedInUser()
 
         if (userData != null) {
-            val username = userData.username ?: "Guest"
-            val name = username.substringBefore(" ")
-            binding.greeting.text = buildString {
-                append("Hey, ")
-                append(name)
-            }
-
             Glide.with(activity)
                 .load(userData.profilePictureUrl)
                 .placeholder(R.drawable.avatar)

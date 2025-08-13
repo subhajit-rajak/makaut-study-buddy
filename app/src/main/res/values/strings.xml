@@ -37,8 +37,9 @@
     <string name="contribute">Contribute</string>
     <string name="upload">Upload</string>
     <string name="videos">Videos</string>
-    <string name="welcome_back">Welcome Back</string>
-    <string name="greeting_message">Hey Guest,</string>
+    <string name="excel_your">Excel your</string>
+    <string name="exams">Exams</string>
+    <string name="greeting_message">Explore various contents to</string>
     <string name="favourites">Favourites</string>
     <string name="onboarding_heading">Let\'s Study</string>
     <string name="onboarding_subheading" tools:ignore="TypographyEllipsis">Search Less,\nExplore More...</string>
@@ -129,6 +130,7 @@
     <string name="go_ads_free">Go Ads free</string>
     <string name="access_to_all_future_premium_content">Access to all future premium content</string>
     <string name="early_access_to_future_updates">Early access to future updates</string>
+    <string name="get_premium">Get Premium</string>
     <string-array name="ai_models">
         <item tools:ignore="TypographyDashes">qwen/qwen3-8b:free</item>
         <item>deepseek/deepseek-r1:free</item>

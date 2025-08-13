@@ -68,10 +68,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="32dp"
-            android:fontFamily="@font/gilroy"
+            android:fontFamily="@font/montserrat"
             android:text="@string/greeting_message"
             android:textColor="@color/text"
-            android:textSize="20sp"
+            android:textSize="18sp"
             app:layout_constraintStart_toStartOf="@+id/profile_picture"
             app:layout_constraintTop_toBottomOf="@+id/profile_picture" />
 
@@ -79,12 +79,36 @@
             android:id="@+id/textView4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/gilroy_bold"
-            android:text="@string/welcome_back"
+            android:layout_marginTop="-4dp"
+            android:fontFamily="@font/montserrat_bold"
+            android:text="@string/excel_your"
             android:textColor="@color/text"
-            android:textSize="36sp"
+            android:textSize="32sp"
             app:layout_constraintStart_toStartOf="@+id/greeting"
             app:layout_constraintTop_toBottomOf="@+id/greeting" />
+
+        <TextView
+            android:id="@+id/textView44"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:fontFamily="@font/montserrat_bold"
+            android:text="@string/exams"
+            android:textColor="@color/highlight"
+            android:textSize="32sp"
+            app:layout_constraintBottom_toBottomOf="@+id/textView4"
+            app:layout_constraintStart_toEndOf="@+id/textView4"
+            app:layout_constraintTop_toTopOf="@+id/textView4" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="-4dp"
+            android:importantForAccessibility="no"
+            android:src="@drawable/curved_underline"
+            app:layout_constraintEnd_toEndOf="@+id/textView44"
+            app:layout_constraintStart_toStartOf="@+id/textView44"
+            app:layout_constraintTop_toBottomOf="@+id/textView44" />
 
         <!--organizers-->
         <com.google.android.material.card.MaterialCardView
