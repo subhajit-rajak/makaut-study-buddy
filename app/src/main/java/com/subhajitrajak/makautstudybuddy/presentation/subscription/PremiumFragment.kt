@@ -11,6 +11,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.google.firebase.auth.FirebaseAuth
 import com.revenuecat.purchases.Purchases
+import com.revenuecat.purchases.getOfferingsWith
 import com.revenuecat.purchases.getCustomerInfoWith
 import com.revenuecat.purchases.logInWith
 import com.revenuecat.purchases.ui.revenuecatui.ExperimentalPreviewRevenueCatUIPurchasesAPI
@@ -226,6 +227,25 @@ class PremiumFragment : Fragment(), PaywallResultHandler {
                             renewsOn.text = "Renews on $expiryFormatted"
                         }
                     },
+                )
+            } else {
+                // Fetch and display prices for available offerings
+                Purchases.sharedInstance.getOfferingsWith(
+                    onError = { error ->
+                        log("Error fetching offerings: ${error.message}")
+                    },
+                    onSuccess = { offerings ->
+                        val currentOffering = offerings.current
+                        if (currentOffering != null) {
+                            val monthlyPackage = currentOffering.monthly
+                            val annualPackage = currentOffering.annual
+
+                            monthlyPrice.text = monthlyPackage?.product?.price?.formatted ?: "N/A"
+                            annualPrice.text = annualPackage?.product?.price?.formatted ?: "N/A"
+                        } else {
+                            log("No current offering available")
+                        }
+                    }
                 )
             }
         }

@@ -139,8 +139,8 @@
     <string name="save_15">Save 15%</string>
     <string name="annual">ANNUAL</string>
     <string name="per_year">PER YEAR</string>
-    <string name="_599">₹599/-</string>
-    <string name="_59">₹59/-</string>
+    <string name="_599">₹599.00</string>
+    <string name="_59">₹59.00</string>
     <string name="cancel_subscription">Cancel Subscription</string>
     <string name="manage_subscription">Manage Subscription</string>
     <string name="current_plan_premium_monthly">Current Plan - Premium Monthly</string>
