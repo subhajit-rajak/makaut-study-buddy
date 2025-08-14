@@ -15,7 +15,8 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="300dp">
+            android:layout_height="300dp"
+            android:layout_marginBottom="24dp">
 
             <ImageView
                 android:layout_width="match_parent"
@@ -48,7 +49,8 @@
                 android:src="@drawable/cross"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:tint="@color/text" />
+                app:tint="@color/text"
+                tools:ignore="ImageContrastCheck" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -60,22 +62,36 @@
                 android:textColor="@color/text"
                 android:textSize="18sp"
                 app:drawableStartCompat="@drawable/logo"
-                app:layout_constraintBottom_toTopOf="@+id/textView10"
+                app:layout_constraintBottom_toTopOf="@+id/page_title"
                 app:layout_constraintStart_toStartOf="parent" />
 
             <TextView
-                android:id="@+id/textView10"
-                android:layout_width="wrap_content"
+                android:id="@+id/page_title"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="24dp"
                 android:fontFamily="@font/inter_bold"
                 android:paddingStart="24dp"
                 android:paddingEnd="32dp"
+                android:gravity="start"
                 android:text="@string/premium_catchy_headline"
                 android:textColor="@color/text"
                 android:textSize="32sp"
-                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintBottom_toTopOf="@+id/renews_on"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <TextView
+                android:id="@+id/renews_on"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="24dp"
+                android:fontFamily="@font/inter_semibold"
+                android:paddingStart="24dp"
+                android:paddingEnd="32dp"
+                android:text="@string/renews_on_15_aug_2025"
+                android:textColor="@color/text"
+                android:textSize="12sp"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
@@ -84,18 +100,202 @@
             android:id="@+id/getPremium"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/get_premium"
-            android:textSize="16sp"
             android:layout_marginHorizontal="24dp"
-            android:layout_marginVertical="24dp"
+            android:layout_marginBottom="24dp"
+            android:backgroundTint="@color/text"
             android:fontFamily="@font/inter_bold"
+            android:text="@string/get_premium"
             android:textColor="@color/background_upfront"
-            android:backgroundTint="@color/text"/>
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:ignore="VisualLintButtonSize" />
 
         <androidx.cardview.widget.CardView
+            android:id="@+id/available_plans"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="24dp"
+            app:cardCornerRadius="16dp"
+            app:cardBackgroundColor="@color/darker_grey">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/available_plans"
+                    android:fontFamily="@font/inter_bold"
+                    android:paddingHorizontal="16dp"
+                    android:paddingTop="24dp"
+                    android:paddingBottom="16dp"
+                    android:textColor="@color/text"
+                    android:textSize="16sp" />
+
+                <com.google.android.material.divider.MaterialDivider
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="24dp"
+                    android:weightSum="2"
+                    android:orientation="horizontal">
+
+                    <com.google.android.material.card.MaterialCardView
+                        android:layout_width="0dp"
+                        android:layout_height="130dp"
+                        android:layout_marginEnd="24dp"
+                        android:layout_weight="1"
+                        app:cardBackgroundColor="@color/darker_grey"
+                        app:cardCornerRadius="24dp"
+                        app:strokeColor="@color/semi_darker_grey"
+                        app:strokeWidth="2dp"
+                        tools:ignore="TextSizeCheck">
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
+
+                            <TextView
+                                android:id="@+id/textView12"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:background="@color/semi_darker_grey"
+                                android:fontFamily="@font/inter_semibold"
+                                android:gravity="center"
+                                android:paddingVertical="8dp"
+                                android:text="@string/most_popular"
+                                android:textColor="@color/text"
+                                android:textSize="12sp"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="0dp"
+                                android:gravity="center"
+                                android:orientation="vertical"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toBottomOf="@+id/textView12">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:fontFamily="@font/inter"
+                                    android:text="@string/monthly"
+                                    android:textColor="@color/text"
+                                    android:textSize="@dimen/_7ssp" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:fontFamily="@font/inter_semibold"
+                                    android:text="@string/_59"
+                                    android:textColor="@color/text"
+                                    android:textSize="24sp" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:fontFamily="@font/inter"
+                                    android:text="@string/per_month"
+                                    android:textColor="@color/text"
+                                    android:textSize="@dimen/_7ssp" />
+
+                            </LinearLayout>
+
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    </com.google.android.material.card.MaterialCardView>
+
+                    <com.google.android.material.card.MaterialCardView
+                        android:layout_width="0dp"
+                        android:layout_height="130dp"
+                        android:layout_weight="1"
+                        app:cardBackgroundColor="@color/darker_grey"
+                        app:cardCornerRadius="24dp"
+                        app:strokeColor="@color/highlight_darker"
+                        app:strokeWidth="2dp"
+                        tools:ignore="TextSizeCheck">
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
+
+                            <TextView
+                                android:id="@+id/textView13"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:background="@color/highlight_darker"
+                                android:fontFamily="@font/inter_semibold"
+                                android:gravity="center"
+                                android:paddingVertical="8dp"
+                                android:text="@string/save_15"
+                                android:textColor="@color/white"
+                                android:textSize="12sp"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="0dp"
+                                android:gravity="center"
+                                android:orientation="vertical"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toBottomOf="@+id/textView13">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:fontFamily="@font/inter"
+                                    android:text="@string/annual"
+                                    android:textColor="@color/text"
+                                    android:textSize="@dimen/_7ssp" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:fontFamily="@font/inter_semibold"
+                                    android:text="@string/_599"
+                                    android:textColor="@color/text"
+                                    android:textSize="24sp" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:fontFamily="@font/inter"
+                                    android:text="@string/per_year"
+                                    android:textColor="@color/text"
+                                    android:textSize="@dimen/_7ssp" />
+
+                            </LinearLayout>
+
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    </com.google.android.material.card.MaterialCardView>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/why_join_premium"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="24dp"
+            android:layout_marginVertical="24dp"
             app:cardCornerRadius="16dp"
             app:cardBackgroundColor="@color/darker_grey">
 
@@ -204,6 +404,117 @@
                     android:drawablePadding="8dp"
                     app:drawableStartCompat="@drawable/open_lock"
                     app:drawableTint="@color/text" />
+
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/manage_subscription"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="24dp"
+            android:layout_marginBottom="24dp"
+            app:cardCornerRadius="16dp"
+            app:cardBackgroundColor="@color/darker_grey">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/manage_subscription"
+                    android:fontFamily="@font/inter_bold"
+                    android:paddingHorizontal="16dp"
+                    android:paddingTop="24dp"
+                    android:paddingBottom="16dp"
+                    android:textColor="@color/text"
+                    android:textSize="16sp" />
+
+                <com.google.android.material.divider.MaterialDivider
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+                <TextView
+                    android:id="@+id/tvPlanName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:fontFamily="@font/inter_semibold"
+                    android:gravity="center"
+                    android:paddingHorizontal="16dp"
+                    android:paddingVertical="4dp"
+                    android:text="@string/current_plan_premium_monthly"
+                    android:textColor="@color/text"
+                    android:textSize="12sp" />
+
+                <TextView
+                    android:id="@+id/tvRenewDate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/renews_on_15_aug_2025"
+                    android:fontFamily="@font/inter_semibold"
+                    android:paddingHorizontal="16dp"
+                    android:gravity="center"
+                    android:paddingVertical="4dp"
+                    android:textColor="@color/text"
+                    android:textSize="12sp" />
+
+                <TextView
+                    android:id="@+id/tvPurchaseDate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/purchased_on_15_aug_2025"
+                    android:fontFamily="@font/inter_semibold"
+                    android:paddingHorizontal="16dp"
+                    android:gravity="center"
+                    android:paddingVertical="4dp"
+                    android:textColor="@color/text"
+                    android:textSize="12sp" />
+
+                <TextView
+                    android:id="@+id/tvMemberSince"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/member_since_15_aug_2025"
+                    android:fontFamily="@font/inter_semibold"
+                    android:layout_marginBottom="16dp"
+                    android:paddingHorizontal="16dp"
+                    android:gravity="center"
+                    android:paddingVertical="4dp"
+                    android:textColor="@color/text"
+                    android:textSize="12sp" />
+
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cancelSubscription"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="24dp"
+            android:layout_marginBottom="24dp"
+            app:cardCornerRadius="16dp"
+            app:cardBackgroundColor="@color/darker_grey">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/cancel_subscription"
+                    android:fontFamily="@font/inter"
+                    android:paddingHorizontal="16dp"
+                    android:paddingVertical="16dp"
+                    android:textColor="@color/text"
+                    android:textSize="14sp" />
 
             </LinearLayout>
 

@@ -11,11 +11,13 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.google.firebase.auth.FirebaseAuth
 import com.revenuecat.purchases.Purchases
+import com.revenuecat.purchases.getCustomerInfoWith
 import com.revenuecat.purchases.logInWith
 import com.revenuecat.purchases.ui.revenuecatui.ExperimentalPreviewRevenueCatUIPurchasesAPI
 import com.revenuecat.purchases.ui.revenuecatui.activity.PaywallActivityLauncher
 import com.revenuecat.purchases.ui.revenuecatui.activity.PaywallResult
 import com.revenuecat.purchases.ui.revenuecatui.activity.PaywallResultHandler
+import com.subhajitrajak.makautstudybuddy.R
 import com.subhajitrajak.makautstudybuddy.billing.SubscriptionViewModel
 import com.subhajitrajak.makautstudybuddy.billing.SubscriptionViewModelFactory
 import com.subhajitrajak.makautstudybuddy.databinding.FragmentPremiumBinding
@@ -49,26 +51,25 @@ class PremiumFragment : Fragment(), PaywallResultHandler {
 
         // Observe premium status
         viewModel.isPremium.observe(viewLifecycleOwner) { isPremium ->
-            // adds premium service
+            updateViewIfPremium(isPremium)
         }
         viewModel.refresh()
 
         // Initialize Firebase Auth and RevenueCat login
         initializeRevenueCatWithFirebaseAuth()
 
-        binding.getPremium.setOnClickListener {
-            // Check if user is premium and show appropriate action
-            if (viewModel.isPremium.value == true) {
-                // User is premium, show subscription management
-                showManageSubscription()
-            } else {
-                // User is not premium, show paywall
+        binding.apply {
+            getPremium.setOnClickListener {
                 showRevenueCatPaywall()
             }
-        }
 
-        binding.backButton.setOnClickListener {
-            handleBackButtonPress()
+            cancelSubscription.setOnClickListener {
+                openSubscriptionManagementPage()
+            }
+
+            backButton.setOnClickListener {
+                handleBackButtonPress()
+            }
         }
     }
 
@@ -91,14 +92,17 @@ class PremiumFragment : Fragment(), PaywallResultHandler {
                 viewModel.refresh()
                 log("Purchase completed for user: ${FirebaseAuth.getInstance().currentUser?.uid ?: "anonymous"}")
             }
+
             is PaywallResult.Restored -> {
                 showToast(requireContext(), "Purchases restored")
                 viewModel.refresh()
                 log("Purchases restored for user: ${FirebaseAuth.getInstance().currentUser?.uid ?: "anonymous"}")
             }
+
             is PaywallResult.Cancelled -> {
                 log("Purchase cancelled by user: ${FirebaseAuth.getInstance().currentUser?.uid ?: "anonymous"}")
             }
+
             is PaywallResult.Error -> {
                 showToast(requireContext(), "Error: ${result.error.message}")
                 log("Paywall error for user: ${FirebaseAuth.getInstance().currentUser?.uid ?: "anonymous"}")
@@ -145,9 +149,10 @@ class PremiumFragment : Fragment(), PaywallResultHandler {
         }
     }
 
-    private fun showManageSubscription() {
+    private fun openSubscriptionManagementPage() {
         val packageName = requireContext().packageName
-        val subscriptionUrl = "https://play.google.com/store/account/subscriptions?package=$packageName"
+        val subscriptionUrl =
+            "https://play.google.com/store/account/subscriptions?package=$packageName"
         val intent = Intent(Intent.ACTION_VIEW, subscriptionUrl.toUri())
         startActivity(intent)
     }
@@ -158,6 +163,70 @@ class PremiumFragment : Fragment(), PaywallResultHandler {
                 requireActivity().onBackPressedDispatcher.onBackPressed()
             } else {
                 parentFragmentManager.popBackStack()
+            }
+        }
+    }
+
+    private fun updateViewIfPremium(isPremium: Boolean) {
+        binding.apply {
+            availablePlans.visibility = if (isPremium) View.GONE else View.VISIBLE
+            whyJoinPremium.visibility = if (isPremium) View.GONE else View.VISIBLE
+            getPremium.visibility = if (isPremium) View.GONE else View.VISIBLE
+            manageSubscription.visibility = if (isPremium) View.VISIBLE else View.GONE
+            cancelSubscription.visibility = if (isPremium) View.VISIBLE else View.GONE
+            renewsOn.visibility = if (isPremium) View.VISIBLE else View.GONE
+            pageTitle.text = if (isPremium) getString(R.string.premium_catchy_headline_premium_version) else getString(R.string.premium_catchy_headline)
+
+            if (isPremium) {
+                // Fetch subscription details
+                Purchases.sharedInstance.getCustomerInfoWith(
+                    onError = { error ->
+                        log("Error fetching subscription details: ${error.message}")
+                    },
+                    onSuccess = { customerInfo ->
+                        val activeSubscriptions = customerInfo.activeSubscriptions
+
+                        if (activeSubscriptions.isNotEmpty()) {
+                            val firstSubscription = activeSubscriptions.first()
+                            val entitlement = customerInfo.entitlements.active.values.firstOrNull()
+
+                            val productId =
+                                firstSubscription // e.g., "premium_monthly" or "premium_yearly"
+                            val planName = if (productId.contains("year", true)) {
+                                "Premium Yearly"
+                            } else {
+                                "Premium Monthly"
+                            }
+
+                            // Expiration date with time
+                            val expiryDate = entitlement?.expirationDate
+                            val expiryFormatted = expiryDate?.let {
+                                android.text.format.DateFormat.format("dd MMM yyyy, hh:mm a", it)
+                                    .toString()
+                            } ?: "N/A"
+
+                            // Purchase date (latest purchase)
+                            val purchaseDate = entitlement?.latestPurchaseDate
+                            val purchaseFormatted = purchaseDate?.let {
+                                android.text.format.DateFormat.format("dd MMM yyyy, hh:mm a", it)
+                                    .toString()
+                            } ?: "N/A"
+
+                            // First seen in RevenueCat
+                            val firstSeen = customerInfo.firstSeen
+                            val firstSeenFormatted = firstSeen.let {
+                                android.text.format.DateFormat.format("dd MMM yyyy, hh:mm a", it)
+                                    .toString()
+                            }
+
+                            tvRenewDate.text = "Renews on - $expiryFormatted"
+                            tvPlanName.text = "Current Plan - $planName"
+                            tvPurchaseDate.text = "Purchased on - $purchaseFormatted"
+                            tvMemberSince.text = "Member since - $firstSeenFormatted"
+                            renewsOn.text = "Renews on $expiryFormatted"
+                        }
+                    },
+                )
             }
         }
     }

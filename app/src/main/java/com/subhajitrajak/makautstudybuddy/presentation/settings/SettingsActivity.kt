@@ -10,6 +10,7 @@ import android.provider.Settings
 import android.util.Log
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.activity.viewModels
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
@@ -23,6 +24,8 @@ import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import com.subhajitrajak.makautstudybuddy.R
+import com.subhajitrajak.makautstudybuddy.billing.SubscriptionViewModel
+import com.subhajitrajak.makautstudybuddy.billing.SubscriptionViewModelFactory
 import com.subhajitrajak.makautstudybuddy.data.auth.GoogleAuthUiClient
 import com.subhajitrajak.makautstudybuddy.data.models.SettingsModel
 import com.subhajitrajak.makautstudybuddy.databinding.ActivitySettingsBinding
@@ -43,6 +46,10 @@ class SettingsActivity : AppCompatActivity() {
             context = this,
             oneTapClient = Identity.getSignInClient(this)
         )
+    }
+
+    private val subscriptionViewModel: SubscriptionViewModel by viewModels {
+        SubscriptionViewModelFactory(this.application)
     }
 
     private val requestPermissionLauncher = registerForActivityResult(
@@ -69,6 +76,7 @@ class SettingsActivity : AppCompatActivity() {
         }
 
         setupSettings()
+        setupSubscriptionTab()
 
         binding.premiumTab.setOnClickListener {
             supportFragmentManager.beginTransaction()
@@ -81,6 +89,13 @@ class SettingsActivity : AppCompatActivity() {
                 .replace(android.R.id.content, PremiumFragment())
                 .addToBackStack(null)
                 .commit()
+        }
+    }
+
+    private fun setupSubscriptionTab() {
+        subscriptionViewModel.isPremium.observe(this) { isPremium ->
+            binding.premiumTitle.text = if (isPremium) getString(R.string.premium_member) else getString(R.string.premium_title)
+            binding.premiumDescription.text = if (isPremium) getString(R.string.manage_subscription) else getString(R.string.premium_description)
         }
     }
 

@@ -48,7 +48,7 @@
             app:layout_constraintTop_toTopOf="@+id/profile_picture"
             app:tint="@color/text" />
 
-        <ImageButton
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/talkToAi"
             android:layout_width="0dp"
             android:layout_height="54dp"
@@ -56,7 +56,12 @@
             android:layout_marginEnd="8dp"
             android:background="@drawable/button_glass_background"
             android:contentDescription="@string/ask_ai"
-            android:src="@drawable/ai_icon"
+            android:text="@string/ask_ai"
+            android:textAllCaps="false"
+            android:gravity="center"
+            android:fontFamily="@font/inter_bold"
+            android:drawableStart="@drawable/ai_icon"
+            android:paddingHorizontal="36dp"
             app:layout_constraintBottom_toBottomOf="@+id/profile_picture"
             app:layout_constraintEnd_toStartOf="@+id/downloads"
             app:layout_constraintStart_toEndOf="@+id/profile_picture"
