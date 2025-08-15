@@ -1,25 +1,23 @@
 package com.subhajitrajak.makautstudybuddy.presentation.pdf
 
+import android.Manifest
 import android.app.Dialog
+import android.content.Intent
+import android.content.pm.PackageManager
 import android.graphics.BitmapFactory
 import android.graphics.Color
 import android.os.Bundle
+import android.speech.RecognitionListener
+import android.speech.RecognizerIntent
+import android.speech.SpeechRecognizer
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.AdapterView
-import android.widget.ArrayAdapter
-import android.widget.ImageView
-import android.content.Intent
-import android.speech.RecognizerIntent
-import android.speech.SpeechRecognizer
-import android.speech.RecognitionListener
-import android.widget.Toast
-import java.util.Locale
-import android.Manifest
-import android.content.pm.PackageManager
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
+import android.widget.AdapterView
+import android.widget.ImageView
+import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.content.ContextCompat
 import androidx.core.view.ViewCompat
@@ -27,16 +25,22 @@ import androidx.core.view.WindowInsetsCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.subhajitrajak.makautstudybuddy.R
+import com.subhajitrajak.makautstudybuddy.billing.SubscriptionViewModel
+import com.subhajitrajak.makautstudybuddy.billing.SubscriptionViewModelFactory
 import com.subhajitrajak.makautstudybuddy.databinding.FragmentPdfAssistantBinding
 import com.subhajitrajak.makautstudybuddy.utils.removeWithAnim
 import com.subhajitrajak.makautstudybuddy.utils.showWithAnim
 import io.noties.markwon.Markwon
+import java.util.Locale
 
 class PdfAssistantFragment : Fragment() {
     private var _binding: FragmentPdfAssistantBinding? = null
     private val binding get() = _binding!!
 
     private val viewModel: PdfAssistantViewModel by viewModels()
+    private val subscriptionViewModel: SubscriptionViewModel by viewModels {
+        SubscriptionViewModelFactory(requireContext().applicationContext)
+    }
 
     private lateinit var speechRecognizer: SpeechRecognizer
     private lateinit var speechIntent: Intent
@@ -77,6 +81,12 @@ class PdfAssistantFragment : Fragment() {
         setupAiAssistant()
         setupQuickPrompts()
         setupSnapShotCard()
+        
+        // Observe premium status and update spinner
+        subscriptionViewModel.isPremium.observe(viewLifecycleOwner) { isPremium ->
+            updateModelSpinner(isPremium)
+        }
+        subscriptionViewModel.refresh()
 
         return binding.root
     }
@@ -185,18 +195,52 @@ class PdfAssistantFragment : Fragment() {
     }
 
     private fun setupModelSpinner() {
-        val models = resources.getStringArray(R.array.ai_models)
-        val adapter = ArrayAdapter(requireContext(), R.layout.spinner_item, models)
-        adapter.setDropDownViewResource(R.layout.spinner_item)
-        binding.modelSpinner.adapter = adapter
-
-        binding.modelSpinner.setSelection(0)
+        val apiIdentifiers = resources.getStringArray(R.array.ai_models_api)
+        
         binding.modelSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
-                viewModel.setModel(models[position])
+                val selectedApiIdentifier = apiIdentifiers[position]
+                val isDeepSeek = selectedApiIdentifier.contains("deepseek", ignoreCase = true)
+                val isPremiumModel = !isDeepSeek
+                val isPremium = subscriptionViewModel.isPremium.value ?: false
+                
+                if (isPremiumModel && !isPremium) {
+                    // If trying to select a premium model without premium, revert to deepseek
+                    val deepSeekIndex = apiIdentifiers.indexOfFirst { it.contains("deepseek", ignoreCase = true) }
+                    if (deepSeekIndex != -1) {
+                        binding.modelSpinner.setSelection(deepSeekIndex)
+                        viewModel.setModel(apiIdentifiers[deepSeekIndex])
+                    }
+                } else {
+                    viewModel.setModel(selectedApiIdentifier)
+                }
             }
 
             override fun onNothingSelected(parent: AdapterView<*>?) {}
+        }
+    }
+    
+    private fun updateModelSpinner(isPremium: Boolean) {
+        val displayNames = resources.getStringArray(R.array.ai_models_display)
+        val apiIdentifiers = resources.getStringArray(R.array.ai_models_api)
+        val adapter = ModelSpinnerAdapter(requireContext(), displayNames, apiIdentifiers, isPremium)
+        adapter.setDropDownViewResource(R.layout.spinner_item_with_icon)
+        binding.modelSpinner.adapter = adapter
+        
+        // Set selection to deepseek if not premium
+        if (!isPremium) {
+            val deepSeekIndex = apiIdentifiers.indexOfFirst { it.contains("deepseek", ignoreCase = true) }
+            if (deepSeekIndex != -1) {
+                binding.modelSpinner.setSelection(deepSeekIndex)
+                viewModel.setModel(apiIdentifiers[deepSeekIndex])
+            }
+        } else {
+            // If premium, set to first model (qwen) if not already set
+            val currentPosition = binding.modelSpinner.selectedItemPosition
+            if (currentPosition == -1) {
+                binding.modelSpinner.setSelection(0)
+                viewModel.setModel(apiIdentifiers[0])
+            }
         }
     }
 

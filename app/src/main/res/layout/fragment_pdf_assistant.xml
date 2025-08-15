@@ -47,6 +47,7 @@
                 android:background="@drawable/spinner_background"
                 android:popupBackground="@drawable/spinner_dropdown_background"
                 android:paddingHorizontal="16dp"
+                android:gravity="center"
                 android:dropDownVerticalOffset="40dp"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="4dp"
