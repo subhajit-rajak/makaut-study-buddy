@@ -3,11 +3,13 @@ package com.subhajitrajak.makautstudybuddy.presentation.home
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.result.ActivityResult
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.IntentSenderRequest
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.net.toUri
 import androidx.core.view.ViewCompat
@@ -28,6 +30,8 @@ import com.google.android.play.core.install.model.InstallStatus
 import com.google.android.play.core.install.model.UpdateAvailability
 import com.subhajitrajak.makautstudybuddy.BuildConfig
 import com.subhajitrajak.makautstudybuddy.R
+import com.subhajitrajak.makautstudybuddy.billing.SubscriptionViewModel
+import com.subhajitrajak.makautstudybuddy.billing.SubscriptionViewModelFactory
 import com.subhajitrajak.makautstudybuddy.data.auth.GoogleAuthUiClient
 import com.subhajitrajak.makautstudybuddy.data.auth.UserData
 import com.subhajitrajak.makautstudybuddy.databinding.ActivityMainBinding
@@ -52,6 +56,11 @@ class MainActivity : AppCompatActivity() {
     private val binding: ActivityMainBinding by lazy {
         ActivityMainBinding.inflate(layoutInflater)
     }
+
+    private val subscriptionViewModel: SubscriptionViewModel by viewModels {
+        SubscriptionViewModelFactory(applicationContext)
+    }
+
     private var adUnitId = if(BuildConfig.DEBUG) TEST_AD_UNIT_ID else BuildConfig.MAIN_ADMOB_UNIT_ID
 
     private lateinit var googleAuthUiClient: GoogleAuthUiClient
@@ -156,7 +165,13 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-        loadAd()
+        subscriptionViewModel.isPremium.observe(this) { premium ->
+            if (premium) {
+                binding.adView.visibility = View.GONE
+            } else {
+                loadAd()
+            }
+        }
         checkForInAppUpdates()
     }
 

@@ -1,9 +1,11 @@
 package com.subhajitrajak.makautstudybuddy.presentation.videos
 
 import android.os.Bundle
+import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import androidx.activity.enableEdgeToEdge
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
@@ -19,6 +21,8 @@ import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import com.subhajitrajak.makautstudybuddy.BuildConfig
 import com.subhajitrajak.makautstudybuddy.R
+import com.subhajitrajak.makautstudybuddy.billing.SubscriptionViewModel
+import com.subhajitrajak.makautstudybuddy.billing.SubscriptionViewModelFactory
 import com.subhajitrajak.makautstudybuddy.data.models.VideosModel
 import com.subhajitrajak.makautstudybuddy.data.repository.VideosRepo
 import com.subhajitrajak.makautstudybuddy.data.repository.YoutubeRepo
@@ -31,6 +35,7 @@ import com.subhajitrajak.makautstudybuddy.utils.log
 import com.subhajitrajak.makautstudybuddy.utils.removeWithAnim
 import com.subhajitrajak.makautstudybuddy.utils.showToast
 import com.subhajitrajak.makautstudybuddy.utils.showWithAnim
+import kotlin.getValue
 
 class VideosActivity : AppCompatActivity() {
 
@@ -49,6 +54,10 @@ class VideosActivity : AppCompatActivity() {
 
     private val binding: ActivityVideosBinding by lazy {
         ActivityVideosBinding.inflate(layoutInflater)
+    }
+
+    private val subscriptionViewModel: SubscriptionViewModel by viewModels {
+        SubscriptionViewModelFactory(applicationContext)
     }
 
     private var adUnitId = if(BuildConfig.DEBUG) TEST_AD_UNIT_ID else BuildConfig.VIDEOS_ADMOB_UNIT_ID
@@ -107,7 +116,13 @@ class VideosActivity : AppCompatActivity() {
             }
         }
 
-        loadAd()
+        subscriptionViewModel.isPremium.observe(this) { premium ->
+            if (premium) {
+                binding.adView.visibility = View.GONE
+            } else {
+                loadAd()
+            }
+        }
     }
 
     private fun extractPlaylistId(url: String): String? {

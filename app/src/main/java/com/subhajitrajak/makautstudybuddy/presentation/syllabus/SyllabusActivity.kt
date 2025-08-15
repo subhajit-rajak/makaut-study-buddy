@@ -2,7 +2,9 @@ package com.subhajitrajak.makautstudybuddy.presentation.syllabus
 
 import android.annotation.SuppressLint
 import android.os.Bundle
+import android.view.View
 import androidx.activity.enableEdgeToEdge
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
@@ -12,6 +14,8 @@ import com.google.android.gms.ads.AdSize
 import com.google.android.gms.ads.AdView
 import com.subhajitrajak.makautstudybuddy.BuildConfig
 import com.subhajitrajak.makautstudybuddy.R
+import com.subhajitrajak.makautstudybuddy.billing.SubscriptionViewModel
+import com.subhajitrajak.makautstudybuddy.billing.SubscriptionViewModelFactory
 import com.subhajitrajak.makautstudybuddy.data.models.SyllabusModel
 import com.subhajitrajak.makautstudybuddy.data.repository.SyllabusRepo
 import com.subhajitrajak.makautstudybuddy.databinding.ActivitySyllabusBinding
@@ -31,6 +35,10 @@ class SyllabusActivity : AppCompatActivity() {
     private val repo = SyllabusRepo(activity)
     private val viewModel by lazy {
         ViewModelProvider(activity, SyllabusViewModelFactory(repo))[SyllabusViewModel::class.java]
+    }
+
+    private val subscriptionViewModel: SubscriptionViewModel by viewModels {
+        SubscriptionViewModelFactory(applicationContext)
     }
 
     private var adUnitId = if(BuildConfig.DEBUG) TEST_AD_UNIT_ID else BuildConfig.SYLLABUS_ADMOB_UNIT_ID
@@ -64,7 +72,13 @@ class SyllabusActivity : AppCompatActivity() {
             }
         }
 
-        loadAd()
+        subscriptionViewModel.isPremium.observe(this) { premium ->
+            if (premium) {
+                binding.adView.visibility = View.GONE
+            } else {
+                loadAd()
+            }
+        }
     }
 
     @SuppressLint("NotifyDataSetChanged")

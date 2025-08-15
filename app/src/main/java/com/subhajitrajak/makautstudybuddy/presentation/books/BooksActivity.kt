@@ -2,7 +2,9 @@ package com.subhajitrajak.makautstudybuddy.presentation.books
 
 import android.annotation.SuppressLint
 import android.os.Bundle
+import android.view.View
 import androidx.activity.enableEdgeToEdge
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
@@ -13,6 +15,8 @@ import com.google.android.gms.ads.AdSize
 import com.google.android.gms.ads.AdView
 import com.subhajitrajak.makautstudybuddy.BuildConfig
 import com.subhajitrajak.makautstudybuddy.R
+import com.subhajitrajak.makautstudybuddy.billing.SubscriptionViewModel
+import com.subhajitrajak.makautstudybuddy.billing.SubscriptionViewModelFactory
 import com.subhajitrajak.makautstudybuddy.data.models.BooksModel
 import com.subhajitrajak.makautstudybuddy.data.repository.BookRepo
 import com.subhajitrajak.makautstudybuddy.databinding.ActivityBooksBinding
@@ -20,6 +24,7 @@ import com.subhajitrajak.makautstudybuddy.utils.Constants.TEST_AD_UNIT_ID
 import com.subhajitrajak.makautstudybuddy.utils.MyResponses
 import com.subhajitrajak.makautstudybuddy.utils.removeWithAnim
 import com.subhajitrajak.makautstudybuddy.utils.showWithAnim
+import kotlin.getValue
 
 class BooksActivity : AppCompatActivity() {
 
@@ -27,6 +32,11 @@ class BooksActivity : AppCompatActivity() {
     private val booksViewModel by lazy {
         ViewModelProvider(this, BooksViewModelFactory(bookRepo))[BooksViewModel::class.java]
     }
+
+    private val subscriptionViewModel: SubscriptionViewModel by viewModels {
+        SubscriptionViewModelFactory(applicationContext)
+    }
+
     private var bookList = ArrayList<BooksModel>()
     val adapter = BooksAdapter(bookList, this)
 
@@ -65,7 +75,13 @@ class BooksActivity : AppCompatActivity() {
             }
         }
 
-        loadAd()
+        subscriptionViewModel.isPremium.observe(this) { premium ->
+            if (premium) {
+                binding.adView.visibility = View.GONE
+            } else {
+                loadAd()
+            }
+        }
     }
 
     @SuppressLint("NotifyDataSetChanged")

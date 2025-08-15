@@ -2,7 +2,9 @@ package com.subhajitrajak.makautstudybuddy.presentation.notes
 
 import android.annotation.SuppressLint
 import android.os.Bundle
+import android.view.View
 import androidx.activity.enableEdgeToEdge
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
@@ -12,6 +14,8 @@ import com.google.android.gms.ads.AdSize
 import com.google.android.gms.ads.AdView
 import com.subhajitrajak.makautstudybuddy.BuildConfig
 import com.subhajitrajak.makautstudybuddy.R
+import com.subhajitrajak.makautstudybuddy.billing.SubscriptionViewModel
+import com.subhajitrajak.makautstudybuddy.billing.SubscriptionViewModelFactory
 import com.subhajitrajak.makautstudybuddy.data.models.HomeModel
 import com.subhajitrajak.makautstudybuddy.data.repository.NotesRepo
 import com.subhajitrajak.makautstudybuddy.databinding.ActivityNotesBinding
@@ -19,6 +23,7 @@ import com.subhajitrajak.makautstudybuddy.utils.Constants.TEST_AD_UNIT_ID
 import com.subhajitrajak.makautstudybuddy.utils.MyResponses
 import com.subhajitrajak.makautstudybuddy.utils.removeWithAnim
 import com.subhajitrajak.makautstudybuddy.utils.showWithAnim
+import kotlin.getValue
 
 class NotesActivity : AppCompatActivity() {
     private val activity = this
@@ -31,6 +36,10 @@ class NotesActivity : AppCompatActivity() {
     private val repo = NotesRepo(activity)
     private val viewModel by lazy {
         ViewModelProvider(activity, NotesViewModelFactory(repo))[NotesViewModel::class.java]
+    }
+
+    private val subscriptionViewModel: SubscriptionViewModel by viewModels {
+        SubscriptionViewModelFactory(applicationContext)
     }
 
     private var adUnitId = if(BuildConfig.DEBUG) TEST_AD_UNIT_ID else BuildConfig.NOTES_ADMOB_UNIT_ID
@@ -58,7 +67,13 @@ class NotesActivity : AppCompatActivity() {
             }
         }
 
-        loadAd()
+        subscriptionViewModel.isPremium.observe(this) { premium ->
+            if (premium) {
+                binding.adView.visibility = View.GONE
+            } else {
+                loadAd()
+            }
+        }
     }
 
     @SuppressLint("NotifyDataSetChanged")
