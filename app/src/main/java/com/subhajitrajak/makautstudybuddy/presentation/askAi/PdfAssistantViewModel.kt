@@ -1,4 +1,4 @@
-package com.subhajitrajak.makautstudybuddy.presentation.pdf
+package com.subhajitrajak.makautstudybuddy.presentation.askAi
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData

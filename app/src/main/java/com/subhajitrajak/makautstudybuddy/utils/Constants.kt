@@ -12,6 +12,7 @@ object Constants {
     const val UPLOAD_REQUESTS = "UploadRequests"
     const val BOOK_LIST = "booksList"
     const val SETTINGS_DATA = "SettingsData"
+    const val AI_MODELS_DATA = "AiModelsData"
 
     // types
     const val NOTES = "Notes"

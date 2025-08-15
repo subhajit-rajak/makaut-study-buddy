@@ -1,4 +1,4 @@
-package com.subhajitrajak.makautstudybuddy.presentation.pdf
+package com.subhajitrajak.makautstudybuddy.presentation.askAi
 
 import android.Manifest
 import android.app.Dialog
@@ -24,13 +24,18 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
 import com.subhajitrajak.makautstudybuddy.R
 import com.subhajitrajak.makautstudybuddy.billing.SubscriptionViewModel
 import com.subhajitrajak.makautstudybuddy.billing.SubscriptionViewModelFactory
+import com.subhajitrajak.makautstudybuddy.data.repository.AiModelsRepository
 import com.subhajitrajak.makautstudybuddy.databinding.FragmentPdfAssistantBinding
+import com.subhajitrajak.makautstudybuddy.presentation.askAi.PdfAssistantViewModel
+import com.subhajitrajak.makautstudybuddy.utils.log
 import com.subhajitrajak.makautstudybuddy.utils.removeWithAnim
 import com.subhajitrajak.makautstudybuddy.utils.showWithAnim
 import io.noties.markwon.Markwon
+import kotlinx.coroutines.launch
 import java.util.Locale
 
 class PdfAssistantFragment : Fragment() {
@@ -40,6 +45,9 @@ class PdfAssistantFragment : Fragment() {
     private val viewModel: PdfAssistantViewModel by viewModels()
     private val subscriptionViewModel: SubscriptionViewModel by viewModels {
         SubscriptionViewModelFactory(requireContext().applicationContext)
+    }
+    private val aiModelsViewModel: AiModelsViewModel by viewModels {
+        AiModelsViewModelFactory(AiModelsRepository())
     }
 
     private lateinit var speechRecognizer: SpeechRecognizer
@@ -81,12 +89,6 @@ class PdfAssistantFragment : Fragment() {
         setupAiAssistant()
         setupQuickPrompts()
         setupSnapShotCard()
-        
-        // Observe premium status and update spinner
-        subscriptionViewModel.isPremium.observe(viewLifecycleOwner) { isPremium ->
-            updateModelSpinner(isPremium)
-        }
-        subscriptionViewModel.refresh()
 
         return binding.root
     }
@@ -195,51 +197,55 @@ class PdfAssistantFragment : Fragment() {
     }
 
     private fun setupModelSpinner() {
-        val apiIdentifiers = resources.getStringArray(R.array.ai_models_api)
-        
-        binding.modelSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
-                val selectedApiIdentifier = apiIdentifiers[position]
-                val isDeepSeek = selectedApiIdentifier.contains("deepseek", ignoreCase = true)
-                val isPremiumModel = !isDeepSeek
-                val isPremium = subscriptionViewModel.isPremium.value ?: false
-                
-                if (isPremiumModel && !isPremium) {
-                    // If trying to select a premium model without premium, revert to deepseek
-                    val deepSeekIndex = apiIdentifiers.indexOfFirst { it.contains("deepseek", ignoreCase = true) }
-                    if (deepSeekIndex != -1) {
-                        binding.modelSpinner.setSelection(deepSeekIndex)
-                        viewModel.setModel(apiIdentifiers[deepSeekIndex])
-                    }
-                } else {
-                    viewModel.setModel(selectedApiIdentifier)
-                }
-            }
+        lifecycleScope.launch {
+            try {
+                // Fetch once and cache in memory
+                val models = aiModelsViewModel.getAllModels()
 
-            override fun onNothingSelected(parent: AdapterView<*>?) {}
-        }
-    }
-    
-    private fun updateModelSpinner(isPremium: Boolean) {
-        val displayNames = resources.getStringArray(R.array.ai_models_display)
-        val apiIdentifiers = resources.getStringArray(R.array.ai_models_api)
-        val adapter = ModelSpinnerAdapter(requireContext(), displayNames, apiIdentifiers, isPremium)
-        adapter.setDropDownViewResource(R.layout.spinner_item_with_icon)
-        binding.modelSpinner.adapter = adapter
-        
-        // Set selection to deepseek if not premium
-        if (!isPremium) {
-            val deepSeekIndex = apiIdentifiers.indexOfFirst { it.contains("deepseek", ignoreCase = true) }
-            if (deepSeekIndex != -1) {
-                binding.modelSpinner.setSelection(deepSeekIndex)
-                viewModel.setModel(apiIdentifiers[deepSeekIndex])
-            }
-        } else {
-            // If premium, set to first model (qwen) if not already set
-            val currentPosition = binding.modelSpinner.selectedItemPosition
-            if (currentPosition == -1) {
-                binding.modelSpinner.setSelection(0)
-                viewModel.setModel(apiIdentifiers[0])
+                // Observe premium status
+                subscriptionViewModel.isPremium.observe(viewLifecycleOwner) { isPremium ->
+                    log(models.toString())
+                    val adapter = ModelSpinnerAdapter(requireContext(), models, isPremium)
+                    adapter.setDropDownViewResource(R.layout.spinner_item_with_icon)
+                    binding.modelSpinner.adapter = adapter
+
+                    // Default selection to first model
+                    if (binding.modelSpinner.selectedItemPosition == AdapterView.INVALID_POSITION) {
+                        binding.modelSpinner.setSelection(0)
+                        viewModel.setModel(models[0].identifier)
+                    }
+                }
+
+                var lastValidPosition = 0 // To store previous valid selection
+
+                binding.modelSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+                    override fun onItemSelected(
+                        parent: AdapterView<*>?,
+                        view: View?,
+                        position: Int,
+                        id: Long
+                    ) {
+                        val selectedModel = models[position]
+                        val isPremium = subscriptionViewModel.isPremium.value ?: false
+
+                        if (selectedModel.isPremium && !isPremium) {
+                            Toast.makeText(
+                                requireContext(),
+                                "This model is premium only",
+                                Toast.LENGTH_SHORT
+                            ).show()
+                            binding.modelSpinner.setSelection(lastValidPosition)
+                            return
+                        }
+
+                        lastValidPosition = position
+                        viewModel.setModel(selectedModel.identifier)
+                    }
+
+                    override fun onNothingSelected(parent: AdapterView<*>?) {}
+                }
+            } catch (e: Exception) {
+                log("Failed to setup model spinner: ${e.message}")
             }
         }
     }
@@ -271,7 +277,8 @@ class PdfAssistantFragment : Fragment() {
 
         binding.pdfSnapshot.setOnClickListener {
             snapshotBytes?.let { bytes ->
-                val dialog = Dialog(requireContext(), android.R.style.Theme_Black_NoTitleBar_Fullscreen)
+                val dialog =
+                    Dialog(requireContext(), android.R.style.Theme_Black_NoTitleBar_Fullscreen)
                 val imageView = ImageView(requireContext()).apply {
                     setImageBitmap(BitmapFactory.decodeByteArray(bytes, 0, bytes.size))
                     scaleType = ImageView.ScaleType.FIT_CENTER

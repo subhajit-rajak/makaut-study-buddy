@@ -18,6 +18,7 @@ import com.itextpdf.text.pdf.PdfReader
 import com.itextpdf.text.pdf.parser.PdfTextExtractor
 import com.subhajitrajak.makautstudybuddy.R
 import com.subhajitrajak.makautstudybuddy.databinding.ActivityPdfBinding
+import com.subhajitrajak.makautstudybuddy.presentation.askAi.PdfAssistantFragment
 import com.subhajitrajak.makautstudybuddy.utils.log
 import com.subhajitrajak.makautstudybuddy.utils.showToast
 import com.subhajitrajak.makautstudybuddy.utils.showWithAnim

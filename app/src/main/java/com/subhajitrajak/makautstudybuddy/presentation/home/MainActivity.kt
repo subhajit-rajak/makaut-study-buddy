@@ -39,7 +39,7 @@ import com.subhajitrajak.makautstudybuddy.presentation.books.BooksActivity
 import com.subhajitrajak.makautstudybuddy.presentation.downloads.DownloadedFilesActivity
 import com.subhajitrajak.makautstudybuddy.presentation.notes.NotesActivity
 import com.subhajitrajak.makautstudybuddy.presentation.organizers.OrganizerActivity
-import com.subhajitrajak.makautstudybuddy.presentation.pdf.PdfAssistantFragment
+import com.subhajitrajak.makautstudybuddy.presentation.askAi.PdfAssistantFragment
 import com.subhajitrajak.makautstudybuddy.presentation.settings.SettingsActivity
 import com.subhajitrajak.makautstudybuddy.presentation.syllabus.SyllabusActivity
 import com.subhajitrajak.makautstudybuddy.presentation.upload.UploadActivity

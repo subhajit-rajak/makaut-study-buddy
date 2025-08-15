@@ -1,15 +1,15 @@
 package com.subhajitrajak.makautstudybuddy.data.repository
 
 import com.subhajitrajak.makautstudybuddy.BuildConfig
-import com.subhajitrajak.makautstudybuddy.data.models.DeepSeekMessage
-import com.subhajitrajak.makautstudybuddy.data.models.DeepSeekRequest
-import com.subhajitrajak.makautstudybuddy.presentation.pdf.DeepSeekApiService
+import com.subhajitrajak.makautstudybuddy.data.models.OpenRouterMessage
+import com.subhajitrajak.makautstudybuddy.data.models.OpenRouterRequest
+import com.subhajitrajak.makautstudybuddy.presentation.askAi.OpenRouterApiService
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 class PdfAssistantRepository {
 
-    private val api: DeepSeekApiService
+    private val api: OpenRouterApiService
 
     init {
         val retrofit = Retrofit.Builder()
@@ -17,14 +17,14 @@ class PdfAssistantRepository {
             .addConverterFactory(GsonConverterFactory.create())
             .build()
 
-        api = retrofit.create(DeepSeekApiService::class.java)
+        api = retrofit.create(OpenRouterApiService::class.java)
     }
 
     suspend fun askDeepSeek(prompt: String, model: String): Result<String> {
         return try {
-            val request = DeepSeekRequest(
+            val request = OpenRouterRequest(
                 model = model,
-                messages = listOf(DeepSeekMessage("user", prompt))
+                messages = listOf(OpenRouterMessage("user", prompt))
             )
             val result = api.chatWithAI(request, "Bearer ${BuildConfig.OPENROUTER_API_KEY}")
             if (result.isSuccessful) {

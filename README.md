@@ -48,7 +48,7 @@ Download the app to enjoy a well-organized academic life, and join the community
 <details>
     <summary>2. Can I contribute?</summary>
   
-  - Yes, you absoultely can. Check the section above on steps of how to contribute.
+  - Yes, you absolutely can. Check the section above on steps of how to contribute.
 </details>
 
 ## 📱 Screenshots
