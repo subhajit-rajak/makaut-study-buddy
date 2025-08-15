@@ -15,20 +15,4 @@ class AiModelsViewModel(
             repository.fetchAiModels()
         }
     }
-
-    suspend fun getFreeModels(): List<AiModel> {
-        return getAllModels().filter { !it.isPremium }
-    }
-
-    suspend fun getPremiumModels(): List<AiModel> {
-        return getAllModels().filter { it.isPremium }
-    }
-
-    suspend fun getFasterModels(): List<AiModel> {
-        return getAllModels().filter { it.isFaster }
-    }
-
-    suspend fun getModelByIdentifier(identifier: String): AiModel? {
-        return getAllModels().find { it.identifier == identifier }
-    }
 }

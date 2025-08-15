@@ -30,7 +30,6 @@ import com.subhajitrajak.makautstudybuddy.billing.SubscriptionViewModel
 import com.subhajitrajak.makautstudybuddy.billing.SubscriptionViewModelFactory
 import com.subhajitrajak.makautstudybuddy.data.repository.AiModelsRepository
 import com.subhajitrajak.makautstudybuddy.databinding.FragmentPdfAssistantBinding
-import com.subhajitrajak.makautstudybuddy.presentation.askAi.PdfAssistantViewModel
 import com.subhajitrajak.makautstudybuddy.utils.log
 import com.subhajitrajak.makautstudybuddy.utils.removeWithAnim
 import com.subhajitrajak.makautstudybuddy.utils.showWithAnim
