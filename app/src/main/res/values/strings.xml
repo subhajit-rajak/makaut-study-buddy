@@ -148,27 +148,4 @@
     <string name="purchased_on_15_aug_2025">Purchased on - 15 Aug 2025</string>
     <string name="member_since_15_aug_2025">Member since - 15 Aug 2025</string>
     <string name="premium_member">Premium Member</string>
-
-    <string-array name="ai_models_display">
-        <item>DeepSeek R1</item>
-        <item>Qwen 3 (8B)</item>
-        <item>Gemma 3N (4B)</item>
-        <item>Mistral Small (24B)</item>
-        <item>Hunyuan A1 (13B)</item>
-        <item>Gemma 3N (2B)</item>
-        <item>Kimi K2</item>
-        <item>Qwen 3 (235B)</item>
-    </string-array>
-
-    <string-array name="ai_models_api">
-        <item>deepseek/deepseek-r1:free</item>
-        <item tools:ignore="TypographyDashes">qwen/qwen3-8b:free</item>
-        <item>google/gemma-3n-e4b-it:free</item>
-        <item tools:ignore="TypographyDashes">mistralai/mistral-small-3.2-24b-instruct:free</item>
-        <item>tencent/hunyuan-a13b-instruct:free</item>
-        <item>google/gemma-3n-e2b-it:free</item>
-        <item>moonshotai/kimi-k2:free</item>
-        <item tools:ignore="TypographyDashes">qwen/qwen3-235b-a22b-07-25:free</item>
-    </string-array>
-
 </resources>
