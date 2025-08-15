@@ -52,47 +52,47 @@
                 app:tint="@color/text"
                 tools:ignore="ImageContrastCheck" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="24dp"
-                android:drawablePadding="4dp"
-                android:fontFamily="@font/inter_bold"
-                android:text="@string/premium"
-                android:textColor="@color/text"
-                android:textSize="18sp"
-                app:drawableStartCompat="@drawable/logo"
-                app:layout_constraintBottom_toTopOf="@+id/page_title"
-                app:layout_constraintStart_toStartOf="parent" />
-
-            <TextView
-                android:id="@+id/page_title"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/inter_bold"
-                android:paddingStart="24dp"
-                android:paddingEnd="32dp"
-                android:gravity="start"
-                android:text="@string/premium_catchy_headline"
-                android:textColor="@color/text"
-                android:textSize="32sp"
-                app:layout_constraintBottom_toTopOf="@+id/renews_on"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent" />
-
-            <TextView
-                android:id="@+id/renews_on"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:orientation="vertical"
                 android:layout_marginBottom="24dp"
-                android:fontFamily="@font/inter_semibold"
-                android:paddingStart="24dp"
-                android:paddingEnd="32dp"
-                android:text="@string/renews_on_15_aug_2025"
-                android:textColor="@color/text"
-                android:textSize="12sp"
+                android:layout_marginStart="24dp"
+                android:layout_marginEnd="32dp"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent" />
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:drawablePadding="4dp"
+                    android:fontFamily="@font/inter_bold"
+                    android:text="@string/premium"
+                    android:textColor="@color/text"
+                    android:textSize="18sp"
+                    app:drawableStartCompat="@drawable/logo" />
+
+                <TextView
+                    android:id="@+id/page_title"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/inter_bold"
+                    android:gravity="start"
+                    android:text="@string/premium_catchy_headline"
+                    android:textColor="@color/text"
+                    android:textSize="32sp" />
+
+                <TextView
+                    android:id="@+id/renews_on"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/inter_semibold"
+                    android:text="@string/renews_on_15_aug_2025"
+                    android:textColor="@color/text"
+                    android:textSize="12sp" />
+
+            </LinearLayout>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
