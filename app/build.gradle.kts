@@ -31,8 +31,8 @@ android {
         applicationId = "com.subhajitrajak.makautstudybuddy"
         minSdk = 24
         targetSdk = 36
-        versionCode = 10
-        versionName = "2.2.0"
+        versionCode = 11
+        versionName = "2.2.1"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         buildConfigField("String", "API_KEY", "\"$apiKey\"")
@@ -50,11 +50,14 @@ android {
 
     buildTypes {
         release {
-            isMinifyEnabled = false
+            isMinifyEnabled = true
+            isShrinkResources = true
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
+
+            ndk.debugSymbolLevel = "FULL"
         }
     }
 
@@ -67,6 +70,7 @@ android {
         sourceCompatibility = JavaVersion.VERSION_17
         targetCompatibility = JavaVersion.VERSION_17
     }
+    ndkVersion = "29.0.13846066 rc3"
 }
 
 kotlin {
