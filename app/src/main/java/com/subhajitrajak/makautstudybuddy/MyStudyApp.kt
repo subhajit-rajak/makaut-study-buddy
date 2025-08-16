@@ -20,7 +20,7 @@ class MyStudyApp :Application() {
         }
 
         // Initialize RevenueCat
-        Purchases.logLevel = LogLevel.DEBUG
+        Purchases.logLevel = LogLevel.INFO
         Purchases.configure(
             PurchasesConfiguration.Builder(this, BuildConfig.REVENUECAT_API_KEY).build()
         )
