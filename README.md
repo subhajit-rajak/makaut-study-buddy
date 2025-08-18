@@ -1,15 +1,20 @@
 ![Playstore graphic msb v2 0 0](https://github.com/user-attachments/assets/d3ce529f-097c-4505-87d2-48c3e6f3c43d)
 
 <div align="center">
-
+    
 ![visits](https://visit-counter.vercel.app/counter.png?page=https%3A%2F%2Fgithub.com%2Fsubhajit-rajak%2Fmakaut-study-buddy&s=40&c=00ff00&bg=00000000&no=5&ff=digii&tb=&ta=+)
 
 </div>
 
+<h1 align="center">Makaut Study Buddy</h1>
+
 <div align="center">
-
-# Makaut Study Buddy
-
+  <p>An Ultimate Guide for a Student of MAKAUT</p>
+  <img src="https://ziadoua.github.io/m3-Markdown-Badges/badges/Android/android3.svg">
+  <img src="https://ziadoua.github.io/m3-Markdown-Badges/badges/Firebase/firebase3.svg">
+  <img src="https://ziadoua.github.io/m3-Markdown-Badges/badges/Kotlin/kotlin3.svg">
+  <img src="https://ziadoua.github.io/m3-Markdown-Badges/badges/LicenceMIT/licencemit3.svg">
+  <img src="https://m3-markdown-badges.vercel.app/stars/2/3/subhajit-rajak/makaut-study-buddy">
 </div>
 
 > ⚠️ The app is still in development. If you have any issues with the app or missing organizer pdfs then create a new issue in the repo. I will reply within 24 hours.
