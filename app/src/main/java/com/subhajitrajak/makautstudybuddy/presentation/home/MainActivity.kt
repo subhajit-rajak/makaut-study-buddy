@@ -20,6 +20,7 @@ import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.AdSize
 import com.google.android.gms.ads.AdView
 import com.google.android.gms.auth.api.identity.Identity
+import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.snackbar.Snackbar
 import com.google.android.play.core.appupdate.AppUpdateManager
 import com.google.android.play.core.appupdate.AppUpdateManagerFactory
@@ -35,12 +36,14 @@ import com.subhajitrajak.makautstudybuddy.billing.SubscriptionViewModelFactory
 import com.subhajitrajak.makautstudybuddy.data.auth.GoogleAuthUiClient
 import com.subhajitrajak.makautstudybuddy.data.auth.UserData
 import com.subhajitrajak.makautstudybuddy.databinding.ActivityMainBinding
+import com.subhajitrajak.makautstudybuddy.databinding.BottomSheetPremiumBinding
+import com.subhajitrajak.makautstudybuddy.presentation.askAi.PdfAssistantFragment
 import com.subhajitrajak.makautstudybuddy.presentation.books.BooksActivity
 import com.subhajitrajak.makautstudybuddy.presentation.downloads.DownloadedFilesActivity
 import com.subhajitrajak.makautstudybuddy.presentation.notes.NotesActivity
 import com.subhajitrajak.makautstudybuddy.presentation.organizers.OrganizerActivity
-import com.subhajitrajak.makautstudybuddy.presentation.askAi.PdfAssistantFragment
 import com.subhajitrajak.makautstudybuddy.presentation.settings.SettingsActivity
+import com.subhajitrajak.makautstudybuddy.presentation.subscription.PremiumFragment
 import com.subhajitrajak.makautstudybuddy.presentation.syllabus.SyllabusActivity
 import com.subhajitrajak.makautstudybuddy.presentation.upload.UploadActivity
 import com.subhajitrajak.makautstudybuddy.presentation.videos.VideosActivity
@@ -173,6 +176,11 @@ class MainActivity : AppCompatActivity() {
             }
         }
         checkForInAppUpdates()
+
+        // Show bottom sheet when the main screen is being created (and not being restored from a previous state)
+        if (savedInstanceState == null) {
+            showBottomSheet()
+        }
     }
 
     // checking for in-app updates
@@ -247,6 +255,30 @@ class MainActivity : AppCompatActivity() {
 
         val adRequest = AdRequest.Builder().build()
         adView.loadAd(adRequest)
+    }
+
+    private fun showBottomSheet() {
+        val dialog = BottomSheetDialog(activity)
+        val bottomSheetBinding = BottomSheetPremiumBinding.inflate(layoutInflater, binding.root , false)
+
+        bottomSheetBinding.closeBottomSheet.setOnClickListener { dialog.dismiss() }
+
+        bottomSheetBinding.btnTryNow.setOnClickListener {
+            dialog.dismiss()
+            supportFragmentManager.beginTransaction()
+                .setCustomAnimations(
+                    R.anim.slide_in_right,
+                    R.anim.fade_out,
+                    R.anim.fade_in,
+                    R.anim.slide_out_right
+                )
+                .replace(android.R.id.content, PremiumFragment())
+                .addToBackStack(null)
+                .commit()
+        }
+
+        dialog.setContentView(bottomSheetBinding.root)
+        dialog.show()
     }
 
     /*

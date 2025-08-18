@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	android:layout_width="match_parent"
+	android:layout_height="wrap_content"
+	android:orientation="vertical"
+	android:background="@drawable/item_bg_curve_white"
+	android:padding="24dp">
+
+	<ImageView
+		android:id="@+id/closeBottomSheet"
+		android:layout_width="32dp"
+		android:layout_height="32dp"
+		android:layout_gravity="end"
+		android:contentDescription="@string/back_button"
+		android:src="@drawable/cross"
+		app:tint="@color/background_upfront" />
+
+	<TextView
+		android:id="@+id/tvPremiumTitle"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:fontFamily="@font/montserrat_bold"
+		android:layout_marginBottom="8dp"
+		android:text="@string/premium_catchy_headline"
+		android:textColor="@color/background_upfront"
+		android:textSize="48sp" />
+
+	<androidx.appcompat.widget.AppCompatButton
+		android:id="@+id/btnTryNow"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:text="@string/try_now_for_free"
+		android:fontFamily="@font/montserrat_bold"
+		android:textColor="@color/text"
+		android:paddingVertical="24dp"
+		android:backgroundTint="@color/background_upfront" />
+
+	<TextView
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:fontFamily="@font/montserrat"
+		android:layout_marginBottom="16dp"
+		android:layout_marginTop="8dp"
+		android:layout_gravity="center"
+		android:text="@string/terms_and_conditions_apply"
+		android:textColor="@color/background_upfront"
+		android:textSize="12sp" />
+
+</LinearLayout>
+
+
