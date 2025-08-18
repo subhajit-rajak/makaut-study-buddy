@@ -32,6 +32,7 @@ converterGson = "3.0.0"
 googleFirebaseCrashlytics = "3.0.4"
 sdpAndroid = "1.1.1"
 sspAndroid = "1.1.1"
+swipeButton = "1.1.0"
 swiperefreshlayout = "1.1.0"
 
 [libraries]
@@ -67,6 +68,7 @@ purchases = { module = "com.revenuecat.purchases:purchases", version.ref = "purc
 retrofit = { module = "com.squareup.retrofit2:retrofit", version.ref = "retrofit" }
 sdp-android = { module = "com.intuit.sdp:sdp-android", version.ref = "sdpAndroid" }
 ssp-android = { module = "com.intuit.ssp:ssp-android", version.ref = "sspAndroid" }
+swipe-button = { module = "com.github.subhajit-rajak:swipe-button", version.ref = "swipeButton" }
 
 # firebase libraries
 firebase-bom = { module = "com.google.firebase:firebase-bom", version.ref = "firebaseBom" }

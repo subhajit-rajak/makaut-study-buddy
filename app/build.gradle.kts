@@ -151,4 +151,7 @@ dependencies {
 
     // billing
     implementation(libs.billing)
+
+    // swipe button
+    implementation(libs.swipe.button)
 }

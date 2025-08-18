@@ -111,7 +111,7 @@
             app:layout_constraintStart_toStartOf="@+id/materialDivider"
             app:layout_constraintTop_toTopOf="@+id/materialDivider" />
 
-        <com.subhajitrajak.makautstudybuddy.utils.SwipeButton
+        <com.subhajitrajak.swipebutton.SwipeButton
             android:id="@+id/googleButton"
             android:layout_width="match_parent"
             android:layout_height="54dp"
@@ -131,6 +131,7 @@
             app:inner_text_gravity="center"
             app:inner_text_left_padding="24dp"
             app:inner_text_size="15sp"
+            app:inner_text_font_family="@font/montserrat_semibold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView3"
