@@ -9,7 +9,12 @@
 <h1 align="center">Makaut Study Buddy</h1>
 
 <div align="center">
-  <p>An Ultimate Guide for a Student of MAKAUT</p>
+  <p>
+      An Ultimate Guide for a Student of MAKAUT
+  </p>
+  <p>
+      <img alt="Static Badge" src="https://img.shields.io/badge/2.2.1-0?style=for-the-badge&logo=android&label=Version&labelColor=%2310140e&color=%233A761D">
+  </p>
   <img src="https://ziadoua.github.io/m3-Markdown-Badges/badges/Android/android3.svg">
   <img src="https://ziadoua.github.io/m3-Markdown-Badges/badges/Firebase/firebase3.svg">
   <img src="https://ziadoua.github.io/m3-Markdown-Badges/badges/Kotlin/kotlin3.svg">
