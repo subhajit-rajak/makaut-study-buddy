@@ -42,6 +42,7 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import androidx.core.net.toUri
+import com.airbnb.lottie.LottieDrawable
 
 class OnBoardingActivity : AppCompatActivity() {
     private val binding: ActivityOnBoardingBinding by lazy {

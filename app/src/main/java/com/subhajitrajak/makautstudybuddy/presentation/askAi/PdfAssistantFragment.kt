@@ -189,6 +189,7 @@ class PdfAssistantFragment : Fragment() {
             binding.tvResponse.visibility = View.VISIBLE
             binding.emptyResponse.visibility = View.GONE
             binding.snapshotCard.removeWithAnim()
+            binding.lottieAnimationView.visibility = View.GONE
 
             val markdown = markwon.toMarkdown(it)
             markwon.setParsedMarkdown(binding.tvResponse, markdown)

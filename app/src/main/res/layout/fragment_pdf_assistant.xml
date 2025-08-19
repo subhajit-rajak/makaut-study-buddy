@@ -5,7 +5,8 @@
     android:id="@+id/fragment_container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/background_upfront">
+    android:background="@color/background_upfront"
+    tools:context=".presentation.askAi.PdfAssistantFragment">
 
     <!-- Response Section (Scrollable) -->
     <androidx.core.widget.NestedScrollView
@@ -30,12 +31,12 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
+                android:drawablePadding="8dp"
                 android:fontFamily="@font/inter_bold"
-                android:text="@string/ask_ai_heading"
                 android:paddingTop="24dp"
+                android:text="@string/ask_ai_heading"
                 android:textColor="@color/text"
                 android:textSize="32sp"
-                android:drawablePadding="8dp"
                 app:drawableStartCompat="@drawable/ai_icon"
                 app:drawableTint="@color/highlight" />
 
@@ -44,17 +45,17 @@
                 android:layout_width="wrap_content"
                 android:layout_height="40dp"
                 android:layout_gravity="center"
-                android:background="@drawable/spinner_background"
-                android:popupBackground="@drawable/spinner_dropdown_background"
-                android:paddingHorizontal="16dp"
-                android:gravity="center"
-                android:dropDownVerticalOffset="40dp"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="4dp"
                 android:layout_marginBottom="4dp"
-                app:layout_constraintEnd_toEndOf="parent"
+                android:background="@drawable/spinner_background"
+                android:dropDownVerticalOffset="40dp"
+                android:gravity="center"
+                android:paddingHorizontal="16dp"
+                android:popupBackground="@drawable/spinner_dropdown_background"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintTop_toTopOf="parent"/>
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
                 android:id="@+id/tvResponse"
@@ -62,16 +63,16 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:lineSpacingExtra="6dp"
-                android:visibility="gone"
                 android:textColor="@color/text"
-                android:textSize="16sp" />
+                android:textSize="16sp"
+                android:visibility="gone" />
 
             <LinearLayout
                 android:id="@+id/emptyResponse"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:orientation="vertical"
-                android:gravity="center">
+                android:gravity="center"
+                android:orientation="vertical">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -99,28 +100,28 @@
 
                     <androidx.appcompat.widget.AppCompatButton
                         android:id="@+id/summarize"
+                        style="@style/GlassButtonStyle"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        style="@style/GlassButtonStyle"
                         android:layout_marginEnd="12dp"
                         android:text="@string/summarize"
-                        android:textColor="@color/text"/>
+                        android:textColor="@color/text" />
 
                     <androidx.appcompat.widget.AppCompatButton
                         android:id="@+id/explain"
+                        style="@style/GlassButtonStyle"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        style="@style/GlassButtonStyle"
                         android:text="@string/explain"
-                        android:textColor="@color/text"/>
+                        android:textColor="@color/text" />
 
                 </LinearLayout>
 
                 <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/generateMCQs"
+                    style="@style/GlassButtonStyle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    style="@style/GlassButtonStyle"
                     android:layout_marginTop="12dp"
                     android:text="@string/generate_mcqs"
                     android:textColor="@color/text"
@@ -153,12 +154,12 @@
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:background="@android:color/transparent"
+                android:gravity="center_vertical"
                 android:hint="@string/ai_message_box_hint"
                 android:importantForAutofill="no"
                 android:inputType="textMultiLine"
                 android:maxLines="5"
                 android:minLines="1"
-                android:gravity="center_vertical"
                 android:overScrollMode="ifContentScrolls"
                 android:padding="12dp"
                 android:textColor="@color/text"
@@ -211,13 +212,13 @@
         android:layout_width="100dp"
         android:layout_height="140dp"
         android:layout_margin="12dp"
-        app:cardCornerRadius="16dp"
-        android:elevation="6dp"
-        app:strokeWidth="1dp"
-        app:strokeColor="@color/text"
+        android:elevation="12dp"
         app:cardBackgroundColor="#40FFFFFF"
+        app:cardCornerRadius="16dp"
         app:layout_constraintBottom_toTopOf="@+id/messageInputCard"
-        app:layout_constraintStart_toStartOf="parent">
+        app:layout_constraintStart_toStartOf="parent"
+        app:strokeColor="@color/text"
+        app:strokeWidth="1dp">
 
         <ImageView
             android:id="@+id/pdfSnapshot"
@@ -252,5 +253,17 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/lottieAnimationView"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:alpha="0.25"
+        android:scaleType="fitXY"
+        app:layout_constraintBottom_toTopOf="@id/messageInputCard"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:lottie_autoPlay="true"
+        app:lottie_loop="true"
+        app:lottie_rawRes="@raw/multiple_waves" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
