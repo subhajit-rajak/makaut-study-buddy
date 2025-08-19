@@ -107,6 +107,7 @@
             android:text="@string/get_premium"
             android:textColor="@color/background_upfront"
             android:textSize="16sp"
+            app:rippleColor="@color/semi_darker_grey"
             app:layout_constraintStart_toStartOf="parent"
             tools:ignore="VisualLintButtonSize" />
 
